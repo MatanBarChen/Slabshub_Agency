@@ -76,6 +76,15 @@ Quarterly report structure (reports/financials/YYYY-Qn.md + widget summary in ch
 4. **Fixed schedule slots.** Publisher picks slots from `docs/schedule-slots.md` (one-line citation), never re-derives timezone reasoning per draft.
 5. **Status lives in `drafts/state.json`.** Publisher updates it on every draft change; orchestrator answers "מה הלוז" from it instead of scanning draft files. (Dashboard visual layer removed 2026-08-04 at Matan's request — the in-chat schedule widget is the only visual.)
 
+### Git sync — two-machine workflow (added 2026-08-04)
+
+The workspace is a git repo synced to https://github.com/MatanBarChen/Slabshub_Agency (private). Matan works from both a Windows desktop (the "office" — scheduled tasks live ONLY here) and a MacBook Pro. Files are the sync layer; chat history is per-machine and stays that way. Two standing rules for every Claude session on either machine:
+
+1. **Pull first:** at the start of any session that will touch workspace files, run `git pull` before working. If the pull conflicts or fails, STOP and surface it to Matan — never resolve conflicts silently.
+2. **Commit + push after meaningful changes:** any run that modifies workspace files (campaign runs, new drafts, schedule/state changes, docs updates — including scheduled-task updates to docs/usage-limits.md) ends with a commit (short descriptive message) and push. One machine works on the agency at a time.
+
+`.env` is gitignored and copied between machines manually only. MCP connectors are per-machine.
+
 ### Usage & limits tracking (added 2026-08-04)
 
 `docs/usage-limits.md` is the living tracker of every service's plan (paid/free), limits, and current usage. Maintained by the `usage-limits-check` scheduled task (twice daily, 09:30/21:30) and refreshed on demand when Matan says **"בדיקת לימיטים"** or **"בדיקת טוקנים"** — on that trigger the orchestrator refreshes the checkable rows (Runway credits via API, Klaviyo via MCP), updates the file, and shows the table in chat as a widget. Rules: every paid generation run (Veo video, image batches) gets a row in the file's consumption log in the same run; any service hitting 🟡/🔴 is surfaced to Matan immediately; when Matan reports plan/payment changes, update the תוכנית column right away.
