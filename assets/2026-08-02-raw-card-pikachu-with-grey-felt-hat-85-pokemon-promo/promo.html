@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SlabsHub — Pikachu with Grey Felt Hat #085 (1080x1350)</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0b0d0e; }
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', serif;
+    background:
+      radial-gradient(ellipse 900px 700px at 50% 46%, rgba(243,231,201,0.14), rgba(0,0,0,0) 62%),
+      radial-gradient(ellipse 1400px 1100px at 50% 60%, #1d2a2a 0%, #14181a 55%, #0b0d0e 100%);
+  }
+  /* subtle painterly wall texture */
+  .texture {
+    position: absolute; inset: 0; opacity: 0.20; pointer-events: none;
+    background-image:
+      repeating-radial-gradient(circle at 30% 20%, rgba(255,255,255,0.03) 0 2px, rgba(0,0,0,0.03) 2px 5px),
+      repeating-linear-gradient(115deg, rgba(31,78,74,0.10) 0 6px, rgba(0,0,0,0) 6px 14px),
+      repeating-linear-gradient(65deg, rgba(200,137,42,0.05) 0 4px, rgba(0,0,0,0) 4px 12px);
+  }
+  /* spotlight cone from above */
+  .beam {
+    position: absolute; left: 50%; top: -60px; width: 760px; height: 760px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse 380px 700px at 50% 0%, rgba(243,231,201,0.10), rgba(0,0,0,0) 70%);
+    pointer-events: none;
+  }
+  .hook {
+    position: absolute; top: 88px; left: 0; width: 100%;
+    text-align: center; color: #f0e9da;
+    font-size: 40px; letter-spacing: 4px; text-transform: uppercase;
+    white-space: nowrap;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.7);
+  }
+  .subhook {
+    position: absolute; top: 162px; left: 0; width: 100%;
+    text-align: center; color: #b08d4f;
+    font-size: 26px; letter-spacing: 6px; text-transform: uppercase;
+  }
+  /* brass frame around the card */
+  .frame {
+    position: absolute; left: 50%; top: 285px; transform: translateX(-50%);
+    padding: 16px;
+    border: 3px solid #b08d4f;
+    background: linear-gradient(160deg, #23282a, #171b1d);
+    box-shadow:
+      0 0 90px 22px rgba(243,231,201,0.10),
+      0 30px 70px rgba(0,0,0,0.75),
+      inset 0 0 24px rgba(0,0,0,0.6);
+  }
+  .frame img {
+    display: block; width: 610px; height: auto;
+  }
+  /* museum plaque */
+  .plaque {
+    position: absolute; left: 50%; top: 1128px; transform: translateX(-50%);
+    width: 460px; padding: 14px 10px 12px;
+    text-align: center;
+    background: linear-gradient(180deg, #8a6d3c, #b08d4f 45%, #7c6136);
+    color: #171310;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,240,200,0.5);
+  }
+  .plaque .t1 { font-size: 24px; letter-spacing: 2px; font-weight: bold; }
+  .plaque .t2 { font-size: 17px; letter-spacing: 3px; margin-top: 4px; text-transform: uppercase; }
+  /* price badge — museum-label style */
+  .price {
+    position: absolute; right: 56px; bottom: 52px;
+    border: 2px solid #b08d4f; background: rgba(11,13,14,0.82);
+    color: #f0e9da; text-align: center;
+    padding: 14px 26px; letter-spacing: 2px;
+  }
+  .price .amount { font-size: 42px; }
+  .price .qty { font-size: 17px; color: #b08d4f; letter-spacing: 4px; margin-top: 4px; text-transform: uppercase; }
+  /* raw badge */
+  .raw {
+    position: absolute; left: 56px; bottom: 52px;
+    border: 2px solid #1f4e4a; background: rgba(31,78,74,0.30);
+    color: #f0e9da; padding: 12px 22px;
+    font-size: 20px; letter-spacing: 4px; text-transform: uppercase;
+  }
+  .brand {
+    position: absolute; left: 0; bottom: 62px; width: 100%;
+    text-align: center; color: rgba(240,233,218,0.85);
+    font-size: 25px; letter-spacing: 9px; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="texture"></div>
+    <div class="beam"></div>
+
+    <!-- Hook: 6 words max -->
+    <div class="hook">The Only Museum-Made Pokemon Card</div>
+    <div class="subhook">Van Gogh Museum &#215; Pokemon &#183; 2023</div>
+
+    <div class="frame">
+      <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="Pikachu with Grey Felt Hat #085 Pokemon Promo — raw card">
+    </div>
+
+    <div class="plaque">
+      <div class="t1">Pikachu with Grey Felt Hat</div>
+      <div class="t2">SV Black Star Promo &#183; #085</div>
+    </div>
+
+    <div class="raw">Raw &#183; Ungraded</div>
+    <div class="brand">SlabsHub</div>
+    <div class="price">
+      <div class="amount">$1,100</div>
+      <div class="qty">Qty: 1 &#183; No Restock</div>
+    </div>
+  </div>
+</body>
+</html>

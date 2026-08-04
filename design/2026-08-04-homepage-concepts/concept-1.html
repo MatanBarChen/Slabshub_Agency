@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SlabsHub — The Vault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08090a;
+    --bg2:#0c0d0f;
+    --panel:#101113;
+    --line:rgba(255,255,255,.08);
+    --line-strong:rgba(255,255,255,.14);
+    --text:#f3f4f5;
+    --text-dim:#8b8f96;
+    --text-dimmer:#5b5f66;
+    --ember:#ff5a2e;
+    --ember-dim:#ff5a2e26;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+
+  /* NAV */
+  header{
+    border-bottom:1px solid var(--line);
+    background:rgba(8,9,10,.9);
+    position:sticky;top:0;z-index:50;
+  }
+  .navbar{
+    display:flex;align-items:center;justify-content:space-between;
+    height:68px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.02em;}
+  .brand .dot{width:8px;height:8px;background:var(--ember);border-radius:1px;}
+  nav.links{display:flex;gap:32px;font-size:13px;color:var(--text-dim);}
+  nav.links a:hover{color:var(--text);}
+  .nav-right{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--text-dim);}
+  .cert-check{
+    border:1px solid var(--line-strong);
+    padding:7px 14px;border-radius:6px;font-size:12px;color:var(--text-dim);
+  }
+
+  /* HERO */
+  .hero{
+    padding:96px 0 88px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, transparent 0%, var(--bg) 100%),
+      repeating-linear-gradient(90deg, var(--line) 0px, var(--line) 1px, transparent 1px, transparent 120px);
+    opacity:.5;
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;max-width:680px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ember);border:1px solid rgba(255,90,46,.3);background:var(--ember-dim);
+    padding:6px 12px;border-radius:4px;margin-bottom:24px;
+  }
+  .eyebrow::before{content:'●';font-size:8px;}
+  h1.hero-title{
+    font-size:52px;line-height:1.08;font-weight:800;letter-spacing:-0.02em;margin-bottom:20px;
+  }
+  h1.hero-title span{color:var(--text-dim);font-weight:600;}
+  .hero-sub{font-size:16px;color:var(--text-dim);line-height:1.6;max-width:520px;margin-bottom:36px;}
+  .hero-cta-row{display:flex;align-items:center;gap:20px;}
+  .btn-primary{
+    background:var(--ember);color:#0a0a0a;font-weight:700;font-size:14px;
+    padding:14px 26px;border-radius:6px;display:inline-block;
+  }
+  .btn-ghost{
+    font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:6px;
+  }
+  .hero-stats{
+    display:flex;gap:48px;margin-top:64px;padding-top:32px;border-top:1px solid var(--line);
+    max-width:680px;
+  }
+  .stat-num{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+  .stat-label{font-size:12px;color:var(--text-dimmer);margin-top:4px;}
+
+  /* SECTION HEADER */
+  .section{padding:80px 0;border-bottom:1px solid var(--line);}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;}
+  .section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ember);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;}
+  .section-title{font-size:28px;font-weight:700;letter-spacing:-0.01em;}
+  .section-link{font-size:13px;color:var(--text-dim);border-bottom:1px solid var(--line-strong);padding-bottom:2px;}
+
+  /* PRODUCT GRID */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .card{
+    background:var(--bg2);padding:0;display:flex;flex-direction:column;
+    transition:background .15s;
+  }
+  .card:hover{background:var(--panel);}
+  .card-media{
+    aspect-ratio:1/1;background:#050506;position:relative;
+    display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .card-media img{width:78%;height:78%;object-fit:contain;filter:drop-shadow(0 20px 30px rgba(0,0,0,.6));}
+  .grade-chip{
+    position:absolute;top:12px;left:12px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+    padding:4px 8px;border-radius:3px;letter-spacing:.03em;
+  }
+  .grade-chip.psa{background:#c8102e;color:#fff;}
+  .grade-chip.cgc{background:#0a4f9e;color:#fff;}
+  .grade-chip.raw{background:var(--panel);color:var(--text-dim);border:1px solid var(--line-strong);}
+  .card-body{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column;}
+  .card-title{font-size:13.5px;font-weight:600;line-height:1.4;margin-bottom:8px;}
+  .card-cert{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-dimmer);margin-bottom:14px;}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
+  .card-price{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;}
+  .card-verify{font-size:11px;color:var(--text-dimmer);border-bottom:1px dotted var(--text-dimmer);}
+
+  /* TRUST STRIP */
+  .trust{padding:72px 0;border-bottom:1px solid var(--line);}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .trust-item{background:var(--bg2);padding:32px 28px;}
+  .trust-num{font-family:'JetBrains Mono',monospace;color:var(--ember);font-size:13px;margin-bottom:14px;}
+  .trust-h{font-size:15px;font-weight:700;margin-bottom:8px;}
+  .trust-p{font-size:13px;color:var(--text-dim);line-height:1.6;}
+
+  /* FOOTER */
+  footer{padding:56px 0 40px;}
+  .footer-top{display:flex;justify-content:space-between;padding-bottom:40px;border-bottom:1px solid var(--line);margin-bottom:24px;}
+  .footer-brand{font-weight:700;font-size:15px;}
+  .footer-tag{font-size:12px;color:var(--text-dimmer);margin-top:8px;max-width:280px;line-height:1.6;}
+  .footer-cols{display:flex;gap:64px;}
+  .footer-col h4{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dimmer);margin-bottom:14px;}
+  .footer-col a{display:block;font-size:13px;color:var(--text-dim);margin-bottom:10px;}
+  .footer-bottom{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-dimmer);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <div class="brand"><span class="dot"></span>SLABSHUB</div>
+    <nav class="links">
+      <a href="https://slabshub.com">Graded Slabs</a>
+      <a href="https://slabshub.com">Raw Cards</a>
+      <a href="https://slabshub.com">Sealed</a>
+      <a href="https://slabshub.com">Sell to Us</a>
+    </nav>
+    <div class="nav-right">
+      <a class="cert-check" href="https://slabshub.com">Verify a Cert →</a>
+      <a href="https://slabshub.com">Cart (0)</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Authenticated inventory only</div>
+    <h1 class="hero-title">A vault for<br><span>grails, not guesswork.</span></h1>
+    <p class="hero-sub">Every slab in this catalog ships with its grading cert on record. No stock photos, no reprints, no "trust me" — look the card up before you buy it.</p>
+    <div class="hero-cta-row">
+      <a class="btn-primary" href="https://slabshub.com">Browse the Vault</a>
+      <a class="btn-ghost" href="https://slabshub.com">How grading works →</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num mono">1,200+</div><div class="stat-label">Slabs authenticated &amp; sold</div></div>
+      <div><div class="stat-num mono">PSA · CGC</div><div class="stat-label">Grading houses accepted</div></div>
+      <div><div class="stat-num mono">100%</div><div class="stat-label">Cert-verifiable on request</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">Currently in the vault</div>
+        <div class="section-title">Featured Slabs</div>
+      </div>
+      <a class="section-link" href="https://slabshub.com">View full inventory →</a>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-media">
+          <span class="grade-chip psa">PSA 9</span>
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Charizard_Holo_6PokemonJapaneseCDPromo.png?v=1746856362" alt="Charizard CD Promo">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Charizard [Holo] #6 — 1999 Japanese CD Promo</div>
+          <div class="card-cert">CERT #48212093</div>
+          <div class="card-foot">
+            <span class="card-price">$1,199.00</span>
+            <span class="card-verify">Verify cert</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-media">
+          <span class="grade-chip raw">RAW</span>
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="Pikachu Van Gogh Promo">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Pikachu with Grey Felt Hat — #85 Van Gogh Promo</div>
+          <div class="card-cert">UNGRADED · SEALED SLEEVE</div>
+          <div class="card-foot">
+            <span class="card-price">$999.00</span>
+            <span class="card-verify">Condition notes</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-media">
+          <span class="grade-chip cgc">CGC 10</span>
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/CharizardVSTAR_174PokemonBrilliantStars.jpg?v=1746460609" alt="Charizard VSTAR">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Charizard VSTAR #174 — Brilliant Stars</div>
+          <div class="card-cert">CERT #4201938001</div>
+          <div class="card-foot">
+            <span class="card-price">$134.99</span>
+            <span class="card-verify">Verify cert</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-media">
+          <span class="grade-chip raw">RAW</span>
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Mewtwo_183PokemonJapaneseScarlet_Violet151.png?v=1747636121" alt="Mewtwo 183">
+        </div>
+        <div class="card-body">
+          <div class="card-title">Mewtwo #183 — Japanese Scarlet &amp; Violet 151</div>
+          <div class="card-cert">UNGRADED · NEAR MINT</div>
+          <div class="card-foot">
+            <span class="card-price">$19.99</span>
+            <span class="card-verify">Condition notes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">Why collectors buy here</div>
+        <div class="section-title">How grading works</div>
+      </div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-num">01</div>
+        <div class="trust-h">Every cert is public</div>
+        <div class="trust-p">Cert numbers ship in every listing. Look them up on PSA or CGC's own lookup tools before you buy — we expect you to.</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">02</div>
+        <div class="trust-h">Photographed, not stocked</div>
+        <div class="trust-p">The photo is the actual slab you receive, front and back, under consistent studio light.</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">03</div>
+        <div class="trust-h">Raw cards, graded standards</div>
+        <div class="trust-p">Ungraded listings carry the same centering, surface and edge notes a grader would flag.</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">04</div>
+        <div class="trust-h">Shipped like it's a grail</div>
+        <div class="trust-p">Rigid mailers, tracked and insured, every order — a $20 raw card or a $1,200 slab.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">SLABSHUB</div>
+        <div class="footer-tag">A collector-run vault of graded and raw Pokémon cards. Every cert on record, every card verifiable.</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="https://slabshub.com">Graded PSA</a>
+          <a href="https://slabshub.com">Graded CGC</a>
+          <a href="https://slabshub.com">Raw Cards</a>
+        </div>
+        <div class="footer-col">
+          <h4>Trust</h4>
+          <a href="https://slabshub.com">Verify a Cert</a>
+          <a href="https://slabshub.com">Grading Guide</a>
+          <a href="https://slabshub.com">Shipping &amp; Returns</a>
+        </div>
+        <div class="footer-col">
+          <h4>Sell</h4>
+          <a href="https://slabshub.com">Sell to SlabsHub</a>
+          <a href="https://slabshub.com">Consign a Slab</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SlabsHub. All slabs authenticated by PSA / CGC.</span>
+      <span>Not affiliated with The Pokémon Company.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

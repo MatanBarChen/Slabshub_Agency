@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SlabsHub — The Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wall:#161210;
+    --wall2:#1c1714;
+    --frame:#2a2320;
+    --gold:#c9a24b;
+    --amber:#e8c887;
+    --text:#f2ece3;
+    --text-dim:#b7ab9c;
+    --text-dimmer:#8a7d6d;
+    --line:rgba(232,200,135,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--wall);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Fraunces',serif;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 48px;}
+
+  /* NAV */
+  header{padding:28px 0;border-bottom:1px solid var(--line);}
+  .navbar{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'Fraunces',serif;font-size:20px;letter-spacing:.02em;font-weight:500;}
+  .brand em{font-style:italic;color:var(--gold);}
+  nav.links{display:flex;gap:40px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);}
+  .nav-right{font-size:12px;letter-spacing:.05em;color:var(--text-dimmer);}
+
+  /* HERO */
+  .hero{padding:100px 0 110px;text-align:center;position:relative;}
+  .hero::before{
+    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:900px;height:600px;
+    background:radial-gradient(ellipse at 50% 0%, rgba(232,200,135,.14) 0%, transparent 65%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;max-width:680px;margin:0 auto;}
+  .kicker{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:26px;}
+  h1.hero-title{
+    font-family:'Fraunces',serif;font-weight:500;font-size:54px;line-height:1.15;
+    letter-spacing:-0.01em;margin-bottom:26px;
+  }
+  h1.hero-title em{font-style:italic;color:var(--amber);}
+  .hero-sub{font-size:16px;color:var(--text-dim);line-height:1.75;max-width:480px;margin:0 auto 40px;}
+  .btn-primary{
+    display:inline-block;border:1px solid var(--gold);color:var(--amber);
+    font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:15px 34px;
+  }
+  .btn-primary:hover{background:rgba(232,200,135,.08);}
+
+  /* GALLERY SECTION */
+  .section{padding:100px 0;border-top:1px solid var(--line);}
+  .section-head{text-align:center;max-width:560px;margin:0 auto 64px;}
+  .kicker-c{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;text-align:center;}
+  .section-title{font-family:'Fraunces',serif;font-size:34px;font-weight:500;margin-bottom:16px;}
+  .section-sub{font-size:14.5px;color:var(--text-dimmer);line-height:1.7;}
+
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+  .piece{display:flex;flex-direction:column;}
+  .frame{
+    background:linear-gradient(160deg, var(--frame), #1f1a17);
+    border:1px solid rgba(232,200,135,.2);
+    padding:18px;
+    position:relative;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
+  }
+  .frame::before{
+    content:'';position:absolute;inset:8px;border:1px solid rgba(232,200,135,.12);pointer-events:none;
+  }
+  .frame-media{
+    aspect-ratio:1/1.15;background:radial-gradient(ellipse at 50% 30%, #241d18 0%, #100d0b 75%);
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+  }
+  .frame-media img{width:72%;height:72%;object-fit:contain;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));}
+  .spotlight{position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:140%;height:80%;
+    background:radial-gradient(ellipse at 50% 0%, rgba(255,220,160,.16), transparent 70%);pointer-events:none;}
+  .grade-plate{
+    position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+    font-family:'Fraunces',serif;font-size:10.5px;letter-spacing:.08em;
+    background:rgba(10,8,7,.75);border:1px solid rgba(232,200,135,.3);color:var(--amber);
+    padding:4px 12px;white-space:nowrap;
+  }
+  .placard{padding:18px 4px 0;text-align:center;}
+  .placard-title{font-family:'Fraunces',serif;font-size:15px;font-style:italic;margin-bottom:6px;line-height:1.4;}
+  .placard-meta{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:12px;}
+  .placard-price{font-size:14px;color:var(--amber);letter-spacing:.02em;}
+  .placard-verify{display:block;margin-top:8px;font-size:10.5px;color:var(--text-dimmer);border-bottom:1px dotted var(--text-dimmer);display:inline-block;}
+
+  /* CURATOR STRIP */
+  .curator{padding:90px 0;border-top:1px solid var(--line);background:var(--wall2);}
+  .curator-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:56px;}
+  .curator-num{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:26px;margin-bottom:18px;}
+  .curator-h{font-size:16px;font-weight:600;margin-bottom:10px;}
+  .curator-p{font-size:13.5px;color:var(--text-dim);line-height:1.75;}
+
+  /* FOOTER */
+  footer{padding:64px 0 44px;border-top:1px solid var(--line);}
+  .footer-top{display:flex;justify-content:space-between;padding-bottom:44px;margin-bottom:28px;border-bottom:1px solid var(--line);}
+  .footer-brand{font-family:'Fraunces',serif;font-size:18px;}
+  .footer-tag{font-size:12.5px;color:var(--text-dimmer);margin-top:12px;max-width:300px;line-height:1.75;}
+  .footer-cols{display:flex;gap:64px;}
+  .footer-col h4{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px;}
+  .footer-col a{display:block;font-size:13px;color:var(--text-dim);margin-bottom:11px;}
+  .footer-bottom{display:flex;justify-content:space-between;font-size:11px;color:var(--text-dimmer);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <div class="brand">Slabs<em>Hub</em></div>
+    <nav class="links">
+      <a href="https://slabshub.com">Collection</a>
+      <a href="https://slabshub.com">Graded</a>
+      <a href="https://slabshub.com">Raw</a>
+      <a href="https://slabshub.com">Provenance</a>
+    </nav>
+    <div class="nav-right">Cart (0)</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="kicker">A Permanent Collection</div>
+    <h1 class="hero-title">Every card here<br>earned its <em>frame.</em></h1>
+    <p class="hero-sub">We don't stock cards — we curate them. Each piece in this collection is graded, documented, and displayed the way a museum would show its rarest holdings.</p>
+    <a class="btn-primary" href="https://slabshub.com">Enter the Collection</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker-c">On Display Now</div>
+      <div class="section-title">Featured Acquisitions</div>
+      <div class="section-sub">Four pieces currently held in the collection — each with its own provenance, condition report, and certified grade.</div>
+    </div>
+    <div class="gallery-grid">
+
+      <div class="piece">
+        <div class="frame">
+          <div class="frame-media">
+            <div class="spotlight"></div>
+            <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Charizard_Holo_6PokemonJapaneseCDPromo.png?v=1746856362" alt="Charizard CD Promo">
+            <div class="grade-plate">PSA 9 · CERT 48212093</div>
+          </div>
+        </div>
+        <div class="placard">
+          <div class="placard-title">Charizard, Holo No. 6</div>
+          <div class="placard-meta">1999 · Japanese CD Promo</div>
+          <div class="placard-price">$1,199</div><br>
+          <a class="placard-verify" href="https://slabshub.com">Verify provenance</a>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="frame">
+          <div class="frame-media">
+            <div class="spotlight"></div>
+            <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="Pikachu Van Gogh Promo">
+            <div class="grade-plate">RAW · SEALED</div>
+          </div>
+        </div>
+        <div class="placard">
+          <div class="placard-title">Pikachu, Grey Felt Hat</div>
+          <div class="placard-meta">No. 85 · Van Gogh Promo</div>
+          <div class="placard-price">$999</div><br>
+          <a class="placard-verify" href="https://slabshub.com">Condition report</a>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="frame">
+          <div class="frame-media">
+            <div class="spotlight"></div>
+            <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/CharizardVSTAR_174PokemonBrilliantStars.jpg?v=1746460609" alt="Charizard VSTAR">
+            <div class="grade-plate">CGC 10 · CERT 4201938001</div>
+          </div>
+        </div>
+        <div class="placard">
+          <div class="placard-title">Charizard VSTAR</div>
+          <div class="placard-meta">No. 174 · Brilliant Stars</div>
+          <div class="placard-price">$134.99</div><br>
+          <a class="placard-verify" href="https://slabshub.com">Verify provenance</a>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="frame">
+          <div class="frame-media">
+            <div class="spotlight"></div>
+            <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Mewtwo_183PokemonJapaneseScarlet_Violet151.png?v=1747636121" alt="Mewtwo 183">
+            <div class="grade-plate">RAW · NEAR MINT</div>
+          </div>
+        </div>
+        <div class="placard">
+          <div class="placard-title">Mewtwo, No. 183</div>
+          <div class="placard-meta">Japanese Scarlet &amp; Violet 151</div>
+          <div class="placard-price">$19.99</div><br>
+          <a class="placard-verify" href="https://slabshub.com">Condition report</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="curator">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker-c">A Note From The Curator</div>
+      <div class="section-title">On grading &amp; trust</div>
+    </div>
+    <div class="curator-grid">
+      <div>
+        <div class="curator-num">I.</div>
+        <div class="curator-h">Nothing enters uncertified</div>
+        <div class="curator-p">Every graded piece carries a PSA or CGC cert number, published in its placard and searchable on the grader's own registry.</div>
+      </div>
+      <div>
+        <div class="curator-num">II.</div>
+        <div class="curator-h">What you see is what ships</div>
+        <div class="curator-p">Photography is done in-house under studio light — the image is the actual card, not a stand-in.</div>
+      </div>
+      <div>
+        <div class="curator-num">III.</div>
+        <div class="curator-h">Raw pieces, honestly described</div>
+        <div class="curator-p">Ungraded cards carry the same centering and surface notes a grader would record, in plain language.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Slabs<em style="font-style:italic;color:var(--gold)">Hub</em></div>
+        <div class="footer-tag">A curated collection of graded and raw Pokémon cards, held and shown with the care of a permanent exhibit.</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Collection</h4>
+          <a href="https://slabshub.com">Graded Slabs</a>
+          <a href="https://slabshub.com">Raw Cards</a>
+          <a href="https://slabshub.com">Sealed Product</a>
+        </div>
+        <div class="footer-col">
+          <h4>Provenance</h4>
+          <a href="https://slabshub.com">Verify a Cert</a>
+          <a href="https://slabshub.com">Grading Guide</a>
+          <a href="https://slabshub.com">Shipping</a>
+        </div>
+        <div class="footer-col">
+          <h4>Consign</h4>
+          <a href="https://slabshub.com">Sell a Piece</a>
+          <a href="https://slabshub.com">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SlabsHub. All graded pieces certified by PSA / CGC.</span>
+      <span>Not affiliated with The Pokémon Company.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

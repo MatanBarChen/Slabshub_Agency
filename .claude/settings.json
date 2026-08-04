@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(py:*)",
+      "PowerShell(python:*)",
+      "PowerShell(py:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "PowerShell(New-Item:*)",
+      "PowerShell(Move-Item:*)",
+      "PowerShell(Get-ChildItem:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Bash(cat .env:*)",
+      "Bash(grep:* .env)",
+      "PowerShell(Get-Content .env:*)"
+    ]
+  }
+}

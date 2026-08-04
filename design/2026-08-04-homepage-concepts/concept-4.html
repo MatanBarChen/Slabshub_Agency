@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SlabsHub — The Gallery After Dark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Arena palette — reused verbatim from concept-3 tokens */
+    --bg:#0a0a0d;
+    --bg2:#111114;
+    --panel:#17171b;
+    --panel2:#0d0d10;
+    --purple:#8b5cf6;
+    --purple2:#6d28d9;
+    --ember:#ff4d2e;
+    --ember2:#ff8a3d;
+    --text:#f6f5f8;
+    --text-dim:#a6a3ae;
+    --text-dimmer:#66636f;
+    --line:rgba(255,255,255,.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .serif{font-family:'Fraunces',serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 48px;}
+  .grad-text{background:linear-gradient(90deg,var(--purple),var(--ember2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+  /* NAV — Gallery anatomy, gradient wordmark */
+  header{padding:26px 0;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;background:rgba(10,10,13,.9);backdrop-filter:blur(8px);}
+  .navbar{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'Fraunces',serif;font-size:20px;letter-spacing:.02em;font-weight:500;}
+  .brand em{font-style:italic;}
+  nav.links{display:flex;gap:40px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);}
+  nav.links a:hover{color:var(--text);}
+  .nav-right{display:flex;align-items:center;gap:26px;font-size:12px;letter-spacing:.05em;color:var(--text-dimmer);}
+  .nav-verify{display:inline-flex;align-items:center;gap:7px;color:var(--text-dim);}
+  .nav-verify::before{content:'';width:6px;height:6px;border-radius:50%;background:linear-gradient(90deg,var(--purple),var(--ember));}
+
+  /* HERO — Gallery's centered museum layout, Arena's lighting */
+  .hero{padding:108px 0 100px;text-align:center;position:relative;}
+  .hero::before{
+    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:1000px;height:620px;
+    background:
+      radial-gradient(ellipse 520px 420px at 28% 10%, rgba(139,92,246,.30), transparent 65%),
+      radial-gradient(ellipse 520px 420px at 74% 15%, rgba(255,77,46,.24), transparent 65%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;max-width:700px;margin:0 auto;}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);
+    margin-bottom:28px;
+  }
+  .kicker::before,.kicker::after{content:'';width:16px;height:1px;background:linear-gradient(90deg,var(--purple),var(--ember2));}
+  h1.hero-title{
+    font-family:'Fraunces',serif;font-weight:500;font-size:60px;line-height:1.1;
+    letter-spacing:-0.01em;margin-bottom:28px;
+  }
+  h1.hero-title em{font-style:italic;background:linear-gradient(90deg,var(--purple),var(--ember2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-sub{font-size:16px;color:var(--text-dim);line-height:1.75;max-width:500px;margin:0 auto 40px;}
+  .hero-cta-row{display:flex;gap:28px;align-items:center;justify-content:center;}
+  .btn-primary{
+    position:relative;display:inline-block;
+    padding:16px 36px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);
+    border-radius:2px;
+    background:linear-gradient(var(--bg),var(--bg)) padding-box,
+               linear-gradient(90deg,var(--purple),var(--ember2)) border-box;
+    border:1px solid transparent;
+  }
+  .btn-primary:hover{background:linear-gradient(90deg,var(--purple),var(--ember2)) border-box;}
+  .btn-text{font-size:12.5px;letter-spacing:.06em;color:var(--text-dim);border-bottom:1px solid var(--line);padding-bottom:2px;}
+  .btn-text:hover{color:var(--ember2);border-color:var(--ember2);}
+
+  /* SECTION HEADS — Gallery pacing */
+  .section{padding:96px 0;border-top:1px solid var(--line);}
+  .section-head{text-align:center;max-width:580px;margin:0 auto 60px;}
+  .kicker-c{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember2);margin-bottom:16px;text-align:center;}
+  .section-title{font-family:'Fraunces',serif;font-size:36px;font-weight:500;margin-bottom:16px;}
+  .section-sub{font-size:14.5px;color:var(--text-dimmer);line-height:1.7;}
+
+  /* STOCK CARD — derived from the live store's own product-card anatomy
+     (grade-prefixed title "PSA 9 | Name #num Set", pink tile → dark panel,
+     blue border glow → grade-colored glow, price w/ USD suffix), raised
+     into the Gallery/Arena hybrid language. Real data only — no cert
+     numbers or availability claims beyond what's verified. */
+  .stock-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .stock-card{
+    background:linear-gradient(165deg, var(--panel), var(--panel2));
+    border:2px solid rgba(255,255,255,.16);border-radius:10px;overflow:hidden;position:relative;
+    box-shadow:0 0 0 1px rgba(0,0,0,.85), 0 34px 70px -24px rgba(0,0,0,.85);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .stock-card:hover{transform:translateY(-6px);}
+  .stock-card.grade-psa{border-color:rgba(255,138,61,.6);
+    box-shadow:0 0 0 1px rgba(0,0,0,.85), 0 34px 70px -24px rgba(0,0,0,.85), 0 16px 48px -20px rgba(255,77,46,.38);}
+  .stock-card.grade-cgc{border-color:rgba(139,92,246,.65);
+    box-shadow:0 0 0 1px rgba(0,0,0,.85), 0 34px 70px -24px rgba(0,0,0,.85), 0 16px 48px -20px rgba(139,92,246,.42);}
+  .stock-card.grade-psa:hover{border-color:rgba(255,138,61,.95);
+    box-shadow:0 0 0 1px rgba(0,0,0,.85), 0 42px 80px -24px rgba(0,0,0,.9), 0 22px 60px -16px rgba(255,77,46,.55);}
+  .stock-card.grade-cgc:hover{border-color:rgba(139,92,246,.95);
+    box-shadow:0 0 0 1px rgba(0,0,0,.85), 0 42px 80px -24px rgba(0,0,0,.9), 0 22px 60px -16px rgba(139,92,246,.6);}
+  .stock-card:not(.grade-psa):not(.grade-cgc):hover{border-color:rgba(255,255,255,.35);}
+  /* full-bleed display window — the photo fills the frame edge to edge,
+     depth comes from a vignette + grade-colored light ON the photo */
+  .stock-media{
+    aspect-ratio:1/1.05;position:relative;overflow:hidden;
+    margin:10px 10px 0;border-radius:6px;
+  }
+  .stock-media img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .35s ease;
+  }
+  .stock-card:hover .stock-media img{transform:scale(1.05);}
+  .stock-media::after{ /* depth vignette over the photo */
+    content:'';position:absolute;inset:0;pointer-events:none;z-index:3;border-radius:6px;
+    box-shadow:inset 0 0 46px rgba(0,0,0,.55), inset 0 -18px 34px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.07);
+  }
+  .stock-glow{position:absolute;inset:0;pointer-events:none;z-index:2;
+    background:radial-gradient(ellipse 75% 40% at 50% -8%, rgba(255,255,255,.10), transparent 70%);}
+  .grade-psa .stock-glow{background:
+    radial-gradient(ellipse 75% 40% at 50% -8%, rgba(255,138,61,.22), transparent 70%),
+    radial-gradient(ellipse 60% 22% at 50% 106%, rgba(255,77,46,.12), transparent 75%);}
+  .grade-cgc .stock-glow{background:
+    radial-gradient(ellipse 75% 40% at 50% -8%, rgba(139,92,246,.24), transparent 70%),
+    radial-gradient(ellipse 60% 22% at 50% 106%, rgba(139,92,246,.14), transparent 75%);}
+  .stock-body{padding:18px 18px 20px;border-top:1px solid var(--line);}
+  .stock-grade-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;}
+  .stock-grade-pill{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.05em;
+    padding:4px 10px;border-radius:2px;background:rgba(255,255,255,.05);color:var(--text-dim);border:1px solid var(--line);
+  }
+  .grade-psa .stock-grade-pill{color:var(--ember2);border-color:rgba(255,138,61,.4);background:rgba(255,138,61,.08);}
+  .grade-cgc .stock-grade-pill{color:#c4b5fd;border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.08);}
+  .stock-num{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-dimmer);}
+  .stock-name{font-family:'Fraunces',serif;font-style:italic;font-size:16.5px;line-height:1.32;margin-bottom:6px;}
+  .stock-bracket{color:var(--text-dim);font-size:14px;}
+  .stock-set{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:16px;}
+  .stock-foot{display:flex;align-items:baseline;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line);}
+  .stock-price{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text);letter-spacing:.01em;}
+  .stock-price i{font-style:normal;font-size:9.5px;color:var(--text-dimmer);margin-left:3px;}
+  .stock-cert{font-size:10px;color:var(--text-dimmer);border-bottom:1px dotted var(--text-dimmer);white-space:nowrap;}
+  .stock-cert:hover{color:var(--ember2);border-color:var(--ember2);}
+
+  /* RECENT RESULTS STRIP — Arena's ticker, auction-house register */
+  .results-strip{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:44px 0;}
+  .results-label{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:26px;}
+  .results-kicker{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember2);}
+  .results-note{font-size:11.5px;color:var(--text-dimmer);}
+  .ticker-mask{overflow:hidden;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .ticker-track{display:inline-flex;gap:56px;animation:scroll 42s linear infinite;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .lot{display:inline-flex;align-items:baseline;gap:12px;font-size:13.5px;}
+  .lot .lotno{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-dimmer);}
+  .lot .lotname{font-family:'Fraunces',serif;font-style:italic;color:var(--text);}
+  .lot .lotprice{font-family:'JetBrains Mono',monospace;color:var(--text-dim);}
+  .lot .status{font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:2px;font-weight:600;}
+  .status.sold{background:rgba(255,77,46,.14);color:var(--ember2);}
+  .status.avail{background:rgba(139,92,246,.14);color:#c4b5fd;}
+  .status.low{background:rgba(255,138,61,.12);color:var(--ember2);}
+  .status.rare{background:rgba(139,92,246,.14);color:#c4b5fd;}
+
+  /* CURATOR STRIP — Gallery anatomy */
+  .curator{padding:96px 0;border-top:1px solid var(--line);}
+  .curator-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:56px;}
+  .curator-num{font-family:'Fraunces',serif;font-style:italic;font-size:28px;margin-bottom:18px;background:linear-gradient(90deg,var(--purple),var(--ember2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .curator-h{font-size:16px;font-weight:600;margin-bottom:10px;}
+  .curator-p{font-size:13.5px;color:var(--text-dim);line-height:1.75;}
+
+  /* FOOTER — Gallery anatomy */
+  footer{padding:64px 0 44px;border-top:1px solid var(--line);}
+  .footer-top{display:flex;justify-content:space-between;padding-bottom:44px;margin-bottom:28px;border-bottom:1px solid var(--line);}
+  .footer-brand{font-family:'Fraunces',serif;font-size:18px;}
+  .footer-tag{font-size:12.5px;color:var(--text-dimmer);margin-top:12px;max-width:300px;line-height:1.75;}
+  .footer-cols{display:flex;gap:64px;}
+  .footer-col h4{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ember2);margin-bottom:16px;}
+  .footer-col a{display:block;font-size:13px;color:var(--text-dim);margin-bottom:11px;}
+  .footer-col a:hover{color:var(--text);}
+  .footer-bottom{display:flex;justify-content:space-between;font-size:11px;color:var(--text-dimmer);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <div class="brand">Slabs<em class="grad-text">Hub</em></div>
+    <nav class="links">
+      <a href="https://slabshub.com">Collection</a>
+      <a href="https://slabshub.com">Graded</a>
+      <a href="https://slabshub.com">Raw</a>
+      <a href="https://slabshub.com">Provenance</a>
+    </nav>
+    <div class="nav-right">
+      <a class="nav-verify" href="https://slabshub.com">Verify a Cert</a>
+      <span>Cart (0)</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="kicker">A Permanent Collection · Live Market</div>
+    <h1 class="hero-title">Every card here<br>earned its <em>frame.</em></h1>
+    <p class="hero-sub">We don't stock cards — we curate them. Certified, photographed in-house, and priced against the live market, each piece is shown the way a museum shows its rarest holdings.</p>
+    <div class="hero-cta-row">
+      <a class="btn-primary" href="https://slabshub.com">Enter the Collection</a>
+      <a class="btn-text" href="#results">View Recent Results ↓</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker-c">On Display Now</div>
+      <div class="section-title">Featured Acquisitions</div>
+      <div class="section-sub">Four pieces currently held in the collection, listed exactly as they're graded — each carrying the same PSA / CGC / raw designation the piece ships with.</div>
+    </div>
+    <div class="stock-grid">
+
+      <div class="stock-card grade-psa">
+        <div class="stock-media">
+          <div class="stock-glow"></div>
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Charizard_Holo_6PokemonJapaneseCDPromo.png?v=1746856362" alt="Charizard CD Promo">
+        </div>
+        <div class="stock-body">
+          <div class="stock-grade-row">
+            <span class="stock-grade-pill">PSA 9</span>
+            <span class="stock-num">#6</span>
+          </div>
+          <div class="stock-name">Charizard <span class="stock-bracket">[Holo]</span></div>
+          <div class="stock-set">Pokemon Japanese CD Promo</div>
+          <div class="stock-foot">
+            <span class="stock-price">$1,199<i>USD</i></span>
+            <a class="stock-cert" href="https://www.psacard.com/cert/10017252" target="_blank" rel="noopener">Cert #10017252 ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stock-card">
+        <div class="stock-media">
+          <div class="stock-glow"></div>
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="Pikachu Grey Felt Hat Promo">
+        </div>
+        <div class="stock-body">
+          <div class="stock-grade-row">
+            <span class="stock-grade-pill">RAW</span>
+            <span class="stock-num">#85</span>
+          </div>
+          <div class="stock-name">Pikachu <span class="stock-bracket">with Grey Felt Hat</span></div>
+          <div class="stock-set">Pokemon Promo</div>
+          <div class="stock-foot">
+            <span class="stock-price">$999<i>USD</i></span>
+            <a class="stock-cert" href="https://slabshub.com">View piece →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stock-card grade-cgc">
+        <div class="stock-media">
+          <div class="stock-glow"></div>
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/CharizardVSTAR_174PokemonBrilliantStars.jpg?v=1746460609" alt="Charizard VSTAR">
+        </div>
+        <div class="stock-body">
+          <div class="stock-grade-row">
+            <span class="stock-grade-pill">CGC 10</span>
+            <span class="stock-num">#174</span>
+          </div>
+          <div class="stock-name">Charizard VSTAR</div>
+          <div class="stock-set">Pokemon Brilliant Stars</div>
+          <div class="stock-foot">
+            <span class="stock-price">$134.99<i>USD</i></span>
+            <a class="stock-cert" href="https://slabshub.com">View piece →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stock-card">
+        <div class="stock-media">
+          <div class="stock-glow"></div>
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Mewtwo_183PokemonJapaneseScarlet_Violet151.png?v=1747636121" alt="Mewtwo 183">
+        </div>
+        <div class="stock-body">
+          <div class="stock-grade-row">
+            <span class="stock-grade-pill">RAW</span>
+            <span class="stock-num">#183</span>
+          </div>
+          <div class="stock-name">Mewtwo</div>
+          <div class="stock-set">Pokemon Japanese Scarlet &amp; Violet 151</div>
+          <div class="stock-foot">
+            <span class="stock-price">$19.99<i>USD</i></span>
+            <a class="stock-cert" href="https://slabshub.com">View piece →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="results-strip" id="results">
+  <div class="wrap">
+    <div class="results-label">
+      <div class="results-kicker">Recent Results</div>
+      <div class="results-note">Current inventory — every piece one of one</div>
+    </div>
+    <div class="ticker-mask">
+      <div class="ticker-track">
+        <span class="lot"><span class="lotno">LOT 01</span><span class="lotname">Charizard, Holo No. 6</span><span class="lotprice">$1,199</span><span class="status avail">Available</span></span>
+        <span class="lot"><span class="lotno">LOT 02</span><span class="lotname">Mewtwo, No. 183</span><span class="lotprice">$19.99</span><span class="status avail">Available</span></span>
+        <span class="lot"><span class="lotno">LOT 03</span><span class="lotname">Charizard VSTAR</span><span class="lotprice">$134.99</span><span class="status low">Last One</span></span>
+        <span class="lot"><span class="lotno">LOT 04</span><span class="lotname">Pikachu, Grey Felt Hat</span><span class="lotprice">$999</span><span class="status low">Last One</span></span>
+        <span class="lot"><span class="lotno">LOT 01</span><span class="lotname">Charizard, Holo No. 6</span><span class="lotprice">$1,199</span><span class="status avail">Available</span></span>
+        <span class="lot"><span class="lotno">LOT 02</span><span class="lotname">Mewtwo, No. 183</span><span class="lotprice">$19.99</span><span class="status avail">Available</span></span>
+        <span class="lot"><span class="lotno">LOT 03</span><span class="lotname">Charizard VSTAR</span><span class="lotprice">$134.99</span><span class="status low">Last One</span></span>
+        <span class="lot"><span class="lotno">LOT 04</span><span class="lotname">Pikachu, Grey Felt Hat</span><span class="lotprice">$999</span><span class="status low">Last One</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="curator">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker-c">A Note From The Curator</div>
+      <div class="section-title">On grading &amp; trust</div>
+    </div>
+    <div class="curator-grid">
+      <div>
+        <div class="curator-num">I.</div>
+        <div class="curator-h">Nothing enters uncertified</div>
+        <div class="curator-p">Every graded piece carries a PSA or CGC cert number, searchable on the grader's own registry — published here whenever it's on hand.</div>
+      </div>
+      <div>
+        <div class="curator-num">II.</div>
+        <div class="curator-h">What you see is what ships</div>
+        <div class="curator-p">Photography is done in-house under studio light — the image is the actual card, not a stand-in.</div>
+      </div>
+      <div>
+        <div class="curator-num">III.</div>
+        <div class="curator-h">Priced against the live market</div>
+        <div class="curator-p">Every tag is checked against real sold comps, not guesswork — the same discipline a saleroom applies to its estimates.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Slabs<em style="font-style:italic;" class="grad-text">Hub</em></div>
+        <div class="footer-tag">A curated collection of graded and raw Pokémon cards, held and shown with the care of a permanent exhibit — priced against a live market.</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Collection</h4>
+          <a href="https://slabshub.com">Graded Slabs</a>
+          <a href="https://slabshub.com">Raw Cards</a>
+          <a href="https://slabshub.com">Sealed Product</a>
+        </div>
+        <div class="footer-col">
+          <h4>Provenance</h4>
+          <a href="https://slabshub.com">Verify a Cert</a>
+          <a href="https://slabshub.com">Grading Guide</a>
+          <a href="https://slabshub.com">Shipping</a>
+        </div>
+        <div class="footer-col">
+          <h4>Consign</h4>
+          <a href="https://slabshub.com">Sell a Piece</a>
+          <a href="https://slabshub.com">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SlabsHub. All graded pieces certified by PSA / CGC.</span>
+      <span>Not affiliated with The Pokémon Company.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
