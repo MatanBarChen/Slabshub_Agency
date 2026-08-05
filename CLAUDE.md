@@ -44,6 +44,7 @@ Matan can invoke any single agent directly via slash commands (defined in `.clau
 | `/design [סקופ]` | design-agent | `/design עמוד הבית` |
 | `/looking [סקופ]` | scout | `/looking עד $50` — סריקת שוק ומציאת קלפים שכדאי לקנות לחנות (המלצה בלבד, Tavily-powered) |
 | `/costs` | — (orchestrator inline) | בדיקת לימיטים ועלויות: טבלת מנויים/שירותים + מדדי Claude Max (מכסה ותמורה), מעדכן את docs/usage-limits.md |
+| `/team` | — (orchestrator inline) | לוח בקרה ויזואלי לסוכנים בצ'אט: מי רץ לאחרונה, מה הפיק, מה ממתין למי. קריאה בלבד, בלי ספאון |
 
 The same requests in plain Hebrew chat (without the slash) get the same individual treatment — the slash is a shortcut, not a requirement.
 
