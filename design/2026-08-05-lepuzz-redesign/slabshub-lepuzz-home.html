@@ -354,6 +354,56 @@
     gap: var(--gap);
     align-items: stretch;
     margin-top: 35px;
+    position: relative;
+  }
+  .hero-side {
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+    text-align: left;
+  }
+  .hero-side:hover { transform: translateY(-5px); background: #fffbe8; }
+  .hero-side:focus-visible { outline: 2px solid var(--color-carbon-black); outline-offset: 2px; }
+  #hero-left, #hero-center, #hero-right { transition: opacity 0.18s ease; }
+  .hero-stage.swapping #hero-left,
+  .hero-stage.swapping #hero-center,
+  .hero-stage.swapping #hero-right { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    #hero-left, #hero-center, #hero-right { transition: none; }
+    .hero-side, .hero-side:hover { transition: none; transform: none; }
+  }
+  .hero-arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    box-shadow: 3px 3px 0 0 var(--color-carbon-black);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    font-family: var(--font-ui);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .hero-arrow.prev { left: -6px; }
+  .hero-arrow.next { right: -6px; }
+  .hero-arrow:active { box-shadow: 1px 1px 0 0 var(--color-carbon-black); }
+  .hero-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+  .hero-dots button {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 1px solid var(--color-carbon-black);
+    background: #ffffff;
+    cursor: pointer;
+    padding: 0;
+  }
+  .hero-dots button.on { background: var(--color-honeycomb-yellow); }
+  @media (max-width: 900px) {
+    .hero-arrow { display: flex; }
   }
 
   .hero-feature {
@@ -1124,41 +1174,14 @@
     <h1>Every card tells a story.<br><em>Ours come with a grade.</em></h1>
     <p>Graded Pokémon slabs and hand-picked raw cards — photographed in-hand, priced against real sold listings, shipped protected.</p>
 
-    <div class="hero-stage">
-      <!-- left flank card -->
-      <div class="card hero-side">
-        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/SylveonEX_RC32PokemonGenerations.png?v=1747026754" alt="Sylveon EX #RC32, Pokemon Generations, raw card"></div>
-        <span class="set-line">Generations · RC32</span>
-        <div class="name">Sylveon EX</div>
-        <div class="meta"><span class="price">$64.99</span><span class="leader"></span><span class="badge">Raw</span></div>
-        <a class="quick-add" href="https://slabshub.com/products/raw-card-sylveon-ex-rc32-pokemon-generations">Quick Add</a>
-      </div>
-
-      <!-- center feature -->
-      <div class="hero-feature">
-        <span class="kicker">This week's front page</span>
-        <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="Pikachu with Grey Felt Hat #85 promo card, Van Gogh Museum collaboration">
-        <div class="slab-label">
-          <span class="spec">Raw · Promo #85<br>Van Gogh Museum × Pokémon</span>
-          <span class="barcode" aria-hidden="true"></span>
-        </div>
-        <h2>Pikachu with Grey Felt Hat <em>— the Van Gogh promo</em></h2>
-        <div class="price-line">
-          <span class="price">$999</span>
-          <span class="badge stock">1 in stock</span>
-        </div>
-        <a class="pearl-btn" href="https://slabshub.com/products/raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo">View the card</a>
-      </div>
-
-      <!-- right flank card -->
-      <div class="card hero-side">
-        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pikachu_TG05PokemonLostOrigin.png?v=1747026721" alt="Pikachu #TG05, Pokemon Lost Origin, raw card"></div>
-        <span class="set-line">Lost Origin · TG05</span>
-        <div class="name">Pikachu</div>
-        <div class="meta"><span class="price">$49.99</span><span class="leader"></span><span class="badge">Raw</span></div>
-        <a class="quick-add" href="https://slabshub.com/products/raw-card-pikachu-tg05-pokemon-lost-origin">Quick Add</a>
-      </div>
+    <div class="hero-stage" id="hero-stage">
+      <div class="card hero-side" id="hero-left" role="button" tabindex="0" aria-label="Feature the card on the left"></div>
+      <div class="hero-feature" id="hero-center" aria-live="polite"></div>
+      <div class="card hero-side" id="hero-right" role="button" tabindex="0" aria-label="Feature the card on the right"></div>
+      <button class="hero-arrow prev" id="hero-prev" aria-label="Previous card">←</button>
+      <button class="hero-arrow next" id="hero-next" aria-label="Next card">→</button>
     </div>
+    <div class="hero-dots" id="hero-dots" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -1519,11 +1542,13 @@
   })();
 
   // Card tilt — product images follow the cursor (hover devices, motion allowed)
-  (function () {
+  window.__bindTilt = function (root) {
     var hoverable = window.matchMedia('(hover: hover)').matches;
     var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!hoverable || !motionOK) return;
-    document.querySelectorAll('.card .img-box').forEach(function (box) {
+    (root || document).querySelectorAll('.card .img-box').forEach(function (box) {
+      if (box.__tiltBound) return;
+      box.__tiltBound = true;
       var img = box.querySelector('img');
       if (!img) return;
       box.addEventListener('mousemove', function (e) {
@@ -1536,6 +1561,130 @@
         img.style.transform = '';
       });
     });
+  };
+  window.__bindTilt(document);
+
+  // Front Page carousel — click a flank card to promote it to the yellow center
+  (function () {
+    var HERO = [
+      {
+        img: 'https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898',
+        alt: 'Pikachu with Grey Felt Hat #85 promo card, Van Gogh Museum collaboration',
+        short: 'Pikachu · Van Gogh', set: 'Promo · 85',
+        title: 'Pikachu with Grey Felt Hat <em>— the Van Gogh promo</em>',
+        spec: 'Raw · Promo #85<br>Van Gogh Museum × Pokémon',
+        price: '$999', stock: '1 in stock',
+        link: 'https://slabshub.com/products/raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo'
+      },
+      {
+        img: 'https://cdn.shopify.com/s/files/1/0622/2069/7711/files/SylveonEX_RC32PokemonGenerations.png?v=1747026754',
+        alt: 'Sylveon EX #RC32, Pokemon Generations, raw card',
+        short: 'Sylveon EX', set: 'Generations · RC32',
+        title: 'Sylveon EX <em>— Generations full art</em>',
+        spec: 'Raw · RC32<br>Generations Radiant Collection',
+        price: '$64.99', stock: '1 in stock',
+        link: 'https://slabshub.com/products/raw-card-sylveon-ex-rc32-pokemon-generations'
+      },
+      {
+        img: 'https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pikachu_TG05PokemonLostOrigin.png?v=1747026721',
+        alt: 'Pikachu #TG05, Pokemon Lost Origin, raw card',
+        short: 'Pikachu', set: 'Lost Origin · TG05',
+        title: 'Pikachu <em>— Lost Origin Trainer Gallery</em>',
+        spec: 'Raw · TG05<br>Lost Origin Trainer Gallery',
+        price: '$49.99', stock: '1 in stock',
+        link: 'https://slabshub.com/products/raw-card-pikachu-tg05-pokemon-lost-origin'
+      },
+      {
+        img: 'https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pikachu_GG30PokemonCrownZenith.png?v=1747026645',
+        alt: 'Pikachu #GG30, Pokemon Crown Zenith, raw card',
+        short: 'Pikachu', set: 'Crown Zenith · GG30',
+        title: 'Pikachu <em>— Crown Zenith Galarian Gallery</em>',
+        spec: 'Raw · GG30<br>Crown Zenith Galarian Gallery',
+        price: '$54.99', stock: '1 in stock',
+        link: 'https://slabshub.com/products/raw-card-pikachu-gg30-pokemon-crown-zenith'
+      },
+      {
+        img: 'https://cdn.shopify.com/s/files/1/0622/2069/7711/files/ArticunoGX_SV54PokemonHiddenFates_0edf81eb-2b8d-497c-8e65-fcb827376668.png?v=1746688476',
+        alt: 'Articuno GX #SV54 Shiny Vault, Pokemon Hidden Fates, raw card',
+        short: 'Articuno GX', set: 'Hidden Fates · SV54',
+        title: 'Articuno GX <em>— Hidden Fates Shiny Vault</em>',
+        spec: 'Raw · SV54<br>Hidden Fates Shiny Vault',
+        price: '$34.99', stock: '1 in stock',
+        link: 'https://slabshub.com/products/raw-card-yveltal-205-pokemon-paradox-rift-copy'
+      }
+    ];
+    var stage = document.getElementById('hero-stage');
+    if (!stage) return;
+    var slots = {
+      left: document.getElementById('hero-left'),
+      center: document.getElementById('hero-center'),
+      right: document.getElementById('hero-right')
+    };
+    var dots = document.getElementById('hero-dots');
+    var idx = 0, busy = false;
+    var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function sideHTML(p) {
+      return '<div class="img-box"><img src="' + p.img + '" alt="' + p.alt + '"></div>' +
+        '<span class="set-line">' + p.set + '</span>' +
+        '<div class="name">' + p.short + '</div>' +
+        '<div class="meta"><span class="price">' + p.price + '</span><span class="leader"></span><span class="badge">Raw</span></div>' +
+        '<a class="quick-add" href="' + p.link + '">Quick Add</a>';
+    }
+    function centerHTML(p) {
+      return '<span class="kicker">This week\'s front page</span>' +
+        '<img src="' + p.img + '" alt="' + p.alt + '">' +
+        '<div class="slab-label"><span class="spec">' + p.spec + '</span><span class="barcode" aria-hidden="true"></span></div>' +
+        '<h2>' + p.title + '</h2>' +
+        '<div class="price-line"><span class="price">' + p.price + '</span><span class="badge stock">' + p.stock + '</span></div>' +
+        '<a class="pearl-btn" href="' + p.link + '">View the card</a>';
+    }
+    function mod(n) { return (n % HERO.length + HERO.length) % HERO.length; }
+    function paint() {
+      slots.left.innerHTML = sideHTML(HERO[mod(idx - 1)]);
+      slots.center.innerHTML = centerHTML(HERO[idx]);
+      slots.right.innerHTML = sideHTML(HERO[mod(idx + 1)]);
+      if (dots) {
+        dots.innerHTML = HERO.map(function (_, i) {
+          return '<button class="' + (i === idx ? 'on' : '') + '" data-i="' + i + '"></button>';
+        }).join('');
+      }
+      window.__bindTilt(stage);
+    }
+    function go(newIdx) {
+      if (busy || newIdx === idx) return;
+      busy = true;
+      idx = mod(newIdx);
+      if (!motionOK) { paint(); busy = false; return; }
+      stage.classList.add('swapping');
+      setTimeout(function () {
+        paint();
+        stage.classList.remove('swapping');
+        setTimeout(function () { busy = false; }, 200);
+      }, 180);
+    }
+    function slotHandler(delta) {
+      return function (e) {
+        if (e.target.closest('a')) return; // let Quick Add work
+        go(idx + delta);
+      };
+    }
+    slots.left.addEventListener('click', slotHandler(-1));
+    slots.right.addEventListener('click', slotHandler(1));
+    [slots.left, slots.right].forEach(function (el, i) {
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(idx + (i === 0 ? -1 : 1)); }
+      });
+    });
+    document.getElementById('hero-prev').addEventListener('click', function () { go(idx - 1); });
+    document.getElementById('hero-next').addEventListener('click', function () { go(idx + 1); });
+    if (dots) {
+      dots.addEventListener('click', function (e) {
+        var b = e.target.closest('button[data-i]');
+        if (b) go(parseInt(b.getAttribute('data-i'), 10));
+      });
+    }
+    paint();
   })();
 
   // Staggered reveal for product grid cards
