@@ -74,6 +74,119 @@
 
   .wrap { max-width: var(--page-max-width); margin: 0 auto; padding: 0 20px; }
 
+  /* ---------- Sticky nav ---------- */
+  .sticky-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--color-honeycomb-yellow);
+    border-bottom: 2px solid var(--color-carbon-black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 9px 20px;
+    z-index: 50;
+    transform: translateY(-110%);
+    transition: transform 0.25s ease;
+  }
+  .sticky-nav.show { transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .sticky-nav { transition: none; } }
+  .sticky-nav .s-logo { font-family: var(--font-display); font-weight: 500; font-size: 22px; line-height: 1; }
+  .sticky-nav .s-logo em { font-style: italic; font-weight: 400; }
+  .sticky-nav .s-links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .sticky-nav .s-links a {
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-nav);
+    text-transform: uppercase;
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 6px 12px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .sticky-nav .s-links a:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+  @media (max-width: 700px) { .sticky-nav .s-links a:nth-child(n+3) { display: none; } }
+
+  /* ---------- Back to top ---------- */
+  .to-top {
+    position: fixed;
+    right: 18px; bottom: 18px;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 49;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, background 0.15s ease;
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  .to-top svg { width: 18px; height: 18px; stroke: var(--color-carbon-black); fill: none; stroke-width: 2; }
+  .to-top:hover { background: var(--color-carbon-black); }
+  .to-top:hover svg { stroke: var(--color-honeycomb-yellow); }
+
+  /* ---------- Card tilt (hover-capable devices only) ---------- */
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .card .img-box { perspective: 600px; }
+    .card .img-box img { will-change: transform; }
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- Letters to the desk (FAQ) ---------- */
+  .letters { max-width: 760px; margin: 0 auto; }
+  .letters details {
+    border-top: 1px solid var(--color-carbon-black);
+  }
+  .letters details:last-child { border-bottom: 1px solid var(--color-carbon-black); }
+  .letters summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px 4px;
+  }
+  .letters summary::-webkit-details-marker { display: none; }
+  .letters summary h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 1.05;
+  }
+  .letters summary .mark {
+    font-family: var(--font-ui);
+    font-weight: 100;
+    font-size: 26px;
+    line-height: 1;
+    flex: none;
+    width: 28px; height: 28px;
+    border: 1px solid var(--color-carbon-black);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .letters summary:hover .mark { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+  .letters details[open] summary .mark::before { content: "−"; }
+  .letters details:not([open]) summary .mark::before { content: "+"; }
+  .letters .answer {
+    padding: 0 40px 20px 4px;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.4;
+    color: var(--color-ink-black);
+  }
+  .letters .answer a { border-bottom: 1px solid var(--color-carbon-black); }
+  .letters .answer a:hover { background: var(--color-honeycomb-yellow); }
+
   /* ---------- Ticker ---------- */
   .ticker {
     background: var(--color-carbon-black);
@@ -762,6 +875,21 @@
 </head>
 <body>
 
+<!-- ================= STICKY NAV ================= -->
+<div class="sticky-nav" id="sticky-nav" aria-hidden="true">
+  <a class="s-logo" href="#top">Slabs<em>Hub</em></a>
+  <div class="s-links">
+    <a href="https://slabshub.com/collections/all">Shop All</a>
+    <a href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">Accessories</a>
+    <a href="https://slabshub.com/cart">Cart</a>
+  </div>
+</div>
+
+<!-- ================= BACK TO TOP ================= -->
+<button class="to-top" id="to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg>
+</button>
+
 <!-- ================= TICKER ================= -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
@@ -1078,6 +1206,37 @@
   </div>
 </section>
 
+<!-- ================= LETTERS TO THE DESK (FAQ) ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2><span class="no">№ 4</span>Letters to the desk</h2>
+    </div>
+    <div class="letters">
+      <details>
+        <summary><h3>How do I know a graded slab is authentic?</h3><span class="mark" aria-hidden="true"></span></summary>
+        <p class="answer">Every PSA slab we list shows its certification number. Punch it into PSA's public cert verification and you'll see the exact card, grade, and label — before you spend a shekel.</p>
+      </details>
+      <details>
+        <summary><h3>What condition are the raw cards in?</h3><span class="mark" aria-hidden="true"></span></summary>
+        <p class="answer">Every raw card is photographed in-hand, front and back — the photo in the listing is the exact copy you receive, not a stock image. If you want extra photos of a specific corner or edge, just ask.</p>
+      </details>
+      <details>
+        <summary><h3>How are orders packed and shipped?</h3><span class="mark" aria-hidden="true"></span></summary>
+        <p class="answer">Cards ship sleeved and protected, slabs padded. We're collectors — your order is packed the way we'd want our own cards to arrive.</p>
+      </details>
+      <details>
+        <summary><h3>Why is everything one copy only?</h3><span class="mark" aria-hidden="true"></span></summary>
+        <p class="answer">We're a curated shop, not a warehouse. Each listing is a single card we picked, photographed, and priced against recent sold listings. When it sells, it's gone — that's what the email list is for.</p>
+      </details>
+      <details>
+        <summary><h3>What about returns?</h3><span class="mark" aria-hidden="true"></span></summary>
+        <p class="answer">See our <a href="https://slabshub.com/policies/refund-policy">shipping &amp; returns policy</a> for the full details.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ================= SUBSCRIBE ================= -->
 <div class="subscribe">
   <div class="band-inner">
@@ -1121,6 +1280,67 @@
 </footer>
 
 <script>
+  // Sticky nav + back-to-top — appear after scrolling past the masthead
+  (function () {
+    var masthead = document.querySelector('.masthead');
+    var sticky = document.getElementById('sticky-nav');
+    var toTop = document.getElementById('to-top');
+    if (masthead && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        var past = !entries[0].isIntersecting;
+        sticky.classList.toggle('show', past);
+        sticky.setAttribute('aria-hidden', past ? 'false' : 'true');
+        toTop.classList.toggle('show', past);
+      }, { threshold: 0 });
+      io.observe(masthead);
+    }
+    function goTop(e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    toTop.addEventListener('click', goTop);
+    sticky.querySelector('.s-logo').addEventListener('click', goTop);
+  })();
+
+  // Card tilt — product images follow the cursor (hover devices, motion allowed)
+  (function () {
+    var hoverable = window.matchMedia('(hover: hover)').matches;
+    var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!hoverable || !motionOK) return;
+    document.querySelectorAll('.card .img-box').forEach(function (box) {
+      var img = box.querySelector('img');
+      if (!img) return;
+      box.addEventListener('mousemove', function (e) {
+        var r = box.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        img.style.transform = 'rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) scale(1.04)';
+      });
+      box.addEventListener('mouseleave', function () {
+        img.style.transform = '';
+      });
+    });
+  })();
+
+  // Staggered reveal for product grid cards
+  (function () {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.grid-3 .card'));
+    cards.forEach(function (c) { c.classList.add('reveal'); });
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach(function (c) { c.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var idx = cards.indexOf(el);
+          el.style.transitionDelay = ((idx % 3) * 0.08) + 's';
+          el.classList.add('in');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15 });
+    cards.forEach(function (c) { io.observe(c); });
+  })();
+
   // Departments carousel — scroll-snap track + arrow (wraps), keyboard arrows, staggered reveal
   (function () {
     var track = document.getElementById('dept-track');
