@@ -60,8 +60,13 @@ NOTE (2026-08-03): no SlabsHub Supabase project exists yet (the two projects on 
 #### Runway API — key verified 2026-08-04, ⚠ 0 credits
 `RUNWAY_API_SECRET` in `.env`, validated against /v1/organization. Blocked on credit top-up (Matan's call). When funded, notable models for us beyond gen4_turbo video: `product_swap`, `product_ugc`, `product_campaign_image` (purpose-built product-marketing generators), `multi_shot_video`. Until then: Veo via Gemini API is the video engine.
 
-#### Fallback / zero-cost workflow — Veo via Matan's Google AI subscription
-Matan has a Google AI subscription that includes Veo. The working pipeline is hybrid:
+#### ✅ PRIMARY video workflow — Flow via browser automation (verified 2026-08-05)
+The orchestrator drives Flow (labs.google/flow) in Matan's real Chrome via the Claude-in-Chrome extension, using his Google AI Pro subscription (₪45/month) — zero cash per clip. Verified end-to-end on the Umbreon ring-light clip (15 credits). Flow model picker: Veo 3.1 Fast is our default; settings pinned to 9:16, x1 output, confirm-before-generating Always.
+Steps: open Flow project → Matan clicks "Upload media" for the start frame (native file dialog — the ONE manual step; his click, not the extension's) → orchestrator pastes the prompt, sets model/aspect, sends, approves the credit confirmation, waits (~2-4 min), downloads → file moved into `assets/<campaign>/`.
+Limits: needs Matan present with Chrome open (won't work from scheduled tasks); brittle to Flow UI changes; 2FA prompt on first login of a session. API Veo (pay-per-use) stays as the fallback for hands-off runs.
+
+#### Manual fallback — Veo via Flow, fully by hand
+The original hybrid pipeline (kept for when browser automation is unavailable):
 1. `creative` writes ready-to-paste Veo prompts in `assets/<campaign>/video-prompts.md`, and names which Shopify product image to upload as the start frame.
 2. Matan opens **Flow** (labs.google/flow — supports image-to-video), uploads the card image, pastes the prompt, generates (~30s per clip).
 3. Matan saves the .mp4 into the campaign's `assets/` directory; `publisher` attaches it to the draft.
