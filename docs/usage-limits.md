@@ -38,6 +38,7 @@
 |---|---|---|---|
 | 2026-08-04 | Gemini / veo-3.1-fast | reel-handfan.mp4 (8s, קמפיין Slab Guard) | ~$2-3 |
 | 2026-08-04 | Gemini / gemini-3.1-flash-image | promo-main.png של Slab Guard (כולל נסיונות קומפוזיט של הסוכן) | ~$0.10-0.30 |
+| 2026-08-05 | Gemini / gemini-3.1-flash-image | 2 רקעים לקמפיין Eevee Jungle CGC 7 (קומפוזיט מקומי) | <$0.05 |
 
 ## כללים
 

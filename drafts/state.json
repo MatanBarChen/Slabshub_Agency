@@ -1,6 +1,6 @@
 {
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
-  "updated": "2026-08-04",
+  "updated": "2026-08-05",
   "_note_slab_guard_slots": "2026-08-04-slab-guard-launch uses custom Israel-local slots (il-wed-eve/il-thu-eve/il-sat-eve, 20:00-22:00 IDT) — documented deviation from docs/schedule-slots.md (US-oriented grid); campaign targets Israeli collectors.",
   "meta_api": {
     "status": "in_progress",
@@ -189,6 +189,56 @@
           "publish_at": "2026-08-09T21:00:00+03:00",
           "status": "APPROVED",
           "file": "drafts/2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions-facebook-organic.md"
+        },
+        {
+          "platform": "facebook-ad",
+          "label": "מדולג — ממומן חסום",
+          "slot": null,
+          "publish_at": null,
+          "status": "SKIPPED",
+          "blockers": [
+            "Meta API",
+            "ערעור מודעות פתוח"
+          ],
+          "file": null
+        }
+      ]
+    },
+    {
+      "id": "2026-08-05-eevee-jungle-cgc7",
+      "title": "Eevee [1st Edition] #51 · Pokemon Jungle · CGC 7",
+      "emoji": "🦊",
+      "price": "$24.99",
+      "tag": "מלאי תקוע · 476 יום · וינטג' 1999",
+      "pipeline": {
+        "brief": "done",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "facebook-organic",
+          "label": "פתיחה — סיפור סט הג'ונגל 1999",
+          "slot": "us-thu-eve",
+          "publish_at": "2026-08-07T04:00:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-08-05-eevee-jungle-cgc7-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "label": "פוסט דגל — זוהר ענבר וינטג'",
+          "slot": "us-fri-eve",
+          "publish_at": "2026-08-08T04:00:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "label": "3 פריימים — OG Eevee",
+          "slot": "us-sat-eve",
+          "publish_at": "2026-08-09T04:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-story.md"
         },
         {
           "platform": "facebook-ad",
