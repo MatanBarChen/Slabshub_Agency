@@ -700,6 +700,168 @@
   .listing .p { font-family: var(--font-ui); font-size: 15px; font-weight: 700; white-space: nowrap; }
   .listing:hover .what { text-decoration: underline; text-underline-offset: 3px; }
 
+  /* ---------- Price Guide (comics stickers) ---------- */
+  .price-guide {
+    background-image:
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 16px 16px;
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 40px 30px 45px;
+    background-color: #d3d5d7;
+  }
+  .price-guide-head { text-align: center; margin-bottom: 35px; }
+  .price-guide-head .plate {
+    display: inline-block;
+    background: #ffffff;
+    border: 3px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    box-shadow: 8px 8px 0 0 var(--color-carbon-black);
+    padding: 14px 30px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 0.95;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .price-guide-head .plate em { font-style: italic; font-weight: 400; }
+  .price-guide-head .plate:hover { transform: translate(2px, 2px); box-shadow: 6px 6px 0 0 var(--color-carbon-black); }
+  .price-guide-head .sub {
+    display: block;
+    margin-top: 18px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-black);
+  }
+  .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1050px; margin: 0 auto; }
+  .tier-card {
+    position: relative;
+    background: #ffffff;
+    border: 3px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    box-shadow: 6px 6px 0 0 var(--color-carbon-black);
+    padding: 22px;
+    transition: box-shadow 0.2s ease;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .tier-card.in { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s ease; }
+  .tier-card:hover { box-shadow: 9px 9px 0 0 var(--color-carbon-black); }
+  @media (prefers-reduced-motion: reduce) {
+    .tier-card { opacity: 1; transform: none; }
+  }
+  .tier-card .tilt-inner { transform-style: preserve-3d; display: flex; flex-direction: column; height: 100%; }
+  .tier-card { display: flex; flex-direction: column; }
+  .tier-card .tier-features { flex-grow: 1; align-content: flex-start; }
+  .tier-card .tier-cta { margin-top: auto; }
+  .price-bubble {
+    position: absolute;
+    top: -18px; right: -14px;
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    box-shadow: 3px 3px 0 0 var(--color-carbon-black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    animation: bubble-wobble 5s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  }
+  .price-bubble.ink { background: var(--color-ink-black); }
+  .price-bubble.ink .amt, .price-bubble.ink .per { color: var(--color-honeycomb-yellow); }
+  .price-bubble .amt { font-family: var(--font-ui); font-size: 17px; font-weight: 700; line-height: 1; }
+  .price-bubble .per { font-family: var(--font-ui); font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 2px; }
+  @keyframes bubble-wobble {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    20% { transform: rotate(7deg) translateY(-4px); }
+    40% { transform: rotate(-5deg) translateY(3px); }
+    60% { transform: rotate(4deg) translateY(-2px); }
+    80% { transform: rotate(-3deg) translateY(1px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .price-bubble { animation: none; } }
+  .tier-card h3 {
+    font-family: var(--font-ui);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+  .tier-pop {
+    display: inline-block;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    border-radius: 6px;
+    box-shadow: 2px 2px 0 0 var(--color-carbon-black);
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    font-weight: 700;
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    padding: 3px 9px;
+    margin-bottom: 12px;
+    align-self: flex-start;
+    animation: pop-bob 2s ease-in-out infinite;
+  }
+  @keyframes pop-bob { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-3px) scale(1.04); } }
+  @media (prefers-reduced-motion: reduce) { .tier-pop { animation: none; } }
+  .tier-features { display: flex; flex-direction: column; gap: 8px; margin: 12px 0 18px; }
+  .tier-feature {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: #f4f4f4;
+    border: 2px solid var(--color-carbon-black);
+    border-radius: 8px;
+    box-shadow: 2px 2px 0 0 var(--color-carbon-black);
+    padding: 8px 10px;
+    transition: transform 0.15s ease;
+  }
+  .tier-feature:hover { transform: translateX(5px) scale(1.01); }
+  .tier-feature .check {
+    flex: none;
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    background: var(--color-honeycomb-yellow);
+    border: 1px solid var(--color-carbon-black);
+    box-shadow: 1px 1px 0 0 var(--color-carbon-black);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+  }
+  .tier-feature:hover .check { transform: rotate(360deg) scale(1.15); }
+  .tier-feature span:last-child { font-family: var(--font-ui); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
+  .tier-cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 0 var(--color-carbon-black);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .tier-cta:hover { box-shadow: 6px 6px 0 0 var(--color-carbon-black); transform: translate(-1px, -1px); }
+  .tier-cta:active { box-shadow: 2px 2px 0 0 var(--color-carbon-black); transform: translate(2px, 2px); }
+  .tier-cta.ink { background: var(--color-ink-black); color: var(--color-honeycomb-yellow); }
+  @media (max-width: 900px) {
+    .tier-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .price-guide { padding: 30px 20px 35px; }
+  }
+
   /* ---------- Yellow editorial band ---------- */
   .band {
     background: var(--color-honeycomb-yellow);
@@ -1160,6 +1322,60 @@
   </div>
 </section>
 
+<!-- ================= PRICE GUIDE ================= -->
+<section>
+  <div class="wrap">
+    <div class="price-guide">
+      <div class="price-guide-head">
+        <span class="plate">The <em>Price Guide</em></span>
+        <span class="sub">Three ways in · real inventory · one copy each</span>
+      </div>
+      <div class="tier-grid">
+        <div class="tier-card">
+          <div class="price-bubble"><span class="amt">$<span class="counter" data-to="5">0</span></span><span class="per">from</span></div>
+          <div class="tilt-inner">
+            <h3>Starter</h3>
+            <div class="tier-features">
+              <div class="tier-feature"><span class="check">✓</span><span>Stamped ex cards</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>Prismatic Evolutions</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>Slab Guard bumpers</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>Ships protected</span></div>
+            </div>
+            <a class="tier-cta" href="https://slabshub.com/collections/all">Browse the classifieds →</a>
+          </div>
+        </div>
+        <div class="tier-card">
+          <div class="price-bubble"><span class="amt">$<span class="counter" data-to="20">0</span></span><span class="per">from</span></div>
+          <div class="tilt-inner">
+            <h3>Collector</h3>
+            <span class="tier-pop">Popular</span>
+            <div class="tier-features">
+              <div class="tier-feature"><span class="check">✓</span><span>Shiny Vault &amp; SIR hits</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>Trainer Gallery Pikachu</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>Photographed in-hand</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>Market-priced</span></div>
+            </div>
+            <a class="tier-cta" href="https://slabshub.com/collections/all">Shop the hits →</a>
+          </div>
+        </div>
+        <div class="tier-card">
+          <div class="price-bubble ink"><span class="amt">$<span class="counter" data-to="999">0</span></span><span class="per">grail</span></div>
+          <div class="tilt-inner">
+            <h3>Grail</h3>
+            <div class="tier-features">
+              <div class="tier-feature"><span class="check">✓</span><span>Van Gogh Pikachu promo</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>Museum collaboration</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>One copy in stock</span></div>
+              <div class="tier-feature"><span class="check">✓</span><span>The front-page card</span></div>
+            </div>
+            <a class="tier-cta ink" href="https://slabshub.com/products/raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo">Claim the grail →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= WHY GRADED / TRUST BAND ================= -->
 <div class="band">
   <div class="wrap band-inner">
@@ -1339,6 +1555,59 @@
       });
     }, { threshold: 0.15 });
     cards.forEach(function (c) { io.observe(c); });
+  })();
+
+  // Price Guide — staggered reveal + animated price counters + card tilt
+  (function () {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.tier-card'));
+    if (!cards.length) return;
+    var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function runCounter(el) {
+      var to = parseInt(el.getAttribute('data-to'), 10) || 0;
+      if (!motionOK) { el.textContent = to; return; }
+      var start = null, dur = 1000;
+      function tick(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function revealAll() {
+      cards.forEach(function (c, i) {
+        c.style.transitionDelay = (i * 0.2) + 's';
+        c.classList.add('in');
+        c.querySelectorAll('.counter').forEach(runCounter);
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { revealAll(); io.disconnect(); }
+        });
+      }, { threshold: 0.2 });
+      io.observe(cards[0]);
+    } else { revealAll(); }
+
+    // tilt (hover devices, motion allowed) — inner wrapper tilts, sticker shadow stays put
+    if (window.matchMedia('(hover: hover)').matches && motionOK) {
+      cards.forEach(function (card) {
+        var inner = card.querySelector('.tilt-inner');
+        if (!inner) return;
+        inner.style.transition = 'transform 0.2s ease';
+        card.addEventListener('mousemove', function (e) {
+          var r = card.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          inner.style.transform = 'perspective(1000px) rotateY(' + (x * 7) + 'deg) rotateX(' + (-y * 7) + 'deg)';
+        });
+        card.addEventListener('mouseleave', function () { inner.style.transform = ''; });
+      });
+    }
   })();
 
   // Departments carousel — scroll-snap track + arrow (wraps), keyboard arrows, staggered reveal
