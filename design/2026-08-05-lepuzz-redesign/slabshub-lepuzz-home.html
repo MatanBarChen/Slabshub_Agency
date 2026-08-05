@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SlabsHub — The Graded Card Circular</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Colors — Le Puzz reference, locked */
+    --color-honeycomb-yellow: #ffd931;
+    --color-carbon-black: #000000;
+    --color-ink-black: #231f20;
+    --color-pearl-gray: #c8cbcd;
+    --color-fog-gray: #a6a8aa;
+    --color-smoke-line: #d6d6d6;
+
+    /* Typography */
+    --font-display: 'Times Now', 'Playfair Display', 'Times New Roman', serif;
+    --font-body: 'Times New Roman', Times, serif;
+    --font-ui: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    --text-caption: 11px;
+    --text-body: 16px;
+    --text-subheading: 23px;
+    --text-heading-sm: 27px;
+    --text-heading: 40px;
+    --text-display: 47px;
+
+    --tracking-ui: 0.073em;
+    --tracking-nav: 0.063em;
+
+    /* Layout */
+    --page-max-width: 1200px;
+    --card-padding: 15px;
+    --gap: 15px;
+
+    /* Radius */
+    --radius-card: 12px;
+    --radius-pill: 25px;
+    --radius-hero: 45px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-pearl-gray);
+    color: var(--color-carbon-black);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.15;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .ui {
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+
+  .wrap { max-width: var(--page-max-width); margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- Header ---------- */
+  .masthead {
+    background: var(--color-honeycomb-yellow);
+    border-bottom: 2px solid var(--color-carbon-black);
+  }
+
+  .dateline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    border-bottom: 1px solid var(--color-carbon-black);
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+  }
+  .dateline span { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; }
+
+  .logo-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 25px 20px 20px;
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    gap: 15px;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-display);
+    line-height: 0.87;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+  .logo em { font-style: italic; }
+  .logo-side { display: flex; align-items: center; gap: 10px; }
+  .logo-side.right { justify-content: flex-end; }
+
+  .signup-inline { display: flex; align-items: center; gap: 6px; }
+  .signup-inline input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-carbon-black);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 2px 0;
+    width: 150px;
+    color: var(--color-ink-black);
+  }
+  .signup-inline input::placeholder { color: var(--color-ink-black); }
+  .signup-inline button {
+    background: transparent;
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .cart-link { display: inline-flex; align-items: center; gap: 6px; }
+  .cart-link svg { width: 16px; height: 16px; }
+
+  .nav-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px 20px;
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 10px 16px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-nav);
+    text-transform: uppercase;
+  }
+  .nav-btn:hover, .nav-btn.active { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 50px 0 40px; text-align: center; }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-heading);
+    line-height: 0.9;
+    text-wrap: balance;
+    max-width: 700px;
+    margin: 0 auto 14px;
+  }
+  .hero h1 em { font-style: italic; }
+  .hero p {
+    font-size: var(--text-body);
+    line-height: 1.15;
+    color: var(--color-ink-black);
+    max-width: 540px;
+    margin: 0 auto 25px;
+  }
+
+  .hero-stage {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: var(--gap);
+    align-items: stretch;
+    margin-top: 30px;
+  }
+
+  .hero-feature {
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-hero);
+    padding: 30px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  .hero-feature .kicker { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; }
+  .hero-feature img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: var(--radius-card);
+    display: block;
+  }
+  .hero-feature h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-heading-sm);
+    line-height: 0.9;
+    text-wrap: balance;
+  }
+  .hero-feature .price-line { display: flex; align-items: center; gap: 12px; }
+  .hero-feature .price { font-family: var(--font-ui); font-size: 27px; font-weight: 400; }
+
+  /* ---------- Product cards ---------- */
+  .card {
+    background: var(--color-pearl-gray);
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card .img-box {
+    background: #ffffff;
+    border-radius: var(--radius-card);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+  }
+  .card .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .card .name {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: var(--text-body);
+    line-height: 1.15;
+    flex-grow: 1;
+  }
+  .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .card .price { font-family: var(--font-ui); font-size: 14px; font-weight: 700; }
+  .badge {
+    display: inline-block;
+    background: var(--color-fog-gray);
+    border-radius: var(--radius-card);
+    padding: 3px 8px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+  }
+  .quick-add {
+    display: block;
+    text-align: center;
+    background: var(--color-honeycomb-yellow);
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-pill);
+    padding: 8px 14px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .quick-add:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+
+  /* ---------- Sections ---------- */
+  section { padding: 40px 0; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--color-carbon-black);
+    padding-bottom: 10px;
+  }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-heading-sm);
+    line-height: 0.9;
+  }
+  .section-head a { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; border-bottom: 1px solid var(--color-carbon-black); }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+
+  /* ---------- Yellow editorial band ---------- */
+  .band {
+    background: var(--color-honeycomb-yellow);
+    border-top: 2px solid var(--color-carbon-black);
+    border-bottom: 2px solid var(--color-carbon-black);
+  }
+  .band-inner { padding: 50px 0; }
+  .band h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-heading);
+    line-height: 0.9;
+    text-align: center;
+    margin-bottom: 30px;
+    text-wrap: balance;
+  }
+  .band h2 em { font-style: italic; }
+  .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .why-item { border-top: 1px solid var(--color-carbon-black); padding-top: 14px; }
+  .why-item .num { font-family: var(--font-ui); font-size: 40px; font-weight: 100; line-height: 0.9; display: block; margin-bottom: 10px; }
+  .why-item h3 { font-family: var(--font-display); font-weight: 400; font-size: var(--text-subheading); line-height: 1.15; margin-bottom: 8px; }
+  .why-item p { font-size: var(--text-body); line-height: 1.15; color: var(--color-ink-black); text-align: left; }
+
+  /* ---------- Accessory feature ---------- */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    align-items: stretch;
+  }
+  .split .photo {
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-hero);
+    overflow: hidden;
+    background: #fff;
+    min-height: 380px;
+  }
+  .split .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .split .pitch {
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    background: var(--color-pearl-gray);
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  .split .pitch h2 { font-family: var(--font-display); font-weight: 400; font-size: var(--text-heading-sm); line-height: 0.9; text-wrap: balance; }
+  .split .pitch p { line-height: 1.15; color: var(--color-ink-black); }
+  .yellow-btn {
+    display: inline-block;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 10px 18px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+  }
+  .yellow-btn:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--color-ink-black);
+    color: #fff;
+    border-top: 2px solid var(--color-carbon-black);
+    padding: 40px 0 25px;
+  }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+  .foot-logo { font-family: var(--font-display); font-size: var(--text-heading-sm); line-height: 0.9; margin-bottom: 10px; }
+  footer p, footer a { font-size: 14px; line-height: 1.56; color: #fff; }
+  footer .ui-col a { display: block; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: 0.077em; text-transform: uppercase; padding: 4px 0; }
+  footer a:hover { text-decoration: underline; }
+  .foot-line { border-top: 1px solid var(--color-fog-gray); padding-top: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .foot-line span { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-pearl-gray); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-stage { grid-template-columns: 1fr; }
+    .hero-side { display: none; }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .cols-3 { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .logo-row { grid-template-columns: 1fr; }
+    .logo-side { justify-content: center; }
+    .logo { font-size: var(--text-heading); }
+  }
+  @media (max-width: 560px) {
+    .grid-3 { grid-template-columns: 1fr; }
+    .dateline span:nth-child(2) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="masthead">
+  <div class="dateline">
+    <span>Vol. 1 · The Graded Card Circular</span>
+    <span>Graded Slabs · Raw Cards · Accessories</span>
+    <span>Est. 2025</span>
+  </div>
+  <div class="logo-row">
+    <div class="logo-side">
+      <form class="signup-inline" onsubmit="return false;">
+        <input type="email" placeholder="Email for drops" aria-label="Email for drop alerts">
+        <button class="ui" type="submit">Join</button>
+      </form>
+    </div>
+    <a href="https://slabshub.com" class="logo">Slabs<em>Hub</em></a>
+    <div class="logo-side right">
+      <a class="cart-link ui" href="https://slabshub.com/cart">
+        Cart
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+  <nav class="nav-row">
+    <a class="nav-btn active" href="https://slabshub.com/collections/all">Shop All</a>
+    <a class="nav-btn" href="https://slabshub.com/collections/all">PSA Slabs</a>
+    <a class="nav-btn" href="https://slabshub.com/collections/all">Raw Cards</a>
+    <a class="nav-btn" href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">Accessories</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Every card tells a story.<br><em>Ours come with a grade.</em></h1>
+    <p>SlabsHub is a collector-run shop for graded Pokémon slabs and hand-picked raw cards — photographed front and back, priced against the market, shipped protected.</p>
+
+    <div class="hero-stage">
+      <!-- left flank card -->
+      <div class="card hero-side">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/SylveonEX_RC32PokemonGenerations.png?v=1747026754" alt="Sylveon EX #RC32, Pokemon Generations, raw card"></div>
+        <div class="name">Sylveon EX #RC32 · Generations</div>
+        <div class="meta"><span class="price">$64.99</span><span class="badge">Raw</span></div>
+        <a class="quick-add" href="https://slabshub.com/products/raw-card-sylveon-ex-rc32-pokemon-generations">Quick Add</a>
+      </div>
+
+      <!-- center feature -->
+      <div class="hero-feature">
+        <span class="kicker">This week's front page</span>
+        <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="Pikachu with Grey Felt Hat #85 promo card, Van Gogh Museum collaboration">
+        <h2>Pikachu with Grey Felt Hat <em>— the Van Gogh promo</em></h2>
+        <div class="price-line">
+          <span class="price">$999</span>
+          <span class="badge">1 in stock</span>
+        </div>
+        <a class="yellow-btn" style="background:#fff;" href="https://slabshub.com/products/raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo">View the card</a>
+      </div>
+
+      <!-- right flank card -->
+      <div class="card hero-side">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pikachu_TG05PokemonLostOrigin.png?v=1747026721" alt="Pikachu #TG05, Pokemon Lost Origin, raw card"></div>
+        <div class="name">Pikachu #TG05 · Lost Origin</div>
+        <div class="meta"><span class="price">$49.99</span><span class="badge">Raw</span></div>
+        <a class="quick-add" href="https://slabshub.com/products/raw-card-pikachu-tg05-pokemon-lost-origin">Quick Add</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GRID ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Fresh pulls, ready to ship</h2>
+      <a href="https://slabshub.com/collections/all">Shop all</a>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Umbreonex_Stamped_60PokemonPrismaticEvolutions.png?v=1747635903" alt="Umbreon ex stamped #60, Prismatic Evolutions"></div>
+        <div class="name">Umbreon ex [Stamped] #60 · Prismatic Evolutions</div>
+        <div class="meta"><span class="price">$24.99</span><span class="badge">Raw</span></div>
+        <a class="quick-add" href="https://slabshub.com/products/raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions">Quick Add</a>
+      </div>
+      <div class="card">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pikachu_GG30PokemonCrownZenith.png?v=1747026645" alt="Pikachu #GG30, Crown Zenith"></div>
+        <div class="name">Pikachu #GG30 · Crown Zenith</div>
+        <div class="meta"><span class="price">$54.99</span><span class="badge">Raw</span></div>
+        <a class="quick-add" href="https://slabshub.com/products/raw-card-pikachu-gg30-pokemon-crown-zenith">Quick Add</a>
+      </div>
+      <div class="card">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/ArticunoGX_SV54PokemonHiddenFates_0edf81eb-2b8d-497c-8e65-fcb827376668.png?v=1746688476" alt="Articuno GX #SV54 Shiny Vault, Hidden Fates"></div>
+        <div class="name">Articuno GX #SV54 · Hidden Fates Shiny Vault</div>
+        <div class="meta"><span class="price">$34.99</span><span class="badge">Raw</span></div>
+        <a class="quick-add" href="https://slabshub.com/products/raw-card-yveltal-205-pokemon-paradox-rift-copy">Quick Add</a>
+      </div>
+      <div class="card">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pecharuntex163SpecialIllustrationRare2025PrismaticEvolutions.png?v=1746689262" alt="Pecharunt ex #163 Special Illustration Rare, Prismatic Evolutions"></div>
+        <div class="name">Pecharunt ex #163 SIR · Prismatic Evolutions</div>
+        <div class="meta"><span class="price">$29.99</span><span class="badge">Raw</span></div>
+        <a class="quick-add" href="https://slabshub.com/products/raw-card-pecharunt-ex-163-special-illustration-rare-2025-prismatic-evolutions">Quick Add</a>
+      </div>
+      <div class="card">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Yveltal_205PokemonParadoxRift.png?v=1746688164" alt="Yveltal #205, Paradox Rift"></div>
+        <div class="name">Yveltal #205 · Paradox Rift</div>
+        <div class="meta"><span class="price">$29.99</span><span class="badge">Raw</span></div>
+        <a class="quick-add" href="https://slabshub.com/products/raw-card-gyarados-vmax-207-pokemon-evolving-skies-copy">Quick Add</a>
+      </div>
+      <div class="card">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Mewtwo_183PokemonJapaneseScarlet_Violet151.png?v=1747636121" alt="Mewtwo #183, Japanese Scarlet and Violet 151"></div>
+        <div class="name">Mewtwo #183 · Japanese 151</div>
+        <div class="meta"><span class="price">$19.99</span><span class="badge">Raw</span></div>
+        <a class="quick-add" href="https://slabshub.com/products/raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151">Quick Add</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY GRADED / TRUST BAND ================= -->
+<div class="band">
+  <div class="wrap band-inner">
+    <h2>Why buy from a <em>slab shop?</em></h2>
+    <div class="cols-3">
+      <div class="why-item">
+        <span class="num">01</span>
+        <h3>The grade is the guarantee</h3>
+        <p>A graded slab is authenticated and condition-scored by PSA. Every slab we list shows its cert number, so you can verify it on PSA's registry before you buy.</p>
+      </div>
+      <div class="why-item">
+        <span class="num">02</span>
+        <h3>Priced against the market</h3>
+        <p>We check recent sold listings before pricing anything. What you see is a real market price for that card in that condition — not a wish.</p>
+      </div>
+      <div class="why-item">
+        <span class="num">03</span>
+        <h3>Packed like it matters</h3>
+        <p>Slabs and raw cards ship sleeved and protected. It arrives the way it left: mint side up.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ACCESSORY FEATURE ================= -->
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div class="photo">
+        <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/slab-guard-hand-fan_68524a39-4fb8-4086-be71-c8c195d4961f.jpg?v=1785840897" alt="Slab Guard silicone bumpers on PSA graded slabs, held fanned in a hand">
+      </div>
+      <div class="pitch">
+        <span class="badge">New in the shop</span>
+        <h2>Slab Guard — your card survived grading. Keep it that way.</h2>
+        <p>A flexible silicone bumper that hugs a PSA slab and absorbs hits on the corners and edges — exactly where slabs crack first. Solid colors or glitter gradient.</p>
+        <p class="ui" style="font-weight:700;">From $4.99 · 25 in stock</p>
+        <a class="yellow-btn" href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">Get the guard</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">SlabsHub</div>
+        <p>A collector-run shop for graded Pokémon slabs, raw hits, and the gear that protects them. Questions about a cert? Ask — we pulled the card ourselves.</p>
+      </div>
+      <div class="ui-col">
+        <a href="https://slabshub.com/collections/all">Shop All</a>
+        <a href="https://slabshub.com/collections/all">PSA Slabs</a>
+        <a href="https://slabshub.com/collections/all">Raw Cards</a>
+        <a href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">Accessories</a>
+      </div>
+      <div class="ui-col">
+        <a href="https://www.instagram.com/">Instagram</a>
+        <a href="https://www.facebook.com/">Facebook</a>
+        <a href="https://slabshub.com/policies/refund-policy">Shipping &amp; Returns</a>
+      </div>
+    </div>
+    <div class="foot-line">
+      <span>© 2026 SlabsHub</span>
+      <span>Slabs graded by PSA · Certs verifiable</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
