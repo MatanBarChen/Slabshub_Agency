@@ -6,7 +6,7 @@
 <title>SlabsHub — The Graded Card Circular</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
     /* Colors — Le Puzz reference, locked */
@@ -31,6 +31,7 @@
 
     --tracking-ui: 0.073em;
     --tracking-nav: 0.063em;
+    --tracking-wide: 0.091em;
 
     /* Layout */
     --page-max-width: 1200px;
@@ -45,6 +46,8 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     background: var(--color-pearl-gray);
     color: var(--color-carbon-black);
@@ -53,7 +56,13 @@
     line-height: 1.15;
   }
 
+  ::selection { background: var(--color-honeycomb-yellow); color: var(--color-carbon-black); }
+
   a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--color-carbon-black);
+    outline-offset: 2px;
+  }
 
   .ui {
     font-family: var(--font-ui);
@@ -65,7 +74,32 @@
 
   .wrap { max-width: var(--page-max-width); margin: 0 auto; padding: 0 20px; }
 
-  /* ---------- Header ---------- */
+  /* ---------- Ticker ---------- */
+  .ticker {
+    background: var(--color-carbon-black);
+    color: var(--color-honeycomb-yellow);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 7px 0;
+  }
+  .ticker-track {
+    display: inline-flex;
+    animation: ticker 38s linear infinite;
+  }
+  .ticker-track span {
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    padding-right: 48px;
+  }
+  .ticker-track span::after { content: "★"; margin-left: 48px; font-size: 9px; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; }
+  }
+
+  /* ---------- Masthead ---------- */
   .masthead {
     background: var(--color-honeycomb-yellow);
     border-bottom: 2px solid var(--color-carbon-black);
@@ -75,7 +109,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 20px;
+    padding: 9px 20px;
     border-bottom: 1px solid var(--color-carbon-black);
     max-width: var(--page-max-width);
     margin: 0 auto;
@@ -86,20 +120,29 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 25px 20px 20px;
+    padding: 28px 20px 16px;
     max-width: var(--page-max-width);
     margin: 0 auto;
     gap: 15px;
   }
+  .logo-block { text-align: center; }
   .logo {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--text-display);
+    font-weight: 500;
+    font-size: 64px;
     line-height: 0.87;
-    text-align: center;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
+    display: inline-block;
   }
-  .logo em { font-style: italic; }
+  .logo em { font-style: italic; font-weight: 400; }
+  .logo-tag {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
   .logo-side { display: flex; align-items: center; gap: 10px; }
   .logo-side.right { justify-content: flex-end; }
 
@@ -110,7 +153,7 @@
     border-bottom: 1px solid var(--color-carbon-black);
     font-family: var(--font-body);
     font-size: 14px;
-    padding: 2px 0;
+    padding: 3px 0;
     width: 150px;
     color: var(--color-ink-black);
   }
@@ -119,18 +162,35 @@
     background: transparent;
     border: 1px solid var(--color-carbon-black);
     border-radius: var(--radius-card);
-    padding: 5px 10px;
+    padding: 6px 12px;
     cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
   }
+  .signup-inline button:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
 
   .cart-link { display: inline-flex; align-items: center; gap: 6px; }
   .cart-link svg { width: 16px; height: 16px; }
+  .cart-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* newspaper double rule */
+  .double-rule {
+    max-width: calc(var(--page-max-width) - 40px);
+    margin: 0 auto;
+    border-top: 3px solid var(--color-carbon-black);
+    position: relative;
+  }
+  .double-rule::after {
+    content: "";
+    display: block;
+    border-top: 1px solid var(--color-carbon-black);
+    margin-top: 3px;
+  }
 
   .nav-row {
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding: 0 20px 20px;
+    padding: 16px 20px 20px;
     max-width: var(--page-max-width);
     margin: 0 auto;
     flex-wrap: wrap;
@@ -140,69 +200,113 @@
     background: transparent;
     border: 1px solid var(--color-carbon-black);
     border-radius: var(--radius-card);
-    padding: 10px 16px;
+    padding: 10px 18px;
     font-family: var(--font-ui);
     font-size: var(--text-caption);
     letter-spacing: var(--tracking-nav);
     text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
   }
   .nav-btn:hover, .nav-btn.active { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
 
   /* ---------- Hero ---------- */
-  .hero { padding: 50px 0 40px; text-align: center; }
+  .hero { padding: 55px 0 40px; text-align: center; }
+  .hero .kicker-row { display: flex; justify-content: center; margin-bottom: 18px; }
   .hero h1 {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: var(--text-heading);
+    font-size: var(--text-display);
     line-height: 0.9;
     text-wrap: balance;
-    max-width: 700px;
-    margin: 0 auto 14px;
+    max-width: 760px;
+    margin: 0 auto 16px;
   }
   .hero h1 em { font-style: italic; }
-  .hero p {
+  .hero > .wrap > p {
     font-size: var(--text-body);
-    line-height: 1.15;
+    line-height: 1.3;
     color: var(--color-ink-black);
-    max-width: 540px;
-    margin: 0 auto 25px;
+    max-width: 520px;
+    margin: 0 auto;
   }
 
   .hero-stage {
     display: grid;
-    grid-template-columns: 1fr 1.6fr 1fr;
+    grid-template-columns: 1fr 1.55fr 1fr;
     gap: var(--gap);
     align-items: stretch;
-    margin-top: 30px;
+    margin-top: 35px;
   }
 
   .hero-feature {
     background: var(--color-honeycomb-yellow);
     border: 2px solid var(--color-carbon-black);
     border-radius: var(--radius-hero);
-    padding: 30px 25px 25px;
+    padding: 28px 25px 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
+    gap: 14px;
   }
-  .hero-feature .kicker { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; }
+  .hero-feature .kicker {
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-carbon-black);
+    padding-bottom: 6px;
+  }
   .hero-feature img {
     width: 100%;
-    max-width: 300px;
+    max-width: 290px;
     border-radius: var(--radius-card);
     display: block;
   }
+
+  /* slab-style spec label */
+  .slab-label {
+    width: 100%;
+    max-width: 290px;
+    background: #ffffff;
+    border: 1px solid var(--color-carbon-black);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 10px;
+  }
+  .slab-label .spec {
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .barcode {
+    width: 54px;
+    height: 22px;
+    flex: none;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--color-carbon-black) 0 2px, transparent 2px 4px,
+      var(--color-carbon-black) 4px 5px, transparent 5px 8px,
+      var(--color-carbon-black) 8px 11px, transparent 11px 13px
+    );
+  }
+
   .hero-feature h2 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: var(--text-heading-sm);
-    line-height: 0.9;
+    line-height: 0.95;
     text-wrap: balance;
   }
+  .hero-feature h2 em { font-style: italic; font-weight: 400; }
   .hero-feature .price-line { display: flex; align-items: center; gap: 12px; }
-  .hero-feature .price { font-family: var(--font-ui); font-size: 27px; font-weight: 400; }
+  .hero-feature .price { font-family: var(--font-ui); font-size: 30px; font-weight: 400; }
 
   /* ---------- Product cards ---------- */
   .card {
@@ -213,7 +317,9 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    transition: background 0.2s ease;
   }
+  .card:hover { background: #d3d6d8; }
   .card .img-box {
     background: #ffffff;
     border-radius: var(--radius-card);
@@ -224,61 +330,262 @@
     aspect-ratio: 3 / 4;
     overflow: hidden;
   }
-  .card .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .card .img-box img {
+    max-width: 100%; max-height: 100%;
+    object-fit: contain; display: block;
+    transition: transform 0.25s ease;
+  }
+  .card:hover .img-box img { transform: scale(1.03); }
+  @media (prefers-reduced-motion: reduce) {
+    .card .img-box img, .card:hover .img-box img { transition: none; transform: none; }
+  }
+  .card .set-line {
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    color: var(--color-ink-black);
+  }
   .card .name {
-    font-family: var(--font-body);
+    font-family: var(--font-display);
     font-style: italic;
-    font-size: var(--text-body);
-    line-height: 1.15;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.1;
     flex-grow: 1;
   }
-  .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-  .card .price { font-family: var(--font-ui); font-size: 14px; font-weight: 700; }
+  .card .meta {
+    display: flex; align-items: baseline; gap: 6px;
+    border-top: 1px solid var(--color-carbon-black);
+    padding-top: 9px;
+  }
+  .card .meta .leader { flex: 1; border-bottom: 1px dotted var(--color-carbon-black); transform: translateY(-4px); }
+  .card .price { font-family: var(--font-ui); font-size: 15px; font-weight: 700; }
   .badge {
     display: inline-block;
     background: var(--color-fog-gray);
     border-radius: var(--radius-card);
-    padding: 3px 8px;
+    padding: 3px 9px;
     font-family: var(--font-ui);
     font-size: var(--text-caption);
     letter-spacing: var(--tracking-ui);
     text-transform: uppercase;
   }
+  .badge.stock { background: transparent; border: 1px solid var(--color-carbon-black); }
   .quick-add {
     display: block;
     text-align: center;
     background: var(--color-honeycomb-yellow);
     border: 1px solid var(--color-carbon-black);
     border-radius: var(--radius-pill);
-    padding: 8px 14px;
+    padding: 9px 14px;
     font-family: var(--font-ui);
     font-size: var(--text-caption);
     letter-spacing: var(--tracking-ui);
     text-transform: uppercase;
     cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
   }
   .quick-add:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
 
+  .pearl-btn {
+    display: inline-block;
+    background: var(--color-pearl-gray);
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 10px 18px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .pearl-btn:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+
   /* ---------- Sections ---------- */
-  section { padding: 40px 0; }
+  section { padding: 42px 0; }
   .section-head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 15px;
     margin-bottom: 25px;
-    border-bottom: 1px solid var(--color-carbon-black);
-    padding-bottom: 10px;
+    border-top: 3px solid var(--color-carbon-black);
+    padding-top: 5px;
+    position: relative;
+  }
+  .section-head::before {
+    content: "";
+    position: absolute;
+    top: 5px; left: 0; right: 0;
+    border-top: 1px solid var(--color-carbon-black);
   }
   .section-head h2 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: var(--text-heading-sm);
     line-height: 0.9;
+    padding-top: 12px;
   }
-  .section-head a { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; border-bottom: 1px solid var(--color-carbon-black); }
+  .section-head h2 .no {
+    font-family: var(--font-ui);
+    font-weight: 100;
+    font-size: 14px;
+    letter-spacing: var(--tracking-ui);
+    vertical-align: super;
+    margin-right: 6px;
+  }
+  .section-head a {
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-carbon-black);
+    padding-bottom: 2px;
+  }
+  .section-head a:hover { background: var(--color-honeycomb-yellow); }
 
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+
+  /* ---------- Departments carousel ---------- */
+  .carousel { position: relative; }
+  .carousel-track {
+    display: flex;
+    gap: var(--gap);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .dept-card {
+    flex: 0 0 calc((100% - 2 * var(--gap)) / 3);
+    scroll-snap-align: start;
+    min-height: 420px;
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .dept-card.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .dept-card { opacity: 1; transform: none; transition: none; }
+  }
+  .dept-card.s-yellow { background: var(--color-honeycomb-yellow); border-width: 2px; }
+  .dept-card.s-white { background: #ffffff; }
+  .dept-card.s-pearl { background: var(--color-pearl-gray); }
+  .dept-card.s-fog { background: var(--color-fog-gray); }
+  .dept-card .top { display: flex; flex-direction: column; align-items: flex-start; gap: 30px; }
+  .dept-card .no {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: var(--tracking-nav);
+    color: var(--color-ink-black);
+  }
+  .dept-card .icon { width: 48px; height: 48px; }
+  .dept-card .icon svg { width: 100%; height: 100%; stroke: var(--color-carbon-black); fill: none; stroke-width: 1.5; }
+  .dept-card .bottom h3 {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    margin-bottom: 9px;
+  }
+  .dept-card .bottom p { font-family: var(--font-body); font-size: var(--text-body); line-height: 1.3; color: var(--color-ink-black); }
+  .dept-card .bottom a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-carbon-black);
+    padding-bottom: 2px;
+  }
+  .dept-card .bottom a:hover { background: rgba(0,0,0,0.06); }
+  .carousel-next {
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    z-index: 2;
+  }
+  .carousel-next:hover { background: var(--color-carbon-black); }
+  .carousel-next:hover svg { stroke: var(--color-honeycomb-yellow); }
+  .carousel-next svg { width: 18px; height: 18px; stroke: var(--color-carbon-black); fill: none; stroke-width: 2; }
+  @media (max-width: 900px) {
+    .dept-card { flex-basis: calc((100% - var(--gap)) / 2); }
+  }
+  @media (max-width: 560px) {
+    .dept-card { flex-basis: 86%; }
+  }
+
+  /* ---------- Classifieds ---------- */
+  .classifieds {
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    background: #ffffff;
+    padding: 30px;
+  }
+  .classifieds-head {
+    text-align: center;
+    border-bottom: 1px solid var(--color-carbon-black);
+    padding-bottom: 16px;
+    margin-bottom: 6px;
+  }
+  .classifieds-head h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--text-heading);
+    line-height: 0.9;
+  }
+  .classifieds-head h2 em { font-style: italic; font-weight: 400; }
+  .classifieds-head p {
+    margin-top: 10px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-black);
+  }
+  .classified-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+  }
+  .classified-cols > div:first-child { border-right: 1px solid var(--color-smoke-line); padding-right: 40px; }
+  .listing {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 13px 0;
+    border-bottom: 1px dotted var(--color-fog-gray);
+  }
+  .listing:last-child { border-bottom: none; }
+  .listing .what { font-family: var(--font-body); font-size: var(--text-body); line-height: 1.15; }
+  .listing .what em { font-style: italic; }
+  .listing .set { display: block; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-ink-black); margin-top: 3px; }
+  .listing .leader { flex: 1; border-bottom: 1px dotted var(--color-carbon-black); transform: translateY(-4px); min-width: 20px; }
+  .listing .p { font-family: var(--font-ui); font-size: 15px; font-weight: 700; white-space: nowrap; }
+  .listing:hover .what { text-decoration: underline; text-underline-offset: 3px; }
 
   /* ---------- Yellow editorial band ---------- */
   .band {
@@ -286,22 +593,25 @@
     border-top: 2px solid var(--color-carbon-black);
     border-bottom: 2px solid var(--color-carbon-black);
   }
-  .band-inner { padding: 50px 0; }
+  .band-inner { padding: 55px 0; }
   .band h2 {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: var(--text-heading);
     line-height: 0.9;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     text-wrap: balance;
   }
-  .band h2 em { font-style: italic; }
-  .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-  .why-item { border-top: 1px solid var(--color-carbon-black); padding-top: 14px; }
-  .why-item .num { font-family: var(--font-ui); font-size: 40px; font-weight: 100; line-height: 0.9; display: block; margin-bottom: 10px; }
-  .why-item h3 { font-family: var(--font-display); font-weight: 400; font-size: var(--text-subheading); line-height: 1.15; margin-bottom: 8px; }
-  .why-item p { font-size: var(--text-body); line-height: 1.15; color: var(--color-ink-black); text-align: left; }
+  .band h2 em { font-style: italic; font-weight: 400; }
+  .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .why-item { border-top: 1px solid var(--color-carbon-black); padding: 16px 25px 0; }
+  .cols-3 .why-item:not(:first-child) { border-left: 1px solid var(--color-carbon-black); }
+  .cols-3 .why-item:first-child { padding-left: 0; }
+  .cols-3 .why-item:last-child { padding-right: 0; }
+  .why-item .num { font-family: var(--font-ui); font-size: 40px; font-weight: 100; line-height: 0.9; display: block; margin-bottom: 12px; }
+  .why-item h3 { font-family: var(--font-display); font-weight: 500; font-size: var(--text-subheading); line-height: 1.05; margin-bottom: 9px; }
+  .why-item p { font-size: var(--text-body); line-height: 1.3; color: var(--color-ink-black); text-align: left; }
 
   /* ---------- Accessory feature ---------- */
   .split {
@@ -315,47 +625,116 @@
     border-radius: var(--radius-hero);
     overflow: hidden;
     background: #fff;
-    min-height: 380px;
+    min-height: 400px;
   }
   .split .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .split .pitch {
     border: 1px solid var(--color-carbon-black);
     border-radius: var(--radius-card);
-    background: var(--color-pearl-gray);
-    padding: 35px 30px;
+    background: #ffffff;
+    padding: 40px 35px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 15px;
+    gap: 16px;
     align-items: flex-start;
   }
-  .split .pitch h2 { font-family: var(--font-display); font-weight: 400; font-size: var(--text-heading-sm); line-height: 0.9; text-wrap: balance; }
-  .split .pitch p { line-height: 1.15; color: var(--color-ink-black); }
+  .split .pitch h2 { font-family: var(--font-display); font-weight: 500; font-size: var(--text-heading-sm); line-height: 1.0; text-wrap: balance; }
+  .split .pitch h2 em { font-style: italic; font-weight: 400; }
+  .split .pitch p { line-height: 1.3; color: var(--color-ink-black); }
+  .price-stamp {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    border: 1px solid var(--color-carbon-black);
+    border-radius: 6px;
+    padding: 6px 12px;
+  }
+  .price-stamp .from { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; }
+  .price-stamp .amount { font-family: var(--font-ui); font-size: 22px; font-weight: 400; }
   .yellow-btn {
     display: inline-block;
     background: var(--color-honeycomb-yellow);
     border: 2px solid var(--color-carbon-black);
     border-radius: var(--radius-card);
-    padding: 10px 18px;
+    padding: 11px 20px;
     font-family: var(--font-ui);
     font-size: var(--text-caption);
     letter-spacing: var(--tracking-ui);
     text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
   }
   .yellow-btn:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+
+  /* ---------- Subscribe band ---------- */
+  .subscribe {
+    background: var(--color-ink-black);
+    border-top: 2px solid var(--color-carbon-black);
+    color: #fff;
+    text-align: center;
+  }
+  .subscribe .band-inner { padding: 55px 20px; }
+  .subscribe .kicker {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-honeycomb-yellow);
+    margin-bottom: 14px;
+  }
+  .subscribe h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--text-heading);
+    line-height: 0.9;
+    text-wrap: balance;
+    max-width: 560px;
+    margin: 0 auto 12px;
+  }
+  .subscribe h2 em { font-style: italic; }
+  .subscribe p { color: var(--color-pearl-gray); line-height: 1.3; max-width: 440px; margin: 0 auto 24px; }
+  .subscribe form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .subscribe input {
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: var(--radius-card);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    padding: 11px 16px;
+    width: 260px;
+  }
+  .subscribe input::placeholder { color: var(--color-pearl-gray); }
+  .subscribe button {
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    color: var(--color-carbon-black);
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .subscribe button:hover { background: #fff; }
 
   /* ---------- Footer ---------- */
   footer {
     background: var(--color-ink-black);
     color: #fff;
-    border-top: 2px solid var(--color-carbon-black);
-    padding: 40px 0 25px;
+    border-top: 1px solid var(--color-fog-gray);
+    padding: 45px 0 25px;
   }
-  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
-  .foot-logo { font-family: var(--font-display); font-size: var(--text-heading-sm); line-height: 0.9; margin-bottom: 10px; }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; margin-bottom: 35px; }
+  .foot-logo { font-family: var(--font-display); font-weight: 500; font-size: var(--text-heading-sm); line-height: 0.9; margin-bottom: 12px; }
+  .foot-logo em { font-style: italic; font-weight: 400; }
   footer p, footer a { font-size: 14px; line-height: 1.56; color: #fff; }
-  footer .ui-col a { display: block; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: 0.077em; text-transform: uppercase; padding: 4px 0; }
-  footer a:hover { text-decoration: underline; }
+  footer .col-title { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-honeycomb-yellow); margin-bottom: 10px; }
+  footer .ui-col a { display: block; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: 0.077em; text-transform: uppercase; padding: 5px 0; }
+  footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .foot-line { border-top: 1px solid var(--color-fog-gray); padding-top: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
   .foot-line span { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-pearl-gray); }
 
@@ -365,26 +744,46 @@
     .hero-side { display: none; }
     .grid-3 { grid-template-columns: repeat(2, 1fr); }
     .cols-3 { grid-template-columns: 1fr; }
+    .cols-3 .why-item { padding: 16px 0 20px; border-left: none !important; }
     .split { grid-template-columns: 1fr; }
     .foot-grid { grid-template-columns: 1fr; }
-    .logo-row { grid-template-columns: 1fr; }
+    .logo-row { grid-template-columns: 1fr; padding-top: 22px; }
     .logo-side { justify-content: center; }
-    .logo { font-size: var(--text-heading); }
+    .logo { font-size: var(--text-display); }
+    .classified-cols { grid-template-columns: 1fr; }
+    .classified-cols > div:first-child { border-right: none; padding-right: 0; }
   }
   @media (max-width: 560px) {
     .grid-3 { grid-template-columns: 1fr; }
     .dateline span:nth-child(2) { display: none; }
+    .classifieds { padding: 20px; }
   }
 </style>
 </head>
 <body>
 
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Every card photographed in-hand</span>
+    <span>Single-copy inventory — when it's gone, it's gone</span>
+    <span>New in: Slab Guard silicone bumpers, from $4.99</span>
+    <span>Van Gogh Pikachu promo — one copy in stock</span>
+    <span>Every PSA slab cert-verifiable</span>
+    <span>Every card photographed in-hand</span>
+    <span>Single-copy inventory — when it's gone, it's gone</span>
+    <span>New in: Slab Guard silicone bumpers, from $4.99</span>
+    <span>Van Gogh Pikachu promo — one copy in stock</span>
+    <span>Every PSA slab cert-verifiable</span>
+  </div>
+</div>
+
 <!-- ================= MASTHEAD ================= -->
 <header class="masthead">
   <div class="dateline">
-    <span>Vol. 1 · The Graded Card Circular</span>
+    <span>Vol. 1 · No. 2</span>
     <span>Graded Slabs · Raw Cards · Accessories</span>
-    <span>Est. 2025</span>
+    <span>August 2026</span>
   </div>
   <div class="logo-row">
     <div class="logo-side">
@@ -393,7 +792,10 @@
         <button class="ui" type="submit">Join</button>
       </form>
     </div>
-    <a href="https://slabshub.com" class="logo">Slabs<em>Hub</em></a>
+    <div class="logo-block">
+      <a href="https://slabshub.com" class="logo">Slabs<em>Hub</em></a>
+      <span class="logo-tag">The Graded Card Circular</span>
+    </div>
     <div class="logo-side right">
       <a class="cart-link ui" href="https://slabshub.com/cart">
         Cart
@@ -401,6 +803,7 @@
       </a>
     </div>
   </div>
+  <div class="double-rule"></div>
   <nav class="nav-row">
     <a class="nav-btn active" href="https://slabshub.com/collections/all">Shop All</a>
     <a class="nav-btn" href="https://slabshub.com/collections/all">PSA Slabs</a>
@@ -412,15 +815,17 @@
 <!-- ================= HERO ================= -->
 <section class="hero">
   <div class="wrap">
+    <div class="kicker-row"><span class="badge stock">Collector-run · Israel → worldwide</span></div>
     <h1>Every card tells a story.<br><em>Ours come with a grade.</em></h1>
-    <p>SlabsHub is a collector-run shop for graded Pokémon slabs and hand-picked raw cards — photographed front and back, priced against the market, shipped protected.</p>
+    <p>Graded Pokémon slabs and hand-picked raw cards — photographed in-hand, priced against real sold listings, shipped protected.</p>
 
     <div class="hero-stage">
       <!-- left flank card -->
       <div class="card hero-side">
         <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/SylveonEX_RC32PokemonGenerations.png?v=1747026754" alt="Sylveon EX #RC32, Pokemon Generations, raw card"></div>
-        <div class="name">Sylveon EX #RC32 · Generations</div>
-        <div class="meta"><span class="price">$64.99</span><span class="badge">Raw</span></div>
+        <span class="set-line">Generations · RC32</span>
+        <div class="name">Sylveon EX</div>
+        <div class="meta"><span class="price">$64.99</span><span class="leader"></span><span class="badge">Raw</span></div>
         <a class="quick-add" href="https://slabshub.com/products/raw-card-sylveon-ex-rc32-pokemon-generations">Quick Add</a>
       </div>
 
@@ -428,19 +833,24 @@
       <div class="hero-feature">
         <span class="kicker">This week's front page</span>
         <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="Pikachu with Grey Felt Hat #85 promo card, Van Gogh Museum collaboration">
+        <div class="slab-label">
+          <span class="spec">Raw · Promo #85<br>Van Gogh Museum × Pokémon</span>
+          <span class="barcode" aria-hidden="true"></span>
+        </div>
         <h2>Pikachu with Grey Felt Hat <em>— the Van Gogh promo</em></h2>
         <div class="price-line">
           <span class="price">$999</span>
-          <span class="badge">1 in stock</span>
+          <span class="badge stock">1 in stock</span>
         </div>
-        <a class="yellow-btn" style="background:#fff;" href="https://slabshub.com/products/raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo">View the card</a>
+        <a class="pearl-btn" href="https://slabshub.com/products/raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo">View the card</a>
       </div>
 
       <!-- right flank card -->
       <div class="card hero-side">
         <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pikachu_TG05PokemonLostOrigin.png?v=1747026721" alt="Pikachu #TG05, Pokemon Lost Origin, raw card"></div>
-        <div class="name">Pikachu #TG05 · Lost Origin</div>
-        <div class="meta"><span class="price">$49.99</span><span class="badge">Raw</span></div>
+        <span class="set-line">Lost Origin · TG05</span>
+        <div class="name">Pikachu</div>
+        <div class="meta"><span class="price">$49.99</span><span class="leader"></span><span class="badge">Raw</span></div>
         <a class="quick-add" href="https://slabshub.com/products/raw-card-pikachu-tg05-pokemon-lost-origin">Quick Add</a>
       </div>
     </div>
@@ -451,45 +861,172 @@
 <section>
   <div class="wrap">
     <div class="section-head">
-      <h2>Fresh pulls, ready to ship</h2>
+      <h2><span class="no">№ 1</span>Fresh pulls, ready to ship</h2>
       <a href="https://slabshub.com/collections/all">Shop all</a>
     </div>
     <div class="grid-3">
       <div class="card">
         <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Umbreonex_Stamped_60PokemonPrismaticEvolutions.png?v=1747635903" alt="Umbreon ex stamped #60, Prismatic Evolutions"></div>
-        <div class="name">Umbreon ex [Stamped] #60 · Prismatic Evolutions</div>
-        <div class="meta"><span class="price">$24.99</span><span class="badge">Raw</span></div>
+        <span class="set-line">Prismatic Evolutions · 60 · Stamped</span>
+        <div class="name">Umbreon ex</div>
+        <div class="meta"><span class="price">$24.99</span><span class="leader"></span><span class="badge">Raw</span></div>
         <a class="quick-add" href="https://slabshub.com/products/raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions">Quick Add</a>
       </div>
       <div class="card">
         <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pikachu_GG30PokemonCrownZenith.png?v=1747026645" alt="Pikachu #GG30, Crown Zenith"></div>
-        <div class="name">Pikachu #GG30 · Crown Zenith</div>
-        <div class="meta"><span class="price">$54.99</span><span class="badge">Raw</span></div>
+        <span class="set-line">Crown Zenith · GG30</span>
+        <div class="name">Pikachu</div>
+        <div class="meta"><span class="price">$54.99</span><span class="leader"></span><span class="badge">Raw</span></div>
         <a class="quick-add" href="https://slabshub.com/products/raw-card-pikachu-gg30-pokemon-crown-zenith">Quick Add</a>
       </div>
       <div class="card">
         <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/ArticunoGX_SV54PokemonHiddenFates_0edf81eb-2b8d-497c-8e65-fcb827376668.png?v=1746688476" alt="Articuno GX #SV54 Shiny Vault, Hidden Fates"></div>
-        <div class="name">Articuno GX #SV54 · Hidden Fates Shiny Vault</div>
-        <div class="meta"><span class="price">$34.99</span><span class="badge">Raw</span></div>
+        <span class="set-line">Hidden Fates · SV54 · Shiny Vault</span>
+        <div class="name">Articuno GX</div>
+        <div class="meta"><span class="price">$34.99</span><span class="leader"></span><span class="badge">Raw</span></div>
         <a class="quick-add" href="https://slabshub.com/products/raw-card-yveltal-205-pokemon-paradox-rift-copy">Quick Add</a>
       </div>
       <div class="card">
         <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pecharuntex163SpecialIllustrationRare2025PrismaticEvolutions.png?v=1746689262" alt="Pecharunt ex #163 Special Illustration Rare, Prismatic Evolutions"></div>
-        <div class="name">Pecharunt ex #163 SIR · Prismatic Evolutions</div>
-        <div class="meta"><span class="price">$29.99</span><span class="badge">Raw</span></div>
+        <span class="set-line">Prismatic Evolutions · 163 · SIR</span>
+        <div class="name">Pecharunt ex</div>
+        <div class="meta"><span class="price">$29.99</span><span class="leader"></span><span class="badge">Raw</span></div>
         <a class="quick-add" href="https://slabshub.com/products/raw-card-pecharunt-ex-163-special-illustration-rare-2025-prismatic-evolutions">Quick Add</a>
       </div>
       <div class="card">
         <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Yveltal_205PokemonParadoxRift.png?v=1746688164" alt="Yveltal #205, Paradox Rift"></div>
-        <div class="name">Yveltal #205 · Paradox Rift</div>
-        <div class="meta"><span class="price">$29.99</span><span class="badge">Raw</span></div>
+        <span class="set-line">Paradox Rift · 205</span>
+        <div class="name">Yveltal</div>
+        <div class="meta"><span class="price">$29.99</span><span class="leader"></span><span class="badge">Raw</span></div>
         <a class="quick-add" href="https://slabshub.com/products/raw-card-gyarados-vmax-207-pokemon-evolving-skies-copy">Quick Add</a>
       </div>
       <div class="card">
         <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Mewtwo_183PokemonJapaneseScarlet_Violet151.png?v=1747636121" alt="Mewtwo #183, Japanese Scarlet and Violet 151"></div>
-        <div class="name">Mewtwo #183 · Japanese 151</div>
-        <div class="meta"><span class="price">$19.99</span><span class="badge">Raw</span></div>
+        <span class="set-line">Japanese 151 · 183</span>
+        <div class="name">Mewtwo</div>
+        <div class="meta"><span class="price">$19.99</span><span class="leader"></span><span class="badge">Raw</span></div>
         <a class="quick-add" href="https://slabshub.com/products/raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151">Quick Add</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEPARTMENTS CAROUSEL ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2><span class="no">№ 2</span>The departments</h2>
+      <a href="https://slabshub.com/collections/all">Browse all</a>
+    </div>
+    <div class="carousel" id="dept-carousel" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Shop departments">
+      <div class="carousel-track" id="dept-track">
+        <div class="dept-card s-yellow">
+          <div class="top">
+            <span class="no">( 001 )</span>
+            <span class="icon" aria-hidden="true">
+              <!-- slab / frame icon -->
+              <svg viewBox="0 0 48 48"><rect x="8" y="4" width="32" height="40" rx="3"/><rect x="13" y="15" width="22" height="24" rx="1.5"/><path d="M13 9.5h22"/></svg>
+            </span>
+          </div>
+          <div class="bottom">
+            <h3>Graded Slabs</h3>
+            <p>PSA-certified cards, each listed with its cert number so you can verify the grade on PSA's registry before you buy.</p>
+            <a href="https://slabshub.com/collections/all">Shop slabs</a>
+          </div>
+        </div>
+        <div class="dept-card s-white">
+          <div class="top">
+            <span class="no">( 002 )</span>
+            <span class="icon" aria-hidden="true">
+              <!-- sparkle / hit icon -->
+              <svg viewBox="0 0 48 48"><path d="M24 6l4.2 13.8L42 24l-13.8 4.2L24 42l-4.2-13.8L6 24l13.8-4.2z"/></svg>
+            </span>
+          </div>
+          <div class="bottom">
+            <h3>Raw Singles</h3>
+            <p>Hand-picked hits and promos, photographed in-hand, front and back — what you see is the exact copy you get.</p>
+            <a href="https://slabshub.com/collections/all">Shop raw cards</a>
+          </div>
+        </div>
+        <div class="dept-card s-pearl">
+          <div class="top">
+            <span class="no">( 003 )</span>
+            <span class="icon" aria-hidden="true">
+              <!-- shield icon -->
+              <svg viewBox="0 0 48 48"><path d="M24 4l16 6v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10z"/><path d="M17 24l5 5 9-11"/></svg>
+            </span>
+          </div>
+          <div class="bottom">
+            <h3>Slab Protection</h3>
+            <p>Slab Guard silicone bumpers absorb corner and edge hits — the two places slabs crack first. From $4.99.</p>
+            <a href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">Get protection</a>
+          </div>
+        </div>
+        <div class="dept-card s-fog">
+          <div class="top">
+            <span class="no">( 004 )</span>
+            <span class="icon" aria-hidden="true">
+              <!-- scale / market icon -->
+              <svg viewBox="0 0 48 48"><path d="M24 8v32"/><path d="M10 14h28"/><path d="M10 14l-6 12h12z"/><path d="M38 14l-6 12h12z"/><path d="M16 40h16"/></svg>
+            </span>
+          </div>
+          <div class="bottom">
+            <h3>Market Pricing</h3>
+            <p>Every price is checked against recent sold listings before it goes live — a real market price, not a wish.</p>
+            <a href="https://slabshub.com/collections/all">See the shop</a>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-next" id="dept-next" aria-label="Next department">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLASSIFIEDS ================= -->
+<section>
+  <div class="wrap">
+    <div class="classifieds">
+      <div class="classifieds-head">
+        <h2>The <em>Classifieds</em></h2>
+        <p>Under $15 · one copy each · first come, first slabbed</p>
+      </div>
+      <div class="classified-cols">
+        <div>
+          <a class="listing" href="https://slabshub.com/products/raw-card-alolan-dugtrio-208-pokemon-surging-sparks">
+            <span class="what">Alolan Dugtrio <em>#208</em><span class="set">Surging Sparks</span></span>
+            <span class="leader"></span>
+            <span class="p">$12.99</span>
+          </a>
+          <a class="listing" href="https://slabshub.com/products/raw-card-leafeon-ex-6-pokemon-prismatic-evolutionsstampet-copy">
+            <span class="what">Clefable <em>#36</em><span class="set">Japanese Jungle</span></span>
+            <span class="leader"></span>
+            <span class="p">$11.99</span>
+          </a>
+          <a class="listing" href="https://slabshub.com/products/raw-card-espeon-ex-stamped-34-pokemon-prismatic-evolutions">
+            <span class="what">Espeon ex <em>#34 · Stamped</em><span class="set">Prismatic Evolutions</span></span>
+            <span class="leader"></span>
+            <span class="p">$5.99</span>
+          </a>
+        </div>
+        <div>
+          <a class="listing" href="https://slabshub.com/products/raw-card-jolteon-ex-stamped-30-pokemon-prismatic-evolutions">
+            <span class="what">Jolteon ex <em>#30 · Stamped</em><span class="set">Prismatic Evolutions</span></span>
+            <span class="leader"></span>
+            <span class="p">$4.99</span>
+          </a>
+          <a class="listing" href="https://slabshub.com/products/raw-card-leafeon-ex-6-pokemon-prismatic-evolutionsstampet">
+            <span class="what">Leafeon ex <em>#6 · Stamped</em><span class="set">Prismatic Evolutions</span></span>
+            <span class="leader"></span>
+            <span class="p">$4.99</span>
+          </a>
+          <a class="listing" href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">
+            <span class="what">Slab Guard <em>bumper</em><span class="set">Accessories · 25 in stock</span></span>
+            <span class="leader"></span>
+            <span class="p">$4.99</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -522,47 +1059,118 @@
 <!-- ================= ACCESSORY FEATURE ================= -->
 <section>
   <div class="wrap">
+    <div class="section-head">
+      <h2><span class="no">№ 3</span>New in the shop</h2>
+      <a href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">See it</a>
+    </div>
     <div class="split">
       <div class="photo">
         <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/slab-guard-hand-fan_68524a39-4fb8-4086-be71-c8c195d4961f.jpg?v=1785840897" alt="Slab Guard silicone bumpers on PSA graded slabs, held fanned in a hand">
       </div>
       <div class="pitch">
-        <span class="badge">New in the shop</span>
-        <h2>Slab Guard — your card survived grading. Keep it that way.</h2>
+        <span class="badge">Accessories</span>
+        <h2>Slab Guard — your card survived grading. <em>Keep it that way.</em></h2>
         <p>A flexible silicone bumper that hugs a PSA slab and absorbs hits on the corners and edges — exactly where slabs crack first. Solid colors or glitter gradient.</p>
-        <p class="ui" style="font-weight:700;">From $4.99 · 25 in stock</p>
+        <span class="price-stamp"><span class="from">From</span><span class="amount">$4.99</span><span class="from">· 25 in stock</span></span>
         <a class="yellow-btn" href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">Get the guard</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= SUBSCRIBE ================= -->
+<div class="subscribe">
+  <div class="band-inner">
+    <span class="kicker">The next issue</span>
+    <h2>New slabs drop without warning. <em>Subscribers hear first.</em></h2>
+    <p>One email when new graded slabs and raw hits land in the shop. No filler, no spam — inventory is single-copy, so timing matters.</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="your@email.com" aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-logo">SlabsHub</div>
+        <div class="foot-logo">Slabs<em>Hub</em></div>
         <p>A collector-run shop for graded Pokémon slabs, raw hits, and the gear that protects them. Questions about a cert? Ask — we pulled the card ourselves.</p>
       </div>
       <div class="ui-col">
+        <div class="col-title">Shop</div>
         <a href="https://slabshub.com/collections/all">Shop All</a>
         <a href="https://slabshub.com/collections/all">PSA Slabs</a>
         <a href="https://slabshub.com/collections/all">Raw Cards</a>
         <a href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">Accessories</a>
       </div>
       <div class="ui-col">
+        <div class="col-title">Elsewhere</div>
         <a href="https://www.instagram.com/">Instagram</a>
         <a href="https://www.facebook.com/">Facebook</a>
         <a href="https://slabshub.com/policies/refund-policy">Shipping &amp; Returns</a>
       </div>
     </div>
     <div class="foot-line">
-      <span>© 2026 SlabsHub</span>
+      <span>© 2026 SlabsHub · Vol. 1</span>
       <span>Slabs graded by PSA · Certs verifiable</span>
     </div>
   </div>
 </footer>
+
+<script>
+  // Departments carousel — scroll-snap track + arrow (wraps), keyboard arrows, staggered reveal
+  (function () {
+    var track = document.getElementById('dept-track');
+    var next = document.getElementById('dept-next');
+    var region = document.getElementById('dept-carousel');
+    if (!track || !next) return;
+
+    function cardStep() {
+      var card = track.querySelector('.dept-card');
+      if (!card) return 0;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 15;
+      return card.getBoundingClientRect().width + gap;
+    }
+    function atEnd() {
+      return track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    }
+    function scrollNext() {
+      if (atEnd()) { track.scrollTo({ left: 0, behavior: 'smooth' }); }
+      else { track.scrollBy({ left: cardStep(), behavior: 'smooth' }); }
+    }
+    function scrollPrev() {
+      if (track.scrollLeft <= 4) { track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' }); }
+      else { track.scrollBy({ left: -cardStep(), behavior: 'smooth' }); }
+    }
+    next.addEventListener('click', scrollNext);
+    region.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); scrollNext(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); scrollPrev(); }
+    });
+
+    // Staggered entrance (once, 20% visible) — mirrors the reference component's useInView
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.dept-card'));
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            cards.forEach(function (c, i) {
+              c.style.transitionDelay = (i * 0.1) + 's';
+              c.classList.add('in');
+            });
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      io.observe(track);
+    } else {
+      cards.forEach(function (c) { c.classList.add('in'); });
+    }
+  })();
+</script>
 
 </body>
 </html>
