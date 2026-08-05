@@ -49,7 +49,12 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--color-pearl-gray);
+    /* blueprint canvas — pale drafting blue + fine grid (Matan, 2026-08-05) */
+    background-color: #dce8f2;
+    background-image:
+      linear-gradient(rgba(46, 111, 183, 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 111, 183, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
     color: var(--color-carbon-black);
     font-family: var(--font-body);
     font-size: var(--text-body);
@@ -602,6 +607,13 @@
   }
   .dept-card .icon { width: 48px; height: 48px; }
   .dept-card .icon svg { width: 100%; height: 100%; stroke: var(--color-carbon-black); fill: none; stroke-width: 1.5; }
+  .dept-card .icon svg.px { stroke: none; shape-rendering: crispEdges; transition: transform 0.4s ease; }
+  .dept-card:hover .icon svg.px { transform: rotate(360deg); }
+  .sec-ball { display: inline-block; width: 20px; height: 20px; margin-right: 10px; vertical-align: -2px; }
+  .sec-ball svg { width: 100%; height: 100%; shape-rendering: crispEdges; }
+  @media (prefers-reduced-motion: reduce) {
+    .dept-card .icon svg.px, .dept-card:hover .icon svg.px { transition: none; transform: none; }
+  }
   .dept-card .bottom h3 {
     font-family: var(--font-ui);
     font-size: 14px;
@@ -1037,6 +1049,9 @@
 </head>
 <body>
 
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="ball-poke" viewBox="0 0 12 12"><rect x="4" y="0" width="4" height="1" fill="#000000"/><rect x="2" y="1" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="4" height="1" fill="#e3350d"/><rect x="8" y="1" width="2" height="1" fill="#000000"/><rect x="1" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="2" width="1" height="1" fill="#e3350d"/><rect x="3" y="2" width="2" height="1" fill="#ff8a6b"/><rect x="5" y="2" width="5" height="1" fill="#e3350d"/><rect x="10" y="2" width="1" height="1" fill="#000000"/><rect x="1" y="3" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="8" height="1" fill="#e3350d"/><rect x="10" y="3" width="1" height="1" fill="#000000"/><rect x="0" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="4" height="1" fill="#e3350d"/><rect x="5" y="4" width="2" height="1" fill="#000000"/><rect x="7" y="4" width="4" height="1" fill="#e3350d"/><rect x="11" y="4" width="1" height="1" fill="#000000"/><rect x="0" y="5" width="5" height="1" fill="#000000"/><rect x="5" y="5" width="2" height="1" fill="#ffffff"/><rect x="7" y="5" width="5" height="1" fill="#000000"/><rect x="0" y="6" width="5" height="1" fill="#000000"/><rect x="5" y="6" width="2" height="1" fill="#ffffff"/><rect x="7" y="6" width="5" height="1" fill="#000000"/><rect x="0" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="4" height="1" fill="#ffffff"/><rect x="5" y="7" width="2" height="1" fill="#000000"/><rect x="7" y="7" width="4" height="1" fill="#ffffff"/><rect x="11" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="8" height="1" fill="#ffffff"/><rect x="10" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="8" height="1" fill="#ffffff"/><rect x="10" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="10" width="4" height="1" fill="#ffffff"/><rect x="8" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="11" width="4" height="1" fill="#000000"/></symbol><symbol id="ball-great" viewBox="0 0 12 12"><rect x="4" y="0" width="4" height="1" fill="#000000"/><rect x="2" y="1" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="4" height="1" fill="#2e6fb7"/><rect x="8" y="1" width="2" height="1" fill="#000000"/><rect x="1" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="2" width="1" height="1" fill="#ffffff"/><rect x="3" y="2" width="2" height="1" fill="#2e6fb7"/><rect x="5" y="2" width="1" height="1" fill="#7db3e8"/><rect x="6" y="2" width="3" height="1" fill="#2e6fb7"/><rect x="9" y="2" width="1" height="1" fill="#ffffff"/><rect x="10" y="2" width="1" height="1" fill="#000000"/><rect x="1" y="3" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="8" height="1" fill="#2e6fb7"/><rect x="10" y="3" width="1" height="1" fill="#000000"/><rect x="0" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="4" height="1" fill="#2e6fb7"/><rect x="5" y="4" width="2" height="1" fill="#000000"/><rect x="7" y="4" width="4" height="1" fill="#2e6fb7"/><rect x="11" y="4" width="1" height="1" fill="#000000"/><rect x="0" y="5" width="5" height="1" fill="#000000"/><rect x="5" y="5" width="2" height="1" fill="#ffffff"/><rect x="7" y="5" width="5" height="1" fill="#000000"/><rect x="0" y="6" width="5" height="1" fill="#000000"/><rect x="5" y="6" width="2" height="1" fill="#ffffff"/><rect x="7" y="6" width="5" height="1" fill="#000000"/><rect x="0" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="4" height="1" fill="#ffffff"/><rect x="5" y="7" width="2" height="1" fill="#000000"/><rect x="7" y="7" width="4" height="1" fill="#ffffff"/><rect x="11" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="8" height="1" fill="#ffffff"/><rect x="10" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="8" height="1" fill="#ffffff"/><rect x="10" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="10" width="4" height="1" fill="#ffffff"/><rect x="8" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="11" width="4" height="1" fill="#000000"/></symbol><symbol id="ball-ultra" viewBox="0 0 12 12"><rect x="4" y="0" width="4" height="1" fill="#000000"/><rect x="2" y="1" width="3" height="1" fill="#000000"/><rect x="5" y="1" width="2" height="1" fill="#ffd931"/><rect x="7" y="1" width="3" height="1" fill="#000000"/><rect x="1" y="2" width="2" height="1" fill="#000000"/><rect x="3" y="2" width="2" height="1" fill="#ffd931"/><rect x="5" y="2" width="2" height="1" fill="#000000"/><rect x="7" y="2" width="2" height="1" fill="#ffd931"/><rect x="9" y="2" width="2" height="1" fill="#000000"/><rect x="1" y="3" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="1" height="1" fill="#ffd931"/><rect x="3" y="3" width="1" height="1" fill="#000000"/><rect x="4" y="3" width="4" height="1" fill="#1a1a1a"/><rect x="8" y="3" width="1" height="1" fill="#000000"/><rect x="9" y="3" width="1" height="1" fill="#ffd931"/><rect x="10" y="3" width="1" height="1" fill="#000000"/><rect x="0" y="4" width="2" height="1" fill="#000000"/><rect x="2" y="4" width="1" height="1" fill="#ffd931"/><rect x="3" y="4" width="1" height="1" fill="#000000"/><rect x="4" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="5" y="4" width="2" height="1" fill="#000000"/><rect x="7" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="8" y="4" width="1" height="1" fill="#000000"/><rect x="9" y="4" width="1" height="1" fill="#ffd931"/><rect x="10" y="4" width="2" height="1" fill="#000000"/><rect x="0" y="5" width="5" height="1" fill="#000000"/><rect x="5" y="5" width="2" height="1" fill="#ffffff"/><rect x="7" y="5" width="5" height="1" fill="#000000"/><rect x="0" y="6" width="5" height="1" fill="#000000"/><rect x="5" y="6" width="2" height="1" fill="#ffffff"/><rect x="7" y="6" width="5" height="1" fill="#000000"/><rect x="0" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="4" height="1" fill="#ffffff"/><rect x="5" y="7" width="2" height="1" fill="#000000"/><rect x="7" y="7" width="4" height="1" fill="#ffffff"/><rect x="11" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="8" height="1" fill="#ffffff"/><rect x="10" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="8" height="1" fill="#ffffff"/><rect x="10" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="10" width="4" height="1" fill="#ffffff"/><rect x="8" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="11" width="4" height="1" fill="#000000"/></symbol><symbol id="ball-master" viewBox="0 0 12 12"><rect x="4" y="0" width="4" height="1" fill="#000000"/><rect x="2" y="1" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="4" height="1" fill="#7b4fa6"/><rect x="8" y="1" width="2" height="1" fill="#000000"/><rect x="1" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="2" width="1" height="1" fill="#7b4fa6"/><rect x="3" y="2" width="1" height="1" fill="#e86aa6"/><rect x="4" y="2" width="4" height="1" fill="#7b4fa6"/><rect x="8" y="2" width="1" height="1" fill="#e86aa6"/><rect x="9" y="2" width="1" height="1" fill="#7b4fa6"/><rect x="10" y="2" width="1" height="1" fill="#000000"/><rect x="1" y="3" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="3" height="1" fill="#7b4fa6"/><rect x="5" y="3" width="2" height="1" fill="#a57fd0"/><rect x="7" y="3" width="3" height="1" fill="#7b4fa6"/><rect x="10" y="3" width="1" height="1" fill="#000000"/><rect x="0" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="4" height="1" fill="#7b4fa6"/><rect x="5" y="4" width="2" height="1" fill="#000000"/><rect x="7" y="4" width="4" height="1" fill="#7b4fa6"/><rect x="11" y="4" width="1" height="1" fill="#000000"/><rect x="0" y="5" width="5" height="1" fill="#000000"/><rect x="5" y="5" width="2" height="1" fill="#ffffff"/><rect x="7" y="5" width="5" height="1" fill="#000000"/><rect x="0" y="6" width="5" height="1" fill="#000000"/><rect x="5" y="6" width="2" height="1" fill="#ffffff"/><rect x="7" y="6" width="5" height="1" fill="#000000"/><rect x="0" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="4" height="1" fill="#ffffff"/><rect x="5" y="7" width="2" height="1" fill="#000000"/><rect x="7" y="7" width="4" height="1" fill="#ffffff"/><rect x="11" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="8" height="1" fill="#ffffff"/><rect x="10" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="8" height="1" fill="#ffffff"/><rect x="10" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="10" width="4" height="1" fill="#ffffff"/><rect x="8" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="11" width="4" height="1" fill="#000000"/></symbol><symbol id="ball-safari" viewBox="0 0 12 12"><rect x="4" y="0" width="4" height="1" fill="#000000"/><rect x="2" y="1" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="4" height="1" fill="#4caf50"/><rect x="8" y="1" width="2" height="1" fill="#000000"/><rect x="1" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="2" width="1" height="1" fill="#4caf50"/><rect x="3" y="2" width="1" height="1" fill="#2e7d32"/><rect x="4" y="2" width="3" height="1" fill="#4caf50"/><rect x="7" y="2" width="1" height="1" fill="#2e7d32"/><rect x="8" y="2" width="2" height="1" fill="#4caf50"/><rect x="10" y="2" width="1" height="1" fill="#000000"/><rect x="1" y="3" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="3" height="1" fill="#4caf50"/><rect x="5" y="3" width="1" height="1" fill="#2e7d32"/><rect x="6" y="3" width="4" height="1" fill="#4caf50"/><rect x="10" y="3" width="1" height="1" fill="#000000"/><rect x="0" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="2" height="1" fill="#4caf50"/><rect x="3" y="4" width="1" height="1" fill="#2e7d32"/><rect x="4" y="4" width="1" height="1" fill="#4caf50"/><rect x="5" y="4" width="2" height="1" fill="#000000"/><rect x="7" y="4" width="1" height="1" fill="#4caf50"/><rect x="8" y="4" width="1" height="1" fill="#2e7d32"/><rect x="9" y="4" width="2" height="1" fill="#4caf50"/><rect x="11" y="4" width="1" height="1" fill="#000000"/><rect x="0" y="5" width="5" height="1" fill="#000000"/><rect x="5" y="5" width="2" height="1" fill="#ffffff"/><rect x="7" y="5" width="5" height="1" fill="#000000"/><rect x="0" y="6" width="5" height="1" fill="#000000"/><rect x="5" y="6" width="2" height="1" fill="#ffffff"/><rect x="7" y="6" width="5" height="1" fill="#000000"/><rect x="0" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="4" height="1" fill="#ffffff"/><rect x="5" y="7" width="2" height="1" fill="#000000"/><rect x="7" y="7" width="4" height="1" fill="#ffffff"/><rect x="11" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="8" height="1" fill="#ffffff"/><rect x="10" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="8" height="1" fill="#ffffff"/><rect x="10" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="10" width="4" height="1" fill="#ffffff"/><rect x="8" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="11" width="4" height="1" fill="#000000"/></symbol><symbol id="ball-luxury" viewBox="0 0 12 12"><rect x="4" y="0" width="4" height="1" fill="#000000"/><rect x="2" y="1" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="4" height="1" fill="#1a1a1a"/><rect x="8" y="1" width="2" height="1" fill="#000000"/><rect x="1" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="2" width="1" height="1" fill="#1a1a1a"/><rect x="3" y="2" width="2" height="1" fill="#ffd931"/><rect x="5" y="2" width="2" height="1" fill="#1a1a1a"/><rect x="7" y="2" width="2" height="1" fill="#ffd931"/><rect x="9" y="2" width="1" height="1" fill="#1a1a1a"/><rect x="10" y="2" width="1" height="1" fill="#000000"/><rect x="1" y="3" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="1" height="1" fill="#ffd931"/><rect x="3" y="3" width="2" height="1" fill="#1a1a1a"/><rect x="5" y="3" width="2" height="1" fill="#ffd931"/><rect x="7" y="3" width="2" height="1" fill="#1a1a1a"/><rect x="9" y="3" width="1" height="1" fill="#ffd931"/><rect x="10" y="3" width="1" height="1" fill="#000000"/><rect x="0" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="2" height="1" fill="#1a1a1a"/><rect x="3" y="4" width="1" height="1" fill="#ffd931"/><rect x="4" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="5" y="4" width="2" height="1" fill="#000000"/><rect x="7" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="8" y="4" width="1" height="1" fill="#ffd931"/><rect x="9" y="4" width="2" height="1" fill="#1a1a1a"/><rect x="11" y="4" width="1" height="1" fill="#000000"/><rect x="0" y="5" width="5" height="1" fill="#000000"/><rect x="5" y="5" width="2" height="1" fill="#ffffff"/><rect x="7" y="5" width="5" height="1" fill="#000000"/><rect x="0" y="6" width="5" height="1" fill="#000000"/><rect x="5" y="6" width="2" height="1" fill="#ffffff"/><rect x="7" y="6" width="5" height="1" fill="#000000"/><rect x="0" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="4" height="1" fill="#ffffff"/><rect x="5" y="7" width="2" height="1" fill="#000000"/><rect x="7" y="7" width="4" height="1" fill="#ffffff"/><rect x="11" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="8" height="1" fill="#ffffff"/><rect x="10" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="8" height="1" fill="#ffffff"/><rect x="10" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="10" width="4" height="1" fill="#ffffff"/><rect x="8" y="10" width="2" height="1" fill="#000000"/><rect x="4" y="11" width="4" height="1" fill="#000000"/></symbol></defs></svg>
+
+
 <!-- ================= STICKY NAV ================= -->
 <div class="sticky-nav" id="sticky-nav" aria-hidden="true">
   <a class="s-logo" href="#top">Slabs<em>Hub</em></a>
@@ -1049,7 +1064,7 @@
 
 <!-- ================= BACK TO TOP ================= -->
 <button class="to-top" id="to-top" aria-label="Back to top">
-  <svg viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg>
+  <svg class="px" style="width:26px;height:26px;shape-rendering:crispEdges;stroke:none;"><use href="#ball-poke"/></svg>
 </button>
 
 <!-- ================= TICKER ================= -->
@@ -1151,7 +1166,7 @@
 <section>
   <div class="wrap">
     <div class="section-head">
-      <h2><span class="no">№ 1</span>Fresh pulls, ready to ship</h2>
+      <h2><span class="sec-ball" aria-hidden="true"><svg><use href="#ball-poke"/></svg></span><span class="no">№ 1</span>Fresh pulls, ready to ship</h2>
       <a href="https://slabshub.com/collections/all">Shop all</a>
     </div>
     <div class="grid-3">
@@ -1205,7 +1220,7 @@
 <section>
   <div class="wrap">
     <div class="section-head">
-      <h2><span class="no">№ 2</span>The departments</h2>
+      <h2><span class="sec-ball" aria-hidden="true"><svg><use href="#ball-ultra"/></svg></span><span class="no">№ 2</span>The departments</h2>
       <a href="https://slabshub.com/collections/all">Browse all</a>
     </div>
     <div class="carousel" id="dept-carousel" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Shop departments">
@@ -1213,10 +1228,7 @@
         <div class="dept-card s-yellow">
           <div class="top">
             <span class="no">( 001 )</span>
-            <span class="icon" aria-hidden="true">
-              <!-- slab / frame icon -->
-              <svg viewBox="0 0 48 48"><rect x="8" y="4" width="32" height="40" rx="3"/><rect x="13" y="15" width="22" height="24" rx="1.5"/><path d="M13 9.5h22"/></svg>
-            </span>
+            <span class="icon" aria-hidden="true"><svg class="px"><use href="#ball-ultra"/></svg></span>
           </div>
           <div class="bottom">
             <h3>Graded Slabs</h3>
@@ -1227,10 +1239,7 @@
         <div class="dept-card s-white">
           <div class="top">
             <span class="no">( 002 )</span>
-            <span class="icon" aria-hidden="true">
-              <!-- sparkle / hit icon -->
-              <svg viewBox="0 0 48 48"><path d="M24 6l4.2 13.8L42 24l-13.8 4.2L24 42l-4.2-13.8L6 24l13.8-4.2z"/></svg>
-            </span>
+            <span class="icon" aria-hidden="true"><svg class="px"><use href="#ball-poke"/></svg></span>
           </div>
           <div class="bottom">
             <h3>Raw Singles</h3>
@@ -1241,10 +1250,7 @@
         <div class="dept-card s-pearl">
           <div class="top">
             <span class="no">( 003 )</span>
-            <span class="icon" aria-hidden="true">
-              <!-- shield icon -->
-              <svg viewBox="0 0 48 48"><path d="M24 4l16 6v12c0 10-6.5 17.5-16 22C14.5 39.5 8 32 8 22V10z"/><path d="M17 24l5 5 9-11"/></svg>
-            </span>
+            <span class="icon" aria-hidden="true"><svg class="px"><use href="#ball-great"/></svg></span>
           </div>
           <div class="bottom">
             <h3>Slab Protection</h3>
@@ -1255,10 +1261,7 @@
         <div class="dept-card s-fog">
           <div class="top">
             <span class="no">( 004 )</span>
-            <span class="icon" aria-hidden="true">
-              <!-- scale / market icon -->
-              <svg viewBox="0 0 48 48"><path d="M24 8v32"/><path d="M10 14h28"/><path d="M10 14l-6 12h12z"/><path d="M38 14l-6 12h12z"/><path d="M16 40h16"/></svg>
-            </span>
+            <span class="icon" aria-hidden="true"><svg class="px"><use href="#ball-luxury"/></svg></span>
           </div>
           <div class="bottom">
             <h3>Market Pricing</h3>
@@ -1404,7 +1407,7 @@
 <section>
   <div class="wrap">
     <div class="section-head">
-      <h2><span class="no">№ 3</span>New in the shop</h2>
+      <h2><span class="sec-ball" aria-hidden="true"><svg><use href="#ball-safari"/></svg></span><span class="no">№ 3</span>New in the shop</h2>
       <a href="https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs">See it</a>
     </div>
     <div class="split">
@@ -1426,7 +1429,7 @@
 <section>
   <div class="wrap">
     <div class="section-head">
-      <h2><span class="no">№ 4</span>Letters to the desk</h2>
+      <h2><span class="sec-ball" aria-hidden="true"><svg><use href="#ball-master"/></svg></span><span class="no">№ 4</span>Letters to the desk</h2>
     </div>
     <div class="letters">
       <details>
