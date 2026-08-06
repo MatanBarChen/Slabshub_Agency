@@ -25,11 +25,16 @@ Preview any page on the sandbox by appending `?preview_theme_id=184094687343` to
 
 Verified rendered: `https://slabshub.com/pages/anything-missing?preview_theme_id=184094687343` shows the Comics 404 (screenshot: `../preview-shopify-404.png`).
 
-## Still to deploy
+| `sections/comics-about.liquid` + `templates/page.comics-about.json` | About page — assigned to Page "about" (gid 124011249775) via pageUpdate templateSuffix `comics-about`. Note: suffix is set on the LIVE page resource; harmless while the live theme lacks the template (falls back to default), and correct once the Comics theme is published. |
 
-- about (`templates/page.comics-about.json` → section; Matan assigns template to a Page in admin)
-- search page, policy pages (optional polish)
-- QA sweep on preview, then Matan publishes the theme from admin (Online Store → Themes → "Updated copy of Black & White" → Publish).
+## ALL CORE PAGES DEPLOYED (2026-08-06) ✅
+
+index, collection, product, cart, 404, about — all dynamic, all verified rendered on the sandbox.
+
+## Remaining (optional polish)
+
+- search results page, policy pages, contact page styling
+- QA sweep on preview, then Matan publishes from admin (Online Store → Themes → "Updated copy of Black & White" → Publish). Rollback = republish old theme.
 
 ## Local files here
 
