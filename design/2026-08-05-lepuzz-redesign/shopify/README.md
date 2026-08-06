@@ -15,15 +15,20 @@ Preview any page on the sandbox by appending `?preview_theme_id=184094687343` to
 | Theme file | Purpose |
 |---|---|
 | `snippets/comics-balls.liquid` | 6 pixel pokeball SVG symbols (shared) |
-| `sections/comics-404.liquid` | Full Comics 404 page (catch mini-game) |
-| `templates/404.json` | `layout: false` → `comics-404` section |
+| `sections/comics-404.liquid` + `templates/404.json` | 404 page (catch mini-game) |
+| `sections/comics-product.liquid` + `templates/product.json` | DYNAMIC product page: {{ product }} data, real Add-to-Cart form, front/back gallery, related row |
+| `sections/comics-collection.liquid` + `templates/collection.json` | DYNAMIC collection: full catalog loop (paginate 48), client-side price filters + sort, in-grid advert |
+| `sections/comics-index.liquid` + `templates/index.json` | DYNAMIC front page: hero carousel auto-picks 5 priciest available cards, fresh-pulls grid, Classifieds under $15, newsletter = real {% form 'customer' %}, nav from main-menu linklist |
 | `snippets/comics-embed-test.liquid` | Write-access test — safe to delete |
 
 Verified rendered: `https://slabshub.com/pages/anything-missing?preview_theme_id=184094687343` shows the Comics 404 (screenshot: `../preview-shopify-404.png`).
 
 ## Still to deploy
 
-home (index), collection, product, about (page template), cart — same section+JSON-template pattern; product/collection/cart should swap hardcoded product arrays for Liquid objects (`collection.products`, `product`, `cart`).
+- cart (`templates/cart.json` → comics-cart section using {{ cart.items }} + /cart form)
+- about (`templates/page.comics-about.json` → section; Matan assigns template to a Page in admin)
+- search page, policy pages (optional polish)
+- QA sweep on preview, then Matan publishes the theme from admin (Online Store → Themes → "Updated copy of Black & White" → Publish).
 
 ## Local files here
 
