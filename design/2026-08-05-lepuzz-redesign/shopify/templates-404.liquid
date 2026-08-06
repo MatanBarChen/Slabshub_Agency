@@ -1,0 +1,318 @@
+{% layout none %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page got away | SlabsHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-honeycomb-yellow: #ffd931;
+    --color-carbon-black: #000000;
+    --color-ink-black: #231f20;
+    --color-fog-gray: #a6a8aa;
+    --color-smoke-line: #d6d6d6;
+    --font-display: 'Times Now', 'Playfair Display', 'Times New Roman', serif;
+    --font-body: 'Times New Roman', Times, serif;
+    --font-ui: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-product: 'Lora', 'Times New Roman', serif;
+    --text-caption: 11px;
+    --text-body: 16px;
+    --tracking-ui: 0.073em;
+    --tracking-nav: 0.063em;
+    --tracking-wide: 0.091em;
+    --page-max-width: 1200px;
+    --radius-card: 12px;
+    --radius-pill: 25px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #dce8f2;
+    background-image:
+      linear-gradient(rgba(46, 111, 183, 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 111, 183, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--color-carbon-black);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.15;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  ::selection { background: var(--color-honeycomb-yellow); color: var(--color-carbon-black); }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--color-carbon-black); outline-offset: 2px; }
+  .ui { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; line-height: 1.15; }
+  .wrap { max-width: var(--page-max-width); margin: 0 auto; padding: 0 20px; width: 100%; }
+
+  /* Ticker */
+  .ticker { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); overflow: hidden; white-space: nowrap; padding: 7px 0; }
+  .ticker-track { display: inline-flex; animation: ticker 30s linear infinite; }
+  .ticker-track span { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-wide); text-transform: uppercase; padding-right: 48px; }
+  .ticker-track span::after { content: "★"; margin-left: 48px; font-size: 9px; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+  /* Masthead (slim) */
+  .masthead { background: var(--color-honeycomb-yellow); border-bottom: 2px solid var(--color-carbon-black); }
+  .logo-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 16px 20px 14px; max-width: var(--page-max-width); margin: 0 auto; gap: 15px; }
+  .logo-block { text-align: center; }
+  .logo { font-family: var(--font-display); font-weight: 500; font-size: 38px; line-height: 0.87; display: inline-block; }
+  .logo em { font-style: italic; font-weight: 400; }
+  .logo-tag { display: block; margin-top: 6px; font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; }
+  .logo-side { display: flex; align-items: center; gap: 10px; }
+  .logo-side.right { justify-content: flex-end; }
+  .back-link { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-nav); text-transform: uppercase; border: 1px solid var(--color-carbon-black); border-radius: var(--radius-card); padding: 8px 14px; transition: background 0.15s ease, color 0.15s ease; }
+  .back-link:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+  .cart-link { display: inline-flex; align-items: center; gap: 6px; }
+  .cart-link svg { width: 16px; height: 16px; }
+
+  /* 404 stage */
+  main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 45px 0 60px; }
+  .stage { text-align: center; }
+  .wild-tag {
+    display: inline-block;
+    background: #ffffff;
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    box-shadow: 3px 3px 0 0 var(--color-carbon-black);
+    font-family: var(--font-ui);
+    font-size: 12px; font-weight: 700;
+    letter-spacing: var(--tracking-wide); text-transform: uppercase;
+    padding: 7px 14px;
+    margin-bottom: 24px;
+  }
+  .big-404 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    user-select: none;
+  }
+  .big-404 .digit {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 180px;
+    line-height: 0.8;
+  }
+  .ball-zero {
+    width: 150px; height: 150px;
+    background: none; border: none; padding: 0;
+    cursor: pointer;
+    position: relative;
+  }
+  .ball-zero svg.ball { width: 100%; height: 100%; display: block; transition: transform 0.15s ease; }
+  .ball-zero:hover svg.ball { transform: scale(1.05); }
+  .ball-zero.shake svg.ball { animation: catch-shake 0.55s ease; }
+  @keyframes catch-shake {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-16deg) translateX(-7px); }
+    40% { transform: rotate(14deg) translateX(6px); }
+    60% { transform: rotate(-10deg) translateX(-4px); }
+    80% { transform: rotate(7deg) translateX(3px); }
+  }
+  .ball-zero.caught svg.ball { animation: caught-pop 0.5s ease; }
+  @keyframes caught-pop {
+    0% { transform: scale(1); }
+    45% { transform: scale(1.22) rotate(8deg); }
+    100% { transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ball-zero.shake svg.ball, .ball-zero.caught svg.ball { animation: none; }
+  }
+  .stars { position: absolute; inset: -18px; pointer-events: none; opacity: 0; }
+  .stars span { position: absolute; font-size: 24px; }
+  .stars span:nth-child(1) { top: 0; left: 8%; }
+  .stars span:nth-child(2) { top: 12%; right: 2%; }
+  .stars span:nth-child(3) { bottom: 8%; left: 0; }
+  .stars span:nth-child(4) { bottom: 0; right: 10%; }
+  .ball-zero.caught .stars { opacity: 1; transition: opacity 0.2s ease 0.25s; }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 0.92;
+    margin-top: 28px;
+    text-wrap: balance;
+  }
+  h1 em { font-style: italic; }
+  .status-line {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    margin-top: 16px;
+    min-height: 18px;
+    color: var(--color-ink-black);
+  }
+  .sub {
+    max-width: 470px;
+    margin: 14px auto 0;
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--color-ink-black);
+  }
+
+  /* Correction notice */
+  .correction {
+    max-width: 470px;
+    margin: 26px auto 0;
+    background: #ffffff;
+    border: 1px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 14px 18px;
+    text-align: left;
+  }
+  .correction .ui { display: block; border-bottom: 1px solid var(--color-carbon-black); padding-bottom: 6px; margin-bottom: 8px; }
+  .correction p { font-size: 14px; line-height: 1.4; color: var(--color-ink-black); font-style: italic; }
+
+  .cta-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .yellow-btn {
+    display: inline-block;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    box-shadow: 4px 4px 0 0 var(--color-carbon-black);
+    font-family: var(--font-ui);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: var(--tracking-ui); text-transform: uppercase;
+    padding: 13px 22px;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .yellow-btn:hover { box-shadow: 6px 6px 0 0 var(--color-carbon-black); transform: translate(-1px, -1px); }
+  .yellow-btn:active { box-shadow: 2px 2px 0 0 var(--color-carbon-black); transform: translate(2px, 2px); }
+  .ghost-btn {
+    display: inline-block;
+    background: #ffffff;
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    font-family: var(--font-ui);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: var(--tracking-ui); text-transform: uppercase;
+    padding: 13px 22px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .ghost-btn:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+
+  /* Footer */
+  footer { background: var(--color-ink-black); color: #fff; padding: 22px 0; }
+  .foot-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .foot-line span, .foot-line a { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: #c8cbcd; }
+  .foot-line a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 700px) {
+    .big-404 .digit { font-size: 110px; }
+    .ball-zero { width: 96px; height: 96px; }
+    h1 { font-size: 30px; }
+    .logo-row { grid-template-columns: 1fr; }
+    .logo-side { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+{% render 'comics-balls' %}
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Correction: the page you requested is not in this issue</span>
+    <span>Single-copy inventory — some pages sell out too</span>
+    <span>The catalog is still fully stocked</span>
+    <span>Correction: the page you requested is not in this issue</span>
+    <span>Single-copy inventory — some pages sell out too</span>
+    <span>The catalog is still fully stocked</span>
+  </div>
+</div>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="masthead">
+  <div class="logo-row">
+    <div class="logo-side">
+      <a class="back-link" href="/">← Front page</a>
+    </div>
+    <div class="logo-block">
+      <a href="/" class="logo">Slabs<em>Hub</em></a>
+      <span class="logo-tag">The Graded Card Circular</span>
+    </div>
+    <div class="logo-side right">
+      <a class="cart-link ui" href="/cart">
+        Cart
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 404 STAGE ================= -->
+<main>
+  <div class="wrap">
+    <div class="stage">
+      <span class="wild-tag">⚡ A wild 404 appeared!</span>
+      <div class="big-404" aria-label="Error 404">
+        <span class="digit">4</span>
+        <button class="ball-zero" id="ball-zero" aria-label="Throw a Pokéball to catch the 404">
+          <svg class="ball"><use href="#ball-poke"/></svg>
+          <span class="stars" aria-hidden="true"><span>★</span><span>★</span><span>★</span><span>★</span></span>
+        </button>
+        <span class="digit">4</span>
+      </div>
+      <h1>This page <em>got away.</em></h1>
+      <p class="status-line" id="status-line" aria-live="polite">Click the ball to catch it</p>
+      <p class="sub">The page you're hunting isn't in this issue — it may have moved, or like everything else here, it was a single copy and it's gone.</p>
+
+      <div class="correction">
+        <span class="ui">Correction — from the desk</span>
+        <p>The editors regret the missing page. The rest of the catalog remains fully stocked, photographed in-hand, and priced against the market.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="yellow-btn" href="/">Back to the front page</a>
+        <a class="ghost-btn" href="/collections/all">Browse the catalog</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-line">
+      <span>© 2026 SlabsHub · Vol. 1</span>
+      <span>Error 404 · Page not found</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Catch the 404 — three throws and it's yours
+  (function () {
+    var ball = document.getElementById('ball-zero');
+    var status = document.getElementById('status-line');
+    var throws = 0;
+    var midMessages = ['It shook once… almost!', 'So close — it broke free!'];
+    ball.addEventListener('click', function () {
+      if (ball.classList.contains('caught')) return;
+      throws++;
+      if (throws >= 3) {
+        ball.classList.remove('shake');
+        ball.classList.add('caught');
+        status.textContent = 'Gotcha! The 404 was caught. Safe travels back ↓';
+        return;
+      }
+      ball.classList.remove('shake');
+      void ball.offsetWidth; // restart the animation
+      ball.classList.add('shake');
+      status.textContent = midMessages[throws - 1];
+    });
+  })();
+</script>
+
+</body>
+</html>
