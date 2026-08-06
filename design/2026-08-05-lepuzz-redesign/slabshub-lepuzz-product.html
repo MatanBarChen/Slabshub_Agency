@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pikachu with Grey Felt Hat #85 — SlabsHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-honeycomb-yellow: #ffd931;
+    --color-carbon-black: #000000;
+    --color-ink-black: #231f20;
+    --color-fog-gray: #a6a8aa;
+    --color-smoke-line: #d6d6d6;
+    --font-display: 'Times Now', 'Playfair Display', 'Times New Roman', serif;
+    --font-body: 'Times New Roman', Times, serif;
+    --font-ui: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-product: 'Lora', 'Times New Roman', serif;
+    --text-caption: 11px;
+    --text-body: 16px;
+    --text-heading-sm: 27px;
+    --text-heading: 40px;
+    --tracking-ui: 0.073em;
+    --tracking-nav: 0.063em;
+    --tracking-wide: 0.091em;
+    --page-max-width: 1200px;
+    --gap: 15px;
+    --radius-card: 12px;
+    --radius-pill: 25px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #dce8f2;
+    background-image:
+      linear-gradient(rgba(46, 111, 183, 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 111, 183, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--color-carbon-black);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.15;
+  }
+  ::selection { background: var(--color-honeycomb-yellow); color: var(--color-carbon-black); }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--color-carbon-black); outline-offset: 2px; }
+  .ui { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; line-height: 1.15; }
+  .wrap { max-width: var(--page-max-width); margin: 0 auto; padding: 0 20px; }
+
+  /* Ticker */
+  .ticker { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); overflow: hidden; white-space: nowrap; padding: 7px 0; }
+  .ticker-track { display: inline-flex; animation: ticker 38s linear infinite; }
+  .ticker-track span { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-wide); text-transform: uppercase; padding-right: 48px; }
+  .ticker-track span::after { content: "★"; margin-left: 48px; font-size: 9px; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+  /* Masthead (compact for inner pages) */
+  .masthead { background: var(--color-honeycomb-yellow); border-bottom: 2px solid var(--color-carbon-black); }
+  .logo-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px 20px 12px; max-width: var(--page-max-width); margin: 0 auto; gap: 15px; }
+  .logo-block { text-align: center; }
+  .logo { font-family: var(--font-display); font-weight: 500; font-size: 42px; line-height: 0.87; display: inline-block; }
+  .logo em { font-style: italic; font-weight: 400; }
+  .logo-tag { display: block; margin-top: 7px; font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; }
+  .logo-side { display: flex; align-items: center; gap: 10px; }
+  .logo-side.right { justify-content: flex-end; }
+  .back-link { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-nav); text-transform: uppercase; border: 1px solid var(--color-carbon-black); border-radius: var(--radius-card); padding: 8px 14px; transition: background 0.15s ease, color 0.15s ease; }
+  .back-link:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+  .cart-link { display: inline-flex; align-items: center; gap: 6px; }
+  .cart-link svg { width: 16px; height: 16px; }
+  .cart-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .double-rule { max-width: calc(var(--page-max-width) - 40px); margin: 0 auto; border-top: 3px solid var(--color-carbon-black); position: relative; }
+  .double-rule::after { content: ""; display: block; border-top: 1px solid var(--color-carbon-black); margin-top: 3px; }
+  .crumbs { max-width: var(--page-max-width); margin: 0 auto; padding: 12px 20px 16px; display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .crumbs a, .crumbs span { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; }
+  .crumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .crumbs .sep { opacity: 0.55; }
+  .crumb-ball { width: 15px; height: 15px; display: inline-block; }
+  .crumb-ball svg { width: 100%; height: 100%; display: block; }
+
+  /* Product spread */
+  .spread { display: grid; grid-template-columns: 1.05fr 1fr; gap: 30px; padding: 40px 0 10px; align-items: start; }
+
+  .photo-card { background: #ffffff; border: 2px solid var(--color-carbon-black); border-radius: var(--radius-card); box-shadow: 6px 6px 0 0 var(--color-carbon-black); padding: 22px; }
+  .photo-main { background: #ffffff; border: 1px solid var(--color-smoke-line); border-radius: var(--radius-card); padding: 18px; display: flex; align-items: center; justify-content: center; perspective: 700px; min-height: 480px; }
+  .photo-main img { max-width: 100%; max-height: 520px; object-fit: contain; display: block; transition: transform 0.25s ease; }
+  .thumbs { display: flex; gap: 10px; margin-top: 14px; }
+  .thumb { width: 84px; height: 84px; background: #fff; border: 2px solid var(--color-carbon-black); border-radius: 10px; padding: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: box-shadow 0.15s ease, transform 0.15s ease; }
+  .thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .thumb.on { box-shadow: 3px 3px 0 0 var(--color-carbon-black); background: #fffbe8; }
+  .thumb:hover { transform: translateY(-2px); }
+  .photo-note { margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-ink-black); }
+  .photo-note .crumb-ball { width: 14px; height: 14px; }
+
+  /* Article column */
+  .article { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  .kicker-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge { display: inline-block; background: var(--color-fog-gray); border-radius: var(--radius-card); padding: 3px 9px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; }
+  .badge.stock { background: transparent; border: 1px solid var(--color-carbon-black); }
+  .badge.hot { background: var(--color-honeycomb-yellow); border: 1px solid var(--color-carbon-black); }
+  h1.title { font-family: var(--font-product); font-weight: 600; font-size: 38px; line-height: 1.02; text-wrap: balance; }
+  h1.title em { font-style: italic; font-weight: 400; }
+  .slab-label { background: #ffffff; border: 1px solid var(--color-carbon-black); border-radius: 6px; display: inline-flex; align-items: center; gap: 12px; padding: 7px 12px; }
+  .slab-label .spec { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; line-height: 1.4; }
+  .barcode { width: 54px; height: 22px; flex: none; background: repeating-linear-gradient(90deg, var(--color-carbon-black) 0 2px, transparent 2px 4px, var(--color-carbon-black) 4px 5px, transparent 5px 8px, var(--color-carbon-black) 8px 11px, transparent 11px 13px); }
+
+  .price-row { display: flex; align-items: center; gap: 18px; margin-top: 4px; }
+  .price-bubble {
+    width: 92px; height: 92px; border-radius: 50%;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    box-shadow: 3px 3px 0 0 var(--color-carbon-black);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    animation: bubble-wobble 5s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+    flex: none;
+  }
+  .price-bubble .amt { font-family: var(--font-ui); font-size: 24px; font-weight: 700; line-height: 1; }
+  .price-bubble .per { font-family: var(--font-ui); font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 3px; }
+  @keyframes bubble-wobble {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    20% { transform: rotate(7deg) translateY(-4px); }
+    40% { transform: rotate(-5deg) translateY(3px); }
+    60% { transform: rotate(4deg) translateY(-2px); }
+    80% { transform: rotate(-3deg) translateY(1px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .price-bubble { animation: none; } }
+  .price-meta { display: flex; flex-direction: column; gap: 8px; }
+  .price-meta .line { font-family: var(--font-ui); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
+  .price-meta .sub { font-size: 14px; font-style: italic; color: var(--color-ink-black); }
+
+  .facts { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 440px; }
+  .fact { display: flex; align-items: center; gap: 9px; background: #ffffff; border: 2px solid var(--color-carbon-black); border-radius: 8px; box-shadow: 2px 2px 0 0 var(--color-carbon-black); padding: 8px 10px; transition: transform 0.15s ease; }
+  .fact:hover { transform: translateX(5px); }
+  .fact .crumb-ball { width: 17px; height: 17px; flex: none; }
+  .fact span:last-child { font-family: var(--font-ui); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
+
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+  .add-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    box-shadow: 4px 4px 0 0 var(--color-carbon-black);
+    font-family: var(--font-ui); font-size: 14px; font-weight: 700;
+    letter-spacing: var(--tracking-ui); text-transform: uppercase;
+    padding: 14px 24px; cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .add-btn:hover { box-shadow: 6px 6px 0 0 var(--color-carbon-black); transform: translate(-1px, -1px); }
+  .add-btn:active { box-shadow: 2px 2px 0 0 var(--color-carbon-black); transform: translate(2px, 2px); }
+  .add-btn .crumb-ball { width: 20px; height: 20px; transition: transform 0.4s ease; }
+  .add-btn:hover .crumb-ball { transform: rotate(360deg); }
+  .ask-btn { display: inline-flex; align-items: center; background: #ffffff; border: 2px solid var(--color-carbon-black); border-radius: var(--radius-card); font-family: var(--font-ui); font-size: var(--text-caption); font-weight: 700; letter-spacing: var(--tracking-ui); text-transform: uppercase; padding: 14px 20px; transition: background 0.15s ease, color 0.15s ease; }
+  .ask-btn:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+
+  /* Editorial description */
+  .desk { border-top: 3px solid var(--color-carbon-black); position: relative; padding-top: 14px; margin-top: 10px; width: 100%; }
+  .desk::before { content: ""; position: absolute; top: 5px; left: 0; right: 0; border-top: 1px solid var(--color-carbon-black); }
+  .desk h2 { font-family: var(--font-display); font-weight: 500; font-size: 21px; margin-bottom: 10px; }
+  .desk ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .desk li { position: relative; padding-left: 22px; line-height: 1.35; color: var(--color-ink-black); }
+  .desk li::before { content: "★"; position: absolute; left: 2px; top: 1px; font-size: 11px; }
+
+  /* Spec sheet */
+  .section-rule { border-top: 3px solid var(--color-carbon-black); position: relative; padding-top: 5px; margin-bottom: 22px; }
+  .section-rule::before { content: ""; position: absolute; top: 5px; left: 0; right: 0; border-top: 1px solid var(--color-carbon-black); }
+  .section-rule h2 { font-family: var(--font-display); font-weight: 500; font-size: var(--text-heading-sm); line-height: 0.9; padding-top: 12px; }
+  .section-rule .sec-ball { display: inline-block; width: 20px; height: 20px; margin-right: 10px; vertical-align: -2px; }
+  .section-rule .sec-ball svg { width: 100%; height: 100%; }
+  section { padding: 35px 0; }
+  .spec-table { background: #ffffff; border: 2px solid var(--color-carbon-black); border-radius: var(--radius-card); overflow: hidden; max-width: 640px; }
+  .spec-table .row { display: grid; grid-template-columns: 1fr 1.6fr; border-bottom: 1px solid var(--color-smoke-line); }
+  .spec-table .row:last-child { border-bottom: none; }
+  .spec-table .k { font-family: var(--font-ui); font-size: var(--text-caption); font-weight: 700; letter-spacing: var(--tracking-ui); text-transform: uppercase; padding: 12px 16px; border-right: 1px solid var(--color-smoke-line); }
+  .spec-table .v { font-family: var(--font-body); font-size: 15px; padding: 11px 16px; color: var(--color-ink-black); }
+
+  /* Related cards */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+  .card { background: #ffffff; border: 1px solid var(--color-carbon-black); border-radius: var(--radius-card); padding: 15px; display: flex; flex-direction: column; gap: 10px; transition: background 0.2s ease; }
+  .card:hover { background: #fffbe8; }
+  .card .img-box { background: #ffffff; border-radius: var(--radius-card); padding: 12px; display: flex; align-items: center; justify-content: center; aspect-ratio: 3 / 4; overflow: hidden; perspective: 600px; }
+  .card .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; transition: transform 0.25s ease; }
+  .card .set-line { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-ink-black); }
+  .card .name { font-family: var(--font-product); font-style: italic; font-weight: 600; font-size: 18px; line-height: 1.1; flex-grow: 1; }
+  .card .meta { display: flex; align-items: baseline; gap: 6px; border-top: 1px solid var(--color-carbon-black); padding-top: 9px; }
+  .card .meta .leader { flex: 1; border-bottom: 1px dotted var(--color-carbon-black); transform: translateY(-4px); }
+  .card .price { font-family: var(--font-ui); font-size: 15px; font-weight: 700; }
+  .quick-add { display: block; text-align: center; background: var(--color-honeycomb-yellow); border: 1px solid var(--color-carbon-black); border-radius: var(--radius-pill); padding: 9px 14px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; transition: background 0.15s ease, color 0.15s ease; }
+  .quick-add:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+
+  /* Footer */
+  footer { background: var(--color-ink-black); color: #fff; padding: 40px 0 25px; margin-top: 20px; }
+  .foot-line { border-top: 1px solid var(--color-fog-gray); padding-top: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .foot-line span, .foot-line a { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: #c8cbcd; }
+  .foot-line a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .foot-logo { font-family: var(--font-display); font-weight: 500; font-size: 24px; margin-bottom: 18px; }
+  .foot-logo em { font-style: italic; font-weight: 400; }
+
+  .to-top { position: fixed; right: 18px; bottom: 18px; width: 48px; height: 48px; border-radius: 50%; background: var(--color-honeycomb-yellow); border: 2px solid var(--color-carbon-black); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 49; opacity: 0; pointer-events: none; transition: opacity 0.25s ease, background 0.15s ease; }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  .to-top svg { width: 26px; height: 26px; }
+
+  @media (max-width: 900px) {
+    .spread { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .logo-row { grid-template-columns: 1fr; }
+    .logo-side { justify-content: center; }
+    h1.title { font-size: 30px; }
+    .photo-main { min-height: 320px; }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="ball-poke" viewBox="0 0 16 16"><g shape-rendering="crispEdges"><rect x="7" y="0" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="3" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="1" fill="#e3350d"/><rect x="9" y="1" width="3" height="1" fill="#000000"/><rect x="3" y="2" width="1" height="1" fill="#000000"/><rect x="4" y="2" width="2" height="1" fill="#ee8269"/><rect x="6" y="2" width="6" height="1" fill="#e3350d"/><rect x="12" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="1" height="1" fill="#000000"/><rect x="3" y="3" width="4" height="1" fill="#ee8269"/><rect x="7" y="3" width="6" height="1" fill="#e3350d"/><rect x="13" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="2" height="1" fill="#e3350d"/><rect x="4" y="4" width="3" height="1" fill="#ee8269"/><rect x="7" y="4" width="7" height="1" fill="#e3350d"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="3" height="1" fill="#e3350d"/><rect x="5" y="5" width="1" height="1" fill="#ee8269"/><rect x="6" y="5" width="1" height="1" fill="#e3350d"/><rect x="7" y="5" width="2" height="1" fill="#000000"/><rect x="9" y="5" width="5" height="1" fill="#e3350d"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="4" height="1" fill="#b1290a"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="7" y="6" width="2" height="1" fill="#ffffff"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="6" width="4" height="1" fill="#b1290a"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="0" y="7" width="6" height="1" fill="#000000"/><rect x="6" y="7" width="4" height="1" fill="#ffffff"/><rect x="10" y="7" width="6" height="1" fill="#000000"/><rect x="0" y="8" width="6" height="1" fill="#000000"/><rect x="6" y="8" width="4" height="1" fill="#ffffff"/><rect x="10" y="8" width="6" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="4" height="1" fill="#eeeeee"/><rect x="6" y="9" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#ffffff"/><rect x="9" y="9" width="1" height="1" fill="#000000"/><rect x="10" y="9" width="4" height="1" fill="#eeeeee"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="5" height="1" fill="#ffffff"/><rect x="7" y="10" width="2" height="1" fill="#000000"/><rect x="9" y="10" width="5" height="1" fill="#ffffff"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="12" height="1" fill="#ffffff"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="12" width="10" height="1" fill="#ffffff"/><rect x="13" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="13" width="8" height="1" fill="#e6e6e6"/><rect x="12" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="14" width="2" height="1" fill="#e6e6e6"/><rect x="9" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="15" width="2" height="1" fill="#000000"/></g></symbol><symbol id="ball-great" viewBox="0 0 16 16"><g shape-rendering="crispEdges"><rect x="7" y="0" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="3" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="1" fill="#2e6fb7"/><rect x="9" y="1" width="3" height="1" fill="#000000"/><rect x="3" y="2" width="1" height="1" fill="#000000"/><rect x="4" y="2" width="1" height="1" fill="#ffffff"/><rect x="5" y="2" width="1" height="1" fill="#7da6d2"/><rect x="6" y="2" width="5" height="1" fill="#2e6fb7"/><rect x="11" y="2" width="1" height="1" fill="#ffffff"/><rect x="12" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="1" height="1" fill="#000000"/><rect x="3" y="3" width="2" height="1" fill="#ffffff"/><rect x="5" y="3" width="2" height="1" fill="#7da6d2"/><rect x="7" y="3" width="4" height="1" fill="#2e6fb7"/><rect x="11" y="3" width="2" height="1" fill="#ffffff"/><rect x="13" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="1" height="1" fill="#2e6fb7"/><rect x="3" y="4" width="1" height="1" fill="#ffffff"/><rect x="4" y="4" width="3" height="1" fill="#7da6d2"/><rect x="7" y="4" width="5" height="1" fill="#2e6fb7"/><rect x="12" y="4" width="1" height="1" fill="#ffffff"/><rect x="13" y="4" width="1" height="1" fill="#2e6fb7"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="3" height="1" fill="#2e6fb7"/><rect x="5" y="5" width="1" height="1" fill="#7da6d2"/><rect x="6" y="5" width="1" height="1" fill="#2e6fb7"/><rect x="7" y="5" width="2" height="1" fill="#000000"/><rect x="9" y="5" width="5" height="1" fill="#2e6fb7"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="4" height="1" fill="#24578f"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="7" y="6" width="2" height="1" fill="#ffffff"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="6" width="4" height="1" fill="#24578f"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="0" y="7" width="6" height="1" fill="#000000"/><rect x="6" y="7" width="4" height="1" fill="#ffffff"/><rect x="10" y="7" width="6" height="1" fill="#000000"/><rect x="0" y="8" width="6" height="1" fill="#000000"/><rect x="6" y="8" width="4" height="1" fill="#ffffff"/><rect x="10" y="8" width="6" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="4" height="1" fill="#eeeeee"/><rect x="6" y="9" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#ffffff"/><rect x="9" y="9" width="1" height="1" fill="#000000"/><rect x="10" y="9" width="4" height="1" fill="#eeeeee"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="5" height="1" fill="#ffffff"/><rect x="7" y="10" width="2" height="1" fill="#000000"/><rect x="9" y="10" width="5" height="1" fill="#ffffff"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="12" height="1" fill="#ffffff"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="12" width="10" height="1" fill="#ffffff"/><rect x="13" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="13" width="8" height="1" fill="#e6e6e6"/><rect x="12" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="14" width="2" height="1" fill="#e6e6e6"/><rect x="9" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="15" width="2" height="1" fill="#000000"/></g></symbol><symbol id="ball-ultra" viewBox="0 0 16 16"><g shape-rendering="crispEdges"><rect x="7" y="0" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="3" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="1" fill="#1f1f1f"/><rect x="9" y="1" width="3" height="1" fill="#000000"/><rect x="3" y="2" width="1" height="1" fill="#000000"/><rect x="4" y="2" width="1" height="1" fill="#747474"/><rect x="5" y="2" width="2" height="1" fill="#ffd931"/><rect x="7" y="2" width="2" height="1" fill="#1f1f1f"/><rect x="9" y="2" width="2" height="1" fill="#ffd931"/><rect x="11" y="2" width="1" height="1" fill="#1f1f1f"/><rect x="12" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="1" height="1" fill="#000000"/><rect x="3" y="3" width="4" height="1" fill="#ffd931"/><rect x="7" y="3" width="2" height="1" fill="#1f1f1f"/><rect x="9" y="3" width="4" height="1" fill="#ffd931"/><rect x="13" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="1" height="1" fill="#1f1f1f"/><rect x="3" y="4" width="2" height="1" fill="#ffd931"/><rect x="5" y="4" width="2" height="1" fill="#747474"/><rect x="7" y="4" width="4" height="1" fill="#1f1f1f"/><rect x="11" y="4" width="2" height="1" fill="#ffd931"/><rect x="13" y="4" width="1" height="1" fill="#1f1f1f"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="2" height="1" fill="#ffd931"/><rect x="4" y="5" width="1" height="1" fill="#1f1f1f"/><rect x="5" y="5" width="1" height="1" fill="#747474"/><rect x="6" y="5" width="1" height="1" fill="#1f1f1f"/><rect x="7" y="5" width="2" height="1" fill="#000000"/><rect x="9" y="5" width="3" height="1" fill="#1f1f1f"/><rect x="12" y="5" width="2" height="1" fill="#ffd931"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="4" height="1" fill="#181818"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="7" y="6" width="2" height="1" fill="#ffffff"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="6" width="4" height="1" fill="#181818"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="0" y="7" width="6" height="1" fill="#000000"/><rect x="6" y="7" width="4" height="1" fill="#ffffff"/><rect x="10" y="7" width="6" height="1" fill="#000000"/><rect x="0" y="8" width="6" height="1" fill="#000000"/><rect x="6" y="8" width="4" height="1" fill="#ffffff"/><rect x="10" y="8" width="6" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="4" height="1" fill="#eeeeee"/><rect x="6" y="9" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#ffffff"/><rect x="9" y="9" width="1" height="1" fill="#000000"/><rect x="10" y="9" width="4" height="1" fill="#eeeeee"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="5" height="1" fill="#ffffff"/><rect x="7" y="10" width="2" height="1" fill="#000000"/><rect x="9" y="10" width="5" height="1" fill="#ffffff"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="12" height="1" fill="#ffffff"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="12" width="10" height="1" fill="#ffffff"/><rect x="13" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="13" width="8" height="1" fill="#e6e6e6"/><rect x="12" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="14" width="2" height="1" fill="#e6e6e6"/><rect x="9" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="15" width="2" height="1" fill="#000000"/></g></symbol><symbol id="ball-master" viewBox="0 0 16 16"><g shape-rendering="crispEdges"><rect x="7" y="0" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="3" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="1" fill="#7b4fa6"/><rect x="9" y="1" width="3" height="1" fill="#000000"/><rect x="3" y="2" width="1" height="1" fill="#000000"/><rect x="4" y="2" width="2" height="1" fill="#ad92c8"/><rect x="6" y="2" width="4" height="1" fill="#a57fd0"/><rect x="10" y="2" width="2" height="1" fill="#7b4fa6"/><rect x="12" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="1" height="1" fill="#000000"/><rect x="3" y="3" width="4" height="1" fill="#ad92c8"/><rect x="7" y="3" width="6" height="1" fill="#7b4fa6"/><rect x="13" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="2" height="1" fill="#7b4fa6"/><rect x="4" y="4" width="2" height="1" fill="#e86aa6"/><rect x="6" y="4" width="1" height="1" fill="#ad92c8"/><rect x="7" y="4" width="3" height="1" fill="#7b4fa6"/><rect x="10" y="4" width="2" height="1" fill="#e86aa6"/><rect x="12" y="4" width="2" height="1" fill="#7b4fa6"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="2" height="1" fill="#7b4fa6"/><rect x="4" y="5" width="2" height="1" fill="#e86aa6"/><rect x="6" y="5" width="1" height="1" fill="#7b4fa6"/><rect x="7" y="5" width="2" height="1" fill="#000000"/><rect x="9" y="5" width="1" height="1" fill="#7b4fa6"/><rect x="10" y="5" width="2" height="1" fill="#e86aa6"/><rect x="12" y="5" width="2" height="1" fill="#7b4fa6"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="4" height="1" fill="#603e81"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="7" y="6" width="2" height="1" fill="#ffffff"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="6" width="4" height="1" fill="#603e81"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="0" y="7" width="6" height="1" fill="#000000"/><rect x="6" y="7" width="4" height="1" fill="#ffffff"/><rect x="10" y="7" width="6" height="1" fill="#000000"/><rect x="0" y="8" width="6" height="1" fill="#000000"/><rect x="6" y="8" width="4" height="1" fill="#ffffff"/><rect x="10" y="8" width="6" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="4" height="1" fill="#eeeeee"/><rect x="6" y="9" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#ffffff"/><rect x="9" y="9" width="1" height="1" fill="#000000"/><rect x="10" y="9" width="4" height="1" fill="#eeeeee"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="5" height="1" fill="#ffffff"/><rect x="7" y="10" width="2" height="1" fill="#000000"/><rect x="9" y="10" width="5" height="1" fill="#ffffff"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="12" height="1" fill="#ffffff"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="12" width="10" height="1" fill="#ffffff"/><rect x="13" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="13" width="8" height="1" fill="#e6e6e6"/><rect x="12" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="14" width="2" height="1" fill="#e6e6e6"/><rect x="9" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="15" width="2" height="1" fill="#000000"/></g></symbol><symbol id="ball-safari" viewBox="0 0 16 16"><g shape-rendering="crispEdges"><rect x="7" y="0" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="3" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="1" fill="#4caf50"/><rect x="9" y="1" width="3" height="1" fill="#000000"/><rect x="3" y="2" width="1" height="1" fill="#000000"/><rect x="4" y="2" width="2" height="1" fill="#90cd92"/><rect x="6" y="2" width="4" height="1" fill="#4caf50"/><rect x="10" y="2" width="2" height="1" fill="#2e7d32"/><rect x="12" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="1" height="1" fill="#000000"/><rect x="3" y="3" width="1" height="1" fill="#90cd92"/><rect x="4" y="3" width="2" height="1" fill="#2e7d32"/><rect x="6" y="3" width="1" height="1" fill="#90cd92"/><rect x="7" y="3" width="4" height="1" fill="#4caf50"/><rect x="11" y="3" width="1" height="1" fill="#2e7d32"/><rect x="12" y="3" width="1" height="1" fill="#4caf50"/><rect x="13" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="2" height="1" fill="#4caf50"/><rect x="4" y="4" width="1" height="1" fill="#2e7d32"/><rect x="5" y="4" width="2" height="1" fill="#90cd92"/><rect x="7" y="4" width="7" height="1" fill="#4caf50"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="3" height="1" fill="#4caf50"/><rect x="5" y="5" width="1" height="1" fill="#90cd92"/><rect x="6" y="5" width="1" height="1" fill="#4caf50"/><rect x="7" y="5" width="2" height="1" fill="#000000"/><rect x="9" y="5" width="5" height="1" fill="#4caf50"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="4" height="1" fill="#3b883e"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="7" y="6" width="2" height="1" fill="#ffffff"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="6" width="4" height="1" fill="#3b883e"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="0" y="7" width="6" height="1" fill="#000000"/><rect x="6" y="7" width="4" height="1" fill="#ffffff"/><rect x="10" y="7" width="6" height="1" fill="#000000"/><rect x="0" y="8" width="6" height="1" fill="#000000"/><rect x="6" y="8" width="4" height="1" fill="#ffffff"/><rect x="10" y="8" width="6" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="4" height="1" fill="#eeeeee"/><rect x="6" y="9" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#ffffff"/><rect x="9" y="9" width="1" height="1" fill="#000000"/><rect x="10" y="9" width="4" height="1" fill="#eeeeee"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="5" height="1" fill="#ffffff"/><rect x="7" y="10" width="2" height="1" fill="#000000"/><rect x="9" y="10" width="5" height="1" fill="#ffffff"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="12" height="1" fill="#ffffff"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="12" width="10" height="1" fill="#ffffff"/><rect x="13" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="13" width="8" height="1" fill="#e6e6e6"/><rect x="12" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="14" width="2" height="1" fill="#e6e6e6"/><rect x="9" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="15" width="2" height="1" fill="#000000"/></g></symbol><symbol id="ball-luxury" viewBox="0 0 16 16"><g shape-rendering="crispEdges"><rect x="7" y="0" width="2" height="1" fill="#000000"/><rect x="4" y="1" width="3" height="1" fill="#000000"/><rect x="7" y="1" width="2" height="1" fill="#1f1f1f"/><rect x="9" y="1" width="3" height="1" fill="#000000"/><rect x="3" y="2" width="1" height="1" fill="#000000"/><rect x="4" y="2" width="2" height="1" fill="#747474"/><rect x="6" y="2" width="1" height="1" fill="#1f1f1f"/><rect x="7" y="2" width="2" height="1" fill="#ffd931"/><rect x="9" y="2" width="3" height="1" fill="#1f1f1f"/><rect x="12" y="2" width="1" height="1" fill="#000000"/><rect x="2" y="3" width="1" height="1" fill="#000000"/><rect x="3" y="3" width="4" height="1" fill="#747474"/><rect x="7" y="3" width="2" height="1" fill="#ffd931"/><rect x="9" y="3" width="4" height="1" fill="#1f1f1f"/><rect x="13" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="2" height="1" fill="#1f1f1f"/><rect x="4" y="4" width="3" height="1" fill="#747474"/><rect x="7" y="4" width="2" height="1" fill="#ffd931"/><rect x="9" y="4" width="5" height="1" fill="#1f1f1f"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="3" height="1" fill="#1f1f1f"/><rect x="5" y="5" width="1" height="1" fill="#747474"/><rect x="6" y="5" width="1" height="1" fill="#1f1f1f"/><rect x="7" y="5" width="2" height="1" fill="#000000"/><rect x="9" y="5" width="5" height="1" fill="#1f1f1f"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="4" height="1" fill="#e0ba13"/><rect x="6" y="6" width="1" height="1" fill="#000000"/><rect x="7" y="6" width="2" height="1" fill="#ffffff"/><rect x="9" y="6" width="1" height="1" fill="#000000"/><rect x="10" y="6" width="4" height="1" fill="#e0ba13"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="0" y="7" width="6" height="1" fill="#000000"/><rect x="6" y="7" width="4" height="1" fill="#ffffff"/><rect x="10" y="7" width="6" height="1" fill="#000000"/><rect x="0" y="8" width="6" height="1" fill="#000000"/><rect x="6" y="8" width="4" height="1" fill="#ffffff"/><rect x="10" y="8" width="6" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="4" height="1" fill="#eeeeee"/><rect x="6" y="9" width="1" height="1" fill="#000000"/><rect x="7" y="9" width="2" height="1" fill="#ffffff"/><rect x="9" y="9" width="1" height="1" fill="#000000"/><rect x="10" y="9" width="4" height="1" fill="#eeeeee"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="5" height="1" fill="#ffffff"/><rect x="7" y="10" width="2" height="1" fill="#000000"/><rect x="9" y="10" width="5" height="1" fill="#ffffff"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="12" height="1" fill="#ffffff"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="12" width="10" height="1" fill="#ffffff"/><rect x="13" y="12" width="1" height="1" fill="#000000"/><rect x="3" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="13" width="8" height="1" fill="#e6e6e6"/><rect x="12" y="13" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="14" width="2" height="1" fill="#e6e6e6"/><rect x="9" y="14" width="3" height="1" fill="#000000"/><rect x="7" y="15" width="2" height="1" fill="#000000"/></g></symbol></defs></svg>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Every card photographed in-hand</span>
+    <span>Single-copy inventory — when it's gone, it's gone</span>
+    <span>New in: Slab Guard silicone bumpers, from $4.99</span>
+    <span>Van Gogh Pikachu promo — one copy in stock</span>
+    <span>Every PSA slab cert-verifiable</span>
+    <span>Every card photographed in-hand</span>
+    <span>Single-copy inventory — when it's gone, it's gone</span>
+    <span>New in: Slab Guard silicone bumpers, from $4.99</span>
+    <span>Van Gogh Pikachu promo — one copy in stock</span>
+    <span>Every PSA slab cert-verifiable</span>
+  </div>
+</div>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="masthead">
+  <div class="logo-row">
+    <div class="logo-side">
+      <a class="back-link" href="slabshub-lepuzz-home.html">← Front page</a>
+    </div>
+    <div class="logo-block">
+      <a href="slabshub-lepuzz-home.html" class="logo">Slabs<em>Hub</em></a>
+      <span class="logo-tag">The Graded Card Circular</span>
+    </div>
+    <div class="logo-side right">
+      <a class="cart-link ui" href="https://slabshub.com/cart">
+        Cart
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="double-rule"></div>
+  <nav class="crumbs">
+    <span class="crumb-ball" aria-hidden="true"><svg><use href="#ball-poke"/></svg></span>
+    <a href="slabshub-lepuzz-home.html">Front page</a>
+    <span class="sep">/</span>
+    <a href="https://slabshub.com/collections/all">Raw cards</a>
+    <span class="sep">/</span>
+    <span>Pikachu with Grey Felt Hat #85</span>
+  </nav>
+</header>
+
+<!-- ================= PRODUCT SPREAD ================= -->
+<div class="wrap">
+  <div class="spread">
+
+    <!-- photos -->
+    <div class="photo-card">
+      <div class="photo-main" id="photo-main">
+        <img id="main-img" src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="Pikachu with Grey Felt Hat #85 promo card — front, sealed">
+      </div>
+      <div class="thumbs" id="thumbs">
+        <button class="thumb on" data-src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" data-alt="Pikachu with Grey Felt Hat #85 promo card — front, sealed" aria-label="Front of card">
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/PikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="">
+        </button>
+        <button class="thumb" data-src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/BACKPikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" data-alt="Pikachu with Grey Felt Hat #85 promo card — back" aria-label="Back of card">
+          <img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/BACKPikachuwithGreyFeltHat_85PokemonPromo.png?v=1748790898" alt="">
+        </button>
+      </div>
+      <span class="photo-note"><span class="crumb-ball" aria-hidden="true"><svg><use href="#ball-poke"/></svg></span>Photographed in-hand · front &amp; back · this exact copy</span>
+    </div>
+
+    <!-- article -->
+    <div class="article">
+      <div class="kicker-row">
+        <span class="badge hot">This week's front page</span>
+        <span class="badge">Raw</span>
+        <span class="badge stock">1 in stock</span>
+      </div>
+      <h1 class="title">Pikachu with Grey Felt Hat <em>— the Van Gogh promo</em></h1>
+      <div class="slab-label">
+        <span class="spec">Raw · Promo #85<br>Van Gogh Museum × Pokémon</span>
+        <span class="barcode" aria-hidden="true"></span>
+      </div>
+      <div class="price-row">
+        <div class="price-bubble"><span class="amt">$<span id="price-counter" data-to="999">0</span></span><span class="per">one copy</span></div>
+        <div class="price-meta">
+          <span class="line">Single copy — first come, first slabbed</span>
+          <span class="sub">Priced against recent sold listings.</span>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact"><span class="crumb-ball" aria-hidden="true"><svg><use href="#ball-master"/></svg></span><span>Limited-edition Pikachu promo, Grey Felt Hat</span></div>
+        <div class="fact"><span class="crumb-ball" aria-hidden="true"><svg><use href="#ball-ultra"/></svg></span><span>Van Gogh Museum collaboration crossover</span></div>
+        <div class="fact"><span class="crumb-ball" aria-hidden="true"><svg><use href="#ball-great"/></svg></span><span>Ships sleeved &amp; protected, worldwide</span></div>
+        <div class="fact"><span class="crumb-ball" aria-hidden="true"><svg><use href="#ball-safari"/></svg></span><span>Sought-after by Pokémon fans &amp; art lovers</span></div>
+      </div>
+      <div class="cta-row">
+        <a class="add-btn" href="https://slabshub.com/cart/42987415371887:1">
+          <span class="crumb-ball" aria-hidden="true"><svg><use href="#ball-poke"/></svg></span>
+          Add to cart — $999
+        </a>
+        <a class="ask-btn" href="https://slabshub.com/products/raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo">View in store</a>
+      </div>
+      <div class="desk">
+        <h2>From the desk</h2>
+        <ul>
+          <li>Limited edition Pikachu promo wearing a Grey Felt Hat.</li>
+          <li>Released in collaboration with the Van Gogh Museum — a true crossover collectible.</li>
+          <li>Iconic, art-inspired design that stands apart from standard Pikachu cards.</li>
+          <li>Highly sought-after by both Pokémon collectors and art enthusiasts.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SPEC SHEET ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-rule">
+      <h2><span class="sec-ball" aria-hidden="true"><svg><use href="#ball-ultra"/></svg></span>The spec sheet</h2>
+    </div>
+    <div class="spec-table">
+      <div class="row"><span class="k">Card</span><span class="v">Pikachu with Grey Felt Hat</span></div>
+      <div class="row"><span class="k">Number</span><span class="v">Promo #85</span></div>
+      <div class="row"><span class="k">Release</span><span class="v">Van Gogh Museum × Pokémon collaboration</span></div>
+      <div class="row"><span class="k">Condition</span><span class="v">Raw — photographed in-hand, front &amp; back</span></div>
+      <div class="row"><span class="k">Copies in stock</span><span class="v">1</span></div>
+      <div class="row"><span class="k">Shipping</span><span class="v">Sleeved &amp; protected, Israel → worldwide</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MORE FROM THIS ISSUE ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-rule">
+      <h2><span class="sec-ball" aria-hidden="true"><svg><use href="#ball-poke"/></svg></span>More from this issue</h2>
+    </div>
+    <div class="grid-3">
+      <a class="card" href="https://slabshub.com/products/raw-card-sylveon-ex-rc32-pokemon-generations">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/SylveonEX_RC32PokemonGenerations.png?v=1747026754" alt="Sylveon EX #RC32, Pokemon Generations, raw card"></div>
+        <span class="set-line">Generations · RC32</span>
+        <div class="name">Sylveon EX</div>
+        <div class="meta"><span class="price">$64.99</span><span class="leader"></span><span class="badge">Raw</span></div>
+        <span class="quick-add">View card</span>
+      </a>
+      <a class="card" href="https://slabshub.com/products/raw-card-pikachu-tg05-pokemon-lost-origin">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Pikachu_TG05PokemonLostOrigin.png?v=1747026721" alt="Pikachu #TG05, Pokemon Lost Origin, raw card"></div>
+        <span class="set-line">Lost Origin · TG05</span>
+        <div class="name">Pikachu</div>
+        <div class="meta"><span class="price">$49.99</span><span class="leader"></span><span class="badge">Raw</span></div>
+        <span class="quick-add">View card</span>
+      </a>
+      <a class="card" href="https://slabshub.com/products/raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions">
+        <div class="img-box"><img src="https://cdn.shopify.com/s/files/1/0622/2069/7711/files/Umbreonex_Stamped_60PokemonPrismaticEvolutions.png?v=1747635903" alt="Umbreon ex stamped #60, Prismatic Evolutions, raw card"></div>
+        <span class="set-line">Prismatic Evolutions · 60</span>
+        <div class="name">Umbreon ex</div>
+        <div class="meta"><span class="price">$24.99</span><span class="leader"></span><span class="badge">Raw</span></div>
+        <span class="quick-add">View card</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">Slabs<em>Hub</em></div>
+    <div class="foot-line">
+      <span>© 2026 SlabsHub · Vol. 1</span>
+      <a href="slabshub-lepuzz-home.html">← Back to the front page</a>
+      <span>Slabs graded by PSA · Certs verifiable</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="to-top" aria-label="Back to top">
+  <svg><use href="#ball-poke"/></svg>
+</button>
+
+<script>
+  // Thumbnail switcher
+  (function () {
+    var main = document.getElementById('main-img');
+    document.getElementById('thumbs').addEventListener('click', function (e) {
+      var t = e.target.closest('.thumb');
+      if (!t) return;
+      document.querySelectorAll('.thumb').forEach(function (b) { b.classList.remove('on'); });
+      t.classList.add('on');
+      main.src = t.getAttribute('data-src');
+      main.alt = t.getAttribute('data-alt');
+    });
+  })();
+
+  // Tilt on the main photo + related cards
+  (function () {
+    var hoverable = window.matchMedia('(hover: hover)').matches;
+    var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!hoverable || !motionOK) return;
+    function bind(box, img, strength) {
+      box.addEventListener('mousemove', function (e) {
+        var r = box.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        img.style.transform = 'rotateY(' + (x * strength) + 'deg) rotateX(' + (-y * strength) + 'deg) scale(1.03)';
+      });
+      box.addEventListener('mouseleave', function () { img.style.transform = ''; });
+    }
+    var pm = document.getElementById('photo-main');
+    bind(pm, document.getElementById('main-img'), 8);
+    document.querySelectorAll('.card .img-box').forEach(function (b) {
+      var i = b.querySelector('img');
+      if (i) bind(b, i, 10);
+    });
+  })();
+
+  // Price counter on load
+  (function () {
+    var el = document.getElementById('price-counter');
+    var to = parseInt(el.getAttribute('data-to'), 10);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = to; return; }
+    var start = null, dur = 1000;
+    function tick(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  // Back to top
+  (function () {
+    var btn = document.getElementById('to-top');
+    window.addEventListener('scroll', function () {
+      btn.classList.toggle('show', window.scrollY > 500);
+    }, { passive: true });
+    btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  })();
+</script>
+
+</body>
+</html>
