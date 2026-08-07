@@ -1,8 +1,8 @@
-# DRAFT — awaiting approval
+# APPROVED — awaiting manual publish
 - Platform: instagram-story
-- Proposed publish time: Sunday 2026-08-09, 04:30 IDT (= Sat 21:30 ET)
-- slot: us-sat-eve (Sun 03:00–05:00 IDT) — used at 04:30 (+1h) to clear Charizard's IG story post (03:30, same window/day)
-- Status: PENDING_APPROVAL
+- Publish time: Monday 2026-08-10, 04:30 IDT (= Sun 21:30 ET)
+- slot: custom (off-grid, documented deviation) — sequence shifted +1 day on approval (2026-08-07); Mon 04:30 IDT = Sun 21:30 ET, US Sunday-evening peak; grid has no us-sun-eve slot
+- Status: APPROVED (Matan, in chat, 2026-08-07)
 
 ## Final copy
 
