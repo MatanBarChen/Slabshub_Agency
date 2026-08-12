@@ -78,15 +78,16 @@
     background: var(--sky-wash);
     position: relative;
     text-align: center;
-    padding: 60px 0 80px;
+    padding: 90px 0 85px;
     overflow: hidden;
   }
   .display {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(110px, 15.5vw, 224px);
-    line-height: 0.78;
+    font-size: clamp(72px, 9.6vw, 138px);
+    line-height: 0.8;
     text-transform: uppercase;
+    letter-spacing: 0.01em;
     position: relative;
     z-index: 2;
   }
@@ -98,11 +99,12 @@
   .ribbon svg { width: 100%; height: 100%; }
   .hero .tagline {
     position: relative; z-index: 3;
-    font-size: 24px; font-weight: 500;
-    margin: 28px auto 0;
-    max-width: 620px;
+    font-size: 21px; font-weight: 500;
+    line-height: 1.35;
+    margin: 30px auto 0;
+    max-width: 540px;
   }
-  .hero .btn-row { position: relative; z-index: 3; display: flex; justify-content: center; gap: 8px; margin-top: 32px; flex-wrap: wrap; }
+  .hero .btn-row { position: relative; z-index: 3; display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
   .ghost {
     border: 1px solid var(--carbon); background: var(--paper); border-radius: var(--r-pill);
     font-weight: 700; font-size: 13px; letter-spacing: 0.032em; text-transform: uppercase;
@@ -118,15 +120,15 @@
     display: flex; align-items: center; justify-content: center;
     font-weight: 700; font-size: 13px; letter-spacing: 0.032em; text-transform: uppercase;
   }
-  .stk-ball { width: 110px; height: 110px; border-radius: 50%; background: var(--paper); top: 12%; left: 8%; transform: rotate(-14deg); overflow: hidden; }
+  .stk-ball { width: 92px; height: 92px; border-radius: 50%; background: var(--paper); top: 16%; left: 11%; transform: rotate(-14deg); overflow: hidden; }
   .stk-ball .half { position: absolute; top: 0; left: 0; right: 0; height: 50%; background: var(--ember); border-bottom: 8px solid var(--carbon); }
   .stk-ball .dot { position: absolute; width: 30px; height: 30px; border-radius: 50%; background: var(--paper); border: 6px solid var(--carbon); z-index: 2; }
-  .stk-coin { width: 92px; height: 92px; border-radius: 50%; background: var(--sunburst); top: 58%; right: 7%; transform: rotate(12deg); font-family: var(--font-display); font-size: 34px; }
-  .stk-slab { width: 96px; height: 128px; border-radius: 16px; background: var(--lavender); top: 16%; right: 12%; transform: rotate(9deg); flex-direction: column; gap: 6px; padding: 10px; }
+  .stk-coin { width: 78px; height: 78px; border-radius: 50%; background: var(--sunburst); top: 55%; right: 9%; transform: rotate(12deg); font-family: var(--font-display); font-size: 30px; }
+  .stk-slab { width: 84px; height: 112px; border-radius: 16px; background: var(--lavender); top: 13%; right: 13%; transform: rotate(9deg); flex-direction: column; gap: 6px; padding: 9px; }
   .stk-slab .label { width: 100%; height: 26px; border-radius: 8px; background: var(--violet); border: 1px solid var(--carbon); }
   .stk-slab .art { width: 100%; flex: 1; border-radius: 8px; background: var(--paper); border: 1px solid var(--carbon); }
-  .stk-check { width: 84px; height: 84px; border-radius: 20px; background: var(--mint); bottom: 10%; left: 13%; transform: rotate(-8deg); font-size: 40px; }
-  .stk-zap { width: 84px; height: 84px; border-radius: 20px; background: var(--electric); bottom: 22%; right: 20%; transform: rotate(15deg); font-size: 38px; }
+  .stk-check { width: 70px; height: 70px; border-radius: 18px; background: var(--mint); bottom: 14%; left: 15%; transform: rotate(-8deg); font-size: 34px; }
+  .stk-zap { width: 70px; height: 70px; border-radius: 18px; background: var(--electric); bottom: 30%; right: 19%; transform: rotate(15deg); font-size: 32px; }
 
   /* Sections */
   section { padding: 80px 0; }
@@ -134,8 +136,8 @@
   .band-gray { background: var(--concrete); }
   .sec-display {
     font-family: var(--font-display);
-    font-size: clamp(64px, 8.5vw, 128px);
-    line-height: 0.78;
+    font-size: clamp(52px, 6.5vw, 96px);
+    line-height: 0.8;
     text-transform: uppercase;
     margin-bottom: 40px;
   }
@@ -151,9 +153,9 @@
     transition: transform 0.2s ease;
   }
   .p-card:hover { transform: rotate(-1deg) translateY(-4px); }
-  .p-card.c1 { background: var(--lavender); transform: rotate(-1.2deg); }
-  .p-card.c2 { background: var(--sky-wash); transform: rotate(0.8deg); }
-  .p-card.c3 { background: var(--mint); transform: rotate(-0.6deg); }
+  .p-card.c1 { background: var(--lavender); transform: rotate(-0.7deg); }
+  .p-card.c2 { background: var(--sky-wash); transform: rotate(0.5deg); }
+  .p-card.c3 { background: var(--mint); transform: rotate(-0.4deg); }
   .p-card .img {
     background: var(--paper); border: 1px solid var(--carbon); border-radius: 16px;
     aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; padding: 14px;
@@ -183,13 +185,13 @@
   .drop-card .panel-b { color: var(--paper); padding: 28px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
   .drop-card .panel-b .big { font-family: var(--font-display); font-size: 40px; line-height: 0.85; text-transform: uppercase; }
   .drop-card .panel-b p { font-size: 13px; font-weight: 500; opacity: 0.9; }
-  .drop-copy h2 { font-family: var(--font-display); font-size: clamp(56px, 6vw, 96px); line-height: 0.78; text-transform: uppercase; margin-bottom: 20px; }
+  .drop-copy h2 { font-family: var(--font-display); font-size: clamp(48px, 5.2vw, 80px); line-height: 0.8; text-transform: uppercase; margin-bottom: 20px; }
   .drop-copy p { font-size: 18px; max-width: 460px; margin-bottom: 24px; }
 
   /* Footer */
   footer { background: var(--carbon); color: var(--paper); padding: 40px 32px; }
   .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; max-width: 1440px; margin: 0 auto; }
-  .foot-row .big-s { font-family: var(--font-display); font-size: 44px; line-height: 0.8; text-transform: uppercase; }
+  .foot-row .big-s { font-family: var(--font-display); font-size: 34px; line-height: 0.8; text-transform: uppercase; }
   .foot-row span { font-weight: 700; font-size: 12px; letter-spacing: 0.032em; text-transform: uppercase; opacity: 0.85; }
 
   @media (max-width: 900px) {
@@ -225,10 +227,10 @@
 <!-- Hero -->
 <div class="hero">
   <div class="ribbon" aria-hidden="true">
-    <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice">
-      <path d="M-100 420 C 250 180, 520 560, 780 380 S 1250 150, 1560 340" fill="none" stroke="#2f7fd6" stroke-width="92" stroke-linecap="round"/>
-      <path d="M-100 410 C 250 170, 520 550, 780 370 S 1250 140, 1560 330" fill="none" stroke="#4da2ff" stroke-width="74" stroke-linecap="round"/>
-      <path d="M-100 400 C 250 162, 520 540, 780 362 S 1250 132, 1560 322" fill="none" stroke="#8ec4ff" stroke-width="26" stroke-linecap="round"/>
+    <svg viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice">
+      <path d="M-100 300 C 260 140, 540 360, 800 240 S 1240 110, 1560 250" fill="none" stroke="#2f7fd6" stroke-width="80" stroke-linecap="round"/>
+      <path d="M-100 292 C 260 132, 540 352, 800 232 S 1240 102, 1560 242" fill="none" stroke="#4da2ff" stroke-width="64" stroke-linecap="round"/>
+      <path d="M-100 285 C 260 125, 540 344, 800 225 S 1240 95, 1560 235" fill="none" stroke="#8ec4ff" stroke-width="22" stroke-linecap="round"/>
     </svg>
   </div>
 
@@ -239,7 +241,7 @@
   <span class="sticker stk-zap" aria-hidden="true">⚡</span>
 
   <div class="wrap">
-    <h1 class="display">Slabs<br>Hub</h1>
+    <h1 class="display">SlabsHub</h1>
     <p class="tagline">Graded Pokémon slabs & raw hits — one copy each, photographed in-hand, priced against the market.</p>
     <div class="btn-row">
       <a class="cta" href="#">Shop the drop</a>
