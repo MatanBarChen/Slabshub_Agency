@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SlabsHub — Market Chart component (8-bit step, Comics skin)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-honeycomb-yellow: #ffd931;
+    --color-carbon-black: #000000;
+    --color-ink-black: #231f20;
+    --color-pearl-gray: #c8cbcd;
+    --color-fog-gray: #a6a8aa;
+    --color-smoke-line: #d6d6d6;
+    --font-display: 'Times New Roman', Times, serif;
+    --font-ui: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-pixel: 'Press Start 2P', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--color-pearl-gray);
+    font-family: var(--font-ui);
+    color: var(--color-carbon-black);
+    padding: 50px 20px 70px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .page-head { text-align: center; margin-bottom: 45px; }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 0.9;
+  }
+  .page-head h1 em { font-style: italic; }
+  .page-head p {
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 0.073em;
+    text-transform: uppercase;
+    color: var(--color-ink-black);
+  }
+  .variant { margin-bottom: 60px; }
+  .idea-tag {
+    display: inline-block;
+    direction: rtl;
+    background: #fff;
+    border: 2px solid var(--color-carbon-black);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 0 var(--color-carbon-black);
+    padding: 10px 16px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .idea-tag b { font-size: 14px; }
+
+  /* ---------- the component: market step chart, Comics skin ---------- */
+  .market-chart {
+    background: #fff;
+    border: 3px solid var(--color-carbon-black);
+    border-radius: 12px;
+    box-shadow: 8px 8px 0 0 var(--color-carbon-black);
+    padding: 22px 24px 18px;
+  }
+  .market-chart .mc-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .market-chart .mc-kicker {
+    font-size: 11px;
+    letter-spacing: 0.091em;
+    text-transform: uppercase;
+    color: var(--color-fog-gray);
+  }
+  .market-chart .mc-title {
+    margin-top: 6px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 0.9;
+  }
+  .market-chart .mc-title em { font-style: italic; }
+  .market-chart .mc-readout {
+    flex: none;
+    border: 2px solid var(--color-carbon-black);
+    border-radius: 12px;
+    background: var(--color-honeycomb-yellow);
+    box-shadow: 3px 3px 0 0 var(--color-carbon-black);
+    padding: 9px 13px 8px;
+    text-align: right;
+    font-family: var(--font-pixel);
+    font-size: 9px;
+    line-height: 1.9;
+  }
+  .market-chart .mc-readout .r-label { display: block; font-size: 7px; color: var(--color-ink-black); }
+  .market-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .market-chart .mc-foot {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-smoke-line);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 0.063em;
+    text-transform: uppercase;
+    color: var(--color-fog-gray);
+  }
+  .market-chart .hit { cursor: pointer; outline: none; }
+  .market-chart text { font-family: var(--font-pixel); }
+
+  /* ink (inverted) variant — for the Grail */
+  .market-chart.ink {
+    background: var(--color-ink-black);
+    color: #fff;
+    border-color: var(--color-carbon-black);
+  }
+  .market-chart.ink .mc-kicker { color: var(--color-fog-gray); }
+  .market-chart.ink .mc-readout { color: var(--color-carbon-black); }
+  .market-chart.ink .mc-foot { border-top-color: rgba(255,255,255,0.2); }
+
+  @media (max-width: 640px) {
+    .market-chart { padding: 16px 14px 12px; }
+    .market-chart .mc-title { font-size: 23px; }
+    .market-chart .mc-readout { font-size: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-head">
+    <h1>The <em>Market Chart</em></h1>
+    <p>8-bit step chart · translated to the SlabsHub Comics skin · three homepage ideas</p>
+  </div>
+
+  <!-- ============ IDEA A ============ -->
+  <div class="variant">
+    <div class="idea-tag"><b>רעיון A — «Grail Watch»</b><br>
+    גרף שווי שוק של קלף הגרייל (Van Gogh Pikachu) בתוך סקשן ה-Price Guide, בלוח דיו הפוך.
+    הדאטה: ממוצע sold-comps חודשי (eBay / PriceCharting) — מתעדכן ידנית פעם בחודש.</div>
+    <div class="market-chart ink" id="chart-grail"></div>
+  </div>
+
+  <!-- ============ IDEA B ============ -->
+  <div class="variant">
+    <div class="idea-tag"><b>רעיון B — «The Set Index»</b><br>
+    מדד סט חם (Prismatic Evolutions) כמו מדד מניות בעיתון — הוכחה חיה ל-"Priced against the market".
+    יושב ליד ה-trust band. הדאטה: מדד מחיר ממוצע לסט מ-PriceCharting.</div>
+    <div class="market-chart" id="chart-index"></div>
+  </div>
+
+  <!-- ============ IDEA C ============ -->
+  <div class="variant">
+    <div class="idea-tag"><b>רעיון C — «The Drop Log»</b><br>
+    כמה סלאבים/קלפים נכנסו לחנות בכל חודש — יושב ליד סקשן הניוזלטר ("drops without warning")
+    כהוכחה שיש תנועה. הדאטה: אמיתית מ-Shopify (products created per month).</div>
+    <div class="market-chart" id="chart-drops"></div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var WIDTH = 720, HEIGHT = 360;
+  var PAD = { top: 28, right: 28, bottom: 48, left: 56 };
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs, children) {
+    var node = document.createElementNS(NS, name);
+    for (var k in attrs) node.setAttribute(k, attrs[k]);
+    (children || []).forEach(function (c) { node.appendChild(c); });
+    return node;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+
+  function renderStepChart(root, cfg) {
+    var data = cfg.data;
+    var maxValue = cfg.maxValue;
+    var innerW = WIDTH - PAD.left - PAD.right;
+    var innerH = HEIGHT - PAD.top - PAD.bottom;
+    var ink = root.classList.contains('ink');
+    var lineColor = ink ? 'var(--color-honeycomb-yellow)' : 'var(--color-carbon-black)';
+    var areaColor = 'var(--color-honeycomb-yellow)';
+    var areaOpacity = ink ? 0.22 : 1;
+    var textColor = ink ? '#ffffff' : '#231f20';
+    var mutedColor = ink ? 'rgba(255,255,255,0.55)' : '#a6a8aa';
+    var bg = ink ? '#231f20' : '#ffffff';
+
+    function point(i, v) {
+      return {
+        x: PAD.left + (innerW / (data.length - 1)) * i,
+        y: PAD.top + innerH - (v / maxValue) * innerH
+      };
+    }
+    function stepPath() {
+      return data.map(function (d, i) {
+        var p = point(i, d.value);
+        if (i === 0) return 'M ' + p.x + ' ' + p.y;
+        return 'H ' + p.x + ' V ' + p.y;
+      }).join(' ');
+    }
+    function areaPath() {
+      var first = point(0, data[0].value);
+      var last = point(data.length - 1, data[data.length - 1].value);
+      var baseY = HEIGHT - PAD.bottom;
+      return stepPath() + ' L ' + last.x + ' ' + baseY + ' H ' + first.x + ' Z';
+    }
+    function fmt(v) { return cfg.prefix + v.toLocaleString('en-US') + (cfg.suffix || ''); }
+
+    // header
+    var head = document.createElement('div');
+    head.className = 'mc-head';
+    head.innerHTML =
+      '<div><p class="mc-kicker">' + cfg.kicker + '</p>' +
+      '<h3 class="mc-title">' + cfg.title + '</h3></div>' +
+      '<div class="mc-readout"><span class="r-label"></span><span class="r-value"></span></div>';
+    root.appendChild(head);
+    var rLabel = head.querySelector('.r-label');
+    var rValue = head.querySelector('.r-value');
+
+    // svg
+    var svg = el('svg', { viewBox: '0 0 ' + WIDTH + ' ' + HEIGHT, role: 'img', 'aria-label': cfg.ariaLabel });
+    var gridId = 'pixel-grid-' + root.id;
+    svg.appendChild(el('defs', {}, [
+      el('pattern', { id: gridId, width: 16, height: 16, patternUnits: 'userSpaceOnUse' }, [
+        el('path', { d: 'M 16 0 L 0 0 0 16', fill: 'none', stroke: textColor, 'stroke-opacity': 0.1, 'stroke-width': 2 })
+      ])
+    ]));
+    svg.appendChild(el('rect', { x: PAD.left, y: PAD.top, width: innerW, height: innerH, fill: 'url(#' + gridId + ')' }));
+
+    // y ticks
+    cfg.yTicks.forEach(function (tick) {
+      var y = point(0, tick).y;
+      svg.appendChild(el('line', { x1: PAD.left, x2: WIDTH - PAD.right, y1: y, y2: y, stroke: mutedColor, 'stroke-opacity': 0.5, 'stroke-dasharray': '8 8' }));
+      svg.appendChild(txt(el('text', { x: PAD.left - 12, y: y + 3, 'text-anchor': 'end', 'font-size': 8, fill: mutedColor }), cfg.yFmt ? cfg.yFmt(tick) : tick));
+    });
+
+    // area + step line
+    svg.appendChild(el('path', { d: areaPath(), fill: areaColor, opacity: areaOpacity }));
+    svg.appendChild(el('path', { d: stepPath(), fill: 'none', stroke: lineColor, 'stroke-width': 6, 'stroke-linejoin': 'miter', 'stroke-linecap': 'square' }));
+
+    // x labels
+    data.forEach(function (d, i) {
+      var p = point(i, 0);
+      svg.appendChild(txt(el('text', { x: p.x, y: HEIGHT - 16, 'text-anchor': 'middle', 'font-size': 8, fill: mutedColor }), d.label.slice(0, 3)));
+    });
+
+    // markers + hit zones
+    var markers = [];
+    data.forEach(function (d, i) {
+      var p = point(i, d.value);
+      var g = el('g', { tabindex: 0, 'class': 'hit' }, [
+        el('line', { x1: p.x, x2: p.x, y1: PAD.top, y2: HEIGHT - PAD.bottom, stroke: 'transparent', 'stroke-width': 46 }),
+        el('rect', { x: p.x - 7, y: p.y - 7, width: 14, height: 14, fill: areaColor, stroke: bg, 'stroke-width': 3 })
+      ]);
+      g.addEventListener('mouseenter', function () { setActive(i); });
+      g.addEventListener('focus', function () { setActive(i); });
+      svg.appendChild(g);
+      markers.push({ g: g, rect: g.lastChild, point: p });
+    });
+
+    // tooltip
+    var tipText1 = txt(el('text', { x: 12, y: 19, 'font-size': 8, fill: textColor }), '');
+    var tipText2 = txt(el('text', { x: 12, y: 36, 'font-size': 8, fill: textColor }), '');
+    var tip = el('g', {}, [
+      el('rect', { width: 168, height: 48, fill: bg, stroke: lineColor, 'stroke-width': 4 }),
+      tipText1, tipText2
+    ]);
+    svg.appendChild(tip);
+    root.appendChild(svg);
+
+    // footer
+    var foot = document.createElement('div');
+    foot.className = 'mc-foot';
+    foot.innerHTML = '<span>' + cfg.footLeft + '</span><span>' + cfg.footRight + '</span>';
+    root.appendChild(foot);
+
+    function setActive(index) {
+      var d = data[index];
+      var p = markers[index].point;
+      markers.forEach(function (m, i) {
+        m.rect.setAttribute('fill', i === index ? (ink ? '#ffffff' : 'var(--color-carbon-black)') : areaColor);
+      });
+      var tx = Math.min(p.x + 14, WIDTH - 186);
+      var ty = Math.max(p.y - 64, 14);
+      tip.setAttribute('transform', 'translate(' + tx + ' ' + ty + ')');
+      tipText1.textContent = d.label;
+      tipText2.textContent = cfg.tipLabel + ': ' + fmt(d.value);
+      rLabel.textContent = d.label;
+      rValue.textContent = fmt(d.value);
+    }
+    setActive(cfg.initial != null ? cfg.initial : data.length - 1);
+  }
+
+  /* ---- IDEA A: Grail Watch — sample sold-comps, illustrative ---- */
+  renderStepChart(document.getElementById('chart-grail'), {
+    kicker: 'Grail watch · sample data',
+    title: 'Van Gogh Pikachu — <em>market price</em>',
+    ariaLabel: 'Step chart of Van Gogh Pikachu market price over six months',
+    data: [
+      { label: 'March', value: 310 },
+      { label: 'April', value: 340 },
+      { label: 'May', value: 335 },
+      { label: 'June', value: 372 },
+      { label: 'July', value: 405 },
+      { label: 'August', value: 399 }
+    ],
+    maxValue: 480,
+    yTicks: [0, 120, 240, 360, 480],
+    yFmt: function (v) { return '$' + v; },
+    prefix: '$',
+    tipLabel: 'Sold avg',
+    footLeft: 'Source: eBay sold comps',
+    footRight: 'Updated monthly',
+    initial: 4
+  });
+
+  /* ---- IDEA B: Set Index — sample index, illustrative ---- */
+  renderStepChart(document.getElementById('chart-index'), {
+    kicker: 'The set index · sample data',
+    title: 'Prismatic Evolutions — <em>set index</em>',
+    ariaLabel: 'Step chart of Prismatic Evolutions set price index over six months',
+    data: [
+      { label: 'March', value: 100 },
+      { label: 'April', value: 112 },
+      { label: 'May', value: 108 },
+      { label: 'June', value: 121 },
+      { label: 'July', value: 134 },
+      { label: 'August', value: 129 }
+    ],
+    maxValue: 160,
+    yTicks: [0, 40, 80, 120, 160],
+    prefix: '',
+    suffix: ' pts',
+    tipLabel: 'Index',
+    footLeft: 'Base: March = 100',
+    footRight: 'Source: PriceCharting',
+    initial: 4
+  });
+
+  /* ---- IDEA C: Drop Log — real shape, to be fed from Shopify ---- */
+  renderStepChart(document.getElementById('chart-drops'), {
+    kicker: 'The drop log · sample data',
+    title: 'New cards in the shop — <em>per month</em>',
+    ariaLabel: 'Step chart of new cards added to the shop per month',
+    data: [
+      { label: 'March', value: 9 },
+      { label: 'April', value: 14 },
+      { label: 'May', value: 11 },
+      { label: 'June', value: 18 },
+      { label: 'July', value: 16 },
+      { label: 'August', value: 12 }
+    ],
+    maxValue: 24,
+    yTicks: [0, 6, 12, 18, 24],
+    prefix: '',
+    tipLabel: 'Drops',
+    footLeft: 'Source: Shopify catalog',
+    footRight: 'Drops land without warning',
+    initial: 3
+  });
+})();
+</script>
+</body>
+</html>
