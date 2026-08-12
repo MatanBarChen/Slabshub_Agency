@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Market — SlabsHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-honeycomb-yellow: #ffd931;
+    --color-carbon-black: #000000;
+    --color-ink-black: #231f20;
+    --color-fog-gray: #a6a8aa;
+    --color-smoke-line: #d6d6d6;
+    --font-display: 'Times Now', 'Playfair Display', 'Times New Roman', serif;
+    --font-body: 'Times New Roman', Times, serif;
+    --font-ui: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-product: 'Lora', 'Times New Roman', serif;
+    --font-pixel: 'Press Start 2P', monospace;
+    --text-caption: 11px;
+    --text-body: 16px;
+    --text-heading-sm: 27px;
+    --text-heading: 40px;
+    --tracking-ui: 0.073em;
+    --tracking-nav: 0.063em;
+    --tracking-wide: 0.091em;
+    --page-max-width: 1200px;
+    --gap: 15px;
+    --radius-card: 12px;
+    --radius-pill: 25px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #dce8f2;
+    background-image:
+      linear-gradient(rgba(46, 111, 183, 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 111, 183, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--color-carbon-black);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.15;
+  }
+  ::selection { background: var(--color-honeycomb-yellow); color: var(--color-carbon-black); }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--color-carbon-black); outline-offset: 2px; }
+  .ui { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; line-height: 1.15; }
+  .wrap { max-width: var(--page-max-width); margin: 0 auto; padding: 0 20px; }
+
+  /* Ticker */
+  .ticker { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); overflow: hidden; white-space: nowrap; padding: 7px 0; }
+  .ticker-track { display: inline-flex; animation: ticker 38s linear infinite; }
+  .ticker-track span { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-wide); text-transform: uppercase; padding-right: 48px; }
+  .ticker-track span::after { content: "★"; margin-left: 48px; font-size: 9px; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+  /* Masthead (compact) */
+  .masthead { background: var(--color-honeycomb-yellow); border-bottom: 2px solid var(--color-carbon-black); }
+  .logo-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px 20px 12px; max-width: var(--page-max-width); margin: 0 auto; gap: 15px; }
+  .logo-block { text-align: center; }
+  .logo { font-family: var(--font-display); font-weight: 500; font-size: 42px; line-height: 0.87; display: inline-block; }
+  .logo em { font-style: italic; font-weight: 400; }
+  .logo-tag { display: block; margin-top: 7px; font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; }
+  .logo-side { display: flex; align-items: center; gap: 10px; }
+  .logo-side.right { justify-content: flex-end; }
+  .back-link { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-nav); text-transform: uppercase; border: 1px solid var(--color-carbon-black); border-radius: var(--radius-card); padding: 8px 14px; transition: background 0.15s ease, color 0.15s ease; }
+  .back-link:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+  .cart-link { display: inline-flex; align-items: center; gap: 6px; }
+  .cart-link svg { width: 16px; height: 16px; }
+  .cart-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .double-rule { max-width: calc(var(--page-max-width) - 40px); margin: 0 auto; border-top: 3px solid var(--color-carbon-black); position: relative; }
+  .double-rule::after { content: ""; display: block; border-top: 1px solid var(--color-carbon-black); margin-top: 3px; }
+  .crumbs { max-width: var(--page-max-width); margin: 0 auto; padding: 12px 20px 16px; display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .crumbs a, .crumbs span { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; }
+  .crumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .crumbs .sep { opacity: 0.55; }
+  .crumb-ball { width: 15px; height: 15px; display: inline-block; }
+  .crumb-ball svg { width: 100%; height: 100%; display: block; }
+
+  /* Market hero */
+  .market-hero { text-align: center; padding: 55px 0 10px; }
+  .market-hero .kicker { display: inline-block; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-wide); text-transform: uppercase; border: 1px solid var(--color-carbon-black); border-radius: var(--radius-card); padding: 5px 12px; margin-bottom: 18px; background: #ffffff; }
+  .market-hero h1 { font-family: var(--font-display); font-weight: 400; font-size: 47px; line-height: 0.9; text-wrap: balance; max-width: 720px; margin: 0 auto; }
+  .market-hero h1 em { font-style: italic; }
+  .market-hero .lead { max-width: 560px; margin: 20px auto 0; font-size: 18px; line-height: 1.45; color: var(--color-ink-black); }
+
+  /* ===== COMPONENT: Grail Watch — 8-bit step chart (component-scoped pixel style) ===== */
+  .market-chart {
+    max-width: 900px;
+    margin: 45px auto 0;
+    background: var(--color-ink-black);
+    color: #ffffff;
+    border: 3px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    box-shadow: 8px 8px 0 0 var(--color-carbon-black);
+    padding: 24px 26px 18px;
+  }
+  .market-chart .mc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+  .market-chart .mc-kicker { font-family: var(--font-pixel); font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-fog-gray); line-height: 1.6; }
+  .market-chart .mc-title { margin-top: 10px; font-family: var(--font-pixel); font-weight: 400; font-size: 15px; line-height: 1.6; }
+  .market-chart .mc-title em { font-style: normal; text-decoration: underline; text-decoration-color: var(--color-honeycomb-yellow); text-decoration-thickness: 3px; text-underline-offset: 5px; }
+  .market-chart .mc-readout {
+    flex: none;
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    background: var(--color-honeycomb-yellow);
+    color: var(--color-carbon-black);
+    padding: 10px 14px 9px;
+    text-align: right;
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    line-height: 1.9;
+  }
+  .market-chart .mc-readout .r-label { display: block; font-size: 7px; }
+  .market-chart svg.mc-plot { display: block; width: 100%; height: auto; overflow: visible; }
+  .market-chart svg.mc-plot text { font-family: var(--font-pixel); }
+  .market-chart .hit { cursor: pointer; outline: none; }
+  .market-chart .mc-foot {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: var(--font-pixel);
+    font-size: 7px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-fog-gray);
+    line-height: 1.8;
+  }
+
+  /* CTA under the chart */
+  .market-cta { text-align: center; margin: 30px 0 0; }
+  .market-cta .yellow-btn {
+    display: inline-block;
+    background: var(--color-honeycomb-yellow);
+    border: 2px solid var(--color-carbon-black);
+    border-radius: var(--radius-card);
+    padding: 12px 22px;
+    font-family: var(--font-ui);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .market-cta .yellow-btn:hover { background: var(--color-carbon-black); color: var(--color-honeycomb-yellow); }
+  .market-cta .note { display: block; margin-top: 12px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-ink-black); }
+
+  section.market-section { padding: 0 0 65px; }
+
+  /* Footer */
+  footer { background: var(--color-ink-black); color: #fff; padding: 40px 0 25px; border-top: 1px solid var(--color-fog-gray); }
+  .foot-line { border-top: 1px solid var(--color-fog-gray); padding-top: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .foot-line span, .foot-line a { font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: #c8cbcd; }
+  .foot-line a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .foot-logo { font-family: var(--font-display); font-weight: 500; font-size: 24px; margin-bottom: 18px; }
+  .foot-logo em { font-style: italic; font-weight: 400; }
+
+  @media (max-width: 900px) {
+    .logo-row { grid-template-columns: 1fr; }
+    .logo-side { justify-content: center; }
+    .market-hero h1 { font-size: 36px; }
+    .market-chart { padding: 16px 14px 12px; }
+    .market-chart .mc-head { flex-wrap: wrap; }
+    .market-chart .mc-title { font-size: 10px; line-height: 1.8; overflow-wrap: break-word; max-width: 100%; }
+    .market-chart .mc-kicker { font-size: 7px; }
+    .market-chart .mc-readout { font-size: 9px; }
+    .market-chart .mc-foot { font-size: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Every card photographed in-hand</span>
+    <span>Single-copy inventory — when it's gone, it's gone</span>
+    <span>New in: Slab Guard silicone bumpers, from $4.99</span>
+    <span>Van Gogh Pikachu promo — one copy in stock</span>
+    <span>Every PSA slab cert-verifiable</span>
+    <span>Every card photographed in-hand</span>
+    <span>Single-copy inventory — when it's gone, it's gone</span>
+    <span>New in: Slab Guard silicone bumpers, from $4.99</span>
+    <span>Van Gogh Pikachu promo — one copy in stock</span>
+    <span>Every PSA slab cert-verifiable</span>
+  </div>
+</div>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="masthead">
+  <div class="logo-row">
+    <div class="logo-side">
+      <a class="back-link" href="slabshub-lepuzz-home.html">← Front page</a>
+    </div>
+    <div class="logo-block">
+      <a href="slabshub-lepuzz-home.html" class="logo">Slabs<em>Hub</em></a>
+      <span class="logo-tag">The Graded Card Circular</span>
+    </div>
+    <div class="logo-side right">
+      <a class="cart-link ui" href="https://slabshub.com/cart">
+        Cart
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="double-rule"></div>
+  <nav class="crumbs">
+    <a href="slabshub-lepuzz-home.html">Front page</a>
+    <span class="sep">/</span>
+    <span>The Market</span>
+  </nav>
+</header>
+
+<!-- ================= MARKET HERO ================= -->
+<div class="wrap">
+  <div class="market-hero">
+    <span class="kicker">The market desk</span>
+    <h1>The numbers behind <em>the cards.</em></h1>
+    <p class="lead">We price every card against what the market actually pays. This desk tracks the numbers — starting with the front-page grail.</p>
+  </div>
+</div>
+
+<!-- ================= GRAIL WATCH CHART ================= -->
+<section class="market-section">
+  <div class="wrap">
+    <div class="market-chart" id="chart-grail"></div>
+    <div class="market-cta">
+      <a class="yellow-btn" href="https://slabshub.com/products/raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo">Claim the grail →</a>
+      <span class="note">One copy in stock · Cert-verifiable</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">Slabs<em>Hub</em></div>
+    <div class="foot-line">
+      <span>© 2026 SlabsHub · Vol. 1</span>
+      <a href="slabshub-lepuzz-home.html">← Back to the front page</a>
+      <span>Slabs graded by PSA · Certs verifiable</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Grail Watch — 8-bit step chart (sample sold-comps until real data is wired) */
+(function () {
+  var root = document.getElementById('chart-grail');
+  if (!root) return;
+  var data = [
+    { label: 'March', value: 310 },
+    { label: 'April', value: 340 },
+    { label: 'May', value: 335 },
+    { label: 'June', value: 372 },
+    { label: 'July', value: 405 },
+    { label: 'August', value: 399 }
+  ];
+  var maxValue = 480, yTicks = [0, 120, 240, 360, 480];
+  var WIDTH = 720, HEIGHT = 340;
+  var PAD = { top: 26, right: 26, bottom: 46, left: 58 };
+  var innerW = WIDTH - PAD.left - PAD.right;
+  var innerH = HEIGHT - PAD.top - PAD.bottom;
+  var YELLOW = '#ffd931', INK = '#231f20', MUTED = 'rgba(255,255,255,0.55)';
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    for (var k in attrs) node.setAttribute(k, attrs[k]);
+    return node;
+  }
+  function txt(node, s) { node.textContent = s; return node; }
+  function point(i, v) {
+    return {
+      x: PAD.left + (innerW / (data.length - 1)) * i,
+      y: PAD.top + innerH - (v / maxValue) * innerH
+    };
+  }
+  function stepPath() {
+    return data.map(function (d, i) {
+      var p = point(i, d.value);
+      return i === 0 ? 'M ' + p.x + ' ' + p.y : 'H ' + p.x + ' V ' + p.y;
+    }).join(' ');
+  }
+
+  var head = document.createElement('div');
+  head.className = 'mc-head';
+  head.innerHTML =
+    '<div><p class="mc-kicker">Grail watch · sample comps</p>' +
+    '<h3 class="mc-title">Van Gogh Pikachu — <em>market price</em></h3></div>' +
+    '<div class="mc-readout"><span class="r-label"></span><span class="r-value"></span></div>';
+  root.appendChild(head);
+  var rLabel = head.querySelector('.r-label');
+  var rValue = head.querySelector('.r-value');
+
+  var svg = el('svg', { viewBox: '0 0 ' + WIDTH + ' ' + HEIGHT, 'class': 'mc-plot', role: 'img', 'aria-label': 'Step chart of Van Gogh Pikachu market price over the last six months' });
+  var defs = el('defs', {});
+  var pattern = el('pattern', { id: 'grail-grid', width: 16, height: 16, patternUnits: 'userSpaceOnUse' });
+  pattern.appendChild(el('path', { d: 'M 16 0 L 0 0 0 16', fill: 'none', stroke: '#ffffff', 'stroke-opacity': 0.08, 'stroke-width': 2 }));
+  defs.appendChild(pattern);
+  svg.appendChild(defs);
+  svg.appendChild(el('rect', { x: PAD.left, y: PAD.top, width: innerW, height: innerH, fill: 'url(#grail-grid)' }));
+
+  yTicks.forEach(function (tick) {
+    var y = point(0, tick).y;
+    svg.appendChild(el('line', { x1: PAD.left, x2: WIDTH - PAD.right, y1: y, y2: y, stroke: MUTED, 'stroke-opacity': 0.5, 'stroke-dasharray': '8 8' }));
+    svg.appendChild(txt(el('text', { x: PAD.left - 12, y: y + 3, 'text-anchor': 'end', 'font-size': 8, fill: MUTED }), '$' + tick));
+  });
+
+  var first = point(0, data[0].value);
+  var last = point(data.length - 1, data[data.length - 1].value);
+  svg.appendChild(el('path', { d: stepPath() + ' L ' + last.x + ' ' + (HEIGHT - PAD.bottom) + ' H ' + first.x + ' Z', fill: YELLOW, opacity: 0.22 }));
+  svg.appendChild(el('path', { d: stepPath(), fill: 'none', stroke: YELLOW, 'stroke-width': 6, 'stroke-linejoin': 'miter', 'stroke-linecap': 'square' }));
+
+  data.forEach(function (d, i) {
+    var p = point(i, 0);
+    svg.appendChild(txt(el('text', { x: p.x, y: HEIGHT - 14, 'text-anchor': 'middle', 'font-size': 8, fill: MUTED }), d.label.slice(0, 3)));
+  });
+
+  var markers = [];
+  data.forEach(function (d, i) {
+    var p = point(i, d.value);
+    var g = el('g', { tabindex: 0, 'class': 'hit' });
+    g.appendChild(el('line', { x1: p.x, x2: p.x, y1: PAD.top, y2: HEIGHT - PAD.bottom, stroke: 'transparent', 'stroke-width': 46 }));
+    var rect = el('rect', { x: p.x - 7, y: p.y - 7, width: 14, height: 14, fill: YELLOW, stroke: INK, 'stroke-width': 3 });
+    g.appendChild(rect);
+    g.addEventListener('mouseenter', function () { setActive(i); });
+    g.addEventListener('focus', function () { setActive(i); });
+    svg.appendChild(g);
+    markers.push({ rect: rect, point: p });
+  });
+
+  var tipRect = el('rect', { width: 178, height: 50, fill: INK, stroke: YELLOW, 'stroke-width': 4 });
+  var tipText1 = txt(el('text', { x: 12, y: 21, 'font-size': 8, fill: '#ffffff' }), '');
+  var tipText2 = txt(el('text', { x: 12, y: 38, 'font-size': 8, fill: '#ffffff' }), '');
+  var tip = el('g', {});
+  tip.appendChild(tipRect); tip.appendChild(tipText1); tip.appendChild(tipText2);
+  svg.appendChild(tip);
+  root.appendChild(svg);
+
+  var foot = document.createElement('div');
+  foot.className = 'mc-foot';
+  foot.innerHTML = '<span>Source: eBay sold comps</span><span>Updated monthly · one copy in stock</span>';
+  root.appendChild(foot);
+
+  function setActive(index) {
+    var d = data[index];
+    var p = markers[index].point;
+    markers.forEach(function (m, i) {
+      m.rect.setAttribute('fill', i === index ? '#ffffff' : YELLOW);
+    });
+    tip.setAttribute('transform', 'translate(' + Math.min(p.x + 14, WIDTH - 196) + ' ' + Math.max(p.y - 66, 12) + ')');
+    tipText1.textContent = d.label;
+    tipText2.textContent = 'Sold avg: $' + d.value;
+    rLabel.textContent = d.label;
+    rValue.textContent = '$' + d.value;
+  }
+  setActive(4);
+})();
+</script>
+
+</body>
+</html>
