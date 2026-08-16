@@ -2,7 +2,7 @@
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; scripts/render_schedule.py renders from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null (null + APPROVED = approved, awaiting a new slot).",
   "updated": "2026-08-16",
   "_sync_note": "2026-08-16: Matan confirmed in chat that NOTHING from the 02/08-05/08 wave was ever published. All expired slots cleared to null; the Pikachu IG-feed post was wrongly marked PUBLISHED and moved back from published/ to drafts/. Shopify verified same day: all 6 campaign products still in stock (6 singles at qty 1; Slab Guard 25/25 units untouched) — nothing sold, so no campaign is archived. Every approved post awaits a fresh slot.",
-  "_note_slab_guard_slots": "2026-08-04-slab-guard-launch uses custom Israel-local slots (il-wed-eve/il-thu-eve/il-sat-eve, 20:00-22:00 IDT) — documented deviation from docs/schedule-slots.md (US-oriented grid); campaign targets Israeli collectors. Re-apply on reschedule.",
+  "_note_slab_guard_slots": "Israel-local slots (il-wed-eve/il-thu-eve/il-sat-eve) are now formalized in docs/schedule-slots.md § Israel-local slots — no longer a per-draft deviation.",
   "meta_api": {
     "status": "in_progress",
     "note": "מתן משלים רישום מפתח + טוקן; ערעור מודעות פתוח — כל הממומן חסום"
@@ -265,36 +265,37 @@
       "title": "Slab Guard — מגן סיליקון ל-PSA",
       "emoji": "🛡️",
       "price": "$4.99 / $5.99",
-      "tag": "השקה · 25/25 יחידות · קמפיין עברית",
+      "tag": "השקה · 25/25 יחידות · נכסים מוכנים לפרסום",
       "inventory_checked": "2026-08-16: ACTIVE, 15 Solid + 10 Glitter = 25/25 — אפס מכירות מההשקה",
       "pipeline": {
         "brief": "done",
         "copy": "done",
-        "creative": "done"
+        "creative": "done",
+        "assets_exported": "2026-08-16"
       },
       "posts": [
         {
           "platform": "instagram-feed",
-          "label": "פוסט דגל — צבעי הבמפר",
-          "slot": null,
-          "publish_at": null,
-          "status": "APPROVED",
+          "label": "פוסט דגל — הוכחת התאמה על סלאב אמיתי",
+          "slot": "il-wed-eve",
+          "publish_at": "2026-08-19T20:30:00+03:00",
+          "status": "QUEUED",
           "file": "drafts/2026-08-04-slab-guard-launch-instagram-feed.md"
         },
         {
           "platform": "instagram-story",
-          "label": "reel-handfan · 3 פריימים",
-          "slot": null,
-          "publish_at": null,
-          "status": "APPROVED",
+          "label": "reel-handfan · 3 פריימים צרובים",
+          "slot": "il-thu-eve",
+          "publish_at": "2026-08-20T21:00:00+03:00",
+          "status": "QUEUED",
           "file": "drafts/2026-08-04-slab-guard-launch-instagram-story.md"
         },
         {
           "platform": "facebook-organic",
           "label": "סטוריטלינג הגנה על הסלאב",
-          "slot": null,
-          "publish_at": null,
-          "status": "APPROVED",
+          "slot": "il-sat-eve",
+          "publish_at": "2026-08-22T21:30:00+03:00",
+          "status": "QUEUED",
           "file": "drafts/2026-08-04-slab-guard-launch-facebook-organic.md"
         },
         {

@@ -1,6 +1,7 @@
-﻿# APPROVED — ready to publish manually
+# APPROVED — ready to publish manually
 - Platform: facebook-organic
-- Proposed publish time: יום שבת (מוצאי שבת) 2026-08-08, 21:30 IDT — slot: il-sat-eve (custom, Israel-local; deviation from docs/schedule-slots.md — US-oriented grid; using Motzei Shabbat weekend peak, ~48.5h after the IG feed post for platform spacing)
+- Proposed publish time: מוצאי שבת 2026-08-22, 21:30 IDT — slot: il-sat-eve (docs/schedule-slots.md § Israel-local slots), 48.5h after the IG story
+- Rescheduled 2026-08-16: original 08/08 slot lapsed unpublished (see drafts/state.json _sync_note)
 - Status: APPROVED (by Matan in chat, 2026-08-04)
 
 ## Final copy
@@ -20,7 +21,13 @@
 #פוקימון #אספנים #psa
 
 ## Asset
-`assets/2026-08-04-slab-guard-launch/promo-main.png` — 928x1152 (4:5), same hero image as the IG feed post (image-spec.md defines no separate FB-organic overlay — this is a long-form storytelling caption, no ad-style text overlay needed). Upscale to 1080x1350 on export, consistent with IG feed asset.
+`assets/2026-08-04-slab-guard-launch/export/promo-fb-organic-1080x1350.png` — 1080x1350 (4:5), clean upscale of
+promo-main.png with no text overlay (this is a long-form storytelling caption; image-spec.md defines no
+FB-organic overlay). Final resolution, ready to post.
+
+If Matan picks the proof-of-fit hero for the IG feed post, swap this to
+`export/promo-ig-feed-proof-1080x1350.png` for visual consistency across the campaign. Regenerate with
+`python3 scripts/bake_slabguard_assets.py`.
 
 ## Link (post in first comment, per copy file convention)
 https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?utm_source=facebook&utm_medium=organic&utm_campaign=2026-08-04-slab-guard-launch
@@ -32,6 +39,7 @@ https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?ut
 - [x] Asset format matches placement dimensions — 928x1152 (4:5) is an accepted FB organic image ratio; upscale to 1080x1350 before export for consistency with the feed asset.
 
 ## Verification notes
-- Link goes in the first comment per the copy file's stated convention (not in the post body) — confirm this is still Matan's preferred FB pattern before publishing.
-- Same promo-main.png asset as IG feed; if that asset gets re-exported/upscaled, re-export this one from the same source for consistency.
+- RESOLVED 2026-08-16: exported at final 1080x1350 (was 928x1152).
+- OPEN — confirm the link still goes in the first comment rather than the post body (copy file's stated convention).
+- Promo claim verified against Shopify 2026-08-16: automatic discount "Slab Guard — 3+ units 15% off" is ACTIVE (min qty 3, both variants).
 

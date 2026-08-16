@@ -1,6 +1,7 @@
-﻿# APPROVED — ready to publish manually
+# APPROVED — ready to publish manually
 - Platform: instagram-feed
-- Proposed publish time: יום רביעי 2026-08-05, 20:30 IDT — slot: il-wed-eve (custom, Israel-local; deviation from docs/schedule-slots.md — that grid is US-evening-oriented, this campaign targets Israeli collectors, so using local weekday evening peak 20:00–22:00 IDT instead)
+- Proposed publish time: יום רביעי 2026-08-19, 20:30 IDT — slot: il-wed-eve (docs/schedule-slots.md § Israel-local slots)
+- Rescheduled 2026-08-16: original 05/08 slot lapsed unpublished (see drafts/state.json _sync_note)
 - Status: APPROVED (by Matan in chat, 2026-08-04)
 
 ## Final copy
@@ -21,7 +22,18 @@
 #פוקימון #אספנים #קלפים #סלאב #פוקימוןישראל #גרייד #psa #slabs #gradedcards #pokemonisrael #pokemoncards #pokemontcg #psa10 #slabguard #אוסףקלפים
 
 ## Asset
-`assets/2026-08-04-slab-guard-launch/promo-main.png` — 928x1152 (4:5), per assets/2026-08-04-slab-guard-launch/image-spec.md sec. "IG feed" — upscale to 1080x1350 on export before posting. Overlay: top dark zone "הסלאב שלך. הצבע שלך." (RTL) + gold ₪19 price pill bottom-right + "3+ = 15% הנחה" micro-badge bottom-left (overlay text is spec direction, not yet baked into the PNG — confirm with creative/design before export if overlay isn't burned in).
+**Primary (recommended): `assets/2026-08-04-slab-guard-launch/export/promo-ig-feed-proof-1080x1350.png`**
+Real in-use still pulled from reel-handfan.mp4 (t=6.8s) — six guards mounted on actual PSA slabs, held in hand.
+This is the "proof of fit" shot image-spec.md § "Missing asset" flagged as the single strongest asset for this
+launch; it turned out to already exist inside the supplied footage. Overlays baked in: RTL headline
+"הסלאב שרד את הדירוג. / עכשיו תשמור עליו." + gold ₪19 price pill + "15% הנחה מ-3 יחידות" micro-badge.
+
+**Alternate: `assets/.../export/promo-ig-feed-1080x1350.png`** — the studio color-fan hero (promo-main.png
+upscaled to 1080x1350) with the same overlay system. On-palette (near-black studio) but shows the product in
+isolation, not in use.
+
+Both are final-resolution, overlays burned in, ready to post as-is. Regenerate with
+`python3 scripts/bake_slabguard_assets.py`.
 
 ## Link
 https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?utm_source=instagram&utm_medium=organic&utm_campaign=2026-08-04-slab-guard-launch
@@ -33,6 +45,8 @@ https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?ut
 - [x] Asset format matches placement dimensions — 928x1152 is correct 4:5 ratio; needs upscale to 1080x1350 per spec before export (not yet done).
 
 ## Verification notes
-- Asset is spec-correct in ratio but not yet at final 1080x1350 export resolution — upscale before posting.
-- Overlay text ("הסלאב שלך. הצבע שלך." + price pill) is documented in image-spec.md but not confirmed baked into the current promo-main.png — verify visually before publishing.
+- RESOLVED 2026-08-16: both heroes exported at final 1080x1350 with overlays burned in (were previously 928x1152, spec-only).
+- OPEN — Matan to pick: proof-of-fit hero (recommended) vs studio color-fan hero. Copy works unchanged with either.
+- Overlay wording note: the spec's "3+ = 15% הנחה" badge is rendered as "15% הנחה מ-3 יחידות" — same claim, but it reads correctly in RTL (the original mixes LTR "3+" into RTL and visually reorders).
+- Promo claim verified against Shopify 2026-08-16: automatic discount "Slab Guard — 3+ units 15% off" is ACTIVE (min qty 3, both variants).
 

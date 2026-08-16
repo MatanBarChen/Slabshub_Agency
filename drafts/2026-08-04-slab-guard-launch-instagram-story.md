@@ -1,6 +1,7 @@
-﻿# APPROVED — ready to publish manually
+# APPROVED — ready to publish manually
 - Platform: instagram-story
-- Proposed publish time: יום חמישי 2026-08-06, 21:00 IDT — slot: il-thu-eve (custom, Israel-local; deviation from docs/schedule-slots.md — US-oriented grid; using Israeli weekday evening peak, ~24.5h after the FB organic opener, one day after the IG feed hero per standard FB→IG feed→IG story campaign shape)
+- Proposed publish time: יום חמישי 2026-08-20, 21:00 IDT — slot: il-thu-eve (docs/schedule-slots.md § Israel-local slots), 24.5h after the IG feed hero
+- Rescheduled 2026-08-16: original 06/08 slot lapsed unpublished (see drafts/state.json _sync_note)
 - Status: APPROVED (by Matan in chat, 2026-08-04)
 
 ## Final copy
@@ -15,7 +16,14 @@
 "לינק בסטורי → Slab Guard, 25 יחידות בלבד"
 
 ## Asset
-`assets/2026-08-04-slab-guard-launch/reel-handfan.mp4` — 8s, 9:16 vertical, real hand-fan footage (as supplied, ready). Matches IG story placement (1080x1920) natively — no crop/pad needed. Overlay: burn in the 3 frame texts above (RTL) timed across the 8s runtime; keep last ~250px clear at bottom for the native link sticker.
+`assets/2026-08-04-slab-guard-launch/export/reel-handfan-story-1080x1920.mp4` — 8s, 1080x1920, audio kept.
+The three frame texts above are burned in (RTL, Heebo, 0.35s cross-fades at 0.0–2.7 / 2.7–5.4 / 5.4–8.0s).
+
+Reframing applied: the delivered clip was 720x1280 but the actual footage occupied only 720x960 — it shipped
+with baked-in letterbox bars (cropdetect: `crop=720:960:0:160`). Those were cropped off, the footage scaled to
+960x1280 and padded onto a #0B0B0D canvas at y=330. That yields a clean dark band up top for the text and
+leaves the bottom 310px clear for IG's native link sticker. Regenerate with
+`python3 scripts/bake_slabguard_assets.py`.
 
 ## Link
 https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?utm_source=instagram&utm_medium=story&utm_campaign=2026-08-04-slab-guard-launch
@@ -27,6 +35,8 @@ https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?ut
 - [x] Asset format matches placement dimensions — 9:16 vertical footage, native fit for IG story canvas (1080x1920), per orchestrator-supplied spec (8s, ready, no reprocessing needed).
 
 ## Verification notes
-- On-screen text overlays are not yet burned into reel-handfan.mp4 — confirm the 3 frame lines are added (RTL, timed) before publishing.
-- Storyboard file (video-storyboard.md) predates this footage and was written for a different planned shot — treat reel-handfan.mp4 (this real hand-fan clip) as the actual asset, ignore the storyboard's now-superseded shot list.
+- RESOLVED 2026-08-16: the 3 frame lines are burned in, RTL-shaped and timed; source letterbox bars removed and clip re-mastered to native 1080x1920.
+- Frame 2 wording: "3+ = 15% הנחה אוטומטית" is rendered on screen as "15% הנחה מ-3 יחידות" for RTL legibility — same claim, and the caption text above is unchanged.
+- Storyboard file (video-storyboard.md) predates this footage and was written for a different planned shot — treat reel-handfan.mp4 as the actual asset, ignore the storyboard's superseded shot list.
+- Promo claim verified against Shopify 2026-08-16: automatic discount "Slab Guard — 3+ units 15% off" is ACTIVE (min qty 3, both variants).
 
