@@ -59,8 +59,11 @@ def build_html(state, now):
             label, color, bg = STATUS[st]
             plat_name, plat_color = PLATFORM.get(p["platform"], (p["platform"], "#64748b"))
             overdue = ""
-            if p["publish_at"] and st in ("APPROVED", "QUEUED", "PENDING_APPROVAL"):
-                if datetime.fromisoformat(p["publish_at"]) < now:
+            when = fmt_date(p["publish_at"])
+            if st in ("APPROVED", "QUEUED", "PENDING_APPROVAL"):
+                if not p["publish_at"]:
+                    when = '<span class="unslotted">ממתין לשיבוץ</span>'
+                elif datetime.fromisoformat(p["publish_at"]) < now:
                     overdue = '<span class="overdue">חלף</span>'
                     overdue_total += 1
             blockers = ""
@@ -70,7 +73,7 @@ def build_html(state, now):
             <div class="row" style="--accent:{color}">
               <div class="cell plat"><span class="pill" style="background:{plat_color}22;color:{plat_color};border-color:{plat_color}55">{plat_name}</span></div>
               <div class="cell label">{p['label']}{blockers}</div>
-              <div class="cell when">{fmt_date(p['publish_at'])}{overdue}</div>
+              <div class="cell when">{when}{overdue}</div>
               <div class="cell status"><span class="badge" style="color:{color};background:{bg};border-color:{color}44">{label}</span></div>
             </div>""")
 
@@ -142,6 +145,8 @@ def build_html(state, now):
   .when {{ font-size:13.5px; color:#9aa4b8; }}
   .overdue {{ font-size:11.5px; color:#fbbf24; background:#2e1f08; border:1px solid #f59e0b44;
               padding:1px 7px; border-radius:5px; margin-right:8px; }}
+  .unslotted {{ font-size:12.5px; color:#a78bfa; background:#a78bfa14; border:1px dashed #a78bfa44;
+                padding:2px 9px; border-radius:5px; }}
   .badge {{ font-size:13px; padding:4px 12px; border-radius:999px; border:1px solid;
             display:inline-block; font-weight:bold; }}
   .foot {{ color:#5c6479; font-size:12px; margin-top:14px; }}
