@@ -30,7 +30,21 @@ Note: plugin:marketing:klaviyo is redundant — the direct Klaviyo MCP is alread
 ## ❌ Not available as MCP — connect via direct API (keys in `.env`)
 
 ### 1. Meta Graph API (Facebook + Instagram) — publishing & insights
-The single most important missing piece. Setup (Matan does once, ~30 min):
+
+**Audit 2026-08-17 (token verified live against Graph API):**
+- `META_PAGE_TOKEN` is set and VALID — but it is a **user token** (identity: Matan Bar Chen, id 122374206914002189), not a Page token.
+- Granted scopes: ads_management, ads_read, business_management, pages_show_list, pages_read_engagement, pages_manage_metadata, pages_manage_ads, pages_messaging, instagram_basic, publish_video, catalog_management, leads_retrieval, whatsapp_*.
+- **Missing scopes for organic publishing:** `pages_manage_posts` (FB feed posts), `instagram_content_publish` (IG posts), `read_insights`.
+- **Token sees NO pages:** `/me/accounts` is empty and Business "SlabsHub.com" (id 1384456153755717) has no owned/client pages. Either no FB Page is linked to the business, or the page wasn't selected during the OAuth grant.
+- `META_PAGE_ID` in `.env` is WRONG — it holds Matan's user id, not a page id. `META_IG_USER_ID` is EMPTY.
+- **Paid side is closer to ready:** ad account `act_631106849003586` is ACTIVE and ads_management is granted — but ad creation still needs a Page identity, so the page gap blocks paid too.
+
+**Fix path (Matan, ~15 min):**
+1. Verify the SlabsHub Facebook Page exists and is connected to Business Manager "SlabsHub.com"; link the IG professional account to that page.
+2. Re-run the token grant (Graph API Explorer or Facebook Login for Business) adding `pages_manage_posts`, `instagram_content_publish`, `read_insights` — and select the SlabsHub page in the asset picker during the grant.
+3. Then the orchestrator finishes the rest: pull the Page id + Page access token from `/me/accounts`, pull the IG user id from the page, and Matan pastes the corrected `META_PAGE_TOKEN` / `META_PAGE_ID` / `META_IG_USER_ID` into `.env`.
+
+Original setup steps (reference):
 1. https://developers.facebook.com → Create App (type: Business).
 2. Add products: **Facebook Login for Business** + permissions `pages_manage_posts`, `pages_read_engagement`, `instagram_basic`, `instagram_content_publish`, `read_insights`.
 3. Link the app to the SlabsHub Facebook Page and the Instagram professional account.
