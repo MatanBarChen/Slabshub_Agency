@@ -9,7 +9,7 @@
 "הסלאב שרד את הדירוג. עכשיו תגנו עליו 🛡️"
 
 **פריים 2 (פרטים):**
-"מתאים ל-PSA | ₪19-22 | 3+ = 15% הנחה אוטומטית"
+"מתאים ל-PSA | $4.99-5.99 | 3+ = 15% הנחה אוטומטית"
 
 **פריים 3 (CTA):**
 "לינק בסטורי → Slab Guard, 25 יחידות בלבד"
@@ -23,7 +23,7 @@ https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?ut
 ## Checklist
 - [x] Copy matches platform limits — each of the 3 frame lines under 12 words, well within story-overlay readability norms.
 - [x] UTM parameters present and correct — utm_source=instagram, utm_medium=story, utm_campaign=2026-08-04-slab-guard-launch (exact match).
-- [x] No unverified price/scarcity claims — ₪19-22 range and "3+ = 15% הנחה" match brief UPDATE 2; "25 יחידות בלבד" matches confirmed total inventory (15 solid + 10 glitter); PSA-only, no CGC/BGS claim.
+- [x] No unverified price/scarcity claims — $4.99-5.99 range (verified live in Shopify 26.08) and "3+ = 15% הנחה" match brief UPDATE 2; "25 יחידות בלבד" matches confirmed total inventory (15 solid + 10 glitter); PSA-only, no CGC/BGS claim.
 - [x] Asset format matches placement dimensions — 9:16 vertical footage, native fit for IG story canvas (1080x1920), per orchestrator-supplied spec (8s, ready, no reprocessing needed).
 
 ## Verification notes
