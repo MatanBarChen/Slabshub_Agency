@@ -35,7 +35,7 @@ opens = "".join(
 )
 
 BODY = (
-    masthead("מהדורת סוכנות · יום ד׳ 19 באוגוסט 2026 · תעריפי משלוח")
+    masthead("מהדורת סוכנות · יום ד׳ 26 באוגוסט 2026 · תעריפי משלוח")
     + '<div class="head"><h1>התעריפים אושרו, עוגלו, ונכנסו לתוקף</h1>'
       '<div class="deck">ארבעת האזורים מתומחרים עכשיו בדולרים עגולים. '
       'ישראל עברה ממשלוח חינם לתעריף — התעריף הראשון בהיסטוריה של החנות שגובה על משלוח מקומי.</div>'
@@ -56,6 +56,6 @@ BODY = (
 )
 
 if __name__ == "__main__":
-    out = pathlib.Path(__file__).resolve().parent.parent / "docs" / "shipping-rates-2026-08-19.png"
+    out = pathlib.Path(__file__).resolve().parent.parent / "docs" / "shipping-rates-2026-08-26.png"
     render(BODY, out, width=1020, height=1055)
     print(out)

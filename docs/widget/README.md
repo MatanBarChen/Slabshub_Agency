@@ -1,12 +1,12 @@
 # ווידג'טים בצ'אט — שפת העיצוב של SlabsHub
 
-עודכן: 2026-08-19.
+עודכן: 2026-08-26.
 
 ## מאיפה הטוקנים
 
 **לא מהגדרות התמה.** התמה הפעילה (`Updated copy of Black & White`) מגדירה DM Sans + Archivo Narrow
 וסכמות צבע בז'/אפור — אבל הדפים החיים דורסים אותה עם מערכת עיצוב משלהם. הטוקנים כאן נקראו
-מה-CSS custom properties של **הדף החי** (`curl https://slabshub.com/`, 19.08.2026):
+מה-CSS custom properties של **הדף החי** (`curl https://slabshub.com/`, 26.08.2026):
 
 | טוקן | ערך | שימוש |
 |---|---|---|
@@ -41,7 +41,7 @@
 import sys; sys.path.insert(0, "scripts")
 from widget import render, masthead
 
-body = masthead("מהדורת סוכנות · יום ד׳ 19 באוגוסט 2026 · דוח תפעול") + """
+body = masthead("מהדורת סוכנות · יום ד׳ 26 באוגוסט 2026 · דוח תפעול") + """
   <div class="head"><h1>כותרת</h1>
     <div class="deck">תת-כותרת</div>
     <div class="byline">שורת קרדיט</div></div>
