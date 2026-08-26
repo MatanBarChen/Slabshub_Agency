@@ -1,7 +1,7 @@
 ﻿# APPROVED — ready to publish manually
 - Platform: instagram-story
-- Proposed publish time: יום חמישי 2026-08-06, 21:00 IDT — slot: il-thu-eve (custom, Israel-local; deviation from docs/schedule-slots.md — US-oriented grid; using Israeli weekday evening peak, ~24.5h after the FB organic opener, one day after the IG feed hero per standard FB→IG feed→IG story campaign shape)
-- Status: APPROVED (by Matan in chat, 2026-08-04)
+- Publish time: יום שני 2026-08-31, 21:00 IDT — slot: il-mon-eve
+- Status: APPROVED (by Matan in chat, 2026-08-26 — schedule reset, wave 1)
 
 ## Final copy
 

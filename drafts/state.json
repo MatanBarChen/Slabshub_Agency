@@ -24,7 +24,7 @@
           "label": "פתיחה — סיפור סט הג'ונגל 1999",
           "slot": "us-thu-eve",
           "publish_at": "2026-08-28T03:00:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "status": "APPROVED",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-facebook-organic.md"
         },
         {
@@ -32,7 +32,7 @@
           "label": "פוסט דגל — זוהר ענבר וינטג'",
           "slot": "us-fri-eve",
           "publish_at": "2026-08-29T03:00:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "status": "APPROVED",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-feed.md"
         },
         {
@@ -40,7 +40,7 @@
           "label": "3 פריימים — OG Eevee",
           "slot": "us-sat-eve",
           "publish_at": "2026-08-30T03:00:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "status": "APPROVED",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-story.md"
         },
         {
@@ -74,7 +74,7 @@
           "label": "פוסט דגל — צבעי הבמפר",
           "slot": "il-thu-eve",
           "publish_at": "2026-08-27T21:00:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "status": "APPROVED",
           "file": "drafts/2026-08-04-slab-guard-launch-instagram-feed.md"
         },
         {
@@ -82,7 +82,7 @@
           "label": "סטוריטלינג הגנה על הסלאב",
           "slot": "il-sat-eve",
           "publish_at": "2026-08-29T21:30:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "status": "APPROVED",
           "file": "drafts/2026-08-04-slab-guard-launch-facebook-organic.md"
         },
         {
@@ -90,7 +90,7 @@
           "label": "reel-handfan · 3 פריימים",
           "slot": "il-mon-eve",
           "publish_at": "2026-08-31T21:00:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "status": "APPROVED",
           "file": "drafts/2026-08-04-slab-guard-launch-instagram-story.md"
         },
         {
@@ -308,5 +308,6 @@
       ]
     }
   ],
-  "_reset": "הלוז אופס ב-26.08.2026 לבקשת מתן. כל התאריכים הישנים (02–11.08) נמחקו; כל פוסט אורגני קיבל חלון חדש וסטטוס PENDING_APPROVAL — מחזור אישור נקי. פוסט שכבר פורסם נשמר כ-PUBLISHED מחוץ לרוטציה. גיבוי: archive/_schedule-resets/state-before-reset-2026-08-26.json"
+  "_reset": "הלוז אופס ב-26.08.2026 לבקשת מתן. כל התאריכים הישנים (02–11.08) נמחקו; כל פוסט אורגני קיבל חלון חדש וסטטוס PENDING_APPROVAL — מחזור אישור נקי. פוסט שכבר פורסם נשמר כ-PUBLISHED מחוץ לרוטציה. גיבוי: archive/_schedule-resets/state-before-reset-2026-08-26.json",
+  "_approval_log": "26.08.2026 — מתן אישר בצ'אט את גל 1 (Eevee + Slab Guard, 6 פוסטים, 27–31.08). שבועות 2–4 נותרו PENDING_APPROVAL. הפרסום עצמו ידני: Meta API עדיין חסום, אין פרסום אוטומטי."
 }

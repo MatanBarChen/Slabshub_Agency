@@ -1,7 +1,7 @@
 ﻿# APPROVED — ready to publish manually
 - Platform: instagram-feed
-- Proposed publish time: יום רביעי 2026-08-05, 20:30 IDT — slot: il-wed-eve (custom, Israel-local; deviation from docs/schedule-slots.md — that grid is US-evening-oriented, this campaign targets Israeli collectors, so using local weekday evening peak 20:00–22:00 IDT instead)
-- Status: APPROVED (by Matan in chat, 2026-08-04)
+- Publish time: יום חמישי 2026-08-27, 21:00 IDT — slot: il-thu-eve
+- Status: APPROVED (by Matan in chat, 2026-08-26 — schedule reset, wave 1)
 
 ## Final copy
 

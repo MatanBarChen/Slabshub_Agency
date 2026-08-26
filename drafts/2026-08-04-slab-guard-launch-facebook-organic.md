@@ -1,7 +1,7 @@
 ﻿# APPROVED — ready to publish manually
 - Platform: facebook-organic
-- Proposed publish time: יום שבת (מוצאי שבת) 2026-08-08, 21:30 IDT — slot: il-sat-eve (custom, Israel-local; deviation from docs/schedule-slots.md — US-oriented grid; using Motzei Shabbat weekend peak, ~48.5h after the IG feed post for platform spacing)
-- Status: APPROVED (by Matan in chat, 2026-08-04)
+- Publish time: יום שבת 2026-08-29, 21:30 IDT — slot: il-sat-eve
+- Status: APPROVED (by Matan in chat, 2026-08-26 — schedule reset, wave 1)
 
 ## Final copy
 

@@ -1,8 +1,7 @@
-# DRAFT — awaiting approval
+﻿# APPROVED — ready to publish manually
 - Platform: facebook-organic
-- Proposed publish time: Friday 2026-08-07, 04:00 IDT (= Thu 21:00 ET)
-- slot: us-thu-eve (Fri 03:00–05:00 IDT) — used at 04:00 (+1h) to clear Charizard's FB-organic post (03:00, same window/day)
-- Status: PENDING_APPROVAL
+- Publish time: יום שישי 2026-08-28, 03:00 IDT — slot: us-thu-eve
+- Status: APPROVED (by Matan in chat, 2026-08-26 — schedule reset, wave 1)
 
 ## Final copy
 
