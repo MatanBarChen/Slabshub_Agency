@@ -1,0 +1,308 @@
+{
+  "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
+  "updated": "2026-08-05",
+  "_note_slab_guard_slots": "2026-08-04-slab-guard-launch uses custom Israel-local slots (il-wed-eve/il-thu-eve/il-sat-eve, 20:00-22:00 IDT) — documented deviation from docs/schedule-slots.md (US-oriented grid); campaign targets Israeli collectors.",
+  "meta_api": {
+    "status": "in_progress",
+    "note": "מתן משלים רישום מפתח + טוקן; ערעור מודעות פתוח — כל הממומן חסום"
+  },
+  "campaigns": [
+    {
+      "id": "2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo",
+      "title": "Pikachu Van Gogh #085",
+      "emoji": "🎨",
+      "price": "$999",
+      "tag": "קמפיין דגל · עותק raw יחיד",
+      "pipeline": {
+        "brief": "done",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "instagram-feed",
+          "label": "פוסט מוזיאון",
+          "slot": null,
+          "publish_at": "2026-08-03T14:00:00+03:00",
+          "status": "PUBLISHED",
+          "file": "published/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-instagram-feed.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "label": "סטוריטלינג אמסטרדם",
+          "slot": "us-mon-eve",
+          "publish_at": "2026-08-04T03:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-story",
+          "label": "קליפ reel-clip1",
+          "slot": "us-wed-eve",
+          "publish_at": "2026-08-06T05:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-instagram-story.md"
+        },
+        {
+          "platform": "facebook-ad",
+          "label": "ריטרגטינג $999 · 7 ימים",
+          "slot": null,
+          "publish_at": null,
+          "status": "BLOCKED",
+          "blockers": [
+            "Meta API",
+            "ערעור מודעות",
+            "חסר קריאייטיב 1:1"
+          ],
+          "file": "drafts/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-facebook-ad.md"
+        }
+      ]
+    },
+    {
+      "id": "2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo",
+      "title": "Charizard CD Promo · PSA 9",
+      "emoji": "🔥",
+      "price": "$1,199",
+      "tag": "value hook · מתחת לכל מכירת eBay",
+      "pipeline": {
+        "brief": "done",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "facebook-organic",
+          "label": "פתיחת סופ״ש",
+          "slot": "us-thu-eve",
+          "publish_at": "2026-08-07T03:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "label": "פוסט דגל",
+          "slot": "us-fri-eve",
+          "publish_at": "2026-08-08T03:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "label": "קליפ + לינק",
+          "slot": "us-sat-eve",
+          "publish_at": "2026-08-09T03:30:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo-instagram-story.md"
+        },
+        {
+          "platform": "facebook-ad",
+          "label": "ריטרגטינג סופ״ש",
+          "slot": null,
+          "publish_at": "2026-08-10T03:00:00+03:00",
+          "status": "BLOCKED",
+          "blockers": [
+            "Meta API",
+            "ערעור מודעות"
+          ],
+          "file": "drafts/2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo-facebook-ad.md"
+        }
+      ]
+    },
+    {
+      "id": "2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151",
+      "title": "Mewtwo #183 · Japanese 151",
+      "emoji": "🧬",
+      "price": "$19.99",
+      "tag": "אורגני בלבד",
+      "pipeline": {
+        "brief": "done",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "instagram-feed",
+          "label": "מאושר — פורסם? טרם אושר בצ'אט",
+          "slot": "us-sun-aft",
+          "publish_at": "2026-08-02T21:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-instagram-feed.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "label": "מאושר — פורסם? טרם אושר בצ'אט",
+          "slot": "us-sun-aft",
+          "publish_at": "2026-08-02T23:30:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-story",
+          "label": "מאושר — לפרסום ידני",
+          "slot": "us-mon-eve",
+          "publish_at": "2026-08-04T04:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-instagram-story.md"
+        },
+        {
+          "platform": "facebook-ad",
+          "label": "לא משתלם ב-$19.99",
+          "slot": null,
+          "publish_at": null,
+          "status": "ON_HOLD",
+          "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-facebook-ad.md"
+        }
+      ]
+    },
+    {
+      "id": "2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions",
+      "title": "Umbreon ex [Stamped] #60 · Prismatic Evolutions",
+      "emoji": "🌙",
+      "price": "$24.99",
+      "tag": "value hook · accessible Umbreon (not Moonbreon SIR)",
+      "pipeline": {
+        "brief": "done",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "instagram-feed",
+          "label": "פוסט דגל — פרומו ירח",
+          "slot": "us-tue-eve",
+          "publish_at": "2026-08-05T03:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "label": "3 פריימים + reel-moonlight",
+          "slot": "us-mon-eve",
+          "publish_at": "2026-08-11T03:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions-instagram-story.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "label": "סטוריטלינג Surprise Box",
+          "slot": "us-sun-aft",
+          "publish_at": "2026-08-09T21:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions-facebook-organic.md"
+        },
+        {
+          "platform": "facebook-ad",
+          "label": "מדולג — ממומן חסום",
+          "slot": null,
+          "publish_at": null,
+          "status": "SKIPPED",
+          "blockers": [
+            "Meta API",
+            "ערעור מודעות פתוח"
+          ],
+          "file": null
+        }
+      ]
+    },
+    {
+      "id": "2026-08-05-eevee-jungle-cgc7",
+      "title": "Eevee [1st Edition] #51 · Pokemon Jungle · CGC 7",
+      "emoji": "🦊",
+      "price": "$24.99",
+      "tag": "מלאי תקוע · 476 יום · וינטג' 1999",
+      "pipeline": {
+        "brief": "done",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "facebook-organic",
+          "label": "פתיחה — סיפור סט הג'ונגל 1999",
+          "slot": "us-thu-eve",
+          "publish_at": "2026-08-07T04:00:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-08-05-eevee-jungle-cgc7-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "label": "פוסט דגל — זוהר ענבר וינטג'",
+          "slot": "us-fri-eve",
+          "publish_at": "2026-08-08T04:00:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "label": "3 פריימים — OG Eevee",
+          "slot": "us-sat-eve",
+          "publish_at": "2026-08-09T04:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-story.md"
+        },
+        {
+          "platform": "facebook-ad",
+          "label": "מדולג — ממומן חסום",
+          "slot": null,
+          "publish_at": null,
+          "status": "SKIPPED",
+          "blockers": [
+            "Meta API",
+            "ערעור מודעות פתוח"
+          ],
+          "file": null
+        }
+      ]
+    },
+    {
+      "id": "2026-08-04-slab-guard-launch",
+      "title": "Slab Guard — מגן סיליקון ל-PSA",
+      "emoji": "🛡️",
+      "price": "₪19 / ₪22",
+      "tag": "השקה ראשונה · 25 יחידות · קמפיין עברית לקהל ישראלי",
+      "pipeline": {
+        "brief": "done",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "instagram-feed",
+          "label": "פוסט דגל — צבעי הבמפר",
+          "slot": "il-wed-eve",
+          "publish_at": "2026-08-05T20:30:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-04-slab-guard-launch-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "label": "reel-handfan · 3 פריימים",
+          "slot": "il-thu-eve",
+          "publish_at": "2026-08-06T21:00:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-04-slab-guard-launch-instagram-story.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "label": "סטוריטלינג הגנה על הסלאב",
+          "slot": "il-sat-eve",
+          "publish_at": "2026-08-08T21:30:00+03:00",
+          "status": "APPROVED",
+          "file": "drafts/2026-08-04-slab-guard-launch-facebook-organic.md"
+        },
+        {
+          "platform": "facebook-ad",
+          "label": "מדולג — ממומן חסום",
+          "slot": null,
+          "publish_at": null,
+          "status": "SKIPPED",
+          "blockers": [
+            "Meta API",
+            "ערעור מודעות פתוח"
+          ],
+          "file": null
+        }
+      ]
+    }
+  ]
+}
