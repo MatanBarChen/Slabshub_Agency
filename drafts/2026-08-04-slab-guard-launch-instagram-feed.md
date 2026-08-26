@@ -21,7 +21,8 @@
 #פוקימון #אספנים #קלפים #סלאב #פוקימוןישראל #גרייד #psa #slabs #gradedcards #pokemonisrael #pokemoncards #pokemontcg #psa10 #slabguard #אוסףקלפים
 
 ## Asset
-`assets/2026-08-04-slab-guard-launch/promo-main.png` — 928x1152 (4:5), per assets/2026-08-04-slab-guard-launch/image-spec.md sec. "IG feed" — upscale to 1080x1350 on export before posting. Overlay: top dark zone "הסלאב שלך. הצבע שלך." (RTL) + gold $4.99 price pill bottom-right + "3+ = 15% הנחה" micro-badge bottom-left (overlay text is spec direction, not yet baked into the PNG — confirm with creative/design before export if overlay isn't burned in).
+`assets/2026-08-04-slab-guard-launch/ig-feed-1080x1350.png` — **final export, ready to post.**
+1080x1350 (4:5), overlay burned in per image-spec.md sec. "IG feed": headline "הסלאב שלך. הצבע שלך." top-right RTL, gold price pill bottom-right reading **$4.99** (live store price, verified 26.08), micro-badge "3 ומעלה — 15% הנחה" bottom-left. Rendered from promo-main.png with the brand type stack (Frank Ruhl Libre / Heebo) — no frame cropped at either edge.
 
 ## Link
 https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?utm_source=instagram&utm_medium=organic&utm_campaign=2026-08-04-slab-guard-launch
@@ -30,9 +31,8 @@ https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?ut
 - [x] Copy matches platform limits — caption ~950 chars incl. line breaks, 15 hashtags; well under IG's 2,200-char cap.
 - [x] UTM parameters present and correct — utm_source=instagram, utm_medium=organic, utm_campaign=2026-08-04-slab-guard-launch (exact match to campaign id and draft filename).
 - [x] No unverified price/scarcity claims — $4.99/$5.99 (verified live in Shopify 26.08), 3+/15% promo, and 25-unit (15+10) inventory all match brief UPDATE 2 exactly; no CGC/BGS fit claims, PSA-only.
-- [x] Asset format matches placement dimensions — 928x1152 is correct 4:5 ratio; needs upscale to 1080x1350 per spec before export (not yet done).
+- [x] Asset format matches placement dimensions — final export is 1080x1350 with the overlay burned in; nothing left to do before posting.
 
 ## Verification notes
-- Asset is spec-correct in ratio but not yet at final 1080x1350 export resolution — upscale before posting.
-- Overlay text ("הסלאב שלך. הצבע שלך." + price pill) is documented in image-spec.md but not confirmed baked into the current promo-main.png — verify visually before publishing.
-
+- Final asset exported 26.08.2026 at 1080x1350 with overlay burned in — verified visually.
+- Price on the visual and in the caption both read $4.99, matching Shopify variant SG-SOLID.

@@ -3,7 +3,8 @@
 Campaign: 2026-08-04-slab-guard-launch
 Product: https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs
 Language: **Hebrew only** (primary), all overlays RTL-aligned. Niche English terms (PSA) kept as-is per how Israeli collectors actually write.
-Prices in content: **₪19** solid / **₪22** glitter. Checkout charges USD — do not show USD on visuals.
+Prices in content: **$4.99** solid / **$5.99** glitter — the live store prices (Shopify variants SG-SOLID / SG-GLITTER, verified 2026-08-26). The store sells in USD only, so visuals and copy both quote USD.
+> Corrected 2026-08-26. This spec previously said ₪19/₪22 and told visuals to hide the USD price; that no > longer matched the store and would have advertised a price the checkout does not charge.
 Promo (automatic in cart): קונים 3 ומעלה — 15% הנחה אוטומטית בקופה. Use as a small secondary badge, not the headline (headline stays product/color-led).
 
 ## Base images (source photos)
@@ -30,11 +31,13 @@ accessory shot, not a museum/grail treatment — colors are the hero, energy sta
 ## Placements
 
 ### 1. IG feed — 1080x1350 (4:5) — primary hero
+> **Built:** `ig-feed-1080x1350.png` (26.08.2026), overlay burned in via `scripts/slab_guard_hero.py`.
+> Clean no-overlay twin for FB organic: `fb-organic-1080x1350-clean.png`.
 - Base: `promo-main.png`, upscaled to 1080x1350 (already 4:5, no cropping needed).
 - Color fan centered, occupying the lower two-thirds; do not crop any frame at the left/right edges.
 - Text overlay, top dark zone, right-aligned RTL, white, bold, tight tracking:
   **"הסלאב שלך. הצבע שלך."** (4 words)
-- Price badge: bottom-right, pill, gold (#D9B36B) on near-black, white text **"₪19"**;
+- Price badge: bottom-right, pill, gold (#D9B36B) on near-black, white text **"$4.99"**;
   small caps line above it in muted white: "סיליקון ל-PSA".
 - Secondary micro-badge, bottom-left, small pill: **"3+ = 15% הנחה"**.
 
@@ -44,7 +47,7 @@ accessory shot, not a museum/grail treatment — colors are the hero, energy sta
 - **Frame 1:** overlay top-right RTL: **"שישה צבעים חדשים הגיעו"** (4 words). Bottom sticker zone (last 250px)
   kept clear for the native link sticker. CTA text above it: **"לינק בביו"**.
 - **Frame 2** (optional second card): glitter/gradient CDN photo on the same dark treatment, overlay:
-  **"קולקציית הגליטר הפרימיום"** (3 words), price badge **"₪22"**.
+  **"קולקציית הגליטר הפרימיום"** (3 words), price badge **"$5.99"**.
 
 ### 3. FB ad — 1080x1080 (1:1)
 - Center-crop `promo-main.png` to square, biased toward the bottom (keep the fan + floor reflection in frame);

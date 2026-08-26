@@ -20,7 +20,7 @@
 #פוקימון #אספנים #psa
 
 ## Asset
-`assets/2026-08-04-slab-guard-launch/promo-main.png` — 928x1152 (4:5), same hero image as the IG feed post (image-spec.md defines no separate FB-organic overlay — this is a long-form storytelling caption, no ad-style text overlay needed). Upscale to 1080x1350 on export, consistent with IG feed asset.
+`assets/2026-08-04-slab-guard-launch/fb-organic-1080x1350-clean.png` — **final export, ready to post.** 1080x1350 (4:5), same hero as the IG feed post but **without** the text overlay — image-spec.md defines no FB-organic overlay, the storytelling caption carries the message.
 
 ## Link (post in first comment, per copy file convention)
 https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?utm_source=facebook&utm_medium=organic&utm_campaign=2026-08-04-slab-guard-launch
