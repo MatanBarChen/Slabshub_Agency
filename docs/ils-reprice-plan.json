@@ -1,0 +1,614 @@
+[
+ {
+  "id": "gid://shopify/ProductVariant/42882477162607",
+  "title": "PSA 9 | Fearow [1st Edition] #36 Pokemon Jungle",
+  "status": "ARCHIVED",
+  "usd": 44.99,
+  "ils": 139,
+  "raw": 134.97,
+  "drift": 3.0
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42882480144495",
+  "title": "PSA 9 | Charmander [1st Edition] #50 Pokemon Team Rocket",
+  "status": "ARCHIVED",
+  "usd": 27.99,
+  "ils": 79,
+  "raw": 83.97,
+  "drift": -5.9
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42882480603247",
+  "title": "PSA 8 | Aerodactyl GL #55 Pokemon Rising Rivals",
+  "status": "ACTIVE",
+  "usd": 21.99,
+  "ils": 69,
+  "raw": 65.97,
+  "drift": 4.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42882495119471",
+  "title": "PSA 8 | Parasect [Series 1] #47 Pokemon Japanese Vending",
+  "status": "ACTIVE",
+  "usd": 29.99,
+  "ils": 89,
+  "raw": 89.97,
+  "drift": -1.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42882495250543",
+  "title": "PSA 9 | Galarian Articuno #SWSH282 Pokemon Promo",
+  "status": "ACTIVE",
+  "usd": 24.99,
+  "ils": 79,
+  "raw": 74.97,
+  "drift": 5.4
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42882495545455",
+  "title": "PSA 10 | Scizor VMAX #193 Pokemon Darkness Ablaze",
+  "status": "ACTIVE",
+  "usd": 52.99,
+  "ils": 159,
+  "raw": 158.97,
+  "drift": 0.0
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42882670198895",
+  "title": "PSA 9 | Lightning Energy #90 Pokemon Japanese Blue Sky Stream",
+  "status": "ACTIVE",
+  "usd": 39.99,
+  "ils": 119,
+  "raw": 119.97,
+  "drift": -0.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42882678259823",
+  "title": "PSA 9 | Tapu Lele #SV94 Pokemon Hidden Fates",
+  "status": "ARCHIVED",
+  "usd": 24.99,
+  "ils": 79,
+  "raw": 74.97,
+  "drift": 5.4
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42885042208879",
+  "title": "PSA 9 | Light Arcanine #59 Pokemon Japanese Darkness to Light",
+  "status": "ACTIVE",
+  "usd": 549.99,
+  "ils": 1590,
+  "raw": 1649.97,
+  "drift": -3.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42885042372719",
+  "title": "PSA 9 | Charizard VStar #SWSH262 Pokemon Promo",
+  "status": "ARCHIVED",
+  "usd": 89.99,
+  "ils": 279,
+  "raw": 269.97,
+  "drift": 3.3
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42885045813359",
+  "title": "PSA 8 | 2003 POKEMON EX DRAGON #93 LATIAS EX-HOLO",
+  "status": "ACTIVE",
+  "usd": 549.99,
+  "ils": 1590,
+  "raw": 1649.97,
+  "drift": -3.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42885049188463",
+  "title": "PSA 8 | Charizard #180 Pokemon Japanese 1999 Merlin",
+  "status": "ACTIVE",
+  "usd": 39.99,
+  "ils": 119,
+  "raw": 119.97,
+  "drift": -0.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42885052629103",
+  "title": "PSA 10 | Jigglypuff Pokemon Japanese Old Maid",
+  "status": "ACTIVE",
+  "usd": 34.99,
+  "ils": 109,
+  "raw": 104.97,
+  "drift": 3.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42885677875311",
+  "title": "RAW CARD | Roaring Moon [Master Ball] #65 Prismatic Evolutions",
+  "status": "ACTIVE",
+  "usd": 9.99,
+  "ils": 29,
+  "raw": 29.97,
+  "drift": -3.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42897486545007",
+  "title": "RAW CARD | Raikou V #GG41 Pokemon Crown Zenith",
+  "status": "ACTIVE",
+  "usd": 44.99,
+  "ils": 139,
+  "raw": 134.97,
+  "drift": 3.0
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42897486610543",
+  "title": "RAW CARD | Galarian Moltres #SWSH284 Pokemon Promo",
+  "status": "ACTIVE",
+  "usd": 17.99,
+  "ils": 55,
+  "raw": 53.97,
+  "drift": 1.9
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42897487790191",
+  "title": "RAW CARD | Magneton #159 Pokemon Promo",
+  "status": "ACTIVE",
+  "usd": 54.99,
+  "ils": 159,
+  "raw": 164.97,
+  "drift": -3.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938447003759",
+  "title": "RAW CARD | Slowpoke & Psyduck GX #239",
+  "status": "ACTIVE",
+  "usd": 54.99,
+  "ils": 159,
+  "raw": 164.97,
+  "drift": -3.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938447757423",
+  "title": "RAW CARD | Gyarados VMAX #207 Pokemon Evolving Skies",
+  "status": "ACTIVE",
+  "usd": 46.99,
+  "ils": 139,
+  "raw": 140.97,
+  "drift": -1.4
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938448969839",
+  "title": "RAW CARD | Arceus & Dialga & Palkia GX #156 Cosmic Eclipse",
+  "status": "ACTIVE",
+  "usd": 27.99,
+  "ils": 79,
+  "raw": 83.97,
+  "drift": -5.9
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938449625199",
+  "title": "RAW CARD | Alolan Ninetales GX #SV53 Pokemon Hidden Fates",
+  "status": "ACTIVE",
+  "usd": 54.99,
+  "ils": 159,
+  "raw": 164.97,
+  "drift": -3.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938899300463",
+  "title": "RAW CARD | Mismagius #212 Pokemon Paldea Evolved",
+  "status": "ACTIVE",
+  "usd": 39.99,
+  "ils": 119,
+  "raw": 119.97,
+  "drift": -0.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938901102703",
+  "title": "RAW CARD | Lillie's Clefairy Ex #184 Pokemon Journey Together",
+  "status": "ACTIVE",
+  "usd": 144.99,
+  "ils": 449,
+  "raw": 434.97,
+  "drift": 3.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938902872175",
+  "title": "RAW CARD | Drowzee #210 Pokemon Scarlet & Violet",
+  "status": "ACTIVE",
+  "usd": 64.99,
+  "ils": 199,
+  "raw": 194.97,
+  "drift": 2.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938907132015",
+  "title": "RAW CARD | Origin Forme Dialga VSTAR #GG68 Crown Zenith",
+  "status": "ACTIVE",
+  "usd": 99.99,
+  "ils": 299,
+  "raw": 299.97,
+  "drift": -0.3
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938907885679",
+  "title": "RAW CARD | Kabutops EX #97 Pokemon Sandstorm",
+  "status": "ACTIVE",
+  "usd": 89.99,
+  "ils": 279,
+  "raw": 269.97,
+  "drift": 3.3
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42938909098095",
+  "title": "RAW CARD | Latios #203 Pokemon Surging Sparks",
+  "status": "ACTIVE",
+  "usd": 39.99,
+  "ils": 119,
+  "raw": 119.97,
+  "drift": -0.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942735417455",
+  "title": "PSA 9 | 2022 Special Delivery Charizard-Holo #075",
+  "status": "ACTIVE",
+  "usd": 249.99,
+  "ils": 799,
+  "raw": 749.97,
+  "drift": 6.5
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942735843439",
+  "title": "PSA 9 | Special Delivery Bidoof-Holo #177 2021 Promo",
+  "status": "ACTIVE",
+  "usd": 429.99,
+  "ils": 1190,
+  "raw": 1289.97,
+  "drift": -7.7
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942736695407",
+  "title": "PSA 10 | 2023 Japanese Triplet Beat Art Rare #080 Magikarp",
+  "status": "ACTIVE",
+  "usd": 229.99,
+  "ils": 699,
+  "raw": 689.97,
+  "drift": 1.3
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942737285231",
+  "title": "PSA 10 | 1999 Japanese CD Promo #9 Blastoise-Holo",
+  "status": "ACTIVE",
+  "usd": 799.99,
+  "ils": 2490,
+  "raw": 2399.97,
+  "drift": 3.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942737383535",
+  "title": "PSA 10 | 1999 Japanese CD Promo #3 Venusaur-Holo",
+  "status": "ACTIVE",
+  "usd": 649.99,
+  "ils": 1990,
+  "raw": 1949.97,
+  "drift": 2.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942737580143",
+  "title": "PSA 7 | 2000 Rocket Prerelease #8 Dark Gyarados-Holo",
+  "status": "ACTIVE",
+  "usd": 34.99,
+  "ils": 109,
+  "raw": 104.97,
+  "drift": 3.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942963384431",
+  "title": "CGC 10 | Charizard VSTAR #174 Pokemon Brilliant Stars",
+  "status": "ACTIVE",
+  "usd": 134.99,
+  "ils": 399,
+  "raw": 404.97,
+  "drift": -1.5
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942963679343",
+  "title": "CGC 9 | Glaceon GX #SV55 Pokemon Hidden Fates",
+  "status": "ACTIVE",
+  "usd": 54.99,
+  "ils": 159,
+  "raw": 164.97,
+  "drift": -3.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942963810415",
+  "title": "CGC 7 | Eevee [1st Edition] #51 Pokemon Jungle",
+  "status": "ACTIVE",
+  "usd": 24.99,
+  "ils": 79,
+  "raw": 74.97,
+  "drift": 5.4
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42942963908719",
+  "title": "CGC 9 | Zacian #82 Pokemon Vivid Voltage",
+  "status": "ACTIVE",
+  "usd": 29.99,
+  "ils": 89,
+  "raw": 89.97,
+  "drift": -1.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42959291252847",
+  "title": "RAW CARD | Iono's Bellibolt Ex #172 Journey Together",
+  "status": "ACTIVE",
+  "usd": 4.99,
+  "ils": 15,
+  "raw": 14.97,
+  "drift": 0.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42960720986223",
+  "title": "RAW CARD | Iono's Bellibolt ex 183/159 Journey Together",
+  "status": "ACTIVE",
+  "usd": 54.99,
+  "ils": 159,
+  "raw": 164.97,
+  "drift": -3.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42960721608815",
+  "title": "RAW CARD | Switch #206 Pokemon Scarlet & Violet 151",
+  "status": "ACTIVE",
+  "usd": 5.99,
+  "ils": 19,
+  "raw": 17.97,
+  "drift": 5.7
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42960722067567",
+  "title": "RAW CARD | Ninetales ex #186 Pokemon Scarlet & Violet 151",
+  "status": "ACTIVE",
+  "usd": 17.99,
+  "ils": 55,
+  "raw": 53.97,
+  "drift": 1.9
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42981071192175",
+  "title": "PSA 9 | Rayquaza GX #177a Pokemon Celestial Storm",
+  "status": "ACTIVE",
+  "usd": 79.99,
+  "ils": 249,
+  "raw": 239.97,
+  "drift": 3.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42981275009135",
+  "title": "PSA 9 | Charizard [Holo] #6 Pokemon Japanese CD Promo",
+  "status": "ACTIVE",
+  "usd": 1199.0,
+  "ils": 3590,
+  "raw": 3597.0,
+  "drift": -0.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42987410260079",
+  "title": "RAW CARD | Yveltal #205 Pokemon Paradox Rift",
+  "status": "ACTIVE",
+  "usd": 29.99,
+  "ils": 89,
+  "raw": 89.97,
+  "drift": -1.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42987410915439",
+  "title": "RAW CARD | Articuno GX #SV54 Pokemon Hidden Fates",
+  "status": "ACTIVE",
+  "usd": 34.99,
+  "ils": 109,
+  "raw": 104.97,
+  "drift": 3.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42987415371887",
+  "title": "RAW CARD | Pikachu with Grey Felt Hat #85 Pokemon Promo",
+  "status": "ACTIVE",
+  "usd": 999.0,
+  "ils": 2990,
+  "raw": 2997.0,
+  "drift": -0.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42987419795567",
+  "title": "RAW CARD | Pecharunt ex #163 SIR Prismatic Evolutions",
+  "status": "ACTIVE",
+  "usd": 29.99,
+  "ils": 89,
+  "raw": 89.97,
+  "drift": -1.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42988804702319",
+  "title": "PSA 8 | Charmander #101 Pokemon Stormfront",
+  "status": "ACTIVE",
+  "usd": 79.99,
+  "ils": 249,
+  "raw": 239.97,
+  "drift": 3.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42988805423215",
+  "title": "PSA 9 | Mewtwo #150 Pokemon Japanese Expansion Pack",
+  "status": "ACTIVE",
+  "usd": 99.0,
+  "ils": 299,
+  "raw": 297.0,
+  "drift": 0.7
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42988904710255",
+  "title": "PSA 8 | Charmander [Shadowless] #46 Pokemon Base Set",
+  "status": "ACTIVE",
+  "usd": 119.0,
+  "ils": 349,
+  "raw": 357.0,
+  "drift": -2.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42990043267183",
+  "title": "PSA 7 | 2000 Misty's Seadra [Pre-Release] #9 Gym Heroes",
+  "status": "ACTIVE",
+  "usd": 39.99,
+  "ils": 119,
+  "raw": 119.97,
+  "drift": -0.8
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42991890989167",
+  "title": "RAW CARD | Pikachu #GG30 Pokemon Crown Zenith",
+  "status": "ACTIVE",
+  "usd": 54.99,
+  "ils": 159,
+  "raw": 164.97,
+  "drift": -3.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42991893610607",
+  "title": "RAW CARD | Pikachu #RC29 Pokemon Generations",
+  "status": "ACTIVE",
+  "usd": 119.99,
+  "ils": 349,
+  "raw": 359.97,
+  "drift": -3.0
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42991895380079",
+  "title": "RAW CARD | Pikachu #TG05 Pokemon Lost Origin",
+  "status": "ACTIVE",
+  "usd": 49.99,
+  "ils": 159,
+  "raw": 149.97,
+  "drift": 6.0
+ },
+ {
+  "id": "gid://shopify/ProductVariant/42991897182319",
+  "title": "RAW CARD | Sylveon EX #RC32 Pokemon Generations",
+  "status": "ACTIVE",
+  "usd": 64.99,
+  "ils": 199,
+  "raw": 194.97,
+  "drift": 2.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/43006831853679",
+  "title": "RAW CARD | Alolan Dugtrio #208 Pokemon Surging Sparks",
+  "status": "ACTIVE",
+  "usd": 12.99,
+  "ils": 39,
+  "raw": 38.97,
+  "drift": 0.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/43006836670575",
+  "title": "RAW CARD | Umbreon ex [Stamped] #60 Prismatic Evolutions",
+  "status": "ACTIVE",
+  "usd": 24.99,
+  "ils": 79,
+  "raw": 74.97,
+  "drift": 5.4
+ },
+ {
+  "id": "gid://shopify/ProductVariant/43006838308975",
+  "title": "RAW CARD | Espeon ex [Stamped] #34 Prismatic Evolutions",
+  "status": "ACTIVE",
+  "usd": 5.99,
+  "ils": 19,
+  "raw": 17.97,
+  "drift": 5.7
+ },
+ {
+  "id": "gid://shopify/ProductVariant/43006839160943",
+  "title": "RAW CARD | Jolteon ex [Stamped] #30 Prismatic Evolutions",
+  "status": "ACTIVE",
+  "usd": 4.99,
+  "ils": 15,
+  "raw": 14.97,
+  "drift": 0.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/43006839292015",
+  "title": "RAW CARD | Leafeon ex #6 Prismatic Evolutions [Stamped]",
+  "status": "ACTIVE",
+  "usd": 4.99,
+  "ils": 15,
+  "raw": 14.97,
+  "drift": 0.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/43006842175599",
+  "title": "RAW CARD | Mewtwo #183 Japanese Scarlet & Violet 151",
+  "status": "ACTIVE",
+  "usd": 19.99,
+  "ils": 59,
+  "raw": 59.97,
+  "drift": -1.6
+ },
+ {
+  "id": "gid://shopify/ProductVariant/43006842929263",
+  "title": "RAW CARD | Clefable #36 Pokemon Japanese Jungle",
+  "status": "ACTIVE",
+  "usd": 11.99,
+  "ils": 35,
+  "raw": 35.97,
+  "drift": -2.7
+ },
+ {
+  "id": "gid://shopify/ProductVariant/53934528921711",
+  "title": "Magnetic One-Touch Card Holder 35pt (5-Pack)",
+  "status": "DRAFT",
+  "usd": 14.99,
+  "ils": 45,
+  "raw": 44.97,
+  "drift": 0.1
+ },
+ {
+  "id": "gid://shopify/ProductVariant/53937803853935",
+  "title": "Slab Guard | Silicone Bumper — Solid Color",
+  "status": "ACTIVE",
+  "usd": 4.99,
+  "ils": 15,
+  "raw": 14.97,
+  "drift": 0.2
+ },
+ {
+  "id": "gid://shopify/ProductVariant/53937803886703",
+  "title": "Slab Guard | Silicone Bumper — Glitter Gradient",
+  "status": "ACTIVE",
+  "usd": 5.99,
+  "ils": 19,
+  "raw": 17.97,
+  "drift": 5.7
+ },
+ {
+  "id": "gid://shopify/ProductVariant/54050092056687",
+  "title": "Vault X 9-Pocket Zip Binder — 360 Cards",
+  "status": "DRAFT",
+  "usd": 48.99,
+  "ils": 139,
+  "raw": 146.97,
+  "drift": -5.4
+ },
+ {
+  "id": "gid://shopify/ProductVariant/54050092286063",
+  "title": "4-Tier Card Display Stand — Clear",
+  "status": "DRAFT",
+  "usd": 24.99,
+  "ils": 79,
+  "raw": 74.97,
+  "drift": 5.4
+ },
+ {
+  "id": "gid://shopify/ProductVariant/54050092810351",
+  "title": "12in Photo Light Box — CRI95 LED",
+  "status": "DRAFT",
+  "usd": 34.99,
+  "ils": 109,
+  "raw": 104.97,
+  "drift": 3.8
+ }
+]
