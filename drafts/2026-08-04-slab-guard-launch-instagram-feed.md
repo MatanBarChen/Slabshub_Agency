@@ -5,13 +5,13 @@
 
 ## Final copy
 
-הסלאב שרד את הדירוג. עכשיו תשמור עליו ככה 🛡️
+קונים סלאב? תוסיפו לו מגן ב-₪19 ותקבלו את שניהם באותה חבילה 🛡️
 
-קייס PSA שעבר גרייד זה לא משהו שרוצים לגרד בטעות על השולחן, בתיק, או בדרך לתערוכה. ה-Slab Guard הוא בַּמְפֶּר סיליקון שעוטף את הסלאב שלכם ומגן על הפינות — סופג מכות במקום שהקייס שלכם יספוג אותן.
+זה הרעיון. אנחנו לא רק מוכרים בַּמְפֶּרים — אנחנו מוכרים את הסלאבים עצמם. אז במקום שהקלף שקניתם אצלנו יגיע חשוף וייסע אליכם בתיק בלי הגנה, הוא מגיע כבר עטוף.
 
-מתאים לסלאבים בגודל PSA (כ-84x138 מ"מ). ואגב — אנחנו לא רק מוכרים בַּמְפֶּרים, אנחנו מוכרים גם את הסלאבים עצמם. קניתם קלף גרייד אצלנו? תוסיפו הגנה על זה ב-₪15.
+ה-Slab Guard הוא בַּמְפֶּר סיליקון שעוטף את הקייס ומגן על הפינות — סופג את המכה במקום שהסלאב יספוג אותה. מתאים לסלאבים בגודל PSA (כ-84x138 מ"מ).
 
-צבע אחיד ב-₪15, גרסת גליטר (אומברה נוצצת) ב-₪19 — לסמן ולעצב את האוסף לפי סט, טייפ או פשוט לפי מה שיפה לעין. קונים 3 ומעלה → 15% הנחה אוטומטית בקופה.
+צבע אחיד ב-₪19, גרסת גליטר (אומברה נוצצת) ב-₪22 — לסמן ולעצב את האוסף לפי סט, לפי טייפ, או פשוט לפי מה שיפה לעין. קונים 3 ומעלה → 15% הנחה אוטומטית בקופה.
 
 מלאי ההשקה: 25 יחידות בסך הכול (15 אחיד + 10 גליטר). כשנגמר — נגמר.
 
@@ -21,7 +21,7 @@
 
 ## Asset
 `assets/2026-08-04-slab-guard-launch/ig-feed-1080x1350.png` — **final export, ready to post.**
-1080x1350 (4:5), overlay burned in per image-spec.md sec. "IG feed": headline "הסלאב שלך. הצבע שלך." top-right RTL, gold price pill bottom-right reading **₪15** (live store price, verified 26.08), micro-badge "3 ומעלה — 15% הנחה" bottom-left. Rendered from promo-main.png with the brand type stack (Frank Ruhl Libre / Heebo) — no frame cropped at either edge.
+1080x1350 (4:5), overlay burned in per image-spec.md sec. "IG feed": headline "הסלאב שלך. הצבע שלך." top-right RTL, gold price pill bottom-right reading **₪19** (live store price, verified 26.08), micro-badge "3 ומעלה — 15% הנחה" bottom-left. Rendered from promo-main.png with the brand type stack (Frank Ruhl Libre / Heebo) — no frame cropped at either edge.
 
 ## Link
 https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?utm_source=instagram&utm_medium=organic&utm_campaign=2026-08-04-slab-guard-launch
@@ -29,9 +29,10 @@ https://slabshub.com/products/slab-guard-silicone-bumper-for-psa-graded-slabs?ut
 ## Checklist
 - [x] Copy matches platform limits — caption ~950 chars incl. line breaks, 15 hashtags; well under IG's 2,200-char cap.
 - [x] UTM parameters present and correct — utm_source=instagram, utm_medium=organic, utm_campaign=2026-08-04-slab-guard-launch (exact match to campaign id and draft filename).
-- [x] No unverified price/scarcity claims — ₪15/₪19 (verified live in Shopify 26.08, after the ILS switch), 3+/15% promo, and 25-unit (15+10) inventory all match brief UPDATE 2 exactly; no CGC/BGS fit claims, PSA-only.
+- [x] No unverified price/scarcity claims — ₪19/₪22 (verified live in Shopify 26.08 — deliberate price point, not a conversion artefact), 3+/15% promo, and 25-unit (15+10) inventory all match brief UPDATE 2 exactly; no CGC/BGS fit claims, PSA-only.
 - [x] Asset format matches placement dimensions — final export is 1080x1350 with the overlay burned in; nothing left to do before posting.
 
 ## Verification notes
 - Final asset exported 26.08.2026 at 1080x1350 with overlay burned in — verified visually.
-- Price on the visual and in the caption both read ₪15, matching Shopify variant SG-SOLID after the ILS switch.
+- Price on the visual and in the caption both read ₪19, matching Shopify variant SG-SOLID.
+- Lead rewritten 26.08 to open on the attach-to-a-card angle: at ₪29 domestic shipping the guard does not work as a standalone purchase, only bundled or in multiples.

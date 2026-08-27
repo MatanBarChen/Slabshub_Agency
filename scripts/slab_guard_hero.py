@@ -1,7 +1,7 @@
 """Bakes the IG-feed overlay onto promo-main.png and exports at 1080x1350.
 
 Follows assets/2026-08-04-slab-guard-launch/image-spec.md sec. "IG feed",
-with the price badge set to the live store price (₪15, verified
+with the price badge set to the live store price (₪19, verified
 2026-08-26). Renders through Chromium so the brand fonts are used directly.
 """
 import base64, pathlib, subprocess
@@ -61,6 +61,6 @@ html,body{{width:{w}px;height:{h}px;overflow:hidden;background:{INK}}}
 
 
 if __name__ == "__main__":
-    build(CAMP / "ig-feed-1080x1350.png", 1080, 1350, "הסלאב שלך.<br>הצבע שלך.", "₪15")
+    build(CAMP / "ig-feed-1080x1350.png", 1080, 1350, "הסלאב שלך.<br>הצבע שלך.", "₪19")
     # FB organic runs the same hero clean — image-spec.md defines no overlay for it
     build(CAMP / "fb-organic-1080x1350-clean.png", 1080, 1350)
