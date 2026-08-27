@@ -11,7 +11,7 @@
       "id": "2026-08-05-eevee-jungle-cgc7",
       "title": "Eevee [1st Edition] #51 · Pokemon Jungle · CGC 7",
       "emoji": "🦊",
-      "price": "$24.99",
+      "price": "₪79",
       "tag": "מלאי תקוע · 476 יום · וינטג' 1999",
       "pipeline": {
         "brief": "done",
@@ -61,7 +61,7 @@
       "id": "2026-08-04-slab-guard-launch",
       "title": "Slab Guard — מגן סיליקון ל-PSA",
       "emoji": "🛡️",
-      "price": "$4.99 / $5.99",
+      "price": "₪15 / ₪19",
       "tag": "השקה ראשונה · 25 יחידות · קמפיין עברית לקהל ישראלי",
       "pipeline": {
         "brief": "done",
@@ -111,7 +111,7 @@
       "id": "2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo",
       "title": "Charizard CD Promo · PSA 9",
       "emoji": "🔥",
-      "price": "$1,199",
+      "price": "₪3,590",
       "tag": "value hook · מתחת לכל מכירת eBay",
       "pipeline": {
         "brief": "done",
@@ -161,7 +161,7 @@
       "id": "2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo",
       "title": "Pikachu Van Gogh #085",
       "emoji": "🎨",
-      "price": "$999",
+      "price": "₪2,990",
       "tag": "קמפיין דגל · עותק raw יחיד",
       "pipeline": {
         "brief": "done",
@@ -211,7 +211,7 @@
       "id": "2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions",
       "title": "Umbreon ex [Stamped] #60 · Prismatic Evolutions",
       "emoji": "🌙",
-      "price": "$24.99",
+      "price": "₪79",
       "tag": "value hook · accessible Umbreon (not Moonbreon SIR)",
       "pipeline": {
         "brief": "done",
@@ -261,7 +261,7 @@
       "id": "2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151",
       "title": "Mewtwo #183 · Japanese 151",
       "emoji": "🧬",
-      "price": "$19.99",
+      "price": "₪59",
       "tag": "אורגני בלבד",
       "pipeline": {
         "brief": "done",
@@ -309,5 +309,6 @@
     }
   ],
   "_reset": "הלוז אופס ב-26.08.2026 לבקשת מתן. כל התאריכים הישנים (02–11.08) נמחקו; כל פוסט אורגני קיבל חלון חדש וסטטוס PENDING_APPROVAL — מחזור אישור נקי. פוסט שכבר פורסם נשמר כ-PUBLISHED מחוץ לרוטציה. גיבוי: archive/_schedule-resets/state-before-reset-2026-08-26.json",
-  "_approval_log": "26.08.2026 — מתן אישר בצ'אט את גל 1 (Eevee + Slab Guard, 6 פוסטים, 27–31.08). שבועות 2–4 נותרו PENDING_APPROVAL. הפרסום עצמו ידני: Meta API עדיין חסום, אין פרסום אוטומטי."
+  "_approval_log": "26.08.2026 — מתן אישר בצ'אט את גל 1 (Eevee + Slab Guard, 6 פוסטים, 27–31.08). שבועות 2–4 נותרו PENDING_APPROVAL. הפרסום עצמו ידני: Meta API עדיין חסום, אין פרסום אוטומטי.",
+  "_currency": "החנות עברה ל-ILS ב-26.08.2026 (שער 3.0). כל 68 הווריאנטים תומחרו מחדש ותעריפי המשלוח הוגדרו ₪29/₪59/₪69/₪89. הקופי של גל 1 (Slab Guard + Eevee) עודכן לשקלים. קמפיינים של שבועות 2–4 עדיין מצטטים דולרים — לעדכן לפני 04.09."
 }

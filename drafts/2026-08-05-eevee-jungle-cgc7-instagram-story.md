@@ -9,7 +9,7 @@
 
 **Frame 2 (detail):** CGC 7, Near Mint. Jungle set. Only 1 in stock.
 
-**Frame 3 (CTA):** $24.99 — swipe up to see the card →
+**Frame 3 (CTA):** ₪79 — swipe up to see the card →
 
 ## Asset
 
@@ -22,7 +22,7 @@ https://slabshub.com/products/eevee-1st-edition-51-pokemon-jungle-graded-7-cgc?u
 ## Checklist
 - [x] Copy matches platform limits — 3 frames, 6/10/9 words respectively, well under story-frame norms
 - [x] UTM parameters present and correct — utm_medium=story, campaign matches exactly; URL parses
-- [x] No unverified price/scarcity claims — $24.99 confirmed store price; "only 1 in stock" = literal inventory
+- [x] No unverified price/scarcity claims — ₪79 confirmed store price; "only 1 in stock" = literal inventory
 - [x] Asset format matches placement dimensions — promo-story-1080x1920.png measured 1080x1920, exact 9:16
 
 ## Verification notes
