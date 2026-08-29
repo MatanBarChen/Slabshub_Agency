@@ -12,3 +12,6 @@ __pycache__/
 
 # Node
 node_modules/
+
+# Prototype chat logs (may contain visitor contact details)
+prototype/sales-agent/conversations/

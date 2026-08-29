@@ -6,6 +6,12 @@
       "runtimeExecutable": "py",
       "runtimeArgs": ["-m", "http.server", "8765", "--bind", "127.0.0.1"],
       "port": 8765
+    },
+    {
+      "name": "sales-agent",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["prototype/sales-agent/server.py"],
+      "port": 8787
     }
   ]
 }
