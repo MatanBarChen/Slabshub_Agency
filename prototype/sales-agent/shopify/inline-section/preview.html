@@ -75,129 +75,105 @@
   </div>
 </section>
 
-<section class="shc-section">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;500&display=swap" rel="stylesheet">
+
+<section class="shc-section" dir="rtl">
   <div class="wrap">
     <div class="section-head">
-      <h2>The Enquiry Desk</h2>
-      <span class="shc-status" id="shc-status">Open now</span>
+      <h2>דלפק הפניות</h2>
+      <span class="shc-status" id="shc-status">פתוח עכשיו</span>
     </div>
 
     <div class="shc-panel" id="shc-panel" data-endpoint="https://uvlkacfnbnsqpizktcfi.supabase.co/functions/v1/chat">
       <div class="shc-head">
         <span class="shc-who">SlabsHub AI</span>
-        <span class="shc-note">Answers from what is actually in the shop</span>
+        <span class="shc-note">עונה רק על מה שבאמת נמצא בחנות</span>
       </div>
 
-      <div class="shc-log" id="shc-log" role="log" aria-live="polite" aria-label="Conversation with the SlabsHub assistant">
+      <div class="shc-log" id="shc-log" role="log" aria-live="polite" aria-label="שיחה עם העוזר של SlabsHub">
         <div class="shc-msg shc-bot">
-          <span class="shc-from">The desk</span>
-          <div class="shc-text">Ask me anything about the shop — a card you are hunting, what a grade means, or what fits a budget. I only quote cards we actually have.</div>
+          <span class="shc-from">הדלפק</span>
+          <div class="shc-text">שאל אותי כל דבר על החנות — קלף שאתה מחפש, מה אומר ציון, או מה מתאים לתקציב שלך. אני מצטט רק קלפים שבאמת יש לנו.</div>
         </div>
       </div>
 
       <div class="shc-chips" id="shc-chips">
-        <button type="button" class="shc-chip">Do you have a Charizard?</button>
-        <button type="button" class="shc-chip">Something under $40</button>
-        <button type="button" class="shc-chip">What does PSA 9 mean?</button>
-        <button type="button" class="shc-chip">A gift for a 10-year-old</button>
+        <button type="button" class="shc-chip">יש לכם צ'ריזארד?</button>
+        <button type="button" class="shc-chip">משהו עד 150 ₪</button>
+        <button type="button" class="shc-chip">מה זה PSA 9?</button>
+        <button type="button" class="shc-chip">מתנה לילד בן 10</button>
       </div>
 
       <form class="shc-ask" id="shc-ask">
         <input id="shc-input" type="text" autocomplete="off" maxlength="2000"
-               placeholder="Write to the desk…" aria-label="Your message to the assistant">
-        <button type="submit" class="shc-send" id="shc-send">Send</button>
+               placeholder="תכתוב לדלפק…" aria-label="ההודעה שלך לדלפק">
+        <button type="submit" class="shc-send" id="shc-send">שלח</button>
       </form>
     </div>
   </div>
 </section>
 
 <style>
+  .shc-section {
+    --shc-display: 'Frank Ruhl Libre', 'Times Now', 'Playfair Display', serif;
+    --shc-body: 'Frank Ruhl Libre', 'Times New Roman', serif;
+    --shc-ui: 'Heebo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --shc-ink: var(--color-carbon-black, #000);
+    --shc-yellow: var(--color-honeycomb-yellow, #ffd931);
+  }
   .shc-section .section-head { align-items: center; }
+  .shc-section .section-head h2 { font-family: var(--shc-display); font-weight: 500; }
   .shc-status {
-    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
-    font-size: var(--text-caption, 11px);
-    letter-spacing: var(--tracking-ui, 0.073em);
-    text-transform: uppercase;
+    font-family: var(--shc-ui); font-size: 12px; line-height: 1;
     display: inline-flex; align-items: center; gap: 7px;
   }
   .shc-status::before {
     content: ""; width: 8px; height: 8px; border-radius: 50%;
-    background: var(--color-honeycomb-yellow, #ffd931);
-    border: 1px solid var(--color-carbon-black, #000);
+    background: var(--shc-yellow); border: 1px solid var(--shc-ink);
   }
   .shc-panel {
-    border: 2px solid var(--color-carbon-black, #000);
+    border: 2px solid var(--shc-ink);
     border-radius: var(--radius-card, 12px);
-    background: #ffffff;
-    overflow: hidden;
+    background: #ffffff; overflow: hidden;
   }
   .shc-head {
-    background: var(--color-honeycomb-yellow, #ffd931);
-    border-bottom: 2px solid var(--color-carbon-black, #000);
+    background: var(--shc-yellow);
+    border-bottom: 2px solid var(--shc-ink);
     padding: 11px 20px;
     display: flex; align-items: baseline; justify-content: space-between; gap: 15px;
   }
   .shc-who {
-    font-family: var(--font-display, 'Times Now', 'Playfair Display', serif);
-    font-weight: 500; font-size: 21px; line-height: 1;
+    font-family: 'Times Now', 'Playfair Display', serif;
+    font-weight: 500; font-size: 21px; line-height: 1; direction: ltr;
   }
-  .shc-note {
-    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
-    font-size: var(--text-caption, 11px);
-    letter-spacing: var(--tracking-ui, 0.073em);
-    text-transform: uppercase;
-    text-align: right;
-  }
+  .shc-note { font-family: var(--shc-ui); font-size: 12px; line-height: 1.3; text-align: left; }
   .shc-log {
-    height: 380px; overflow-y: auto;
-    padding: 22px 20px 6px;
+    height: 380px; overflow-y: auto; padding: 22px 20px 6px;
     background:
       linear-gradient(rgba(46, 111, 183, 0.05) 1px, transparent 1px) 0 0 / 100% 22px,
       #ffffff;
   }
-  .shc-msg { margin-bottom: 20px; width: fit-content; max-width: min(82%, 62ch); }
-  .shc-msg.shc-me { margin-left: auto; }
+  .shc-msg { margin-bottom: 20px; width: fit-content; max-width: min(82%, 52ch); }
+  .shc-msg.shc-me { margin-inline-start: auto; }
   .shc-from {
-    display: block;
-    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
-    font-size: var(--text-caption, 11px);
-    letter-spacing: var(--tracking-ui, 0.073em);
-    text-transform: uppercase;
-    color: var(--color-ink-black, #231f20);
-    margin-bottom: 5px;
+    display: block; font-family: var(--shc-ui); font-size: 12px;
+    color: var(--color-ink-black, #231f20); margin-bottom: 5px;
   }
-  .shc-me .shc-from { text-align: right; }
+  .shc-me .shc-from { text-align: left; }
   .shc-text {
-    font-family: var(--font-body, 'Times New Roman', serif);
-    font-size: var(--text-body, 16px);
-    line-height: 1.45;
-    color: var(--color-carbon-black, #000);
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    font-family: var(--shc-body); font-size: 17px; line-height: 1.6;
+    color: var(--shc-ink); white-space: pre-wrap; word-wrap: break-word;
   }
-  .shc-bot .shc-text {
-    border-left: 3px solid var(--color-carbon-black, #000);
-    padding-left: 14px;
-  }
+  .shc-bot .shc-text { border-inline-start: 3px solid var(--shc-ink); padding-inline-start: 14px; }
   .shc-me .shc-text {
-    background: var(--color-honeycomb-yellow, #ffd931);
-    border: 1px solid var(--color-carbon-black, #000);
-    border-radius: var(--radius-card, 12px);
-    padding: 9px 14px;
+    background: var(--shc-yellow); border: 1px solid var(--shc-ink);
+    border-radius: var(--radius-card, 12px); padding: 9px 14px;
   }
-  .shc-text[dir="rtl"] { text-align: right; }
-  .shc-bot .shc-text[dir="rtl"] {
-    border-left: none; padding-left: 0;
-    border-right: 3px solid var(--color-carbon-black, #000);
-    padding-right: 14px;
-  }
-  .shc-text a {
-    border-bottom: 1px dotted var(--color-carbon-black, #000);
-    word-break: break-all;
-  }
-  .shc-text a:hover { background: var(--color-honeycomb-yellow, #ffd931); }
+  .shc-text[dir="ltr"] { text-align: left; }
+  .shc-text a { border-bottom: 1px dotted var(--shc-ink); word-break: break-all; direction: ltr; }
+  .shc-text a:hover { background: var(--shc-yellow); }
   .shc-dots span {
-    display: inline-block; width: 6px; height: 6px; margin-right: 4px;
+    display: inline-block; width: 6px; height: 6px; margin-inline-end: 4px;
     border-radius: 50%; background: var(--color-fog-gray, #a6a8aa);
     animation: shc-blink 1.1s infinite;
   }
@@ -206,57 +182,43 @@
   @keyframes shc-blink { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) { .shc-dots span { animation: none; opacity: 0.6; } }
   .shc-chips {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    padding: 14px 20px;
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 20px;
     border-top: 1px solid var(--color-smoke-line, #d6d6d6);
   }
   .shc-chips.shc-gone { display: none; }
   .shc-chip {
-    background: transparent;
-    border: 1px solid var(--color-carbon-black, #000);
-    border-radius: var(--radius-card, 12px);
-    padding: 7px 13px; cursor: pointer;
-    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
-    font-size: var(--text-caption, 11px);
-    letter-spacing: var(--tracking-nav, 0.063em);
-    text-transform: uppercase;
+    background: transparent; border: 1px solid var(--shc-ink);
+    border-radius: var(--radius-card, 12px); padding: 7px 14px; cursor: pointer;
+    font-family: var(--shc-ui); font-size: 13px; line-height: 1;
     transition: background 0.15s ease, color 0.15s ease;
   }
-  .shc-chip:hover { background: var(--color-carbon-black, #000); color: var(--color-honeycomb-yellow, #ffd931); }
+  .shc-chip:hover { background: var(--shc-ink); color: var(--shc-yellow); }
   .shc-ask {
     display: flex; align-items: center; gap: 12px;
-    padding: 14px 20px 18px;
-    border-top: 1px solid var(--color-carbon-black, #000);
+    padding: 14px 20px 18px; border-top: 1px solid var(--shc-ink);
   }
   .shc-ask input {
     flex: 1; background: transparent; border: none;
-    border-bottom: 1px solid var(--color-carbon-black, #000);
-    font-family: var(--font-body, 'Times New Roman', serif);
-    font-size: var(--text-body, 16px);
-    padding: 7px 2px; color: var(--color-ink-black, #231f20);
-    min-width: 0;
+    border-bottom: 1px solid var(--shc-ink);
+    font-family: var(--shc-body); font-size: 17px;
+    padding: 7px 2px; color: var(--color-ink-black, #231f20); min-width: 0;
   }
   .shc-ask input::placeholder { color: var(--color-fog-gray, #a6a8aa); }
   .shc-send {
-    flex: none;
-    background: var(--color-honeycomb-yellow, #ffd931);
-    border: 2px solid var(--color-carbon-black, #000);
-    border-radius: var(--radius-card, 12px);
-    padding: 10px 20px; cursor: pointer;
-    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
-    font-size: var(--text-caption, 11px);
-    letter-spacing: var(--tracking-ui, 0.073em);
-    text-transform: uppercase;
+    flex: none; background: var(--shc-yellow);
+    border: 2px solid var(--shc-ink); border-radius: var(--radius-card, 12px);
+    padding: 10px 22px; cursor: pointer;
+    font-family: var(--shc-ui); font-size: 13px; line-height: 1;
     transition: background 0.15s ease, color 0.15s ease;
   }
-  .shc-send:hover:not(:disabled) { background: var(--color-carbon-black, #000); color: var(--color-honeycomb-yellow, #ffd931); }
+  .shc-send:hover:not(:disabled) { background: var(--shc-ink); color: var(--shc-yellow); }
   .shc-send:disabled { opacity: 0.45; cursor: default; }
   @media (max-width: 560px) {
     .shc-log { height: 320px; padding: 18px 15px 4px; }
     .shc-msg { max-width: 92%; }
-    .shc-head { padding: 10px 15px; flex-direction: column; gap: 3px; }
-    .shc-note { text-align: left; }
-    .shc-chips, .shc-ask { padding-left: 15px; padding-right: 15px; }
+    .shc-head { padding: 10px 15px; flex-direction: column; gap: 3px; align-items: flex-start; }
+    .shc-note { text-align: right; }
+    .shc-chips, .shc-ask { padding-inline: 15px; }
   }
 </style>
 
@@ -276,7 +238,11 @@
   var cid = null;
   try { cid = sessionStorage.getItem('shc-cid'); } catch (e) {}
 
-  function isHebrew(t) { return /[֐-׿]/.test(t || ''); }
+  // הפאנל עברי כברירת מחדל. מבקר שכותב אנגלית (והתשובה האנגלית שתבוא אחריו)
+  // מקבל LTR להודעה הזו בלבד, כדי ששניהם ייקראו נכון.
+  function isLatin(t) {
+    return !/[֐-׿]/.test(t || '') && /[A-Za-z]/.test(t || '');
+  }
 
   function render(text) {
     var esc = String(text).replace(/[&<>"]/g, function (c) {
@@ -290,10 +256,10 @@
   function add(who, text) {
     var row = document.createElement('div');
     row.className = 'shc-msg ' + (who === 'me' ? 'shc-me' : 'shc-bot');
-    var rtl = isHebrew(text);
+    var ltr = isLatin(text);
     row.innerHTML =
-      '<span class="shc-from">' + (who === 'me' ? 'You' : 'The desk') + '</span>' +
-      '<div class="shc-text"' + (rtl ? ' dir="rtl"' : '') + '>' + render(text) + '</div>';
+      '<span class="shc-from">' + (who === 'me' ? 'אתה' : 'הדלפק') + '</span>' +
+      '<div class="shc-text"' + (ltr ? ' dir="ltr"' : '') + '>' + render(text) + '</div>';
     log.appendChild(row);
     log.scrollTop = log.scrollHeight;
     return row;
@@ -302,7 +268,7 @@
   function thinking() {
     var row = document.createElement('div');
     row.className = 'shc-msg shc-bot';
-    row.innerHTML = '<span class="shc-from">The desk</span>' +
+    row.innerHTML = '<span class="shc-from">הדלפק</span>' +
       '<div class="shc-text shc-dots"><span></span><span></span><span></span></div>';
     log.appendChild(row);
     log.scrollTop = log.scrollHeight;
@@ -331,12 +297,12 @@
           cid = d.conversation_id;
           try { sessionStorage.setItem('shc-cid', cid); } catch (e) {}
         }
-        add('bot', (d && d.reply) || 'The desk went quiet for a moment. Try that again?');
+        add('bot', (d && d.reply) || 'הדלפק שתק לרגע. תנסה שוב?');
       })
       .catch(function () {
         wait.remove();
-        add('bot', "I could not reach the desk just now. Give it a moment and try again — or email us and we'll pick it up.");
-        if (status) status.textContent = 'Reconnecting';
+        add('bot', 'לא הצלחתי להגיע לדלפק כרגע. תן לזה רגע ותנסה שוב.');
+        if (status) status.textContent = 'מתחבר מחדש';
       })
       .then(function () {
         busy = false;

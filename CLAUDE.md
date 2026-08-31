@@ -145,4 +145,10 @@ Secrets policy: keys live only in `.env` (Matan pastes them himself); agents nev
 
 ## Language
 
-Matan communicates in Hebrew. Reports and chat responses: Hebrew. Ad/post copy: English by default (international Pokemon collector audience) unless the brief says otherwise — copywriter should produce a Hebrew variant when targeting Israeli audiences.
+**Hebrew is the default for everything, unless Matan explicitly says otherwise** (his standing instruction, restated 2026-08-31). That covers chat responses, reports, and — the part that was being missed — every string in anything built for the store: buttons, labels, placeholders, section titles, error messages, customer-facing copy.
+
+Hebrew UI is a typography job, not a translation job. Latin display faces (Times Now, Playfair) have no Hebrew glyphs and fall back silently; `text-transform: uppercase` does nothing in Hebrew and wide `letter-spacing` damages it. Set `dir="rtl"`, use logical CSS properties (`border-inline-start`, `margin-inline-start`) so the layout mirrors, and pick a Hebrew face — `Frank Ruhl Libre` for serif/newspaper contexts, `Heebo` for UI text.
+
+Card names, set names and grades stay in English inside Hebrew text (PSA 9, Base Set, Charizard) — that is how Israeli collectors write them, and it is not an exception to the rule.
+
+The one open question: ad/post copy was previously English by default for the international collector audience. That is a business call about who the ad is aimed at, so confirm the language with Matan per campaign rather than assuming either way.
