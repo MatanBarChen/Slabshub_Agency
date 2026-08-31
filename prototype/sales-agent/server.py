@@ -7,7 +7,7 @@ Nothing here touches the live store. The catalog is a snapshot in catalog.json;
 rebuild it with build_catalog.py after inventory changes.
 """
 import json, os, re, urllib.request, urllib.error, datetime, traceback
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
@@ -339,4 +339,7 @@ if __name__ == "__main__":
     print("  catalog  : " + str(len(PRODUCTS)) + " products, " + str(in_stock) + " in stock")
     print("  api key  : " + ("found" if load_key() else "MISSING - add ANTHROPIC_API_KEY to .env"))
     print("  open     : http://localhost:" + str(PORT))
-    HTTPServer(("127.0.0.1", PORT), Handler).serve_forever()
+    Handler.timeout = 30
+    srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
+    srv.daemon_threads = True
+    srv.serve_forever()
