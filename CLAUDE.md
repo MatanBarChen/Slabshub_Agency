@@ -29,6 +29,17 @@ For any **web deliverable** — campaign landing pages, promo HTML pages, email-
 | Trigger | Playbook |
 |---|---|
 | "דף נחיתה לקמפיין" / landing page | 1. `product-intelligence` (brief, if missing) → 2. Orchestrator runs `anthropic-skills:web` (research-locked landing page) → 3. `publisher` (draft links + UTM check) |
+| "מה חיפשו בצ'אט" / demand from the site chat | `chat-agent` only → report to Matan. If a card shows repeat demand, Matan decides whether to run `/looking` on it |
+
+### Chat_Agent — the on-site customer chat (added 2026-08-31)
+
+The store's chat assistant on slabshub.com is a running program (`prototype/sales-agent/`), embedded via a theme snippet. **`chat-agent` (Chat_Agent) is the agency member who owns it** — it is not the chat itself:
+
+- **Maintains the chat's brain** — `prototype/sales-agent/system-prompt.md` is the file to edit when the chat should answer, sell or hand off differently. Its truth rules (no invented certs / pop counts / market values / shipping / discounts, never claims to be Matan, mirrors the customer's language) are non-negotiable and stay.
+- **Keeps the catalog honest** — `catalog.json` is a Shopify snapshot; Chat_Agent refreshes it when inventory changes so the chat only ever recommends real, in-stock products with direct links.
+- **Closes the demand loop** — every card a customer asked for that we don't stock is logged (`wishlist.jsonl`, plus zero-result searches in `demand.jsonl` and escalations in `handoffs.jsonl`). Chat_Agent turns those into the nightly demand report at `reports/demand/demand-log.md`.
+
+Hard rules: customer contact details never leave `prototype/sales-agent/conversations/` — never into a report, a commit, or chat (a lead is referenced as "ליד קיים — פרטים ב-wishlist.jsonl"). Chat_Agent never contacts a customer and never writes to the live theme. Demand is a demand signal, not a valuation — pricing a card for sourcing is `scout`'s job.
 
 ### Individual agent commands (added 2026-08-03)
 
@@ -43,6 +54,7 @@ Matan can invoke any single agent directly via slash commands (defined in `.clau
 | `/report [חלון/שאלה]` | analytics | `/report כמה מכר הפיקאצ'ו` |
 | `/design [סקופ]` | design-agent | `/design עמוד הבית` |
 | `/looking [סקופ]` | scout | `/looking עד $50` — סריקת שוק ומציאת קלפים שכדאי לקנות לחנות (המלצה בלבד, Tavily-powered) |
+| `/chat [סקופ]` | chat-agent (Chat_Agent) | `/chat` — דוח ביקושים מהצ'אט באתר: מה חיפשו ולא היה לנו. גם `/chat רענן קטלוג` ושינויי התנהגות לצ'אט |
 | `/costs` | — (orchestrator inline) | בדיקת לימיטים ועלויות: טבלת מנויים/שירותים + מדדי Claude Max (מכסה ותמורה), מעדכן את docs/usage-limits.md |
 | `/team` | — (orchestrator inline) | לוח בקרה ויזואלי לסוכנים בצ'אט: מי רץ לאחרונה, מה הפיק, מה ממתין למי. קריאה בלבד, בלי ספאון |
 
@@ -64,6 +76,7 @@ The agency operates like a publicly-traded company: disciplined periodic reporti
 
 | Report | Cadence | Trigger | Owner |
 |---|---|---|---|
+| דוח ביקושים (chat demand) | Daily, 21:15 | scheduled task `SlabsHub Demand Report` or `/chat` | chat-agent |
 | דוח שבועי (operations) | Weekly | `/report` or reminder | analytics |
 | דוח רבעוני (financial) | Quarterly + on demand | `/quarterly` or "דוח רבעוני" | analytics (financial mode) |
 
