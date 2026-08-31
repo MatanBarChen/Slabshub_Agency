@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SlabsHub — The Enquiry Desk (preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-honeycomb-yellow: #ffd931;
+    --color-carbon-black: #000000;
+    --color-ink-black: #231f20;
+    --color-fog-gray: #a6a8aa;
+    --color-smoke-line: #d6d6d6;
+    --font-display: 'Times Now', 'Playfair Display', 'Times New Roman', serif;
+    --font-body: 'Times New Roman', Times, serif;
+    --font-ui: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-product: 'Lora', 'Times New Roman', serif;
+    --text-caption: 11px; --text-body: 16px; --text-subheading: 23px;
+    --text-heading-sm: 27px; --text-heading: 40px; --text-display: 47px;
+    --tracking-ui: 0.073em; --tracking-nav: 0.063em; --tracking-wide: 0.091em;
+    --page-max-width: 1200px; --gap: 15px;
+    --radius-card: 12px; --radius-pill: 25px; --radius-hero: 45px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #dce8f2;
+    background-image:
+      linear-gradient(rgba(46, 111, 183, 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 111, 183, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--color-carbon-black);
+    font-family: var(--font-body); font-size: var(--text-body); line-height: 1.15;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: var(--page-max-width); margin: 0 auto; padding: 0 20px; }
+  section { padding: 42px 0; }
+  .badge { display: inline-block; background: var(--color-fog-gray); border-radius: var(--radius-card); padding: 3px 9px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; }
+  .badge.stock { background: transparent; border: 1px solid var(--color-carbon-black); }
+  .masthead { background: var(--color-honeycomb-yellow); border-bottom: 2px solid var(--color-carbon-black); }
+  .logo-row { text-align: center; padding: 26px 20px 16px; }
+  .logo { font-family: var(--font-display); font-weight: 500; font-size: 64px; line-height: 0.87; }
+  .logo em { font-style: italic; font-weight: 400; }
+  .logo-tag { display: block; margin-top: 10px; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: 0.24em; text-transform: uppercase; }
+  .hero { padding: 55px 0 40px; text-align: center; }
+  .hero .kicker-row { display: flex; justify-content: center; margin-bottom: 18px; }
+  .hero h1 { font-family: var(--font-display); font-weight: 400; font-size: var(--text-display); line-height: 0.9; max-width: 760px; margin: 0 auto 16px; }
+  .hero h1 em { font-style: italic; }
+  .hero p { line-height: 1.3; color: var(--color-ink-black); max-width: 520px; margin: 0 auto; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 15px; margin-bottom: 25px; border-top: 3px solid var(--color-carbon-black); padding-top: 5px; position: relative; }
+  .section-head::before { content: ""; position: absolute; top: 5px; left: 0; right: 0; border-top: 1px solid var(--color-carbon-black); }
+  .section-head h2 { font-family: var(--font-display); font-weight: 500; font-size: var(--text-heading-sm); line-height: 0.9; padding-top: 12px; }
+  .section-head h2 .no { font-family: var(--font-ui); font-weight: 100; font-size: 14px; letter-spacing: var(--tracking-ui); vertical-align: super; margin-right: 6px; }
+  .card { background: #fff; border: 1px solid var(--color-carbon-black); border-radius: var(--radius-card); padding: var(--gap); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+  .stub { height: 210px; display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-fog-gray); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="logo-row">
+    <span class="logo">Slabs<em>Hub</em></span>
+    <span class="logo-tag">The Graded Card Circular</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker-row"><span class="badge stock">Collector-run &middot; Israel &rarr; worldwide</span></div>
+    <h1>Every card tells a story.<br><em>Ours come with a grade.</em></h1>
+    <p>Graded Pok&eacute;mon slabs and hand-picked raw cards &mdash; photographed in-hand, priced against real sold listings, shipped protected.</p>
+  </div>
+</section>
+
+<section class="shc-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The Enquiry Desk</h2>
+      <span class="shc-status" id="shc-status">Open now</span>
+    </div>
+
+    <div class="shc-panel" id="shc-panel" data-endpoint="https://uvlkacfnbnsqpizktcfi.supabase.co/functions/v1/chat">
+      <div class="shc-head">
+        <span class="shc-who">SlabsHub AI</span>
+        <span class="shc-note">Answers from what is actually in the shop</span>
+      </div>
+
+      <div class="shc-log" id="shc-log" role="log" aria-live="polite" aria-label="Conversation with the SlabsHub assistant">
+        <div class="shc-msg shc-bot">
+          <span class="shc-from">The desk</span>
+          <div class="shc-text">Ask me anything about the shop — a card you are hunting, what a grade means, or what fits a budget. I only quote cards we actually have.</div>
+        </div>
+      </div>
+
+      <div class="shc-chips" id="shc-chips">
+        <button type="button" class="shc-chip">Do you have a Charizard?</button>
+        <button type="button" class="shc-chip">Something under $40</button>
+        <button type="button" class="shc-chip">What does PSA 9 mean?</button>
+        <button type="button" class="shc-chip">A gift for a 10-year-old</button>
+      </div>
+
+      <form class="shc-ask" id="shc-ask">
+        <input id="shc-input" type="text" autocomplete="off" maxlength="2000"
+               placeholder="Write to the desk…" aria-label="Your message to the assistant">
+        <button type="submit" class="shc-send" id="shc-send">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .shc-section .section-head { align-items: center; }
+  .shc-status {
+    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
+    font-size: var(--text-caption, 11px);
+    letter-spacing: var(--tracking-ui, 0.073em);
+    text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .shc-status::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--color-honeycomb-yellow, #ffd931);
+    border: 1px solid var(--color-carbon-black, #000);
+  }
+  .shc-panel {
+    border: 2px solid var(--color-carbon-black, #000);
+    border-radius: var(--radius-card, 12px);
+    background: #ffffff;
+    overflow: hidden;
+  }
+  .shc-head {
+    background: var(--color-honeycomb-yellow, #ffd931);
+    border-bottom: 2px solid var(--color-carbon-black, #000);
+    padding: 11px 20px;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 15px;
+  }
+  .shc-who {
+    font-family: var(--font-display, 'Times Now', 'Playfair Display', serif);
+    font-weight: 500; font-size: 21px; line-height: 1;
+  }
+  .shc-note {
+    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
+    font-size: var(--text-caption, 11px);
+    letter-spacing: var(--tracking-ui, 0.073em);
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .shc-log {
+    height: 380px; overflow-y: auto;
+    padding: 22px 20px 6px;
+    background:
+      linear-gradient(rgba(46, 111, 183, 0.05) 1px, transparent 1px) 0 0 / 100% 22px,
+      #ffffff;
+  }
+  .shc-msg { margin-bottom: 20px; width: fit-content; max-width: min(82%, 62ch); }
+  .shc-msg.shc-me { margin-left: auto; }
+  .shc-from {
+    display: block;
+    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
+    font-size: var(--text-caption, 11px);
+    letter-spacing: var(--tracking-ui, 0.073em);
+    text-transform: uppercase;
+    color: var(--color-ink-black, #231f20);
+    margin-bottom: 5px;
+  }
+  .shc-me .shc-from { text-align: right; }
+  .shc-text {
+    font-family: var(--font-body, 'Times New Roman', serif);
+    font-size: var(--text-body, 16px);
+    line-height: 1.45;
+    color: var(--color-carbon-black, #000);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .shc-bot .shc-text {
+    border-left: 3px solid var(--color-carbon-black, #000);
+    padding-left: 14px;
+  }
+  .shc-me .shc-text {
+    background: var(--color-honeycomb-yellow, #ffd931);
+    border: 1px solid var(--color-carbon-black, #000);
+    border-radius: var(--radius-card, 12px);
+    padding: 9px 14px;
+  }
+  .shc-text[dir="rtl"] { text-align: right; }
+  .shc-bot .shc-text[dir="rtl"] {
+    border-left: none; padding-left: 0;
+    border-right: 3px solid var(--color-carbon-black, #000);
+    padding-right: 14px;
+  }
+  .shc-text a {
+    border-bottom: 1px dotted var(--color-carbon-black, #000);
+    word-break: break-all;
+  }
+  .shc-text a:hover { background: var(--color-honeycomb-yellow, #ffd931); }
+  .shc-dots span {
+    display: inline-block; width: 6px; height: 6px; margin-right: 4px;
+    border-radius: 50%; background: var(--color-fog-gray, #a6a8aa);
+    animation: shc-blink 1.1s infinite;
+  }
+  .shc-dots span:nth-child(2) { animation-delay: 0.18s; }
+  .shc-dots span:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes shc-blink { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .shc-dots span { animation: none; opacity: 0.6; } }
+  .shc-chips {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 14px 20px;
+    border-top: 1px solid var(--color-smoke-line, #d6d6d6);
+  }
+  .shc-chips.shc-gone { display: none; }
+  .shc-chip {
+    background: transparent;
+    border: 1px solid var(--color-carbon-black, #000);
+    border-radius: var(--radius-card, 12px);
+    padding: 7px 13px; cursor: pointer;
+    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
+    font-size: var(--text-caption, 11px);
+    letter-spacing: var(--tracking-nav, 0.063em);
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .shc-chip:hover { background: var(--color-carbon-black, #000); color: var(--color-honeycomb-yellow, #ffd931); }
+  .shc-ask {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 20px 18px;
+    border-top: 1px solid var(--color-carbon-black, #000);
+  }
+  .shc-ask input {
+    flex: 1; background: transparent; border: none;
+    border-bottom: 1px solid var(--color-carbon-black, #000);
+    font-family: var(--font-body, 'Times New Roman', serif);
+    font-size: var(--text-body, 16px);
+    padding: 7px 2px; color: var(--color-ink-black, #231f20);
+    min-width: 0;
+  }
+  .shc-ask input::placeholder { color: var(--color-fog-gray, #a6a8aa); }
+  .shc-send {
+    flex: none;
+    background: var(--color-honeycomb-yellow, #ffd931);
+    border: 2px solid var(--color-carbon-black, #000);
+    border-radius: var(--radius-card, 12px);
+    padding: 10px 20px; cursor: pointer;
+    font-family: var(--font-ui, 'Helvetica Neue', Arial, sans-serif);
+    font-size: var(--text-caption, 11px);
+    letter-spacing: var(--tracking-ui, 0.073em);
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .shc-send:hover:not(:disabled) { background: var(--color-carbon-black, #000); color: var(--color-honeycomb-yellow, #ffd931); }
+  .shc-send:disabled { opacity: 0.45; cursor: default; }
+  @media (max-width: 560px) {
+    .shc-log { height: 320px; padding: 18px 15px 4px; }
+    .shc-msg { max-width: 92%; }
+    .shc-head { padding: 10px 15px; flex-direction: column; gap: 3px; }
+    .shc-note { text-align: left; }
+    .shc-chips, .shc-ask { padding-left: 15px; padding-right: 15px; }
+  }
+</style>
+
+<script>
+(function () {
+  var panel = document.getElementById('shc-panel');
+  if (!panel) return;
+  var ENDPOINT = panel.getAttribute('data-endpoint');
+  var log = document.getElementById('shc-log');
+  var form = document.getElementById('shc-ask');
+  var input = document.getElementById('shc-input');
+  var send = document.getElementById('shc-send');
+  var chips = document.getElementById('shc-chips');
+  var status = document.getElementById('shc-status');
+  var busy = false;
+
+  var cid = null;
+  try { cid = sessionStorage.getItem('shc-cid'); } catch (e) {}
+
+  function isHebrew(t) { return /[֐-׿]/.test(t || ''); }
+
+  function render(text) {
+    var esc = String(text).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+    return esc.replace(/(https?:\/\/[^\s<)]+)/g, function (u) {
+      return '<a href="' + u + '">' + u + '</a>';
+    });
+  }
+
+  function add(who, text) {
+    var row = document.createElement('div');
+    row.className = 'shc-msg ' + (who === 'me' ? 'shc-me' : 'shc-bot');
+    var rtl = isHebrew(text);
+    row.innerHTML =
+      '<span class="shc-from">' + (who === 'me' ? 'You' : 'The desk') + '</span>' +
+      '<div class="shc-text"' + (rtl ? ' dir="rtl"' : '') + '>' + render(text) + '</div>';
+    log.appendChild(row);
+    log.scrollTop = log.scrollHeight;
+    return row;
+  }
+
+  function thinking() {
+    var row = document.createElement('div');
+    row.className = 'shc-msg shc-bot';
+    row.innerHTML = '<span class="shc-from">The desk</span>' +
+      '<div class="shc-text shc-dots"><span></span><span></span><span></span></div>';
+    log.appendChild(row);
+    log.scrollTop = log.scrollHeight;
+    return row;
+  }
+
+  function ask(text) {
+    text = (text || '').trim();
+    if (!text || busy) return;
+    busy = true;
+    send.disabled = true;
+    if (chips) chips.classList.add('shc-gone');
+    add('me', text);
+    input.value = '';
+    var wait = thinking();
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ message: text, conversation_id: cid })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        wait.remove();
+        if (d && d.conversation_id) {
+          cid = d.conversation_id;
+          try { sessionStorage.setItem('shc-cid', cid); } catch (e) {}
+        }
+        add('bot', (d && d.reply) || 'The desk went quiet for a moment. Try that again?');
+      })
+      .catch(function () {
+        wait.remove();
+        add('bot', "I could not reach the desk just now. Give it a moment and try again — or email us and we'll pick it up.");
+        if (status) status.textContent = 'Reconnecting';
+      })
+      .then(function () {
+        busy = false;
+        send.disabled = false;
+        input.focus();
+      });
+  }
+
+  form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value); });
+  if (chips) {
+    chips.addEventListener('click', function (e) {
+      if (e.target.classList.contains('shc-chip')) ask(e.target.textContent);
+    });
+  }
+})();
+</script>
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><h2><span class="no">&#8470; 1</span>Fresh pulls, ready to ship</h2></div>
+    <div class="grid-3">
+      <div class="card stub">card</div><div class="card stub">card</div><div class="card stub">card</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
