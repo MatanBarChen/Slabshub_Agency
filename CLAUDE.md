@@ -33,13 +33,13 @@ For any **web deliverable** — campaign landing pages, promo HTML pages, email-
 
 ### Chat_Agent — the on-site customer chat (added 2026-08-31)
 
-The store's chat assistant on slabshub.com is a running program (`prototype/sales-agent/`), embedded via a theme snippet. **`chat-agent` (Chat_Agent) is the agency member who owns it** — it is not the chat itself:
+The store's chat assistant on slabshub.com is a live cloud service — a Supabase Edge Function (`chat`, project `uvlkacfnbnsqpizktcfi`), embedded via a theme snippet, running 24/7 whether or not Matan's machine is on. Its source lives in `prototype/sales-agent/`. **`chat-agent` (Chat_Agent) is the agency member who owns it** — it is not the chat itself:
 
 - **Maintains the chat's brain** — `prototype/sales-agent/system-prompt.md` is the file to edit when the chat should answer, sell or hand off differently. Its truth rules (no invented certs / pop counts / market values / shipping / discounts, never claims to be Matan, mirrors the customer's language) are non-negotiable and stay.
-- **Keeps the catalog honest** — `catalog.json` is a Shopify snapshot; Chat_Agent refreshes it when inventory changes so the chat only ever recommends real, in-stock products with direct links.
-- **Closes the demand loop** — every card a customer asked for that we don't stock is logged (`wishlist.jsonl`, plus zero-result searches in `demand.jsonl` and escalations in `handoffs.jsonl`). Chat_Agent turns those into the nightly demand report at `reports/demand/demand-log.md`.
+- **Keeps the catalog honest** — `catalog.json` is a Shopify snapshot; Chat_Agent refreshes it when inventory changes so the chat only ever recommends real, in-stock products with direct links. Editing either the prompt or the catalog is a data push (`prompt_to_sql.py` / `catalog_to_sql.py` → Supabase `execute_sql`), not a redeploy — runbook in `prototype/sales-agent/README.md`.
+- **Closes the demand loop** — every card a customer asked for that we don't stock is logged in the `wishlist` table, plus zero-result searches in `demand` and escalations in `handoffs`, all in the chat's Supabase project. Chat_Agent queries those (Supabase MCP) and turns them into the nightly demand report at `reports/demand/demand-log.md`.
 
-Hard rules: customer contact details never leave `prototype/sales-agent/conversations/` — never into a report, a commit, or chat (a lead is referenced as "ליד קיים — פרטים ב-wishlist.jsonl"). Chat_Agent never contacts a customer and never writes to the live theme. Demand is a demand signal, not a valuation — pricing a card for sourcing is `scout`'s job.
+Hard rules: customer contact details never leave the `wishlist` table — never into a report, a commit, or chat (a lead is referenced as "ליד קיים — פרטים בטבלת wishlist"). Chat_Agent never contacts a customer and never writes to the live theme. Demand is a demand signal, not a valuation — pricing a card for sourcing is `scout`'s job.
 
 ### Individual agent commands (added 2026-08-03)
 

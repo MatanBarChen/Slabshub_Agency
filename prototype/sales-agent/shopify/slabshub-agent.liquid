@@ -10,7 +10,7 @@
   a Supabase Edge Function that holds the key server-side.
 {%- endcomment -%}
 
-{%- assign AGENT_ENDPOINT = 'https://REPLACE-ME.supabase.co/functions/v1/sales-agent' -%}
+{%- assign AGENT_ENDPOINT = 'https://uvlkacfnbnsqpizktcfi.supabase.co/functions/v1/chat' -%}
 
 <div id="sh-agent" data-endpoint="{{ AGENT_ENDPOINT }}">
   <button class="sh-launcher" type="button" aria-label="דברו עם העוזר של SlabsHub" aria-expanded="false">
@@ -123,9 +123,15 @@
   var form = root.querySelector('.sh-composer');
   var input = root.querySelector('.sh-input');
   var sendBtn = root.querySelector('.sh-send');
-  var history = [];
   var busy = false;
   var greeted = false;
+
+  // The transcript lives on the server; the browser only carries the id. Kept in
+  // sessionStorage so the thread survives Shopify's full page loads as the
+  // visitor moves between product pages, and dies with the tab.
+  var CONV_KEY = 'sh-agent-conversation';
+  var conversationId = null;
+  try { conversationId = sessionStorage.getItem(CONV_KEY); } catch (e) {}
 
   function isRtl(t) { return /[֐-׿]/.test(t); }
 
@@ -162,17 +168,19 @@
     busy = true;
     sendBtn.disabled = true;
     add('me', text);
-    history.push({ role: 'user', content: text });
     var wait = thinking();
     fetch(endpoint, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ messages: history, page: location.pathname })
+      body: JSON.stringify({ message: text, conversation_id: conversationId, page: location.pathname })
     })
       .then(function (r) { return r.json(); })
       .then(function (data) {
         wait.remove();
-        if (data.messages) history = data.messages;
+        if (data.conversation_id) {
+          conversationId = data.conversation_id;
+          try { sessionStorage.setItem(CONV_KEY, conversationId); } catch (e) {}
+        }
         add('bot', data.reply || 'משהו השתבש. תנסה שוב?');
       })
       .catch(function () {

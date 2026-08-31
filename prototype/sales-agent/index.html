@@ -187,7 +187,13 @@ const input = document.getElementById('msg');
 const sendBtn = document.getElementById('send');
 const panel = document.getElementById('panel');
 const launcher = document.getElementById('launcher');
-let history = [];
+// Points at the deployed chat by default, so this page can be opened straight
+// from disk to inspect what the live storefront widget is doing. Append
+// ?endpoint=http://localhost:8787/api/chat to test a local server.py instead.
+const ENDPOINT = new URLSearchParams(location.search).get('endpoint')
+  || 'https://uvlkacfnbnsqpizktcfi.supabase.co/functions/v1/chat';
+
+let conversationId = null;
 let busy = false;
 let greeted = false;
 
@@ -239,22 +245,21 @@ async function send(text) {
   busy = true;
   sendBtn.disabled = true;
   add('me', text);
-  history.push({ role: 'user', content: text });
   const wait = thinking();
   try {
-    const r = await fetch('/api/chat', {
+    const r = await fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ messages: history })
+      body: JSON.stringify({ message: text, conversation_id: conversationId })
     });
     const data = await r.json();
     wait.remove();
-    if (data.messages) history = data.messages;
+    if (data.conversation_id) conversationId = data.conversation_id;
     add('bot', data.reply || '(אין תשובה)');
     renderTools(data.trace);
   } catch (e) {
     wait.remove();
-    add('bot', 'לא הצלחתי להגיע לשרת. רץ py server.py?');
+    add('bot', 'לא הצלחתי להגיע לצ׳אט. בדוק את הפונקציה ב-Supabase.');
   }
   busy = false;
   sendBtn.disabled = false;
@@ -285,7 +290,7 @@ document.getElementById('dhead').onclick = () => {
   document.getElementById('dtoggle').textContent = open ? '−' : '+';
 };
 
-fetch('/api/health').then(r => r.json()).then(h => {
+fetch(ENDPOINT).then(r => r.json()).then(h => {
   document.getElementById('s-products').textContent = h.products;
   document.getElementById('s-stock').textContent = h.in_stock;
   document.getElementById('s-model').textContent = h.model;

@@ -61,7 +61,17 @@ Human-in-the-loop stays mandatory even after this is wired: token in place ≠ a
 
 ### 1b. n8n (planned) — triggers + approval-gated auto-publishing
 Full plan in `docs/n8n-integration.md`. Blocked on the same Meta token as above; uses Supabase as the publish queue between Claude Code and n8n. Human approval (Telegram button) stays mandatory per post.
-NOTE (2026-08-03): no SlabsHub Supabase project exists yet (the two projects on the account belong to other ventures, both inactive) — creating one is a cost decision for Matan, pending.
+NOTE (2026-08-31): a SlabsHub Supabase project now exists — `SlabsHub_Chat` / `uvlkacfnbnsqpizktcfi`, free tier, created to host the storefront chat (section 1c). n8n can reuse it as the publish queue; no second project needed.
+
+### 1c. Storefront chat — Supabase Edge Function ✅ LIVE (deployed 2026-08-31)
+The on-site chat runs in the cloud 24/7, so it no longer depends on Matan's desktop being on.
+
+- **Project:** `SlabsHub_Chat` / `uvlkacfnbnsqpizktcfi`, region Frankfurt (eu-central-1), **free tier — $0/month**.
+- **Endpoint:** `https://uvlkacfnbnsqpizktcfi.supabase.co/functions/v1/chat` (function slug `chat`, `verify_jwt=false` — storefront visitors are anonymous).
+- **Secret:** `ANTHROPIC_API_KEY` lives only in Supabase Edge Function secrets. Matan sets it himself; it is never in code, git or the browser. `GET` on the endpoint reports whether it is present.
+- **Cost shape:** function invocations are free within 500K/month; the only spend is Anthropic tokens per conversation. Throttled at 40 messages/hour/IP so an open endpoint cannot run up the bill.
+- **Data:** catalog, deployed system prompt, conversations, wishlist, demand and handoffs are all Postgres tables with RLS on and no policies — only the function's service role reads them. Customer contact details live in `wishlist` and stay there (CLAUDE.md rule unchanged).
+- **Source of truth stays in git:** `prototype/sales-agent/system-prompt.md` and `catalog.json`; `prompt_to_sql.py` / `catalog_to_sql.py` push them to the cloud without a redeploy. Full runbook in `prototype/sales-agent/README.md`.
 
 ### 2. Video & image generation — Gemini API ✅ CONNECTED (verified 2026-08-02)
 `GEMINI_API_KEY` is set in `.env` and verified. Available models confirmed on this key:
