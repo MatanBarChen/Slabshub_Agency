@@ -129,7 +129,44 @@ def record_wishlist(card, contact=None, notes=None):
             "note": "Recorded for Matan's daily sourcing review. Do not promise the card will be found, a timeframe, or a price."}
 
 
+def _recent_handoffs(minutes=15):
+    path = os.path.join(LOGDIR, "handoffs.jsonl")
+    if not os.path.exists(path):
+        return []
+    cutoff = datetime.datetime.now() - datetime.timedelta(minutes=minutes)
+    out = []
+    with open(path, encoding="utf-8") as f:
+        for line in f.readlines()[-20:]:
+            try:
+                e = json.loads(line)
+                if datetime.datetime.fromisoformat(e["at"]) >= cutoff:
+                    out.append(e)
+            except (ValueError, KeyError):
+                continue
+    return out
+
+
+def _same_request(a, b):
+    """Word overlap, so a reworded repeat of the same ask still counts as one."""
+    wa = set(re.findall(r"[\w']+", (a or "").lower()))
+    wb = set(re.findall(r"[\w']+", (b or "").lower()))
+    if not wa or not wb:
+        return False
+    return len(wa & wb) / len(wa | wb) >= 0.45
+
+
 def request_human(reason, summary, contact=None):
+    # Backstop for the prompt rule: one handoff per conversation. The model has
+    # escalated the same request several times in a row before, which reaches
+    # Matan as several separate interruptions about one customer.
+    for prev in _recent_handoffs():
+        if _same_request(prev.get("summary"), summary) or (
+                contact and prev.get("contact") == contact):
+            return {"status": "already_open",
+                    "note": ("This request is already with Matan - not logged again. "
+                             "Tell the customer it is already passed on, and carry on "
+                             "helping them. If the card is one we do not stock, the right "
+                             "tool is record_wishlist, not request_human.")}
     entry = {
         "at": datetime.datetime.now().isoformat(timespec="seconds"),
         "reason": reason,
@@ -177,7 +214,7 @@ TOOLS = [
     },
     {
         "name": "request_human",
-        "description": "Hand the conversation to Matan. Ask for the customer's contact details first.",
+        "description": "Last resort. Hand the conversation to Matan for a discount request, an existing order, extra photos, an unhappy customer, or a purchase over 1,000 ILS of an item we stock. Ask for the customer's contact details first. NEVER use this for a card we do not stock or a restock heads-up - that is record_wishlist. Never call it twice in one conversation.",
         "input_schema": {
             "type": "object",
             "properties": {
