@@ -16,18 +16,28 @@ PORT = int(os.environ.get("AGENT_PORT", "8787"))
 MAX_TOOL_ROUNDS = 6
 
 
-def load_key():
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    if key:
-        return key.strip()
+def _env_value(name):
+    val = os.environ.get(name)
+    if val:
+        return val.strip()
     envfile = os.path.join(ROOT, ".env")
     if os.path.exists(envfile):
-        with open(envfile, encoding="utf-8", errors="replace") as f:
+        with open(envfile, encoding="utf-8-sig", errors="replace") as f:
             for line in f:
-                line = line.strip()
-                if line.startswith("ANTHROPIC_API_KEY"):
-                    return line.split("=", 1)[1].strip().strip("'\"")
+                if "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                if k.strip() == name:
+                    return v.strip().strip("'\"")
     return None
+
+
+def load_key():
+    return _env_value("ANTHROPIC_API_KEY")
+
+
+def load_workspace_id():
+    return _env_value("ANTHROPIC_WORKSPACE_ID")
 
 
 with open(os.path.join(HERE, "catalog.json"), encoding="utf-8") as f:
@@ -214,6 +224,7 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/health":
             return self._send(200, {
                 "key": bool(load_key()),
+                "workspace": bool(load_workspace_id()),
                 "model": MODEL,
                 "products": len(PRODUCTS),
                 "in_stock": sum(1 for p in PRODUCTS if p["inventory"] > 0),
