@@ -9,61 +9,97 @@
     --yellow: #FFD84D;
     --ink: #14110c;
     --paper: #fffdf7;
-    --line: #14110c;
     --muted: #6b6355;
-    --grid: #dfe8f2;
+    --shell: #d92b2b;
+    --shell-dark: #a81b1b;
+    --shell-light: #ef4a44;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
     font-family: "Helvetica Neue", Arial, sans-serif;
-    background: var(--grid);
-    background-image: linear-gradient(#cfe0f0 1px, transparent 1px), linear-gradient(90deg, #cfe0f0 1px, transparent 1px);
-    background-size: 22px 22px;
     color: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #eaf1f8;
+    background-image: linear-gradient(#d7e4f0 1px, transparent 1px), linear-gradient(90deg, #d7e4f0 1px, transparent 1px);
+    background-size: 22px 22px;
     min-height: 100vh;
-    padding: 24px 16px;
   }
-  .shell { width: 100%; max-width: 1120px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start; }
-  @media (max-width: 900px) { .shell { grid-template-columns: minmax(0, 1fr); } }
 
-  .chat { background: var(--paper); border: 2px solid var(--line); border-radius: 4px; display: flex; flex-direction: column; height: 78vh; min-height: 520px; overflow: hidden; }
-  .head { background: var(--yellow); border-bottom: 2px solid var(--line); padding: 14px 18px; }
-  .brand { font-family: Georgia, "Times New Roman", serif; font-size: 24px; letter-spacing: -0.3px; }
+  /* faux storefront behind the widget, so the launcher is judged in context */
+  .page { max-width: 900px; margin: 0 auto; padding: 40px 20px 120px; }
+  .topbar { background: var(--yellow); border: 2px solid var(--ink); border-radius: 4px; padding: 16px 22px; text-align: center; }
+  .brand { font-family: Georgia, "Times New Roman", serif; font-size: 30px; }
   .brand em { font-style: italic; }
-  .kicker { font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; color: #6b5a12; margin-top: 3px; }
+  .kicker { font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: #6b5a12; margin-top: 4px; }
+  .note { margin-top: 22px; background: var(--paper); border: 2px solid var(--ink); border-radius: 4px; padding: 18px 22px; direction: rtl; font-size: 14px; line-height: 1.8; }
+  .note h2 { font-size: 15px; margin: 0 0 8px; }
+  .note code { background: #f0ece0; padding: 1px 5px; border-radius: 3px; font-size: 13px; }
 
-  .stream { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+  /* ---- launcher ---- */
+  .launcher {
+    position: fixed; bottom: 24px; right: 24px; width: 68px; height: 68px;
+    border: none; background: none; padding: 0; cursor: pointer; z-index: 60;
+    filter: drop-shadow(0 6px 14px rgba(20, 17, 12, 0.32));
+    transition: transform 0.18s ease;
+  }
+  .launcher:hover { transform: translateY(-3px) scale(1.04); }
+  .launcher:active { transform: translateY(0) scale(0.97); }
+  .lens-glow { animation: blink 2.6s ease-in-out infinite; transform-origin: center; }
+  @keyframes blink { 0%, 88%, 100% { opacity: 0.85; } 93% { opacity: 0.25; } }
+  .led-a { animation: led 2.6s ease-in-out infinite; }
+  .led-b { animation: led 2.6s ease-in-out 0.35s infinite; }
+  @keyframes led { 0%, 70%, 100% { opacity: 0.55; } 80% { opacity: 1; } }
+  .launcher .close-x { display: none; }
+  .launcher.open .device { display: none; }
+  .launcher.open .close-x { display: block; }
+
+  /* ---- chat panel ---- */
+  .panel {
+    position: fixed; bottom: 104px; right: 24px; width: 380px; max-width: calc(100vw - 32px);
+    height: 560px; max-height: calc(100vh - 150px);
+    background: var(--paper); border: 2px solid var(--ink); border-radius: 6px;
+    display: none; flex-direction: column; overflow: hidden; z-index: 59;
+    box-shadow: 0 14px 40px rgba(20, 17, 12, 0.26);
+  }
+  .panel.open { display: flex; animation: pop 0.2s ease-out; }
+  @keyframes pop { from { opacity: 0; transform: translateY(14px) scale(0.97); } to { opacity: 1; transform: none; } }
+
+  .phead { background: var(--yellow); border-bottom: 2px solid var(--ink); padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+  .phead .t { font-family: Georgia, serif; font-size: 17px; line-height: 1.1; }
+  .phead .s { font-size: 9.5px; letter-spacing: 1.3px; text-transform: uppercase; color: #6b5a12; margin-top: 2px; }
+  .live { margin-right: auto; display: flex; align-items: center; gap: 5px; font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase; color: #4a7a2a; }
+  .live i { width: 7px; height: 7px; border-radius: 50%; background: #58a832; }
+
+  .stream { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
   .row { display: flex; }
   .row.me { justify-content: flex-end; }
-  .bubble { max-width: 78%; padding: 11px 14px; border: 1.5px solid var(--line); border-radius: 4px; font-size: 14.5px; line-height: 1.65; white-space: pre-wrap; word-wrap: break-word; }
+  .bubble { max-width: 84%; padding: 10px 13px; border: 1.5px solid var(--ink); border-radius: 4px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; }
   .row.bot .bubble { background: #fff; }
   .row.me .bubble { background: var(--yellow); }
   .bubble a { color: #1a4fa0; }
-  .who { font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+  .who { font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
   .rtl { direction: rtl; text-align: right; }
 
-  .chips { padding: 0 18px 12px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { font: inherit; font-size: 12.5px; background: #fff; border: 1.5px solid var(--line); border-radius: 20px; padding: 6px 13px; cursor: pointer; direction: rtl; }
+  .chips { padding: 0 16px 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font: inherit; font-size: 12px; background: #fff; border: 1.5px solid var(--ink); border-radius: 20px; padding: 5px 11px; cursor: pointer; direction: rtl; }
   .chip:hover { background: var(--yellow); }
 
-  .composer { border-top: 2px solid var(--line); padding: 12px; display: flex; gap: 10px; background: #fff; }
-  #msg { flex: 1; font: inherit; font-size: 15px; padding: 11px 13px; border: 1.5px solid var(--line); border-radius: 4px; direction: rtl; }
-  #send { font: inherit; font-size: 14px; padding: 11px 22px; background: var(--ink); color: var(--yellow); border: none; border-radius: 4px; cursor: pointer; }
+  .composer { border-top: 2px solid var(--ink); padding: 10px; display: flex; gap: 8px; background: #fff; }
+  #msg { flex: 1; font: inherit; font-size: 14px; padding: 10px 12px; border: 1.5px solid var(--ink); border-radius: 4px; direction: rtl; min-width: 0; }
+  #send { font: inherit; font-size: 13px; padding: 10px 16px; background: var(--ink); color: var(--yellow); border: none; border-radius: 4px; cursor: pointer; }
   #send:disabled { opacity: 0.45; cursor: default; }
 
-  .side { background: var(--paper); border: 2px solid var(--line); border-radius: 4px; padding: 16px; direction: rtl; }
-  .side h2 { font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; margin: 0 0 12px; color: var(--muted); font-weight: 600; }
-  .stat { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px solid #e8e2d4; }
-  .stat b { font-weight: 600; }
-  .tools { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; max-height: 44vh; overflow-y: auto; }
-  .tool { border: 1px solid var(--line); border-radius: 3px; padding: 8px 10px; font-size: 12px; background: #fff; direction: ltr; text-align: left; }
+  /* ---- debug ---- */
+  .debug { position: fixed; top: 16px; left: 16px; width: 290px; background: var(--paper); border: 2px solid var(--ink); border-radius: 4px; direction: rtl; z-index: 58; }
+  .dhead { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); padding: 10px 14px; cursor: pointer; display: flex; justify-content: space-between; }
+  .dbody { padding: 0 14px 12px; display: none; }
+  .debug.open .dbody { display: block; }
+  .stat { display: flex; justify-content: space-between; font-size: 12.5px; padding: 5px 0; border-bottom: 1px solid #e8e2d4; }
+  .tools { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; max-height: 40vh; overflow-y: auto; }
+  .tool { border: 1px solid var(--ink); border-radius: 3px; padding: 7px 9px; font-size: 11.5px; background: #fff; direction: ltr; text-align: left; }
   .tool .n { font-weight: 600; }
   .tool .i { color: var(--muted); word-break: break-all; }
-  .empty { font-size: 12.5px; color: var(--muted); }
+  .empty { font-size: 12px; color: var(--muted); line-height: 1.6; }
   .dots span { display: inline-block; width: 6px; height: 6px; margin-right: 3px; background: var(--muted); border-radius: 50%; animation: b 1.2s infinite; }
   .dots span:nth-child(2) { animation-delay: 0.2s; }
   .dots span:nth-child(3) { animation-delay: 0.4s; }
@@ -71,50 +107,85 @@
 </style>
 </head>
 <body>
-<div class="shell">
 
-  <div class="chat">
-    <div class="head">
-      <div class="brand">Slabs<em>Hub</em></div>
-      <div class="kicker">AI sales agent · prototype</div>
-    </div>
-
-    <div class="stream" id="stream"></div>
-
-    <div class="chips" id="chips">
-      <button class="chip">יש לך צ'ריזארד?</button>
-      <button class="chip">מחפש משהו עד 100 שקל</button>
-      <button class="chip">מה זה PSA 9 בעצם?</button>
-      <button class="chip">אפשר הנחה?</button>
-      <button class="chip">איך אני יודע שזה אמיתי?</button>
-    </div>
-
-    <div class="composer">
-      <input id="msg" placeholder="תכתוב משהו..." autocomplete="off">
-      <button id="send">שלח</button>
-    </div>
+<div class="page">
+  <div class="topbar">
+    <div class="brand">Slabs<em>Hub</em></div>
+    <div class="kicker">the graded card circular</div>
   </div>
+  <div class="note">
+    <h2>תצוגה מקדימה של הפיצ'ר</h2>
+    הדף הזה מדמה את החנות. הכפתור בפינה הוא מה שהמבקר יראה — לחץ עליו כדי לפתוח את הסוכן.
+    פאנל הבדיקה משמאל מראה כל חיפוש שהסוכן עשה במלאי: <b>אם הוא ציין מחיר שלא מופיע שם, הוא המציא.</b>
+    <br><br>
+    זו הרצה מקומית מול <code>catalog.json</code>. שום דבר כאן לא נוגע בחנות החיה.
+  </div>
+</div>
 
-  <div class="side">
-    <h2>מצב</h2>
-    <div class="stat"><span>מוצרים בקטלוג</span><b id="s-products">—</b></div>
+<div class="debug open" id="debug">
+  <div class="dhead" id="dhead"><span>פאנל בדיקה</span><span id="dtoggle">−</span></div>
+  <div class="dbody">
+    <div class="stat"><span>מוצרים</span><b id="s-products">—</b></div>
     <div class="stat"><span>במלאי</span><b id="s-stock">—</b></div>
     <div class="stat"><span>מודל</span><b id="s-model">—</b></div>
     <div class="stat"><span>מפתח API</span><b id="s-key">—</b></div>
-
-    <h2 style="margin-top:20px">מה הסוכן באמת עשה</h2>
-    <div class="tools" id="tools"><div class="empty">כל חיפוש במלאי יופיע כאן. אם הסוכן אומר מחיר שלא הופיע כאן — הוא המציא.</div></div>
+    <div class="tools" id="tools"><div class="empty">כל חיפוש במלאי יופיע כאן.</div></div>
   </div>
-
 </div>
+
+<div class="panel" id="panel">
+  <div class="phead">
+    <div>
+      <div class="t">SlabsHub</div>
+      <div class="s">collector assistant</div>
+    </div>
+    <div class="live"><i></i>online</div>
+  </div>
+  <div class="stream" id="stream"></div>
+  <div class="chips" id="chips">
+    <button class="chip">יש לך צ'ריזארד?</button>
+    <button class="chip">משהו עד 100 שקל</button>
+    <button class="chip">מה זה PSA 9?</button>
+    <button class="chip">אפשר הנחה?</button>
+  </div>
+  <div class="composer">
+    <input id="msg" placeholder="תכתוב משהו..." autocomplete="off">
+    <button id="send">שלח</button>
+  </div>
+</div>
+
+<button class="launcher" id="launcher" aria-label="פתח את הסוכן">
+  <svg class="device" viewBox="0 0 64 64" width="68" height="68" aria-hidden="true">
+    <rect x="4" y="3" width="56" height="58" rx="9" fill="var(--shell-dark)"/>
+    <rect x="4" y="3" width="56" height="54" rx="9" fill="var(--shell)"/>
+    <path d="M4 12a9 9 0 0 1 9-9h38a9 9 0 0 1 9 9v6H4z" fill="var(--shell-light)"/>
+    <rect x="7" y="35" width="50" height="2.5" rx="1.2" fill="var(--shell-dark)" opacity="0.55"/>
+    <circle cx="18" cy="18" r="9.5" fill="#0d3b6f"/>
+    <circle cx="18" cy="18" r="7.5" fill="#2f8fe0"/>
+    <circle cx="18" cy="18" r="7.5" fill="#67c2f5" class="lens-glow"/>
+    <circle cx="15" cy="15" r="2.4" fill="#ffffff" opacity="0.9"/>
+    <circle cx="36" cy="13" r="2.6" fill="#c62828"/>
+    <circle cx="44" cy="13" r="2.6" fill="#f2c230" class="led-a"/>
+    <circle cx="52" cy="13" r="2.6" fill="#5fbf4a" class="led-b"/>
+    <path d="M12 51l9 0-9 7z" fill="var(--yellow)"/>
+    <rect x="34" y="44" width="22" height="9" rx="2.5" fill="var(--shell-dark)" opacity="0.5"/>
+  </svg>
+  <svg class="close-x" viewBox="0 0 64 64" width="68" height="68" aria-hidden="true">
+    <circle cx="32" cy="32" r="26" fill="var(--ink)"/>
+    <path d="M24 24l16 16M40 24L24 40" stroke="var(--yellow)" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+</button>
 
 <script>
 const stream = document.getElementById('stream');
 const toolsEl = document.getElementById('tools');
 const input = document.getElementById('msg');
 const sendBtn = document.getElementById('send');
+const panel = document.getElementById('panel');
+const launcher = document.getElementById('launcher');
 let history = [];
 let busy = false;
+let greeted = false;
 
 const isRtl = t => /[֐-׿]/.test(t);
 
@@ -146,11 +217,13 @@ function thinking() {
 
 function renderTools(trace) {
   if (!trace || !trace.length) return;
-  if (toolsEl.querySelector('.empty')) toolsEl.innerHTML = '';
+  const blank = toolsEl.querySelector('.empty');
+  if (blank) blank.remove();
   trace.forEach(t => {
     const d = document.createElement('div');
     d.className = 'tool';
-    const found = t.output && t.output.showing !== undefined ? t.output.showing + ' of ' + t.output.matches : 'logged';
+    const o = t.output || {};
+    const found = o.showing !== undefined ? o.showing + ' of ' + o.matches : (o.status || 'done');
     d.innerHTML = '<div class="n">' + t.tool + ' → ' + found + '</div><div class="i">' + JSON.stringify(t.input) + '</div>';
     toolsEl.appendChild(d);
   });
@@ -184,10 +257,28 @@ async function send(text) {
   input.focus();
 }
 
+launcher.onclick = () => {
+  const open = panel.classList.toggle('open');
+  launcher.classList.toggle('open', open);
+  launcher.setAttribute('aria-label', open ? 'סגור את הסוכן' : 'פתח את הסוכן');
+  if (open) {
+    if (!greeted) {
+      greeted = true;
+      add('bot', 'היי! אני העוזר של SlabsHub — סוכן AI, לא בן אדם.\nמחפש קלף מסוים, או שנתחיל מהתקציב?');
+    }
+    input.focus();
+  }
+};
+
 sendBtn.onclick = () => { const v = input.value; input.value = ''; send(v); };
 input.onkeydown = e => { if (e.key === 'Enter') sendBtn.onclick(); };
 document.getElementById('chips').onclick = e => {
   if (e.target.classList.contains('chip')) send(e.target.textContent);
+};
+document.getElementById('dhead').onclick = () => {
+  const d = document.getElementById('debug');
+  const open = d.classList.toggle('open');
+  document.getElementById('dtoggle').textContent = open ? '−' : '+';
 };
 
 fetch('/api/health').then(r => r.json()).then(h => {
@@ -196,8 +287,6 @@ fetch('/api/health').then(r => r.json()).then(h => {
   document.getElementById('s-model').textContent = h.model;
   document.getElementById('s-key').textContent = h.key ? 'קיים' : 'חסר';
 });
-
-add('bot', 'היי! אני העוזר הדיגיטלי של SlabsHub — סוכן AI, לא בן אדם.\nמחפש קלף מסוים, או שנתחיל מהתקציב?');
 </script>
 </body>
 </html>
