@@ -53,6 +53,12 @@ GRADE_RE = re.compile(r"^(PSA|CGC|BGS)\s*(\d+)", re.I)
 WORD_RE = re.compile(r"[^0-9a-zA-Z֐-׿]+")
 
 
+def _log_jsonl(filename, entry):
+    entry = {"at": datetime.datetime.now().isoformat(timespec="seconds"), **entry}
+    with open(os.path.join(LOGDIR, filename), "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+
 def grade_of(p):
     m = GRADE_RE.match(p["title"])
     if m:
@@ -63,20 +69,10 @@ def grade_of(p):
 def search_catalog(query=None, min_price=None, max_price=None, grade=None,
                    product_type=None, in_stock_only=True, limit=6):
     results = []
+    text_matches = 0
+    out_of_stock_hits = 0
     terms = [t for t in WORD_RE.split((query or "").lower()) if len(t) > 1]
     for p in PRODUCTS:
-        if in_stock_only and p["inventory"] <= 0:
-            continue
-        price = float(p["price"] or 0)
-        if min_price is not None and price < float(min_price):
-            continue
-        if max_price is not None and price > float(max_price):
-            continue
-        g = grade_of(p) or ""
-        if grade and grade.upper().replace(" ", "") not in g.replace(" ", ""):
-            continue
-        if product_type and product_type.lower() not in (p.get("type") or "").lower():
-            continue
         title = p["title"].lower()
         hay = title + " " + (p.get("description") or "").lower() + " " + (p.get("vendor") or "").lower()
         score = 0
@@ -87,8 +83,27 @@ def search_catalog(query=None, min_price=None, max_price=None, grade=None,
                 score += 1
         if terms and score == 0:
             continue
+        text_matches += 1
+        price = float(p["price"] or 0)
+        if min_price is not None and price < float(min_price):
+            continue
+        if max_price is not None and price > float(max_price):
+            continue
+        g = grade_of(p) or ""
+        if grade and grade.upper().replace(" ", "") not in g.replace(" ", ""):
+            continue
+        if product_type and product_type.lower() not in (p.get("type") or "").lower():
+            continue
+        if in_stock_only and p["inventory"] <= 0:
+            out_of_stock_hits += 1
+            continue
         results.append((score, price, p))
     results.sort(key=lambda r: (-r[0], -r[1]))
+    if terms and not results:
+        _log_jsonl("demand.jsonl", {
+            "event": "out_of_stock" if out_of_stock_hits else ("filtered_out" if text_matches else "no_match"),
+            "query": query, "grade": grade, "min_price": min_price, "max_price": max_price,
+        })
     out = []
     for _, _, p in results[:int(limit)]:
         out.append({
@@ -101,7 +116,17 @@ def search_catalog(query=None, min_price=None, max_price=None, grade=None,
             "type": p.get("type"),
             "description": (p.get("description") or "")[:400] or None,
         })
-    return {"matches": len(results), "showing": len(out), "products": out}
+    resp = {"matches": len(results), "showing": len(out), "products": out}
+    if terms:
+        resp["reminder"] = ("If the exact card the customer asked about is NOT in 'products', "
+                            "call record_wishlist for it now, before replying.")
+    return resp
+
+
+def record_wishlist(card, contact=None, notes=None):
+    _log_jsonl("wishlist.jsonl", {"card": card, "contact": contact, "notes": notes})
+    return {"status": "saved",
+            "note": "Recorded for Matan's daily sourcing review. Do not promise the card will be found, a timeframe, or a price."}
 
 
 def request_human(reason, summary, contact=None):
@@ -135,6 +160,22 @@ TOOLS = [
         },
     },
     {
+        "name": "record_wishlist",
+        "description": ("Record a card the customer wants but the shop does not have right now, so Matan "
+                        "can try to source it. Call after search_catalog came up empty for a specific card "
+                        "and the customer confirmed interest. Include contact details only if the customer "
+                        "gave them for this purpose."),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "card": {"type": "string", "description": "English card description: name, set, number, grade if given. e.g. 'Charizard Base Set PSA 8'"},
+                "contact": {"type": "string", "description": "Email or WhatsApp the customer left for a restock heads-up, if any"},
+                "notes": {"type": "string", "description": "Budget, condition preference, or other context, in English"},
+            },
+            "required": ["card"],
+        },
+    },
+    {
         "name": "request_human",
         "description": "Hand the conversation to Matan. Ask for the customer's contact details first.",
         "input_schema": {
@@ -149,7 +190,7 @@ TOOLS = [
     },
 ]
 
-DISPATCH = {"search_catalog": search_catalog, "request_human": request_human}
+DISPATCH = {"search_catalog": search_catalog, "record_wishlist": record_wishlist, "request_human": request_human}
 
 
 def call_anthropic(key, messages):
