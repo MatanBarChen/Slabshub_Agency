@@ -1,8 +1,8 @@
-# DRAFT — awaiting approval
+# APPROVED — awaiting manual publish
 - Platform: instagram-feed
-- Proposed publish time: Saturday 2026-08-08, 04:00 IDT (= Fri 21:00 ET)
-- slot: us-fri-eve (Sat 03:00–05:00 IDT) — used at 04:00 (+1h) to clear Charizard's IG feed post (03:00, same window/day)
-- Status: PENDING_APPROVAL
+- Publish time: Sunday 2026-08-09, 04:30 IDT (= Sat 21:30 ET)
+- slot: us-sat-eve (Sun 03:00–05:00 IDT) — sequence shifted +1 day on approval (2026-08-07); used at 04:30 (+1h) to clear Charizard's IG story (03:30, same window/day)
+- Status: APPROVED (Matan, in chat, 2026-08-07)
 
 ## Final copy
 

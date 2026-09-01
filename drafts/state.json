@@ -1,6 +1,7 @@
 {
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
-  "updated": "2026-08-05",
+  "updated": "2026-08-07",
+  "_note_eevee_shift": "2026-08-05-eevee-jungle-cgc7: approved by Matan in chat 2026-08-07; sequence shifted +1 day (original FB slot passed before approval). Story slot custom-us-sun-eve (Mon 04:30 IDT = Sun 21:30 ET) — documented off-grid deviation, US Sunday-evening peak.",
   "_note_slab_guard_slots": "2026-08-04-slab-guard-launch uses custom Israel-local slots (il-wed-eve/il-thu-eve/il-sat-eve, 20:00-22:00 IDT) — documented deviation from docs/schedule-slots.md (US-oriented grid); campaign targets Israeli collectors.",
   "meta_api": {
     "status": "in_progress",
@@ -219,25 +220,25 @@
         {
           "platform": "facebook-organic",
           "label": "פתיחה — סיפור סט הג'ונגל 1999",
-          "slot": "us-thu-eve",
-          "publish_at": "2026-08-07T04:00:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "slot": "us-fri-eve",
+          "publish_at": "2026-08-08T04:00:00+03:00",
+          "status": "APPROVED",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-facebook-organic.md"
         },
         {
           "platform": "instagram-feed",
           "label": "פוסט דגל — זוהר ענבר וינטג'",
-          "slot": "us-fri-eve",
-          "publish_at": "2026-08-08T04:00:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "slot": "us-sat-eve",
+          "publish_at": "2026-08-09T04:30:00+03:00",
+          "status": "APPROVED",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-feed.md"
         },
         {
           "platform": "instagram-story",
           "label": "3 פריימים — OG Eevee",
-          "slot": "us-sat-eve",
-          "publish_at": "2026-08-09T04:30:00+03:00",
-          "status": "PENDING_APPROVAL",
+          "slot": "custom-us-sun-eve",
+          "publish_at": "2026-08-10T04:30:00+03:00",
+          "status": "APPROVED",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-story.md"
         },
         {

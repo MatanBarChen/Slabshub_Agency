@@ -1,8 +1,8 @@
-# DRAFT — awaiting approval
+# APPROVED — awaiting manual publish
 - Platform: facebook-organic
-- Proposed publish time: Friday 2026-08-07, 04:00 IDT (= Thu 21:00 ET)
-- slot: us-thu-eve (Fri 03:00–05:00 IDT) — used at 04:00 (+1h) to clear Charizard's FB-organic post (03:00, same window/day)
-- Status: PENDING_APPROVAL
+- Publish time: Saturday 2026-08-08, 04:00 IDT (= Fri 21:00 ET)
+- slot: us-fri-eve (Sat 03:00–05:00 IDT) — sequence shifted +1 day on approval (2026-08-07, original us-thu-eve slot had passed). Note: 17.5h before Slab Guard FB post same calendar day — accepted deviation from 24h rule (different audience/language: US-EN vs IL-HE)
+- Status: APPROVED (Matan, in chat, 2026-08-07)
 
 ## Final copy
 
