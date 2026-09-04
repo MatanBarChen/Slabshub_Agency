@@ -1,0 +1,632 @@
+<title>מבנה סוכנות SlabsHub</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  /* ============ tokens — dark-first (collector display case) ============ */
+  :root {
+    --ink:        #0F0D16;
+    --ink-deep:   #0A0810;
+    --acrylic:    #191527;
+    --acrylic-hi: #201B31;
+    --line:       #2E2740;
+    --line-soft:  #241E33;
+    --text:       #EEEAF7;
+    --muted:      #9990B0;
+    --faint:      #6B6383;
+
+    --gold:       #C9A961;
+    --gold-dim:   #6E5C35;
+    --psychic:    #A06BF0;
+    --water:      #4EC9D9;
+    --ember:      #FF7A3D;
+
+    --slab-face:  linear-gradient(168deg, #1E1930 0%, #171325 62%, #14101F 100%);
+    --inner-hi:   inset 0 1px 0 rgba(255,255,255,.055);
+    --lift:       0 1px 2px rgba(0,0,0,.5), 0 10px 26px -14px rgba(0,0,0,.85);
+
+    --step--1: .8125rem;
+    --step-0:  1rem;
+    --step-1:  1.1875rem;
+    --step-2:  1.5rem;
+    --step-3:  2.125rem;
+    --step-4:  3rem;
+
+    --measure: 63ch;
+    --edge: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  /* light: only tokens are redefined, never component rules */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ink:        #EDEBF1;
+      --ink-deep:   #E4E1EA;
+      --acrylic:    #FBFAFD;
+      --acrylic-hi: #FFFFFF;
+      --line:       #D2CCDE;
+      --line-soft:  #E0DBE9;
+      --text:       #17131F;
+      --muted:      #5F5773;
+      --faint:      #8B839F;
+      --gold:       #8A6D22;
+      --gold-dim:   #CBBB8E;
+      --psychic:    #6B34C4;
+      --water:      #12707E;
+      --ember:      #C0490F;
+      --slab-face:  linear-gradient(168deg, #FFFFFF 0%, #FAF8FC 62%, #F4F1F8 100%);
+      --inner-hi:   inset 0 1px 0 rgba(255,255,255,.9);
+      --lift:       0 1px 2px rgba(30,20,50,.07), 0 10px 26px -16px rgba(30,20,50,.28);
+    }
+  }
+  :root[data-theme="light"] {
+    --ink:        #EDEBF1;
+    --ink-deep:   #E4E1EA;
+    --acrylic:    #FBFAFD;
+    --acrylic-hi: #FFFFFF;
+    --line:       #D2CCDE;
+    --line-soft:  #E0DBE9;
+    --text:       #17131F;
+    --muted:      #5F5773;
+    --faint:      #8B839F;
+    --gold:       #8A6D22;
+    --gold-dim:   #CBBB8E;
+    --psychic:    #6B34C4;
+    --water:      #12707E;
+    --ember:      #C0490F;
+    --slab-face:  linear-gradient(168deg, #FFFFFF 0%, #FAF8FC 62%, #F4F1F8 100%);
+    --inner-hi:   inset 0 1px 0 rgba(255,255,255,.9);
+    --lift:       0 1px 2px rgba(30,20,50,.07), 0 10px 26px -16px rgba(30,20,50,.28);
+  }
+
+  /* ============ base ============ */
+  html { direction: rtl; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: Heebo, "Segoe UI", system-ui, sans-serif;
+    font-size: var(--step-0);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1120px;
+    margin-inline: auto;
+    padding: clamp(2.5rem, 6vw, 4.5rem) var(--edge) 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 7vw, 5rem);
+  }
+  h1, h2, h3 {
+    font-family: "Frank Ruhl Libre", Georgia, serif;
+    font-weight: 700;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin: 0;
+  }
+  p { margin: 0; }
+  a { color: inherit; }
+  code, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  :focus-visible { outline: 2px solid var(--psychic); outline-offset: 3px; border-radius: 3px; }
+
+  /* eyebrow — Hebrew, so weight + color carry it, no uppercase, no wide tracking */
+  .eyebrow {
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--muted);
+    margin: 0 0 .5rem;
+  }
+  .section-head { margin-block-end: 1.75rem; }
+  .section-head h2 { font-size: var(--step-2); }
+  .section-head p { color: var(--muted); max-width: var(--measure); margin-block-start: .5rem; }
+
+  /* ============ hero ============ */
+  .hero { display: flex; flex-direction: column; gap: 1.25rem; }
+  .hero__mark {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: var(--step--1); font-weight: 700; color: var(--gold);
+  }
+  .hero__mark::before {
+    content: ""; inline-size: 26px; block-size: 1px;
+    background: linear-gradient(to left, var(--gold), transparent);
+  }
+  .hero h1 {
+    font-size: clamp(2.125rem, 6.5vw, var(--step-4));
+    font-weight: 900;
+    letter-spacing: -.01em;
+  }
+  .hero h1 em { font-style: normal; color: var(--psychic); }
+  .hero__lede { color: var(--muted); font-size: var(--step-1); max-width: var(--measure); }
+  .hero__facts {
+    display: flex; flex-wrap: wrap; gap: .5rem .75rem;
+    margin-block-start: .5rem;
+  }
+  .fact {
+    font-size: var(--step--1);
+    color: var(--muted);
+    border: 1px solid var(--line-soft);
+    border-radius: 999px;
+    padding: .2rem .75rem;
+  }
+  .fact b { color: var(--text); font-weight: 700; }
+
+  /* ============ orchestrator plate — not a card; a control panel ============ */
+  .orchestrator {
+    background: var(--ink-deep);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: minmax(0, 1fr);
+    position: relative;
+  }
+  @media (min-width: 720px) {
+    .orchestrator { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; }
+  }
+  .orchestrator h2 { font-size: var(--step-2); }
+  .orchestrator__body { color: var(--muted); max-width: var(--measure); margin-block-start: .5rem; }
+  .orchestrator__body strong { color: var(--text); font-weight: 500; }
+  .inline-cmds { display: flex; flex-direction: column; gap: .55rem; }
+  .inline-cmds__title { font-size: var(--step--1); font-weight: 700; color: var(--muted); }
+  .inline-cmd {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: .75rem;
+    align-items: baseline;
+    font-size: var(--step--1);
+    color: var(--muted);
+    padding-block: .35rem;
+    border-block-start: 1px solid var(--line-soft);
+  }
+  .inline-cmd .mono { color: var(--gold); font-size: .8125rem; }
+
+  /* ============ clusters + slabs ============ */
+  .clusters { display: flex; flex-direction: column; gap: 2.5rem; }
+  .cluster { --c: var(--psychic); }
+  .cluster--intel  { --c: var(--water); }
+  .cluster--make   { --c: var(--psychic); }
+  .cluster--ship   { --c: var(--gold); }
+
+  .cluster__head {
+    display: flex; align-items: baseline; gap: .75rem;
+    padding-block-end: .6rem;
+    border-block-end: 1px solid var(--line-soft);
+    margin-block-end: 1.25rem;
+  }
+  .cluster__name {
+    font-family: "Frank Ruhl Libre", Georgia, serif;
+    font-size: var(--step-1); font-weight: 700; color: var(--c);
+  }
+  .cluster__note { font-size: var(--step--1); color: var(--faint); }
+
+  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); }
+
+  /* the slab: label band on top, face below, cert line at the foot */
+  .slab {
+    background: var(--slab-face);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: var(--inner-hi), var(--lift);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform .18s ease, border-color .18s ease;
+  }
+  .slab:hover { transform: translateY(-2px); border-color: var(--gold-dim); }
+
+  .slab__label {
+    padding: .7rem .9rem .6rem;
+    border-block-end: 1px solid var(--gold-dim);
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--c) 9%, transparent), transparent);
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+  }
+  .slab__grader {
+    display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+    font-size: .6875rem; font-weight: 700; color: var(--c);
+  }
+  .slab__cmd {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: .6875rem; font-weight: 600;
+    color: var(--text);
+    background: color-mix(in srgb, var(--c) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c) 34%, transparent);
+    border-radius: 3px;
+    padding: .05rem .4rem;
+    direction: ltr;
+  }
+  .slab__name {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: .9375rem; font-weight: 600;
+    color: var(--text);
+    direction: ltr; text-align: start;
+  }
+  .cluster__head, .slab__name { unicode-bidi: isolate; }
+
+  .slab__face { padding: .9rem; flex: 1; }
+  .slab__face p { font-size: var(--step--1); color: var(--muted); }
+  .slab__face strong { color: var(--text); font-weight: 500; }
+
+  .slab__cert {
+    display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+    padding: .5rem .9rem;
+    border-block-start: 1px solid var(--line-soft);
+    font-size: .6875rem;
+    color: var(--faint);
+  }
+  .slab__cert .mono { color: var(--muted); direction: ltr; }
+
+  /* ============ playbooks ============ */
+  .plays { display: flex; flex-direction: column; gap: .5rem; }
+  .play {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: .5rem .9rem;
+    padding: .95rem 0;
+    border-block-start: 1px solid var(--line-soft);
+    align-items: center;
+  }
+  @media (min-width: 800px) {
+    .play { grid-template-columns: 11rem minmax(0, 1fr); }
+  }
+  .play__trigger { font-size: var(--step--1); font-weight: 700; color: var(--text); }
+  .play__trigger span { display: block; font-weight: 300; color: var(--faint); font-size: .75rem; }
+  .chain { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+  .chip {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: .6875rem;
+    color: var(--text);
+    background: var(--acrylic);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: .22rem .5rem;
+    direction: ltr;
+  }
+  .chip::before {
+    content: ""; inline-size: 5px; block-size: 5px; border-radius: 50%;
+    background: var(--c, var(--psychic)); flex: none;
+  }
+  .chip--intel { --c: var(--water); }
+  .chip--make  { --c: var(--psychic); }
+  .chip--ship  { --c: var(--gold); }
+  .chip--human { --c: var(--ember); border-color: color-mix(in srgb, var(--ember) 45%, var(--line)); direction: rtl; }
+  .arrow { color: var(--faint); font-size: .8rem; flex: none; }
+  .par {
+    display: inline-flex; flex-direction: column; gap: .25rem;
+    border-inline-start: 2px solid var(--psychic);
+    padding-inline-start: .45rem;
+  }
+  .par__note { font-size: .6875rem; color: var(--faint); }
+
+  /* ============ rules — emphasis spent on exactly one ============ */
+  .rules { display: flex; flex-direction: column; gap: 1rem; }
+  .rule {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: .35rem;
+    padding-inline-start: 1rem;
+    border-inline-start: 1px solid var(--line);
+  }
+  .rule h3 { font-size: var(--step-1); }
+  .rule p { color: var(--muted); max-width: var(--measure); font-size: var(--step--1); }
+  .rule--hard {
+    border-inline-start: 3px solid var(--ember);
+    background: color-mix(in srgb, var(--ember) 6%, transparent);
+    padding: 1rem 1rem 1.1rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .rule--hard h3 { color: var(--ember); }
+  .rule--hard p { color: var(--text); }
+
+  /* ============ footer ============ */
+  .foot {
+    border-block-start: 1px solid var(--line-soft);
+    padding-block-start: 1.5rem;
+    display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; align-items: baseline;
+    font-size: var(--step--1); color: var(--faint);
+  }
+  .foot__label { font-weight: 700; color: var(--muted); }
+  .foot__list { display: flex; flex-wrap: wrap; gap: .4rem .9rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="page" dir="rtl">
+
+  <header class="hero">
+    <div class="hero__mark">SlabsHub Agency</div>
+    <h1>סוכנות שיווק שמורכבת מ־<em>שמונה סוכנים</em>, ואדם אחד שמאשר</h1>
+    <p class="hero__lede">
+      חנות סלאבים אחת, שלושה ערוצי מכירה, וצוות AI שרץ עליהם. כל סוכן הוא תפקיד אחד עם תוצר אחד —
+      ואף פוסט לא יוצא לאוויר בלי אישור של מתן.
+    </p>
+    <div class="hero__facts">
+      <span class="fact"><b>8</b> סוכנים</span>
+      <span class="fact"><b>4</b> זרימות עבודה</span>
+      <span class="fact"><b>12</b> פקודות</span>
+      <span class="fact">אישור אנושי — <b>חובה</b></span>
+    </div>
+  </header>
+
+  <section class="orchestrator">
+    <div>
+      <p class="eyebrow">בראש השרשרת</p>
+      <h2>ה־Orchestrator</h2>
+      <p class="orchestrator__body">
+        הסשן הראשי. <strong>לא כותב קופי ולא מושך דאטה בעצמו</strong> — מקבל טריגר, מחליט אילו סוכנים
+        להפעיל ובאיזה סדר, מעביר לכל אחד בריף, ומסנתז את התוצרים חזרה לתמונה אחת.
+        גם אחראי על ההיגיינה: לא לפתוח סוכן פעמיים לאותה עבודה, ולא לייצר תוצר שאין לו דרך לצאת לאוויר.
+      </p>
+    </div>
+    <div class="inline-cmds">
+      <p class="inline-cmds__title">ארבע פקודות שהוא מריץ בעצמו, בלי לפתוח סוכן</p>
+      <div class="inline-cmd"><span class="mono">/status</span><span>לוז, אישורים ממתינים, חסמים</span></div>
+      <div class="inline-cmd"><span class="mono">/team</span><span>מי רץ לאחרונה ומה הפיק</span></div>
+      <div class="inline-cmd"><span class="mono">/costs</span><span>לימיטים, קרדיטים ועלות מול תמורה</span></div>
+      <div class="inline-cmd"><span class="mono">/quarterly</span><span>דוח רבעוני — analytics במצב פיננסי</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">הצוות</p>
+      <h2>שמונה סוכנים, שלושה אשכולות</h2>
+      <p>
+        הסדר הזה הוא גם סדר העבודה: קודם מבינים מה נכון למכור, אחר כך מייצרים את החומר,
+        ורק בסוף מוציאים ומודדים. כל סוכן כותב לתיקייה משלו — כך העבודה שורדת בין סשנים ובין שתי מכונות.
+      </p>
+    </div>
+
+    <div class="clusters">
+
+      <div class="cluster cluster--intel">
+        <div class="cluster__head">
+          <span class="cluster__name">מודיעין</span>
+          <span class="cluster__note">מה נכון למכור, ולמי — לפני שנכתבת מילה</span>
+        </div>
+        <div class="grid">
+
+          <article class="slab">
+            <div class="slab__label">
+              <div class="slab__grader"><span>מודיעין</span><span class="slab__cmd">/brief</span></div>
+              <div class="slab__name">product-intelligence</div>
+            </div>
+            <div class="slab__face">
+              <p>מושך דאטה חי מ־Shopify — מלאי, מחירים, קצב מכירה — ומעשיר אותו בשווי שוק אמיתי מ־eBay sold ו־PriceCharting.
+              <strong>הבסיס שכל קמפיין נבנה עליו.</strong></p>
+            </div>
+            <div class="slab__cert"><span>תוצר</span><span class="mono">briefs/</span></div>
+          </article>
+
+          <article class="slab">
+            <div class="slab__label">
+              <div class="slab__grader"><span>מודיעין</span><span class="slab__cmd">/looking</span></div>
+              <div class="slab__name">scout</div>
+            </div>
+            <div class="slab__face">
+              <p>סורק את השוק ומייצר buy-list ממוקר: אילו קלפים כדאי <strong>לקנות</strong> למכירה חוזרת,
+              במחיר יעד ובאיזה מרווח צפוי. ממליץ בלבד — לא קונה כלום.</p>
+            </div>
+            <div class="slab__cert"><span>תוצר</span><span class="mono">reports/looking/</span></div>
+          </article>
+
+          <article class="slab">
+            <div class="slab__label">
+              <div class="slab__grader"><span>מודיעין</span><span class="slab__cmd">/chat</span></div>
+              <div class="slab__name">chat-agent</div>
+            </div>
+            <div class="slab__face">
+              <p>הבעלים של הצ'אט באתר: מתחזק את המוח שלו ואת רעננות הקטלוג, ומכרה מהשיחות
+              <strong>ביקוש אמיתי</strong> — אילו קלפים ביקשו שאין לנו, עם sold comps לחוזרים.</p>
+            </div>
+            <div class="slab__cert"><span>תוצר</span><span class="mono">reports/demand/</span></div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cluster cluster--make">
+        <div class="cluster__head">
+          <span class="cluster__name">הפקה</span>
+          <span class="cluster__note">מבריף לחומר — מילים, ויז'ואל, וחוויית החנות</span>
+        </div>
+        <div class="grid">
+
+          <article class="slab">
+            <div class="slab__label">
+              <div class="slab__grader"><span>הפקה</span><span class="slab__cmd">/copy</span></div>
+              <div class="slab__name">copywriter</div>
+            </div>
+            <div class="slab__face">
+              <p>הופך בריף מוצר לקופי לכל פלטפורמה — פוסט אינסטגרם, סטורי, פייסבוק אורגני ומודעה —
+              כולל האשטגים, CTA ולינקים <strong>עם UTM</strong> שסוגרים את לולאת המדידה.</p>
+            </div>
+            <div class="slab__cert"><span>תוצר</span><span class="mono">copy/</span></div>
+          </article>
+
+          <article class="slab">
+            <div class="slab__label">
+              <div class="slab__grader"><span>הפקה</span><span class="slab__cmd">/creative</span></div>
+              <div class="slab__name">creative</div>
+            </div>
+            <div class="slab__face">
+              <p>מייצר את הוויז'ואל: ספקים לתמונות פוסט, סטוריבורדים לוידאו קצר,
+              ופרומפטים <strong>מוכנים להרצה</strong> ב־Veo / Runway.</p>
+            </div>
+            <div class="slab__cert"><span>תוצר</span><span class="mono">assets/</span></div>
+          </article>
+
+          <article class="slab">
+            <div class="slab__label">
+              <div class="slab__grader"><span>הפקה</span><span class="slab__cmd">/design</span></div>
+              <div class="slab__name">design-agent</div>
+            </div>
+            <div class="slab__face">
+              <p>יועץ העיצוב של slabshub.com — מבקר את החנות החיה מול רפרנסים ומייצר הצעות שדרוג
+              מתועדפות עם ספק בנייה. <strong>הצעות בלבד; לא נוגע בתבנית החיה.</strong></p>
+            </div>
+            <div class="slab__cert"><span>תוצר</span><span class="mono">design/</span></div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cluster cluster--ship">
+        <div class="cluster__head">
+          <span class="cluster__name">הוצאה ומדידה</span>
+          <span class="cluster__note">השער האחרון, והלולאה שנסגרת אחריו</span>
+        </div>
+        <div class="grid">
+
+          <article class="slab">
+            <div class="slab__label">
+              <div class="slab__grader"><span>הוצאה</span><span class="slab__cmd">/draft</span></div>
+              <div class="slab__name">publisher</div>
+            </div>
+            <div class="slab__face">
+              <p>אורז קופי + קריאייטיב לחבילות מוכנות לפרסום עם לוז מוצע, ומעלה אותן לאישור.
+              <strong>לעולם לא מפרסם בעצמו</strong> — הוא השער, ורק מתן פותח אותו.</p>
+            </div>
+            <div class="slab__cert"><span>תוצר</span><span class="mono">drafts/</span></div>
+          </article>
+
+          <article class="slab">
+            <div class="slab__label">
+              <div class="slab__grader"><span>מדידה</span><span class="slab__cmd">/report</span></div>
+              <div class="slab__name">analytics</div>
+            </div>
+            <div class="slab__face">
+              <p>סוגר את הלולאה: קורא מכירות Shopify, תנועה מיוחסת ל־UTM והמרות, ואומר
+              <strong>מה להגביר ומה לעצור</strong>. במצב פיננסי מפיק גם את הדוח הרבעוני.</p>
+            </div>
+            <div class="slab__cert"><span>תוצר</span><span class="mono">reports/</span></div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">איך זה מתחבר</p>
+      <h2>ארבע זרימות עבודה</h2>
+      <p>הטריגר קובע את השרשרת. ה־Orchestrator לא ממציא סדר בכל פעם — הוא מריץ את הזרימה שמתאימה למה שקרה.</p>
+    </div>
+
+    <div class="plays">
+
+      <div class="play">
+        <div class="play__trigger">מוצר חדש עלה לחנות<span>הזרימה המלאה</span></div>
+        <div class="chain">
+          <span class="chip chip--intel">product-intelligence</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--make">copywriter</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--make">creative</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--ship">publisher</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--human">אישור מתן</span>
+        </div>
+      </div>
+
+      <div class="play">
+        <div class="play__trigger">קלף תקוע שבועיים<span>למה הוא לא זז</span></div>
+        <div class="chain">
+          <span class="chip chip--intel">product-intelligence</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--make">copywriter</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--ship">publisher</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--human">אישור מתן</span>
+        </div>
+      </div>
+
+      <div class="play">
+        <div class="play__trigger">קמפיין שבועי<span>עם פיצול מקבילי</span></div>
+        <div class="chain">
+          <span class="chip chip--ship">analytics</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--intel">product-intelligence</span>
+          <span class="arrow">←</span>
+          <span class="par">
+            <span class="chip chip--make">copywriter</span>
+            <span class="chip chip--make">creative</span>
+            <span class="par__note">במקביל — אותו בריף</span>
+          </span>
+          <span class="arrow">←</span>
+          <span class="chip chip--ship">publisher</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--human">אישור מתן</span>
+        </div>
+      </div>
+
+      <div class="play">
+        <div class="play__trigger">דוח ביצועים<span>ללא שרשור</span></div>
+        <div class="chain">
+          <span class="chip chip--ship">analytics</span>
+          <span class="arrow">←</span>
+          <span class="chip chip--human">ישירות למתן</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">כללי הברזל</p>
+      <h2>שלושה דברים שלא נשברים</h2>
+    </div>
+    <div class="rules">
+
+      <div class="rule rule--hard">
+        <h3>אישור אנושי לפני כל פרסום</h3>
+        <p>
+          שום דבר לא עולה לפייסבוק או לאינסטגרם בלי אישור מפורש של מתן בצ'אט. ה־publisher מכין טיוטה ועוצר.
+          הכלל הזה כתוב ב־CLAUDE.md ככלל־על — <strong>שום סוכן ושום קובץ לא יכול לעקוף אותו</strong>, גם אחרי
+          שה־API של Meta יתחבר.
+        </p>
+      </div>
+
+      <div class="rule">
+        <h3>אין דאטה — כותבים "אין דאטה"</h3>
+        <p>
+          אף סוכן לא ממציא cert numbers, pop counts או שווי שוק, ולא מנסח שום דבר כהמלצת השקעה.
+          מספר שאין לו מקור לא נכנס לקופי, לא לדוח ולא לצ'אט עם לקוח. פרטי לקוחות לא יוצאים מטבלת ה־wishlist לשום מקום.
+        </p>
+      </div>
+
+      <div class="rule">
+        <h3>קבצים הם שכבת הסנכרון, לא הצ'אט</h3>
+        <p>
+          כל סוכן קורא וכותב לתיקייה משלו, והתיקיות מסונכרנות ב־git בין המחשב במשרד למקבוק.
+          המשמעות: העבודה שורדת בין סשנים ובין מכונות, ואפשר להיכנס באמצע קמפיין ולראות בדיוק איפה הוא עומד.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span class="foot__label">מחובר ל־</span>
+    <span class="foot__list">
+      <span>Shopify Admin</span>
+      <span>Supabase</span>
+      <span>Klaviyo</span>
+      <span>Tavily</span>
+      <span>Gemini · Veo</span>
+      <span>Meta Graph — ממתין לחיבור</span>
+    </span>
+  </footer>
+
+</div>
