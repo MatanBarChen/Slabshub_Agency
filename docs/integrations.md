@@ -44,6 +44,11 @@ Note: plugin:marketing:klaviyo is redundant — the direct Klaviyo MCP is alread
 2. Re-run the token grant (Graph API Explorer or Facebook Login for Business) adding `pages_manage_posts`, `instagram_content_publish`, `read_insights` — and select the SlabsHub page in the asset picker during the grant.
 3. Then the orchestrator finishes the rest: pull the Page id + Page access token from `/me/accounts`, pull the IG user id from the page, and Matan pastes the corrected `META_PAGE_TOKEN` / `META_PAGE_ID` / `META_IG_USER_ID` into `.env`.
 
+**App identifiers (confirmed 2026-09-04 from Meta's "Getting Started with Marketing API" email):**
+- App: `slabshub.com` — App ID `1385848300175812`
+- Business: `SlabsHub.com` — Business ID `1384456153755717`
+The app itself exists and is live; the gap is purely the Page link + the missing publishing scopes on the token.
+
 Original setup steps (reference):
 1. https://developers.facebook.com → Create App (type: Business).
 2. Add products: **Facebook Login for Business** + permissions `pages_manage_posts`, `pages_read_engagement`, `instagram_basic`, `instagram_content_publish`, `read_insights`.
