@@ -47,7 +47,10 @@ Note: plugin:marketing:klaviyo is redundant — the direct Klaviyo MCP is alread
 **App identifiers (confirmed 2026-09-04 from Meta's "Getting Started with Marketing API" email):**
 - App: `slabshub.com` — App ID `1385848300175812`
 - Business: `SlabsHub.com` — Business ID `1384456153755717`
-The app itself exists and is live; the gap is purely the Page link + the missing publishing scopes on the token.
+- Page: `Pokeslabshub` — Page ID `1361507090367793`, created 2026-09-04 and owned by the SlabsHub.com business (Matan has full access).
+  This closes the page gap from the 2026-08-17 audit. `META_PAGE_ID` in `.env` still holds Matan's user id and must be replaced with this page id.
+- Ad account seen in Business settings: `1081186441399359` (Slabshub_Agency) — differs from the `act_631106849003586` recorded in the audit; reconcile before the first paid run.
+Remaining gap: the Instagram professional account is not yet linked to the page, and the token still lacks the publishing scopes.
 
 Original setup steps (reference):
 1. https://developers.facebook.com → Create App (type: Business).
