@@ -31,7 +31,7 @@ Note: plugin:marketing:klaviyo is redundant — the direct Klaviyo MCP is alread
 
 ### 1. Meta Graph API (Facebook + Instagram) — publishing & insights
 
-**Status 2026-09-04 — VERIFIED WORKING against the live Graph API (one item left):**
+**Status 2026-09-04 — ✅ CONNECTED. Verified end-to-end against the live Graph API.**
 
 | Asset | Value | State |
 |---|---|---|
@@ -44,7 +44,9 @@ Note: plugin:marketing:klaviyo is redundant — the direct Klaviyo MCP is alread
 
 `META_PAGE_ID` and `META_IG_USER_ID` are now correct in `.env` (written by the orchestrator 2026-09-04).
 
-**The one open item:** the `META_PAGE_TOKEN` Matan pasted is the SHORT-lived user token (~2h life) — the "Extend Access Token" step in the Access Token Debugger was skipped. Until a long-lived user token is pasted, the derived page token expires with it. With a long-lived one, the derived page token does not expire at all.
+**Token:** `META_PAGE_TOKEN` holds the LONG-lived user token, valid until **2026-11-03**. The page token derived from it (`GET /{page-id}?fields=access_token`) came back with `expires_at=0` — **it never expires** — and carries all six scopes plus public_profile. So the November date is not a cliff: derive the page token once and it keeps working. Re-do the extend flow only if the user token is ever revoked.
+
+IG publishing quota checked live: `GET /{ig-user-id}/content_publishing_limit` → 0 of 25 posts used in the rolling 24h window.
 
 Quirk worth remembering: `/me/accounts` returns an EMPTY list even though everything works — business-owned pages under the new Pages experience are not listed there for this app. Do NOT read that as "no page". Read the page node directly instead: `GET /1361507090367793?fields=access_token` returns the page token, and `?fields=instagram_business_account` returns the IG id.
 
