@@ -1,10 +1,10 @@
 {
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
-  "updated": "2026-08-05",
+  "updated": "2026-09-04",
   "_note_slab_guard_slots": "2026-08-04-slab-guard-launch uses custom Israel-local slots (il-wed-eve/il-thu-eve/il-sat-eve, 20:00-22:00 IDT) — documented deviation from docs/schedule-slots.md (US-oriented grid); campaign targets Israeli collectors.",
   "meta_api": {
-    "status": "in_progress",
-    "note": "מתן משלים רישום מפתח + טוקן; ערעור מודעות פתוח — כל הממומן חסום"
+    "status": "connected",
+    "note": "הושלם 2026-09-04 — דף Pokeslabshub + אינסטגרם pokeslabshub, שש הרשאות, טוקן דף שלא פג. פוסט אורגני עובד ונבדק. ממומן עדיין חסום — ערעור מודעות."
   },
   "campaigns": [
     {
@@ -303,6 +303,30 @@
           "file": null
         }
       ]
+    },
+    {
+      "id": "2026-09-04-slab-guard-api-test",
+      "title": "Slab Guard — בדיקת API",
+      "emoji": "🛡",
+      "price": "₪19 / ₪22",
+      "tag": "פוסט הראשון שפורסם דרך ה-API",
+      "pipeline": {
+        "brief": "skipped",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "instagram-feed",
+          "label": "פוסט בדיקה",
+          "slot": null,
+          "publish_at": "2026-09-04T11:18:35+03:00",
+          "status": "PUBLISHED",
+          "file": "published/2026-09-04-slab-guard-ig.md",
+          "permalink": "https://www.instagram.com/p/Dc28KHWCuvw/"
+        }
+      ]
     }
-  ]
+  ],
+  "_blocker_products": "2026-09-04: כל מוצרי הקלפים במצב UNLISTED מ-2026-08-28. המלאי קיים אבל לא ניתן לקנייה. אין לפרסם פוסטים מאושרים לפני שמחזירים אותם ל-ACTIVE."
 }
