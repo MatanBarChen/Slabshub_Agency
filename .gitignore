@@ -21,3 +21,6 @@ prototype/sales-agent/conversations/
 # next to them, regenerate rather than commit
 prototype/sales-agent/catalog.sql
 prototype/sales-agent/prompt.sql
+
+# Generated chat previews (rebuild with build_preview.py)
+prototype/sales-agent/shopify/**/preview*.html

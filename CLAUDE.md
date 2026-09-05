@@ -30,6 +30,7 @@ For any **web deliverable** — campaign landing pages, promo HTML pages, email-
 |---|---|
 | "דף נחיתה לקמפיין" / landing page | 1. `product-intelligence` (brief, if missing) → 2. Orchestrator runs `anthropic-skills:web` (research-locked landing page) → 3. `publisher` (draft links + UTM check) |
 | "מה חיפשו בצ'אט" / demand from the site chat | `chat-agent` only → report to Matan. If a card shows repeat demand, Matan decides whether to run `/looking` on it |
+| "דף נחיתה לצ'אט" / chat landing page | `chat-agent` owns it — source in `prototype/sales-agent/shopify/landing-page/`, live at `/pages/chat` (he) and `/pages/chat-en` (en). Ads link here; product links keep the ad's UTMs and add `utm_content=chat-agent` |
 
 ### Chat_Agent — the on-site customer chat (added 2026-08-31)
 
@@ -39,6 +40,11 @@ The store's chat assistant on slabshub.com is a live cloud service — a Supabas
 - **Keeps the catalog honest** — `catalog.json` is a Shopify snapshot; Chat_Agent refreshes it when inventory changes so the chat only ever recommends real, in-stock products with direct links. Editing either the prompt or the catalog is a data push (`prompt_to_sql.py` / `catalog_to_sql.py` → Supabase `execute_sql`), not a redeploy — runbook in `prototype/sales-agent/README.md`.
 - **Closes the demand loop** — every card a customer asked for that we don't stock is logged in the `wishlist` table, plus zero-result searches in `demand` and escalations in `handoffs`, all in the chat's Supabase project. Chat_Agent queries those (Supabase MCP) and turns them into the nightly demand report at `reports/demand/demand-log.md`.
 - **Prices the demand worth pricing (added 2026-08-31)** — cards with repeat demand (2+ distinct conversations in 30 days), a waiting lead, or a stated budget get Tavily sold comps attached in the nightly report, capped at 6 lookups per run. So Matan reads "three people asked, recent sales 1,800-2,200" instead of just a card name.
+
+The chat is embedded in two places, both inside the `comics-*` sections rather than the layout — every main template is `"layout": false`, so a widget added to `theme.liquid` renders nowhere:
+
+- **Home page** — "דלפק הפניות" inside the hero (`snippets/slabshub-chat.liquid`, source in `shopify/inline-section/`)
+- **Landing pages** — `/pages/chat` and `/pages/chat-en` (`sections/comics-chat.liquid`, source in `shopify/landing-page/`), for ads to link to
 
 Hard rules: customer contact details never leave the `wishlist` table — never into a report, a commit, or chat (a lead is referenced as "ליד קיים — פרטים בטבלת wishlist"). Chat_Agent never contacts a customer and never writes to the live theme. **Comps are for Matan only** — they go in the report and never into the chat's prompt, the catalog, or anything the live assistant says to a customer; the chat's truth rules (no market values, no investment framing) are unchanged. A comp is what the market paid, not a buy recommendation — deciding what to buy at what margin stays `scout`'s job.
 

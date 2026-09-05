@@ -1,0 +1,549 @@
+{%- comment -%}
+  SlabsHub — דף הנחיתה של הסוכן. סקשן אחד, שני דפים (עברי/אנגלי).
+
+  התקנה:
+    1. Sections > Add a new section בשם "comics-chat", להדביק את כל הקובץ
+    2. להעלות את שתי התבניות:
+         templates/page.comics-chat.json      (lang: he)
+         templates/page.comics-chat-en.json   (lang: en)
+    3. ליצור שני עמודים ב-Shopify ולבחור להם את התבנית המתאימה:
+         /pages/chat      → תבנית comics-chat
+         /pages/chat-en   → תבנית comics-chat-en
+
+  התבנית מוגדרת layout:false, כמו כל שאר העמודים בחנות, ולכן הקובץ הזה מרנדר
+  מסמך HTML שלם בעצמו.
+
+  אין כאן מפתח API. הדפדפן מדבר רק עם ה-Edge Function, שמחזיקה אותו בצד שרת.
+{%- endcomment -%}
+
+{%- assign lang = section.settings.lang | default: 'he' -%}
+{%- assign SHC_ENDPOINT = 'https://uvlkacfnbnsqpizktcfi.supabase.co/functions/v1/chat' -%}
+
+{%- if lang == 'en' -%}
+  {%- assign dir = 'ltr' -%}
+  {%- assign t_title = 'Ask the SlabsHub agent' -%}
+  {%- assign t_head = 'Looking for a card? Ask the agent.' -%}
+  {%- assign t_sub = 'Ask about cards, grades and sets — and about what is actually in the shop right now. Answers come from real stock, with a direct link to the card.' -%}
+  {%- assign t_status = 'Open now' -%}
+  {%- assign t_note = 'Answers only from what is actually in the shop' -%}
+  {%- assign t_from_bot = 'The agent' -%}
+  {%- assign t_from_me = 'You' -%}
+  {%- assign t_greet = 'Welcome. I am your collector agent — ask me anything about the shop: which card you are after, what grade you want, or what fits your budget.' -%}
+  {%- assign t_chips = 'What fits $50?|PSA 9 or PSA 10?|Do you have a Charizard?|A gift for a 10-year-old' -%}
+  {%- assign t_placeholder = 'Write to the agent…' -%}
+  {%- assign t_send = 'Send' -%}
+  {%- assign t_quiet = 'The agent went quiet for a moment. Try that again?' -%}
+  {%- assign t_down = 'I could not reach the agent just now. Give it a moment and try again.' -%}
+  {%- assign t_reconnect = 'Reconnecting' -%}
+  {%- assign t_view = 'View card' -%}
+  {%- assign t_stock1 = 'Only one in stock' -%}
+  {%- assign t_why = 'Every card photographed in-hand|Priced against real sold listings|Single-copy stock — when it is gone, it is gone' -%}
+  {%- assign t_shop = 'Browse the whole shop' -%}
+  {%- assign t_campaign = 'chat-landing-en' -%}
+  {%- assign font_css = 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap' -%}
+{%- else -%}
+  {%- assign dir = 'rtl' -%}
+  {%- assign t_title = 'שאל את הסוכן של SlabsHub' -%}
+  {%- assign t_head = 'מחפש קלף? תשאל את הסוכן.' -%}
+  {%- assign t_sub = 'שאל על קלפים, ציונים וסטים — ועל מה שיש אצלנו במלאי עכשיו. התשובות מגיעות מהמלאי האמיתי, עם לינק ישיר לקלף.' -%}
+  {%- assign t_status = 'פתוח עכשיו' -%}
+  {%- assign t_note = 'עונה רק על מה שבאמת נמצא בחנות' -%}
+  {%- assign t_from_bot = 'הסוכן' -%}
+  {%- assign t_from_me = 'אתה' -%}
+  {%- assign t_greet = 'ברוכים הבאים! אני הסוכן קולקטור שלך, תשאל/י אותי כל דבר על החנות, איזה קלף שאתה מחפש, באיזה דירוג אתה מעוניין, או מה מתאים לתקציב שלך.' -%}
+  {%- assign t_chips = 'מה מתאים ל-200 ₪?|מה ההבדל בין PSA 9 ל-10?|יש לכם צ׳ריזארד?|מתנה לילד בן 10' -%}
+  {%- assign t_placeholder = 'תכתוב לסוכן…' -%}
+  {%- assign t_send = 'שלח' -%}
+  {%- assign t_quiet = 'הסוכן שתק לרגע. תנסה שוב?' -%}
+  {%- assign t_down = 'לא הצלחתי להגיע לסוכן כרגע. תן לזה רגע ותנסה שוב.' -%}
+  {%- assign t_reconnect = 'מתחבר מחדש' -%}
+  {%- assign t_view = 'לקלף' -%}
+  {%- assign t_stock1 = 'יחיד במלאי' -%}
+  {%- assign t_why = 'כל קלף מצולם ביד|מתומחר מול מכירות אמיתיות|עותק יחיד מכל קלף — כשנגמר, נגמר' -%}
+  {%- assign t_shop = 'לכל הקלפים בחנות' -%}
+  {%- assign t_campaign = 'chat-landing-he' -%}
+  {%- assign font_css = 'https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;500&display=swap' -%}
+{%- endif -%}
+
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ dir }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ t_title }} — SlabsHub</title>
+<meta name="description" content="{{ t_sub | escape }}">
+<link rel="canonical" href="{{ canonical_url }}">
+{%- if settings.favicon != blank %}
+<link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+{%- endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{{ font_css }}" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #ffd931;
+    --ink: #000000;
+    --ink-soft: #231f20;
+    --fog: #a6a8aa;
+    --smoke: #d6d6d6;
+    --radius: 12px;
+    --wrap: 1000px;
+{%- if lang == 'en' %}
+    --display: 'Times Now', 'Playfair Display', 'Times New Roman', serif;
+    --body: 'Times New Roman', Times, serif;
+    --ui: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+{%- else %}
+    --display: 'Frank Ruhl Libre', 'Times New Roman', serif;
+    --body: 'Frank Ruhl Libre', 'Times New Roman', serif;
+    --ui: 'Heebo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+{%- endif %}
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background-color: #dce8f2;
+    background-image:
+      linear-gradient(rgba(46, 111, 183, 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 111, 183, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  ::selection { background: var(--yellow); color: var(--ink); }
+  .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+
+  .masthead { background: var(--yellow); border-bottom: 2px solid var(--ink); }
+  .masthead .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 15px; padding-block: 14px;
+  }
+  .logo { font-family: 'Times Now', 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1; direction: ltr; }
+  .logo em { font-style: italic; font-weight: 400; }
+  .to-shop {
+    font-family: var(--ui); font-size: 13px; line-height: 1;
+    border: 1px solid var(--ink); border-radius: var(--radius);
+    padding: 9px 15px; transition: background 0.15s ease, color 0.15s ease;
+  }
+  .to-shop:hover { background: var(--ink); color: var(--yellow); }
+
+  main { flex: 1 0 auto; padding: 34px 0 46px; }
+  .lede { text-align: center; margin-bottom: 26px; }
+  .lede h1 {
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(30px, 5vw, 44px); line-height: 1.05;
+    text-wrap: balance; margin-bottom: 12px;
+  }
+  .lede p {
+    color: var(--ink-soft); max-width: 560px; margin: 0 auto;
+    font-size: 16px; line-height: 1.5; text-wrap: pretty;
+  }
+
+  .panel { border: 2px solid var(--ink); border-radius: var(--radius); background: #fff; overflow: hidden; }
+  .panel-head {
+    background: var(--yellow); border-bottom: 2px solid var(--ink);
+    padding: 11px 20px; display: flex; align-items: baseline;
+    justify-content: space-between; gap: 15px; flex-wrap: wrap;
+  }
+  .who { font-family: 'Times Now', 'Playfair Display', serif; font-weight: 500; font-size: 21px; line-height: 1; direction: ltr; }
+  .note { font-family: var(--ui); font-size: 12px; line-height: 1.3; }
+  .status { font-family: var(--ui); font-size: 12px; line-height: 1; display: inline-flex; align-items: center; gap: 7px; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); border: 1px solid var(--ink); }
+
+  .log {
+    height: min(72vh, 640px); overflow-y: auto; padding: 24px 20px 8px;
+    background: linear-gradient(rgba(46, 111, 183, 0.05) 1px, transparent 1px) 0 0 / 100% 22px, #fff;
+  }
+  .msg { margin-bottom: 22px; width: fit-content; max-width: min(88%, 60ch); }
+  .msg.me { margin-inline-start: auto; }
+  .from { display: block; font-family: var(--ui); font-size: 12px; color: var(--ink-soft); margin-bottom: 5px; }
+  .me .from { text-align: end; }
+  .text { font-family: var(--body); font-size: 17px; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; }
+  .bot .text { border-inline-start: 3px solid var(--ink); padding-inline-start: 14px; }
+  .me .text { background: var(--yellow); border: 1px solid var(--ink); border-radius: var(--radius); padding: 9px 14px; }
+  .text a { border-bottom: 1px dotted var(--ink); word-break: break-all; }
+  .text a:hover { background: var(--yellow); }
+  .text[dir="ltr"] { text-align: left; }
+  .text[dir="rtl"] { text-align: right; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin-top: 14px; max-width: 560px; }
+  .pcard {
+    border: 1px solid var(--ink); border-radius: var(--radius); background: #fff;
+    padding: 10px; display: flex; flex-direction: column; gap: 8px;
+    transition: background 0.15s ease;
+  }
+  .pcard:hover { background: #fffbe8; }
+  .pcard .shot:empty { display: none; }
+  .pcard .shot { aspect-ratio: 3 / 4; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .pcard .shot img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .pcard .nm { font-family: var(--body); font-size: 14px; line-height: 1.25; flex-grow: 1; }
+  .pcard .pr { font-family: var(--ui); font-size: 14px; font-weight: 500; }
+  .pcard .only { font-family: var(--ui); font-size: 11px; border: 1px solid var(--ink); border-radius: var(--radius); padding: 2px 7px; display: inline-block; }
+  .pcard .go {
+    display: block; text-align: center; background: var(--yellow);
+    border: 1px solid var(--ink); border-radius: 25px; padding: 8px 12px;
+    font-family: var(--ui); font-size: 12px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .pcard .go:hover { background: var(--ink); color: var(--yellow); }
+
+  .dots span { display: inline-block; width: 6px; height: 6px; margin-inline-end: 4px; border-radius: 50%; background: var(--fog); animation: blink 1.1s infinite; }
+  .dots span:nth-child(2) { animation-delay: 0.18s; }
+  .dots span:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes blink { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .dots span { animation: none; opacity: 0.6; } }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 20px; border-top: 1px solid var(--smoke); }
+  .chips.gone { display: none; }
+  .chip {
+    background: transparent; border: 1px solid var(--ink); border-radius: var(--radius);
+    padding: 8px 14px; cursor: pointer; font-family: var(--ui); font-size: 13px; line-height: 1;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .chip:hover { background: var(--ink); color: var(--yellow); }
+
+  .ask { display: flex; align-items: center; gap: 12px; padding: 14px 20px 18px; border-top: 1px solid var(--ink); }
+  .ask input {
+    flex: 1; min-width: 0; background: transparent; border: none;
+    border-bottom: 1px solid var(--ink); font-family: var(--body); font-size: 17px;
+    padding: 8px 2px; color: var(--ink-soft);
+  }
+  .ask input::placeholder { color: var(--fog); }
+  .send {
+    flex: none; background: var(--yellow); border: 2px solid var(--ink);
+    border-radius: var(--radius); padding: 11px 22px; cursor: pointer;
+    font-family: var(--ui); font-size: 13px; line-height: 1;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .send:hover:not(:disabled) { background: var(--ink); color: var(--yellow); }
+  .send:disabled { opacity: 0.45; cursor: default; }
+
+  .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 40px; }
+  .why div { border-top: 1px solid var(--ink); padding: 14px 20px 0; font-size: 15px; line-height: 1.4; color: var(--ink-soft); }
+  .why div:first-child { padding-inline-start: 0; }
+  .why div:last-child { padding-inline-end: 0; }
+  .why div + div { border-inline-start: 1px solid var(--ink); }
+  .closer { text-align: center; margin-top: 34px; }
+  .closer a {
+    display: inline-block; background: var(--yellow); border: 2px solid var(--ink);
+    border-radius: var(--radius); padding: 12px 22px; font-family: var(--ui); font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .closer a:hover { background: var(--ink); color: var(--yellow); }
+
+  footer { flex: none; background: var(--ink-soft); color: #fff; border-top: 2px solid var(--ink); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 18px; }
+  footer span, footer a { font-family: var(--ui); font-size: 12px; color: #c8cbcd; }
+  footer a:hover { color: var(--yellow); }
+
+  @media (max-width: 700px) {
+    .why { grid-template-columns: 1fr; }
+    .why div { padding-inline: 0 !important; }
+    .why div + div { border-inline-start: none; }
+    .log { height: min(62vh, 460px); padding: 18px 15px 4px; }
+    .msg { max-width: 94%; }
+    .panel-head, .chips, .ask { padding-inline: 15px; }
+    .lede h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="logo" href="/">Slabs<em>Hub</em></a>
+    <a class="to-shop" href="/collections/all">{{ t_shop }}</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="lede">
+      <h1>{{ t_head }}</h1>
+      <p>{{ t_sub }}</p>
+    </div>
+
+    <div class="panel" id="panel"
+         data-endpoint="{{ SHC_ENDPOINT }}"
+         data-campaign="{{ t_campaign }}"
+         data-view="{{ t_view | escape }}"
+         data-only="{{ t_stock1 | escape }}"
+         data-frombot="{{ t_from_bot | escape }}"
+         data-fromme="{{ t_from_me | escape }}"
+         data-quiet="{{ t_quiet | escape }}"
+         data-down="{{ t_down | escape }}"
+         data-reconnect="{{ t_reconnect | escape }}">
+      <div class="panel-head">
+        <span class="who">SlabsHub AI</span>
+        <span class="note">{{ t_note }}</span>
+        <span class="status" id="status">{{ t_status }}</span>
+      </div>
+
+      <div class="log" id="log" role="log" aria-live="polite" aria-label="{{ t_title | escape }}">
+        <div class="msg bot">
+          <span class="from">{{ t_from_bot }}</span>
+          <div class="text">{{ t_greet }}</div>
+        </div>
+      </div>
+
+      <div class="chips" id="chips">
+        {%- assign chip_list = t_chips | split: '|' -%}
+        {%- for c in chip_list %}
+        <button type="button" class="chip">{{ c }}</button>
+        {%- endfor %}
+      </div>
+
+      <form class="ask" id="ask">
+        <input id="input" type="text" autocomplete="off" maxlength="2000"
+               placeholder="{{ t_placeholder | escape }}" aria-label="{{ t_placeholder | escape }}">
+        <button type="submit" class="send" id="send">{{ t_send }}</button>
+      </form>
+    </div>
+
+    <div class="why">
+      {%- assign why_list = t_why | split: '|' -%}
+      {%- for w in why_list %}
+      <div>{{ w }}</div>
+      {%- endfor %}
+    </div>
+
+    <div class="closer"><a href="/collections/all">{{ t_shop }}</a></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; {{ 'now' | date: '%Y' }} SlabsHub</span>
+    <a href="/">slabshub.com</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var panel = document.getElementById('panel');
+  if (!panel) return;
+  var D = panel.dataset;
+  var log = document.getElementById('log');
+  var form = document.getElementById('ask');
+  var input = document.getElementById('input');
+  var send = document.getElementById('send');
+  var chips = document.getElementById('chips');
+  var status = document.getElementById('status');
+  var busy = false;
+
+  var cid = null;
+  try { cid = sessionStorage.getItem('shc-lp-cid'); } catch (e) {}
+
+  // Attribution: an ad sends visitors here with its own UTMs. Overwriting them
+  // would re-credit the sale to the chat and lose the ad that paid for it, so
+  // the inbound campaign is passed through untouched and the chat only marks
+  // itself in utm_content. A direct visit gets the chat as the source.
+  var inbound = new URLSearchParams(location.search);
+  function withUtm(u) {
+    try {
+      var url = new URL(u, location.origin);
+      if (!/(^|\.)slabshub\.com$/i.test(url.hostname)) return u;
+      if (inbound.get('utm_source')) {
+        ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) {
+          if (inbound.get(k)) url.searchParams.set(k, inbound.get(k));
+        });
+      } else {
+        url.searchParams.set('utm_source', 'chat-agent');
+        url.searchParams.set('utm_medium', 'onsite');
+        url.searchParams.set('utm_campaign', D.campaign);
+      }
+      url.searchParams.set('utm_content', 'chat-agent');
+      return url.toString();
+    } catch (e) { return u; }
+  }
+
+  function isLatin(t) {
+    return !/[֐-׿]/.test(t || '') && /[A-Za-z]/.test(t || '');
+  }
+
+  function esc(t) {
+    return String(t).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // Everything search_catalog has returned in this conversation, by url. The
+  // agent often re-mentions a card it found several turns ago without searching
+  // again, and that turn carries no trace - matching only against the current
+  // turn would silently drop the card exactly when it is being recommended.
+  var known = {};
+
+  function remember(trace) {
+    (trace || []).forEach(function (t) {
+      if (t.tool !== 'search_catalog') return;
+      ((t.output && t.output.products) || []).forEach(function (p) {
+        if (p.url) known[p.url] = p;
+      });
+    });
+  }
+
+  // A card is shown only for a product the agent actually linked in this reply,
+  // and only from real tool output - never from a guess in the browser.
+  function cardsFor(reply) {
+    var out = [];
+    Object.keys(known).forEach(function (url) {
+      if (reply.indexOf(url) !== -1) out.push(known[url]);
+    });
+    return out;
+  }
+
+  // A URL that became a card would otherwise appear twice. The agent is told to
+  // put bare URLs on their own line, so dropping exactly those lines is safe;
+  // a URL written mid-sentence keeps its place and just links.
+  function stripLinked(reply, cards) {
+    if (!cards.length) return reply;
+    var urls = cards.map(function (c) { return c.url; });
+    return reply.split('\n').filter(function (line) {
+      return urls.indexOf(line.trim()) === -1;
+    }).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  function linkify(text) {
+    return esc(text).replace(/(https?:\/\/[^\s<)]+)/g, function (u) {
+      return '<a href="' + esc(withUtm(u)) + '">' + u + '</a>';
+    });
+  }
+
+  function cardHtml(p) {
+    var only = (p.in_stock === 1) ? '<span class="only">' + esc(D.only) + '</span>' : '';
+    var price = p.price_ils ? '<span class="pr">' + esc(p.price_ils) + ' ₪</span>' : '';
+    return '<a class="pcard" href="' + esc(withUtm(p.url)) + '" data-handle="' + esc(handleOf(p.url)) + '">' +
+      '<span class="shot"></span>' +
+      '<span class="nm">' + esc(p.title) + '</span>' + price + only +
+      '<span class="go">' + esc(D.view) + '</span></a>';
+  }
+
+  function handleOf(url) {
+    var m = /\/products\/([^/?#]+)/.exec(url || '');
+    return m ? m[1] : '';
+  }
+
+  // The image comes from Shopify's own product JSON rather than from the chat's
+  // catalog snapshot, so a card can never show a photo the shop has since
+  // replaced. Same origin on the storefront; in local preview it simply fails
+  // and the card keeps its text, which is why .shot collapses when empty.
+  function fillShots(root) {
+    root.querySelectorAll('.pcard[data-handle]').forEach(function (card) {
+      var handle = card.getAttribute('data-handle');
+      if (!handle) return;
+      fetch('/products/' + encodeURIComponent(handle) + '.js', { headers: { accept: 'application/json' } })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          var src = d && d.featured_image;
+          if (!src) return;
+          if (src.indexOf('//') === 0) src = 'https:' + src;
+          src += (src.indexOf('?') === -1 ? '?' : '&') + 'width=400';
+          var img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          img.loading = 'lazy';
+          card.querySelector('.shot').appendChild(img);
+        })
+        .catch(function () {});
+    });
+  }
+
+  function add(who, text, trace) {
+    var row = document.createElement('div');
+    row.className = 'msg ' + (who === 'me' ? 'me' : 'bot');
+    if (trace) remember(trace);
+    var cards = (who === 'bot') ? cardsFor(text) : [];
+    var body = stripLinked(text, cards);
+    var html = '<span class="from">' + esc(who === 'me' ? D.fromme : D.frombot) + '</span>' +
+      '<div class="text" dir="' + (isLatin(body) ? 'ltr' : 'rtl') + '">' + linkify(body) + '</div>';
+    if (cards.length) {
+      html += '<div class="cards">' + cards.map(cardHtml).join('') + '</div>';
+    }
+    row.innerHTML = html;
+    log.appendChild(row);
+    if (cards.length) fillShots(row);
+    log.scrollTop = log.scrollHeight;
+    return row;
+  }
+
+  function thinking() {
+    var row = document.createElement('div');
+    row.className = 'msg bot';
+    row.innerHTML = '<span class="from">' + esc(D.frombot) + '</span>' +
+      '<div class="text dots"><span></span><span></span><span></span></div>';
+    log.appendChild(row);
+    log.scrollTop = log.scrollHeight;
+    return row;
+  }
+
+  function ask(text) {
+    text = (text || '').trim();
+    if (!text || busy) return;
+    busy = true;
+    send.disabled = true;
+    if (chips) chips.classList.add('gone');
+    add('me', text);
+    input.value = '';
+    var wait = thinking();
+
+    fetch(D.endpoint, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ message: text, conversation_id: cid })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        wait.remove();
+        if (d && d.conversation_id) {
+          cid = d.conversation_id;
+          try { sessionStorage.setItem('shc-lp-cid', cid); } catch (e) {}
+        }
+        add('bot', (d && d.reply) || D.quiet, d && d.trace);
+      })
+      .catch(function () {
+        wait.remove();
+        add('bot', D.down);
+        if (status) status.textContent = D.reconnect;
+      })
+      .then(function () {
+        busy = false;
+        send.disabled = false;
+        input.focus();
+      });
+  }
+
+  form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value); });
+  if (chips) {
+    chips.addEventListener('click', function (e) {
+      if (e.target.classList.contains('chip')) ask(e.target.textContent);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
+
+{% schema %}
+{
+  "name": "Chat landing page",
+  "settings": [
+    {
+      "type": "select",
+      "id": "lang",
+      "label": "Language",
+      "options": [
+        { "value": "he", "label": "Hebrew" },
+        { "value": "en", "label": "English" }
+      ],
+      "default": "he"
+    }
+  ]
+}
+{% endschema %}

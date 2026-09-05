@@ -1,0 +1,14 @@
+{
+  "layout": false,
+  "sections": {
+    "main": {
+      "type": "comics-chat",
+      "settings": {
+        "lang": "he"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
