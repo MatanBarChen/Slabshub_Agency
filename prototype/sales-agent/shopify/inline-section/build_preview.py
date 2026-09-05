@@ -73,6 +73,7 @@ PAGE = """<!DOCTYPE html>
   .section-head h2 .no { font-family: var(--font-ui); font-weight: 100; font-size: 14px; letter-spacing: var(--tracking-ui); vertical-align: super; margin-right: 6px; }
   .card { background: #fff; border: 1px solid var(--color-carbon-black); border-radius: var(--radius-card); padding: var(--gap); }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+  .hero-stage { display: grid; grid-template-columns: 1fr 1.55fr 1fr; gap: var(--gap); margin-top: 35px; }
   .stub { height: 210px; display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-fog-gray); }
 </style>
 </head>
@@ -90,10 +91,16 @@ PAGE = """<!DOCTYPE html>
     <div class="kicker-row"><span class="badge stock">Collector-run &middot; Israel &rarr; worldwide</span></div>
     <h1>Every card tells a story.<br><em>Ours come with a grade.</em></h1>
     <p>Graded Pok&eacute;mon slabs and hand-picked raw cards &mdash; photographed in-hand, priced against real sold listings, shipped protected.</p>
-  </div>
-</section>
 
 __COMPONENT__
+
+    <div class="hero-stage">
+      <div class="card stub">carousel</div>
+      <div class="card stub" style="background:#ffd931; border:2px solid #000;">front page</div>
+      <div class="card stub">carousel</div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">

@@ -55,6 +55,7 @@
   .section-head h2 .no { font-family: var(--font-ui); font-weight: 100; font-size: 14px; letter-spacing: var(--tracking-ui); vertical-align: super; margin-right: 6px; }
   .card { background: #fff; border: 1px solid var(--color-carbon-black); border-radius: var(--radius-card); padding: var(--gap); }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+  .hero-stage { display: grid; grid-template-columns: 1fr 1.55fr 1fr; gap: var(--gap); margin-top: 35px; }
   .stub { height: 210px; display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-size: var(--text-caption); letter-spacing: var(--tracking-ui); text-transform: uppercase; color: var(--color-fog-gray); }
 </style>
 </head>
@@ -72,13 +73,10 @@
     <div class="kicker-row"><span class="badge stock">Collector-run &middot; Israel &rarr; worldwide</span></div>
     <h1>Every card tells a story.<br><em>Ours come with a grade.</em></h1>
     <p>Graded Pok&eacute;mon slabs and hand-picked raw cards &mdash; photographed in-hand, priced against real sold listings, shipped protected.</p>
-  </div>
-</section>
 
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;500&display=swap" rel="stylesheet">
 
-<section class="shc-section" dir="rtl">
-  <div class="wrap">
+<div class="shc-section" dir="rtl">
     <div class="section-head">
       <h2>דלפק הפניות</h2>
       <span class="shc-status" id="shc-status">פתוח עכשיו</span>
@@ -110,8 +108,7 @@
         <button type="submit" class="shc-send" id="shc-send">שלח</button>
       </form>
     </div>
-  </div>
-</section>
+</div>
 
 <style>
   .shc-section {
@@ -120,6 +117,10 @@
     --shc-ui: 'Heebo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --shc-ink: var(--color-carbon-black, #000);
     --shc-yellow: var(--color-honeycomb-yellow, #ffd931);
+    max-width: var(--page-max-width, 1200px);
+    margin: 0 auto;
+    padding-top: 38px;
+    text-align: start;
   }
   .shc-section .section-head { align-items: center; }
   .shc-section .section-head h2 { font-family: var(--shc-display); font-weight: 500; }
@@ -319,6 +320,14 @@
   }
 })();
 </script>
+
+    <div class="hero-stage">
+      <div class="card stub">carousel</div>
+      <div class="card stub" style="background:#ffd931; border:2px solid #000;">front page</div>
+      <div class="card stub">carousel</div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">

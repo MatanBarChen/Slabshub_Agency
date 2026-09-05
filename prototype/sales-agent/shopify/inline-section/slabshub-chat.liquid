@@ -3,8 +3,9 @@
 
   התקנה:
     1. Snippets > Add a new snippet בשם "slabshub-chat", להדביק את כל הקובץ
-    2. ב-sections/comics-index.liquid להוסיף {% render 'slabshub-chat' %}
-       בשורה נפרדת מיד אחרי ה-</section> של ההירו, לפני הסקשן "№ 1".
+    2. ב-sections/comics-index.liquid, בתוך <section class="hero">, להוסיף
+       {% render 'slabshub-chat' %} מיד אחרי פסקת ה-<p> של הכותרת הראשית
+       ולפני <div class="hero-stage"> — כלומר בין הכותרת לקרוסלה.
 
   יורש את טוקני העיצוב של הדף (--color-honeycomb-yellow, --radius-card, …) עם
   ערכי גיבוי אם הוא ירונדר מחוץ ל-comics-index.
@@ -20,8 +21,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;500&display=swap" rel="stylesheet">
 
-<section class="shc-section" dir="rtl">
-  <div class="wrap">
+<div class="shc-section" dir="rtl">
     <div class="section-head">
       <h2>דלפק הפניות</h2>
       <span class="shc-status" id="shc-status">פתוח עכשיו</span>
@@ -53,8 +53,7 @@
         <button type="submit" class="shc-send" id="shc-send">שלח</button>
       </form>
     </div>
-  </div>
-</section>
+</div>
 
 <style>
   .shc-section {
@@ -63,6 +62,10 @@
     --shc-ui: 'Heebo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --shc-ink: var(--color-carbon-black, #000);
     --shc-yellow: var(--color-honeycomb-yellow, #ffd931);
+    max-width: var(--page-max-width, 1200px);
+    margin: 0 auto;
+    padding-top: 38px;
+    text-align: start;
   }
   .shc-section .section-head { align-items: center; }
   .shc-section .section-head h2 { font-family: var(--shc-display); font-weight: 500; }
