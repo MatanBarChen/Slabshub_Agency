@@ -47,3 +47,10 @@ Sources: [PriceCharting — Pikachu with Grey Felt Hat #85](https://www.pricecha
 ## UPDATE 2026-08-02 (post-brief, approved by Matan)
 - Price changed: $1,100 -> $999 (aligned with ~$1,000 loose-raw benchmark). Use $999 anywhere price appears.
 - Store DOES have front+back images (earlier single-image warning is outdated).
+
+## UPDATE 2026-09-07 — repricing refresh (store now ILS, primary market Israel)
+- NEW price: ₪2,990 (was $999 USD). FX used: $1 = ₪3.0131 (xe.com mid-market, 2026-09-07 ~02:45 UTC). ₪2,990 ≈ **$992.16 at this rate** — a conversion, not an observed shekel sale.
+- Fresh comp: PriceCharting ungraded/loose benchmark **$1,042.50** (pulled via search 2026-09-07; up from $1,000 on 2026-08-02) ≈ ₪3,141 at the rate above. PriceCharting page itself 403'd on direct fetch this run, so no new dated eBay sold comps — the Jul 2026 comps in the table above ($860–$1,250) are now 5+ weeks stale, historical context only.
+- Position: **~4.8% below** the PriceCharting benchmark ($992 vs $1,042.50). **Fragile claim** — single source, thin margin, no confirming sold listings this pull. Do not build a hard "X% below market" headline on it.
+- Verdict: angle UNCHANGED. Keep leading with the Van Gogh Museum collab / grail story (the strong, non-fragile hook). If a value line is used at all, keep it soft, not a hard percentage.
+- Value line (HE-ready): "המחיר שלנו תואם את השוק הנוכחי לקלף הנדיר הזה — כ-1,000$ (כ-3,141 ₪ בשער הדולר של היום)."

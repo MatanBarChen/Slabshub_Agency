@@ -21,3 +21,10 @@ Primary — **Value/underpriced**: our $24.99 sits ~$1–14 below current market
 - Comp range is wide ($22–$197) and market has fallen 61.2% since release — treat market-value estimate as low-confidence; do not overstate the price gap in ad copy.
 - Listed ~14.5 months with only 1 unit in stock and no units-sold data pulled — verify sell-through before heavy spend; if truly zero sales at this price, consider whether visibility (not price) is the real blocker.
 - Single product image — creative agent will need to source/generate supporting visuals (set imagery, stamp close-up) rather than relying on one shot.
+
+## UPDATE 2026-09-07 — repricing refresh — ANGLE MUST CHANGE
+- NEW price: ₪79 (was $24.99). FX used: $1 = ₪3.0131 (xe.com mid-market, 2026-09-07 ~02:45 UTC). ₪79 ≈ **$26.22 at this rate** — a conversion, not an observed shekel sale.
+- Fresh comp (PokemonWizard market aggregate, pulled 2026-09-07): current market price **$26.01**, recent sales range $22.96–$196.48, down 61.0% since release — nearly identical to the 2026-08-02 pull ($25.89, range $22.03–$196.74, -61.2%), so this reads as a genuinely current, stable snapshot rather than stale cache.
+- Position: **CHANGED — we are now essentially AT market** ($26.22 vs $26.01, ~0.8% above), not ~18% below as the original brief stated. **The old "priced below market" hook is now false and must not be reused.**
+- Verdict: **rebuild the hook.** Drop the value/underpriced angle entirely. Promote the brief's backup — collector/scarcity, "the accessible Umbreon" (Prismatic Evolutions hype, pack-exclusive stamped variant) — to primary, with NO price-gap claim. If price must appear, use neutral framing only ("at current market price"), never "below market."
+- Value line (HE-ready): "אמברון היקר של פריזמטיק אבולושנס, גרסת Stamp בלעדית שלא יוצאת מהחבילות — במחיר השוק הנוכחי."

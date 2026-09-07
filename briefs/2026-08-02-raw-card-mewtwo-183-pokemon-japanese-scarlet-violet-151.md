@@ -38,3 +38,10 @@ All from PriceCharting's eBay sold-listing tracker (https://www.pricecharting.co
 - **Wide comp spread ($14.40–$50.99)** — condition drives value and our copy's condition is not stated in the listing. Do not advertise "NM" or imply grading-worthy condition unless verified; the $39–$44.50 comps were NM-labeled.
 - **Low margin headroom:** at $19.99 there is little room for discount codes or paid CAC — organic/email only.
 - **Single product image** on the listing; fine for email, thin for a standalone ad creative.
+
+## UPDATE 2026-09-07 — repricing refresh (store now ILS, primary market Israel)
+- NEW price: ₪59 (was $19.99). FX used: $1 = ₪3.0131 (xe.com mid-market, 2026-09-07 ~02:45 UTC). ₪59 ≈ **$19.58 at this rate** — essentially the same real dollar price as before, just re-denominated.
+- Fresh comp (Sports Card Investor, pulled 2026-09-07): raw NM last sale **$19.99**, still down ~21% (-$5.34) over the trailing 30 days — numbers are near-identical to the 2026-08-02 pull, suggesting a slow-moving/thin market rather than a truly fresh data point. The $24.59 PriceCharting algorithmic benchmark was NOT re-verified this run (page 403'd).
+- Position: **UNCHANGED.** $19.58 sits right in the recent raw-sold cluster ($19.50–$20) and ~20% below the (unverified-this-run) $24.59 algo benchmark — still roughly at-market to slightly below.
+- Verdict: angle UNCHANGED from Aug 2 — this remains a **visibility problem, not a price problem.** Now ~476 days listed (since 2025-05-19) at essentially the same real price, still 0 units sold. Do not discount further; the grading-upside pitch (raw → PSA 10 $125) still applies if re-verified before use.
+- Value line (HE-ready): "כ-59 ₪ בלבד לקלף Art Rare של Mewtwo מהסדרה המבוקשת 151 — עם פוטנציאל דירוג משמעותי."

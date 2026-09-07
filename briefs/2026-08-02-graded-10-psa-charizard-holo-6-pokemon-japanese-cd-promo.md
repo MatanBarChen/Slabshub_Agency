@@ -43,3 +43,11 @@ Context (same source, same dates):
 - Price changed: $799 -> $1,199 (still ~10% below $1,340 market avg). Use $1,199 in all copy.
 - Handle fixed: now psa-9-charizard-holo-6-pokemon-japanese-cd-promo (redirect from old URL active). Product URL: https://slabshub.com/products/psa-9-charizard-holo-6-pokemon-japanese-cd-promo
 - Store has 4 images incl. back of slab.
+
+## UPDATE 2026-09-07 — repricing refresh (store now ILS, primary market Israel)
+- NEW price: ₪3,590 (was $1,199). FX used: $1 = ₪3.0131 (xe.com mid-market, 2026-09-07 ~02:45 UTC). ₪3,590 ≈ **$1,191.55 at this rate** — a conversion, not an observed shekel sale.
+- Fresh comps THIS PULL are noisy and low-confidence: PriceCharting's own page 403'd on direct fetch, so this run relies on search snippets mixing listings and solds — PSA 9 activity seen from ~$550 (asking) up to a reported $2,480 sale (Feb 2026), with a cited "late 2025" range of $470–$1,850. That is a far wider, messier spread than the 5 clean PriceCharting sold-comps pulled 2026-08-02 (avg $1,340, range $1,250–$1,450, all dated within 3 days).
+- Position: against the OLD clean anchor ($1,340 avg), the new $1,191.55 is still ~11% below. Against this pull's noisy range, we sit mid-pack — could be well below or roughly at market depending which snippet is trusted.
+- **Flag to orchestrator:** do not let the copywriter lock a precise "X% / $Y below market" headline on this card right now — confidence dropped from HIGH (Aug 2) to LOW-MEDIUM this run. Re-pull with Tavily (or a working PriceCharting fetch) before using a hard number in paid copy.
+- Verdict: directionally still "priced below recent highs" (unchanged), but lean on the vintage/1999-CD-promo-grail angle (the brief's backup) rather than the precise price-gap angle until re-verified.
+- Value line (HE-ready, soft): "מתומחר משמעותית מתחת לשיאי השוק האחרונים על סלאב PSA 9 נדיר מ-1999 — כמות מוגבלת לעותק אחד."

@@ -1,38 +1,42 @@
-﻿# DRAFT â€” awaiting approval
+# DRAFT — awaiting approval
 - Platform: facebook-organic
-- Proposed publish time: Sunday 2026-08-02, 23:30 IDT (= 16:30 ET / 13:30 PT) â€” still inside the US Sunday-afternoon collector window, and staggered 2.5h after the IG feed twin (21:00 IDT) so the two posts don't land at the same minute.
-- Status: APPROVED (by Matan in chat, 2026-08-02)
+- Proposed publish time: Sunday 2026-08-02, 23:30 IDT (= 16:30 ET / 13:30 PT) — still inside the US Sunday-afternoon collector window, and staggered 2.5h after the IG feed twin (21:00 IDT) so the two posts don't land at the same minute.
+- Status: APPROVED (by Matan in chat, 2026-08-02) — **content rewritten 2026-09-07 for HE/ILS repricing; re-approval recommended before publishing.**
 
 ## Final copy
 
-In June 2023, Japan got the set every Gen 1 kid was waiting for: Pokemon Card 151 (SV2a) â€” the first modern expansion built entirely around the original Kanto dex. And the chase cards were the Art Rares: secret-rarity full-arts numbered past the set's printed 165.
+ביוני 2023 קיבלה יפן את הסט שכל ילד של הדור הראשון חיכה לו: Pokemon Card 151 (SV2a) — ההרחבה המודרנית הראשונה שכולה בנויה סביב דקס הקאנטו המקורי. וקלפי המרדף היו ה-Art Rare — נדירות סודית, ממוספרת מעבר ל-165 הקלפים המודפסים של הסט.
 
-This is one of them. Mewtwo AR 183/165 â€” the genetic Pokemon hovering over a neon-lit city skyline. Arguably the moodiest card in the set, and it's Mewtwo, so it never needed help being iconic.
+זה אחד מהם. Mewtwo AR 183/165 — הפוקימון הגנטי מרחף מעל קו רקיע עירוני מואר בניאון. כנראה הקלף הכי אווירתי בסט, וזה עוד Mewtwo, אז הוא ממילא אייקוני.
 
-Here's the part collectors will care about. We have one raw copy listed at $19.99. PriceCharting's current market price for this card ungraded is $24.59 â€” so we're about 19% under market. And the recent eBay solds show why people gamble on raw copies of this card: two NM-labeled copies sold for $39 and $44.50 just this week, and PSA 10s currently sell for $125.
+יש לנו עותק גולמי אחד, במחיר ₪59 (כ-$19.58 בשער הדולר של היום). לפי Sports Card Investor (נכון ל-2026-09-07), מכירה אחרונה של עותק גולמי NM נסגרה ב-$19.99 — כלומר אנחנו נמצאים בערך באותו טווח שוק, לא זול יותר באופן דרמטי.
 
-To be clear â€” our copy is raw and ungraded, and we're not promising what's under the sleeve grades a 10. That's the whole game with raw cards. What we can tell you is the price: $19.99, under market, one copy.
+הקלף הזה נמצא אצלנו כבר 476 ימים. זו לא בעיית מחיר — זו בעיית חשיפה. קלף Art Rare אמיתי מהסט הכי נוסטלגי של 2023 פשוט לא זכה עדיין לעין שהוא ראוי לה.
 
-First come, first served. ðŸƒ
+עותק גולמי, לא מדורג — אנחנו לא מבטיחים מה יגלה הדירוג. זה כל המשחק בקלפים גולמיים.
 
-https://slabshub.com/products/raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151?utm_source=facebook&utm_medium=organic&utm_campaign=2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151
+₪59, יחידה אחת. הראשון שמגיע, מקבל את הקלף. 🏃
+
+קישור בתגובות.
 
 ## Asset
 
 `C:\Users\matan\Desktop\Slabshub Agency\assets\2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151\promo-main.png`
-â€” 928x1152 (â‰ˆ4:5 vertical), supported in FB feed. Per image-spec, no text baked in; FB organic can run it clean (the long copy does the work) or with the same "Mewtwo AR. $19.99. Under market." overlay as IG. Note: JPEG-encoded despite .png extension â€” uploads fine.
+— 928x1152 (≈4:5 vertical), supported in FB feed. Per image-spec, no text baked in; FB organic can run it clean (the long copy does the work) or with the same **"Mewtwo AR. ₪59."** overlay as IG. Note: JPEG-encoded despite .png extension — uploads fine.
 
 ## Link
 
 https://slabshub.com/products/raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151?utm_source=facebook&utm_medium=organic&utm_campaign=2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151
-(pasted in-post; FB will also generate a link preview â€” if the preview card shows, consider dropping the image attachment to avoid double visuals, publisher's tool-side choice)
+(pasted in-post; FB will also generate a link preview — if the preview card shows, consider dropping the image attachment to avoid double visuals, publisher's tool-side choice)
 
 ## Checklist
-- [x] Copy matches platform limits â€” ~1,270 chars, well under FB's 63,206 limit; first ~120 chars (pre-fold) carry the nostalgia hook
-- [x] UTM parameters present and correct â€” utm_campaign matches campaign name exactly; utm_medium=organic; URL parses
-- [x] No unverified price/scarcity claims â€” all figures ($19.99, $24.59, ~19%, $39, $44.50, $125) sourced from brief (PriceCharting, pulled 2026-08-02); NM comps explicitly labeled as third-party sales; own copy explicitly "raw and ungraded"; "one copy" = literal inventory
-- [x] Asset format matches placement dimensions â€” 4:5 vertical is supported in FB feed
+- [x] Copy is Hebrew, RTL-natural; card/set names kept in English inline (Mewtwo, Art Rare, 151, SV2a) per CLAUDE.md rule
+- [x] Price updated to ₪59; $19.99/$24.59/19%-below figures from the Aug-2 pull are NOT reused as a value-gap claim
+- [x] The only comp cited is the one re-verified 2026-09-07 (SCI raw NM last sale $19.99), stated with source+date, framed as "same market range," not "under market"
+- [x] Angle shifted to visibility/reach ("476 ימים... זו בעיית חשיפה") per the brief's Sept update, matching the copy's-job-is-reach-not-discounting instruction
+- [x] "עותק גולמי אחד" / "יחידה אחת" = literal inventory; own copy explicitly stated raw/ungraded, no grading promise
+- [x] UTM parameters unchanged and correct — utm_campaign matches campaign name exactly; utm_medium=organic; URL parses
+- [x] Asset format matches placement dimensions — 4:5 vertical is supported in FB feed
 
 ### Verification notes
-- Comps are dated and the market is softening (raw âˆ’21% in 30 days per brief) â€” this copy should not be reused after ~2 weeks without refreshed numbers.
-
+- Rewritten 2026-09-07. Same conservative sourcing rule as the IG feed twin — only the 2026-09-07-dated SCI comp is used; the un-re-verified $24.59 benchmark and grading-ladder figures ($39/$44.50/$125) were dropped rather than carried forward stale.

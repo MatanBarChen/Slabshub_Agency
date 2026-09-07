@@ -23,3 +23,11 @@ Primary: vintage/nostalgia grail angle — 1999 1st Edition Jungle-era WOTC card
 - Comps are unverified/approximate (PriceCharting blocked, only mixed-grade snippets available) — do not quote a precise "below market" dollar gap in ad copy.
 - Stale: listed ~476 days with 0 units sold in the last year — this is a stale-inventory candidate; consider flagging to orchestrator for a price-adjustment/discount review alongside any promo push, not spend-heavy ad angle.
 - Only 2 images (front/back), no lifestyle/angle shots — creative may need to generate supplementary visuals.
+
+## UPDATE 2026-09-07 — repricing refresh (store now ILS, primary market Israel)
+- NEW price: ₪79 (was $24.99). FX used: $1 = ₪3.0131 (xe.com mid-market, 2026-09-07 ~02:45 UTC). ₪79 ≈ **$26.22 at this rate** — a conversion, not an observed shekel sale.
+- Fresh comp found this pull: a **PSA 7** (different grading company than our CGC 7, same numeric grade tier) sold for **$39 on 2026-01-30** (PSA auction-prices-realized, via search snippet — direct PSA page 403'd on fetch). This is a real dated sold price, an upgrade over the old undated "~$30 estimate," but still a cross-company proxy, not a same-grade CGC 7 sold comp.
+- Position: at $26.22 we are now ~33% below this single PSA-7 proxy comp ($39) — directionally still "at or below market" as in the Aug 2 brief, but the gap looks larger with this firmer (if imperfect) data point. **Confidence stays LOW** — one comp, wrong grading company, no CGC-7-specific sold data found this run either.
+- Verdict: angle UNCHANGED — vintage/nostalgia primary, "affordable vintage entry point" backup remains appropriate, now supportable with one real dated comp instead of a pure estimate. Do not state a precise "% below market" in copy — single-source, cross-grade.
+- Stale-inventory flag still stands (~499 days listed by 2026-09-07, 0 units sold) — still a candidate for a price-adjustment review in parallel with any promo push.
+- Value line (HE-ready): "כ-79 ₪ לקלף 1st Edition וינטג' משנת 1999 — כניסה משתלמת לעולם האספנות הקלאסית."

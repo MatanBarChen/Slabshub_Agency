@@ -1,30 +1,35 @@
-﻿# APPROVED — ready to publish manually
+# PENDING APPROVAL - rewritten 2026-09-07 (Hebrew + ILS), needs Matan's re-approval
 - Platform: facebook-organic
 - Proposed publish time: Sunday 2026-08-09, 21:00 IDT (= Sun 14:00 ET)
 - slot: us-sun-aft (Sun 21:00 IDT) — us-mon-eve and us-thu-eve (usual FB-organic slots) already booked this cycle by other campaigns
-- Status: APPROVED (by Matan in chat, 2026-08-04)
+- Status: APPROVED (by Matan in chat, 2026-08-04) — **content and angle rewritten 2026-09-07; re-approval required — the underlying value claim changed, not just language.**
 
 ## Final copy
 
-Prismatic Evolutions was 2025's hottest set, and Umbreon walked away as the fan-favorite Eeveelution of the whole release. Most of that hype is priced around one card: the #161 Moonbreon SIR.
+Prismatic Evolutions היה הסט הכי חם של 2025, ו-Umbreon יצא ממנו כה-Eeveelution האהוב על האספנים מכל ההשקה. רוב הבאזז הזה מתומחר סביב קלף אחד: ה-#161 Moonbreon SIR.
 
-This isn't that card — and we want to be upfront about it. This is the #60 Umbreon ex in its stamped promo form: a Poke Ball-stamped variant that shipped exclusively through Surprise Box, meaning it was never sitting in a booster pack waiting to be pulled. It's its own thing — a lower-cost way to own a piece of the Umbreon moment from this set without chasing grail money.
+זה לא הקלף הזה — ואנחנו רוצים להיות ברורים בעניין. זה ה-#60 Umbreon ex בגרסת הפרומו המוחתמת שלו: וריאנט Poke Ball שיצא אך ורק דרך Surprise Box, כלומר הוא מעולם לא חיכה בחבילת בוסטר להישלף. זה משהו בפני עצמו — דרך נגישה יותר להחזיק חתיכה מרגע ה-Umbreon של הסט הזה, בלי לרדוף אחרי מחיר גרייל.
 
-We've got it listed at $24.99, under recent comparable listings. It's raw and ungraded — sold as-is, full photos provided so you can inspect it yourself before buying. One copy in stock.
+יש לנו אותו במחיר ₪79. גולמי ולא מדורג — נמכר כפי שהוא, עם תמונות מלאות כדי שתוכלו לבדוק בעצמכם לפני הרכישה. עותק אחד במלאי.
 
-Link in the comments.
+קישור בתגובות.
 
 ## Asset
 
-`C:\Users\matan\Desktop\Slabshub Agency\assets\2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions\promo-main.png` — 1080x1350 (4:5), same hero as IG feed. No text baked in — overlay hook **"Surprise Box exclusive. Stamped. $24.99."** top safe zone, per image-spec.md.
+`C:\Users\matan\Desktop\Slabshub Agency\assets\2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions\promo-main.png` — 1080x1350 (4:5), same hero as IG feed. No text baked in — overlay hook **"Umbreon בגרסת Stamp בלעדית ל-Surprise Box. ₪79."** top safe zone, per image-spec.md. **Old overlay ("Surprise Box exclusive. Stamped. $24.99.") is retired.**
 
 ## Link
 
 https://slabshub.com/products/raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions?utm_source=facebook&utm_medium=organic&utm_campaign=2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions
 
 ## Checklist
-- [x] Copy matches platform limits — caption 778 chars, within FB organic norms (no headline-length rule applies; organic, not ad)
-- [x] UTM parameters present and correct — utm_source=facebook, utm_medium=organic, campaign matches exactly; URL parses
-- [x] No unverified price/scarcity claims — $24.99 confirmed store price, checked against brief comps ($26.99–$38.87); "one copy in stock" literal; Moonbreon distinction stated explicitly, no conflation
+- [x] Copy is Hebrew, RTL-natural; card/set names kept in English inline (Umbreon ex, Prismatic Evolutions, Moonbreon SIR) per CLAUDE.md rule
+- [x] Price updated to ₪79
+- [x] **"Under recent comparable listings" claim removed entirely** — per the 2026-09-07 brief update, ₪79 (≈$26.22) is now essentially AT market (~$26.01 comp, PokemonWizard, pulled 2026-09-07), so the old value framing is false and does not appear anywhere in this file
+- [x] Angle rebuilt around the brief's promoted primary — collector/scarcity, explicit Moonbreon distinction, "the accessible Umbreon," no market-value figure stated
+- [x] "עותק אחד במלאי" = literal inventory; "נמכר כפי שהוא" = no condition claims beyond raw/as-is
+- [x] UTM parameters unchanged and correct — utm_source=facebook, utm_medium=organic, campaign matches exactly; URL parses
 - [x] Asset format matches placement dimensions — promo-main.png 1080x1350 (4:5), valid FB feed image
 
+### Verification notes
+- Rewritten 2026-09-07: same rebuild as the IG feed/story twins — old "under recent listings" line is gone, replaced entirely by the accessible-Umbreon/Moonbreon-distinction story per the brief's "ANGLE MUST CHANGE" flag.

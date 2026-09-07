@@ -32,18 +32,20 @@
           "label": "סטוריטלינג אמסטרדם",
           "slot": "il-eve-b",
           "publish_at": "2026-09-13T20:30:00+03:00",
-          "status": "APPROVED",
-          "copy_refresh": "REQUIRED",
-          "file": "drafts/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-facebook-organic.md"
+          "status": "PENDING_APPROVAL",
+          "copy_refresh": "DONE_2026-09-07",
+          "file": "drafts/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-facebook-organic.md",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies."
         },
         {
           "platform": "instagram-story",
           "label": "קליפ reel-clip1",
           "slot": "il-eve-b",
           "publish_at": "2026-09-15T20:30:00+03:00",
-          "status": "APPROVED",
-          "copy_refresh": "REQUIRED",
-          "file": "drafts/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-instagram-story.md"
+          "status": "PENDING_APPROVAL",
+          "copy_refresh": "DONE_2026-09-07",
+          "file": "drafts/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-instagram-story.md",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies."
         },
         {
           "platform": "facebook-ad",
@@ -78,27 +80,30 @@
           "label": "פתיחת סופ״ש",
           "slot": "us-eve-a",
           "publish_at": "2026-09-11T03:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo-facebook-organic.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies."
         },
         {
           "platform": "instagram-feed",
           "label": "פוסט דגל",
           "slot": "us-eve-a",
           "publish_at": "2026-09-09T03:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo-instagram-feed.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies."
         },
         {
           "platform": "instagram-story",
           "label": "קליפ + לינק",
           "slot": "il-eve-b",
           "publish_at": "2026-09-12T20:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo-instagram-story.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies."
         },
         {
           "platform": "facebook-ad",
@@ -132,28 +137,31 @@
           "label": "מאושר — פורסם? טרם אושר בצ'אט",
           "slot": "us-eve-a",
           "publish_at": "2026-09-13T03:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-instagram-feed.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies."
         },
         {
           "platform": "facebook-organic",
           "label": "מאושר — פורסם? טרם אושר בצ'אט",
           "slot": "us-eve-a",
           "publish_at": "2026-09-15T03:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-facebook-organic.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies."
         },
         {
           "platform": "instagram-story",
           "label": "מאושר — לפרסום ידני",
           "slot": "il-eve-b",
           "publish_at": "2026-09-16T20:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-instagram-story.md",
-          "copy_refresh": "REQUIRED",
-          "asset_check": "reel-shot3.mp4 storyboard shot 3 burns \"$19.99 - under market price\" into the frame; no ffmpeg available to confirm - verify visually before publishing, may need a Veo re-render (paid)."
+          "copy_refresh": "DONE_2026-09-07",
+          "asset_check": "reel-shot3.mp4 storyboard shot 3 burns \"$19.99 - under market price\" into the frame; no ffmpeg available to confirm - verify visually before publishing, may need a Veo re-render (paid).",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies."
         },
         {
           "platform": "facebook-ad",
@@ -183,28 +191,31 @@
           "label": "פוסט דגל — פרומו ירח",
           "slot": "us-eve-a",
           "publish_at": "2026-09-10T03:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions-instagram-feed.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies. ANGLE CHANGED, not just wording: the below-market claim was removed as false at the new price."
         },
         {
           "platform": "instagram-story",
           "label": "3 פריימים + reel-moonlight",
           "slot": "il-eve-b",
           "publish_at": "2026-09-14T20:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions-instagram-story.md",
-          "copy_refresh": "REQUIRED",
-          "asset_check": "reel-moonlight.mp4 storyboard shot 4 burns \"$24.99 - below market\" into the frame; no ffmpeg available to confirm - verify visually before publishing, may need a Veo re-render (paid)."
+          "copy_refresh": "DONE_2026-09-07",
+          "asset_check": "reel-moonlight.mp4 storyboard shot 4 burns \"$24.99 - below market\" into the frame; no ffmpeg available to confirm - verify visually before publishing, may need a Veo re-render (paid).",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies. ANGLE CHANGED, not just wording: the below-market claim was removed as false at the new price."
         },
         {
           "platform": "facebook-organic",
           "label": "סטוריטלינג Surprise Box",
           "slot": "us-eve-a",
           "publish_at": "2026-09-12T03:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions-facebook-organic.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07",
+          "reapproval_reason": "Copy rewritten 2026-09-07 into Hebrew + ILS. Matan's earlier approval covered the English/USD version, so it no longer applies. ANGLE CHANGED, not just wording: the below-market claim was removed as false at the new price."
         },
         {
           "platform": "facebook-ad",
@@ -240,7 +251,7 @@
           "publish_at": "2026-09-16T03:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-facebook-organic.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07"
         },
         {
           "platform": "instagram-feed",
@@ -249,7 +260,7 @@
           "publish_at": "2026-09-14T03:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-feed.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07"
         },
         {
           "platform": "instagram-story",
@@ -258,7 +269,7 @@
           "publish_at": "2026-09-17T20:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-08-05-eevee-jungle-cgc7-instagram-story.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "DONE_2026-09-07"
         },
         {
           "platform": "facebook-ad",
@@ -353,7 +364,7 @@
     }
   ],
   "_blocker_products": "נפתר 2026-09-04: 44 קלפים עם מלאי הוחזרו ל-ACTIVE ואומתו בדף החי. נשארו UNLISTED: 18 קלפים שאזלו (מלאי 0) ו-4 אקססוריז שמעולם לא היה להם מלאי — מחכים להחלטת מתן.",
-  "_next_step": "Flight rescheduled 2026-09-07 to 2 posts/day, 2026-09-09 -> 2026-09-17. GATE: the store repriced to ILS (Pikachu 2990, Charizard 3590, Mewtwo 59, Umbreon 79, Eevee 79) but 14 of the 17 drafts still quote the old USD prices and USD-based below-market hooks. Only the 3 Slab Guard posts (19/22 NIS) are publishable as-is. Run one batched copywriter pass to reprice before the 09-09 flight opens; Eevee's 3 posts also still need Matan's approval.",
+  "_next_step": "Flight 2026-09-09 -> 2026-09-17, 2 posts/day. Copy rewritten 2026-09-07 in Hebrew + ILS. APPROVAL STATE: only the 3 Slab Guard posts are approved and publishable (untouched by the rewrite). The other 14 need Matan's approval - 11 reverted from APPROVED because their content changed under him. Umbreon's 3 changed claim, not just language: at the new price it sits AT market, so the below-market hook was deleted. Open items: Tavily key 401 (blocks clean Charizard comps before its 09-09 opener); two Veo clips may burn a USD price into the frame (Mewtwo reel-shot3, Umbreon reel-moonlight) - unverified, no ffmpeg here.",
   "_currency": "Store repriced to ILS; primary Shopify market is Israel. Decision 2026-09-07 (Matan): all 14 stale drafts are rewritten in Hebrew + ILS to match the primary market. Slab Guard's 3 posts were already Hebrew/ILS and are unaffected.",
   "_asset_note": "Still images carry NO baked-in text - price overlays are applied at posting time, so repricing the copy fixes them for free. Two Veo clips DO burn a USD price into the frame (Mewtwo reel-shot3, Umbreon reel-moonlight) - see asset_check on those posts."
 }
