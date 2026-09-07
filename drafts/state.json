@@ -11,7 +11,7 @@
       "id": "2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo",
       "title": "Pikachu Van Gogh #085",
       "emoji": "🎨",
-      "price": "$999",
+      "price": "₪2,990",
       "tag": "קמפיין דגל · עותק raw יחיד",
       "pipeline": {
         "brief": "done",
@@ -58,13 +58,14 @@
           ],
           "file": "drafts/2026-08-02-raw-card-pikachu-with-grey-felt-hat-85-pokemon-promo-facebook-ad.md"
         }
-      ]
+      ],
+      "price_usd_legacy": "$999"
     },
     {
       "id": "2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo",
       "title": "Charizard CD Promo · PSA 9",
       "emoji": "🔥",
-      "price": "$1,199",
+      "price": "₪3,590",
       "tag": "value hook · מתחת לכל מכירת eBay",
       "pipeline": {
         "brief": "done",
@@ -111,13 +112,14 @@
           ],
           "file": "drafts/2026-08-02-psa-9-charizard-holo-6-pokemon-japanese-cd-promo-facebook-ad.md"
         }
-      ]
+      ],
+      "price_usd_legacy": "$1,199"
     },
     {
       "id": "2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151",
       "title": "Mewtwo #183 · Japanese 151",
       "emoji": "🧬",
-      "price": "$19.99",
+      "price": "₪59",
       "tag": "אורגני בלבד",
       "pipeline": {
         "brief": "done",
@@ -150,7 +152,8 @@
           "publish_at": "2026-09-16T20:30:00+03:00",
           "status": "APPROVED",
           "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-instagram-story.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "REQUIRED",
+          "asset_check": "reel-shot3.mp4 storyboard shot 3 burns \"$19.99 - under market price\" into the frame; no ffmpeg available to confirm - verify visually before publishing, may need a Veo re-render (paid)."
         },
         {
           "platform": "facebook-ad",
@@ -160,13 +163,14 @@
           "status": "ON_HOLD",
           "file": "drafts/2026-08-02-raw-card-mewtwo-183-pokemon-japanese-scarlet-violet-151-facebook-ad.md"
         }
-      ]
+      ],
+      "price_usd_legacy": "$19.99"
     },
     {
       "id": "2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions",
       "title": "Umbreon ex [Stamped] #60 · Prismatic Evolutions",
       "emoji": "🌙",
-      "price": "$24.99",
+      "price": "₪79",
       "tag": "value hook · accessible Umbreon (not Moonbreon SIR)",
       "pipeline": {
         "brief": "done",
@@ -190,7 +194,8 @@
           "publish_at": "2026-09-14T20:30:00+03:00",
           "status": "APPROVED",
           "file": "drafts/2026-08-04-raw-card-umbreon-ex-stamped-60-pokemon-prismatic-evolutions-instagram-story.md",
-          "copy_refresh": "REQUIRED"
+          "copy_refresh": "REQUIRED",
+          "asset_check": "reel-moonlight.mp4 storyboard shot 4 burns \"$24.99 - below market\" into the frame; no ffmpeg available to confirm - verify visually before publishing, may need a Veo re-render (paid)."
         },
         {
           "platform": "facebook-organic",
@@ -213,13 +218,14 @@
           ],
           "file": null
         }
-      ]
+      ],
+      "price_usd_legacy": "$24.99"
     },
     {
       "id": "2026-08-05-eevee-jungle-cgc7",
       "title": "Eevee [1st Edition] #51 · Pokemon Jungle · CGC 7",
       "emoji": "🦊",
-      "price": "$24.99",
+      "price": "₪79",
       "tag": "מלאי תקוע · 476 יום · וינטג' 1999",
       "pipeline": {
         "brief": "done",
@@ -266,7 +272,8 @@
           ],
           "file": null
         }
-      ]
+      ],
+      "price_usd_legacy": "$24.99"
     },
     {
       "id": "2026-08-04-slab-guard-launch",
@@ -346,5 +353,7 @@
     }
   ],
   "_blocker_products": "נפתר 2026-09-04: 44 קלפים עם מלאי הוחזרו ל-ACTIVE ואומתו בדף החי. נשארו UNLISTED: 18 קלפים שאזלו (מלאי 0) ו-4 אקססוריז שמעולם לא היה להם מלאי — מחכים להחלטת מתן.",
-  "_next_step": "Flight rescheduled 2026-09-07 to 2 posts/day, 2026-09-09 -> 2026-09-17. GATE: the store repriced to ILS (Pikachu 2990, Charizard 3590, Mewtwo 59, Umbreon 79, Eevee 79) but 14 of the 17 drafts still quote the old USD prices and USD-based below-market hooks. Only the 3 Slab Guard posts (19/22 NIS) are publishable as-is. Run one batched copywriter pass to reprice before the 09-09 flight opens; Eevee's 3 posts also still need Matan's approval."
+  "_next_step": "Flight rescheduled 2026-09-07 to 2 posts/day, 2026-09-09 -> 2026-09-17. GATE: the store repriced to ILS (Pikachu 2990, Charizard 3590, Mewtwo 59, Umbreon 79, Eevee 79) but 14 of the 17 drafts still quote the old USD prices and USD-based below-market hooks. Only the 3 Slab Guard posts (19/22 NIS) are publishable as-is. Run one batched copywriter pass to reprice before the 09-09 flight opens; Eevee's 3 posts also still need Matan's approval.",
+  "_currency": "Store repriced to ILS; primary Shopify market is Israel. Decision 2026-09-07 (Matan): all 14 stale drafts are rewritten in Hebrew + ILS to match the primary market. Slab Guard's 3 posts were already Hebrew/ILS and are unaffected.",
+  "_asset_note": "Still images carry NO baked-in text - price overlays are applied at posting time, so repricing the copy fixes them for free. Two Veo clips DO burn a USD price into the frame (Mewtwo reel-shot3, Umbreon reel-moonlight) - see asset_check on those posts."
 }
