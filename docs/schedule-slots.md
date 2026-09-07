@@ -7,6 +7,7 @@ Publisher: pick a slot, cite it as `slot: <name>` — do NOT re-derive timezone 
 |---|---|---|---|---|
 | `us-eve-a` | 03:30 | 20:30 (prev day) | US collectors, evening peak | IG feed hero, FB organic openers, premium/English content |
 | `il-eve-b` | 20:30 | 13:30 | Israeli collectors prime time + US lunch | IG stories, Hebrew content, accessories |
+| `il-noon-a` | 12:30 | 05:30 | Israeli lunch break — Hebrew campaigns | Second daily slot for Hebrew/Israel-only campaigns running 2 posts/day |
 
 The two slots are **17h apart** within a calendar day, which keeps every same-platform
 pair ≥24h apart as long as a platform appears at most once per day (see below).
@@ -30,3 +31,10 @@ Drafts still citing those names are rescheduled onto `us-eve-a` / `il-eve-b`.
 FB organic (opener) → IG feed (hero) → IG story, one per day, alternating slots so no two
 posts of the same platform land within 24h. At 2 posts/day two campaigns interleave —
 one in slot A, one in slot B — rather than one campaign burning both slots.
+
+## Deviation — Triathlon campaign (2026-09-07)
+Matan's directive: one product occupies both daily slots (`il-noon-a` 12:30 + `il-eve-b` 20:30)
+for 3 consecutive days, Hebrew/Israel-only campaign. The interleave rule above is suspended for
+this campaign (and for future Hebrew-only campaigns run the same way) — a single product may burn
+both daily slots as long as the ≥24h same-platform spacing rule still holds across the 3-day block
+(it does: FB/IG-feed/IG-story each land exactly 32h or ~39.5h apart, never <24h).

@@ -361,10 +361,187 @@
           "permalink": "https://www.instagram.com/p/Dc28KHWCuvw/"
         }
       ]
+    },
+    {
+      "id": "2026-09-07-triathlon",
+      "title": "טריאתלון — Slab Guard · Jigglypuff · Mewtwo",
+      "emoji": "🏁",
+      "price": "₪19–22 · ₪109 · ₪59",
+      "tag": "3 מוצרים × 3 ימים × 2 ביום · עברית",
+      "pipeline": {
+        "brief": "done",
+        "copy": "done",
+        "creative": "done"
+      },
+      "posts": [
+        {
+          "platform": "facebook-organic",
+          "product": "Slab Guard",
+          "label": "D1 · קוד צבעים לאספנים",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-08T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-slab-guard-d1-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "product": "Slab Guard",
+          "label": "D1 · תוספת במחיר קפה (פוסט דגל)",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-08T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-slab-guard-d1-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "product": "Slab Guard",
+          "label": "D2 · הנחה אוטומטית 3+",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-09T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-slab-guard-d2-instagram-story.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "product": "Slab Guard",
+          "label": "D2 · שדרוג נצנצים (Glitter Gradient)",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-09T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-slab-guard-d2-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "product": "Slab Guard",
+          "label": "D3 · מלאי מוגבל אמיתי (זווית שנייה)",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-10T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-slab-guard-d3-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "product": "Slab Guard",
+          "label": "D3 · סגירת מחיר ישירה",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-10T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-slab-guard-d3-instagram-story.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "product": "PSA 10 Jigglypuff Japanese Old Maid",
+          "label": "D4 · מה זה בכלל",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-11T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d4-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "product": "PSA 10 Jigglypuff Japanese Old Maid",
+          "label": "D4 · ציון מושלם (פוסט דגל)",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-11T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d4-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "product": "PSA 10 Jigglypuff Japanese Old Maid",
+          "label": "D5 · הוכחת שוק",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-12T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d5-instagram-story.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "product": "PSA 10 Jigglypuff Japanese Old Maid",
+          "label": "D5 · נדירות אמיתית",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-12T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d5-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "product": "PSA 10 Jigglypuff Japanese Old Maid",
+          "label": "D6 · גראייל לאספנים (זווית שנייה)",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-13T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d6-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "product": "PSA 10 Jigglypuff Japanese Old Maid",
+          "label": "D6 · סגירת מחיר",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-13T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d6-instagram-story.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "product": "RAW Mewtwo #183 Japanese 151",
+          "label": "D7 · היכרות עם הקלף",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-14T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-mewtwo-d7-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "product": "RAW Mewtwo #183 Japanese 151",
+          "label": "D7 · הפוקימון האייקוני (פוסט דגל)",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-14T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-mewtwo-d7-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "product": "RAW Mewtwo #183 Japanese 151",
+          "label": "D8 · מיקום מול השוק",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-15T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-mewtwo-d8-instagram-story.md"
+        },
+        {
+          "platform": "facebook-organic",
+          "product": "RAW Mewtwo #183 Japanese 151",
+          "label": "D8 · פוטנציאל דירוג",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-15T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-mewtwo-d8-facebook-organic.md"
+        },
+        {
+          "platform": "instagram-feed",
+          "product": "RAW Mewtwo #183 Japanese 151",
+          "label": "D9 · יחידה אחרונה (זווית שנייה)",
+          "slot": "il-noon-a",
+          "publish_at": "2026-09-16T12:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-mewtwo-d9-instagram-feed.md"
+        },
+        {
+          "platform": "instagram-story",
+          "product": "RAW Mewtwo #183 Japanese 151",
+          "label": "D9 · סגירה במחיר",
+          "slot": "il-eve-b",
+          "publish_at": "2026-09-16T20:30:00+03:00",
+          "status": "PENDING_APPROVAL",
+          "file": "drafts/2026-09-07-triathlon-mewtwo-d9-instagram-story.md"
+        }
+      ]
     }
   ],
   "_blocker_products": "נפתר 2026-09-04: 44 קלפים עם מלאי הוחזרו ל-ACTIVE ואומתו בדף החי. נשארו UNLISTED: 18 קלפים שאזלו (מלאי 0) ו-4 אקססוריז שמעולם לא היה להם מלאי — מחכים להחלטת מתן.",
   "_next_step": "Flight 2026-09-09 -> 2026-09-17, 2 posts/day. Copy rewritten 2026-09-07 in Hebrew + ILS. APPROVAL STATE: only the 3 Slab Guard posts are approved and publishable (untouched by the rewrite). The other 14 need Matan's approval - 11 reverted from APPROVED because their content changed under him. Umbreon's 3 changed claim, not just language: at the new price it sits AT market, so the below-market hook was deleted. Open items: Tavily key 401 (blocks clean Charizard comps before its 09-09 opener); two Veo clips may burn a USD price into the frame (Mewtwo reel-shot3, Umbreon reel-moonlight) - unverified, no ffmpeg here.",
   "_currency": "Store repriced to ILS; primary Shopify market is Israel. Decision 2026-09-07 (Matan): all 14 stale drafts are rewritten in Hebrew + ILS to match the primary market. Slab Guard's 3 posts were already Hebrew/ILS and are unaffected.",
-  "_asset_note": "Still images carry NO baked-in text - price overlays are applied at posting time, so repricing the copy fixes them for free. Two Veo clips DO burn a USD price into the frame (Mewtwo reel-shot3, Umbreon reel-moonlight) - see asset_check on those posts."
+  "_asset_note": "Still images carry NO baked-in text - price overlays are applied at posting time, so repricing the copy fixes them for free. Two Veo clips DO burn a USD price into the frame (Mewtwo reel-shot3, Umbreon reel-moonlight) - see asset_check on those posts.",
+  "_note_triathlon_slots": "Triathlon (2026-09-07): Matan's directive — one product occupies both daily slots (il-noon-a 12:30 IDT + il-eve-b 20:30 IDT) for 3 consecutive days, Hebrew/Israel-only; the interleave rule is suspended for Hebrew campaigns. New slot il-noon-a added to docs/schedule-slots.md. Order: Slab Guard D1-D3 (8-10.9), Jigglypuff D4-D6 (11-13.9), Mewtwo D7-D9 (14-16.9). All 18 posts PENDING_APPROVAL, verified against briefs (no pop count, no NM claim on Mewtwo, no 'find'/below-market language on Jigglypuff, only Slab Guard 3+ = 15% discount, Mewtwo days-listed = 476 not 540)."
 }

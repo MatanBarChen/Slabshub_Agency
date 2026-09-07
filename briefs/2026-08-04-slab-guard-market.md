@@ -56,3 +56,25 @@ Free-shipping thresholds in category: $50 (GradedGuard, GenZGaming).
 - Inventory: 15 solid ($4.99 / content: 19 ILS), 10 glitter ($5.99 / content: 22 ILS). Singles only — no pack variant.
 - PROMO (active in store, automatic): buy 3+ units -> 15% off. In Hebrew content: 'קונים 3 ומעלה — 15% הנחה אוטומטית בקופה'.
 - Campaign id: 2026-08-04-slab-guard-launch. UTM campaign value: 2026-08-04-slab-guard-launch.
+
+## UPDATE 2026-09-07 — triathlon campaign refresh (light, no category re-research)
+- Current price/stock (live Shopify, checked 2026-09-07): Solid ₪19, inventory 15 unchanged. Glitter Gradient ₪22, inventory 10 unchanged. Total 25 — **identical to launch numbers**, nothing sold since 2026-08-04.
+- Orders check: store-wide order list shows only 2 total orders in the whole store, both dated before this product's 2026-08-04 launch (2025-03-24 and 2025-06-12). **0 units of Slab Guard sold** in ~34 days on shelf.
+- Existing creative already live: IG post https://www.instagram.com/p/Dc28KHWCuvw/ (4.9), copy angle = "השמירה על הסלאב" (protecting the slab). The 6 triathlon posts below deliberately avoid repeating that angle.
+
+## זוויות לטריאתלון (6 פוסטים / 3 ימים)
+
+**יום 1 — פתיחה/היכרות**
+1. קוד צבעים לאספנים: מגוון צבעים אחידים + גימור נצנצים/אומברה — לא רק הגנה, גם דרך לסמן/למיין אספנות לפי סט, טייפ או מצב רוח. הזווית: אסתטיקה ותצוגה, לא רק פיזי.
+2. תוספת במחיר קפה: ₪19–22 להגנה על סלאב ששילמת עליו הרבה יותר — מסגור "תוספת קטנה, שקט נפשי גדול" בלי לחזור על "שומר על הסלאב".
+
+**יום 2 — העמקה/הוכחה**
+3. הנחה אוטומטית: קונים 3 יחידות ומעלה — 15% הנחה אוטומטית בקופה. רלוונטי למי שמגדיל אוסף וצריך לצבוע-קוד כמה סלאבים בבת אחת.
+4. שדרוג נצנצים: קו הפרימיום (Glitter Gradient, ₪22) לעומת האחיד (₪19) — טייר "מפנק" שמתאים לקישוט/תצוגה, לא רק הגנה בסיסית.
+
+**יום 3 — סגירה/דחיפות**
+5. מלאי מוגבל אמיתי: 25 יחידות סה"כ במאצ' ההשקה (15 אחיד + 10 נצנצים), ללא תאריך חידוש ידוע — כמות אמיתית וסופית, לא טריק שיווקי.
+6. סגירת מחיר ישירה: ₪19 (אחיד) / ₪22 (נצנצים) — האביזר הזול ביותר בחנות, קל להוסיף לכל הזמנה. קריאה לפעולה פשוטה וישירה.
+
+### אזהרה נוספת
+- 0 יחידות נמכרו מאז ההשקה (34+ יום) — כמו ה-Mewtwo, זו כנראה בעיית חשיפה ולא מחיר; אין המלצה להוריד מחיר בשלב זה.

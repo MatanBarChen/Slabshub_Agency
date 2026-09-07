@@ -42,6 +42,7 @@
 | 2026-08-04 | Gemini / gemini-3.1-flash-image | promo-main.png של Slab Guard (כולל נסיונות קומפוזיט של הסוכן) | ~$0.10-0.30 |
 | 2026-08-05 | Gemini / gemini-3.1-flash-image | 2 רקעים לקמפיין Eevee Jungle CGC 7 (קומפוזיט מקומי) | <$0.05 |
 | 2026-08-05 | Flow (מנוי Google AI Pro) / Veo 3.1 Fast | reel-ringlight-shot1.mp4 לאומבריאון — 15 קרדיטים מהמנוי | ₪0 במזומן |
+| 2026-09-07 | Gemini / gemini-3.1-flash-image | 8 רקעים ריקים (ללא קלף/טקסט) לקמפיין הטריאתלון — Slab Guard×2, Mewtwo×2, Jigglypuff×4; קומפוזיט + טקסט-אוברליי מקומיים ב-Pillow (26 ויז'ואלים סופיים ל-18 פוסטים) | <$0.10 |
 
 ## כללים
 

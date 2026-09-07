@@ -45,3 +45,18 @@ All from PriceCharting's eBay sold-listing tracker (https://www.pricecharting.co
 - Position: **UNCHANGED.** $19.58 sits right in the recent raw-sold cluster ($19.50–$20) and ~20% below the (unverified-this-run) $24.59 algo benchmark — still roughly at-market to slightly below.
 - Verdict: angle UNCHANGED from Aug 2 — this remains a **visibility problem, not a price problem.** Now ~476 days listed (since 2025-05-19) at essentially the same real price, still 0 units sold. Do not discount further; the grading-upside pitch (raw → PSA 10 $125) still applies if re-verified before use.
 - Value line (HE-ready): "כ-59 ₪ בלבד לקלף Art Rare של Mewtwo מהסדרה המבוקשת 151 — עם פוטנציאל דירוג משמעותי."
+- Re-checked again same day for the triathlon campaign: PriceCharting page still returns 403 (2 attempts, blocked) — the $24.59 algo benchmark remains unverified. WebSearch snippet confirms raw NM last sale **$19.99** (PriceCharting, dated "June 2026" per snippet — older than the Aug 2 pull suggested). Treat $19.99–$24.59 as the working range; do not claim a fresher date than what's cited above.
+
+## זוויות לטריאתלון (6 פוסטים / 3 ימים)
+
+**יום 1 — פתיחה/היכרות**
+1. היכרות עם הקלף: Mewtwo Art Rare 183/165 מתוך Pokemon Card 151 (SV2a) — סט הנוסטלגיה היפני שמביא בחזרה את 151 הפוקימונים המקוריים. פול-ארט הולו, מיוצוי (rarity) שחורגת מהספירה הרשמית של הסט.
+2. הפוקימון האייקוני: Mewtwo הוא אחד משלושת הפוקימונים המוכרים בעולם מדור 1 — פתיח שמתמקד בזיהוי המיידי של הדמות לפני שמדברים בכלל על מחיר.
+
+**יום 2 — העמקה/הוכחה**
+3. מיקום מול השוק: ₪59 (כ-$19.58) לעומת מכירות raw אחרונות של $19.99–$24.59 — המחיר שלנו בטווח השוק, לא מעליו. יחידה אחת בלבד במלאי.
+4. פוטנציאל דירוג (grading upside): לפי PriceCharting, אותו קלף בדירוג PSA 10 נסחר סביב $125 — פער משמעותי בין המחיר הגולמי (raw) להמרה מדורגת, לגיטימי כי הוא מגובה בנתון מצוטט ומתוארך.
+
+**יום 3 — סגירה/דחיפות**
+5. יחידה אחרונה: קלף אחד במלאי, בסטוק כבר כ-540 יום (מאז מאי 2025) בלי שנמכר — לא בעיה של מחיר, בעיה של חשיפה. מסגור: "מחכה למי שיזהה אותו."
+6. סגירה במחיר: ₪59 בלבד לקלף Art Rare נדיר מתוך הסט הכי מבוקש כרגע (151) — קריאה לפעולה ישירה, המחיר לא ישאר כך לנצח עם מלאי יחיד.
