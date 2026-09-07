@@ -88,6 +88,22 @@ def host_on_facebook(tok, local_path):
     return imgs[0]["source"]
 
 
+def host_video_on_facebook(tok, local_path):
+    """Upload a local mp4 to the page as an UNPUBLISHED video and return its public mp4 URL (the video's `source`)."""
+    with open(ROOT / local_path, "rb") as fh:
+        r = requests.post(f"{G}/{PAGE_ID}/videos", data={"published": "false", "access_token": tok},
+                          files={"source": (Path(local_path).name, fh)}, timeout=300)
+    if r.status_code >= 400:
+        raise RuntimeError(f"FB video host upload failed: {r.text[:300]}")
+    vid = r.json()["id"]
+    for _ in range(60):
+        j = requests.get(f"{G}/{vid}", params={"fields": "status,source", "access_token": tok}, timeout=30).json()
+        if j.get("source") and (j.get("status") or {}).get("video_status") in (None, "ready"):
+            return j["source"]
+        time.sleep(5)
+    raise RuntimeError(f"FB video {vid} not ready after 5 minutes")
+
+
 def resolve_media(tok, post, assets):
     """Public URLs for the post's media: state.json 'hosted' first, else FB-hosted copies of the local files."""
     hosted = list(post.get("hosted") or [])
@@ -95,9 +111,7 @@ def resolve_media(tok, post, assets):
         return hosted
     out = []
     for a in assets:
-        if a.lower().endswith(".mp4"):
-            raise RuntimeError(f"video {a} needs a hosted URL (Shopify CDN) — add it to the post's 'hosted' field")
-        out.append(host_on_facebook(tok, a))
+        out.append(host_video_on_facebook(tok, a) if a.lower().endswith(".mp4") else host_on_facebook(tok, a))
     if out:
         post["hosted"] = out
     return out

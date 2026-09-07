@@ -60,6 +60,8 @@ Key endpoints the publisher will use (only after Matan approves each draft in ch
 - FB post: `POST https://graph.facebook.com/v21.0/{page-id}/feed` (`message`, `link`)
 - FB photo post: `POST /{page-id}/photos` (`url`, `caption`)
 - IG post (2 steps): `POST /{ig-user-id}/media` (`image_url`, `caption`) → `POST /{ig-user-id}/media_publish` (`creation_id`)
+
+**Scheduled publishing (added 2026-09-07):** `scripts/meta_publish.py --due` runs from the Windows task "SlabsHub Publish" (daily 12:30 / 20:30 IDT, catch-up runs at 12:50 / 20:50). It publishes only posts whose status in `drafts/state.json` is `APPROVED` and whose `publish_at` is within the last 90 minutes; approved posts older than that are logged as MISSED and left for a human. Captions and asset paths come from the draft file (`## Final copy`, `## Asset`, `## Link`). Facebook photo posts upload the local file directly and put the UTM link in the first comment. Instagram needs a public URL, so the script uploads the file to the page as an *unpublished* photo/video and hands Instagram that CDN URL (verified by Matan 2026-09-07 for images). Every publish updates state.json (PUBLISHED + permalink), writes `published/<draft-name>.md`, appends to `published/meta-publish.log`, and commits. Stories are published frame by frame (3 frames = 3 story items).
 - IG Reel: `POST /{ig-user-id}/media` (`media_type=REELS`, `video_url`) → poll status → `media_publish`
 - Insights: `GET /{ig-media-id}/insights?metric=reach,likes,shares,saved` / `GET /{page-post-id}/insights`
 
