@@ -1,6 +1,6 @@
 {
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
-  "updated": "2026-09-07",
+  "updated": "2026-09-08",
   "_note_slab_guard_slots": "retired 2026-09-07 - the il-wed/thu/sat-eve deviation folded into the new two-slot grid (us-eve-a 03:30 IDT / il-eve-b 20:30 IDT) in docs/schedule-slots.md.",
   "meta_api": {
     "status": "connected",
@@ -380,9 +380,12 @@
           "label": "D1 · קוד צבעים לאספנים",
           "slot": "il-noon-a",
           "publish_at": "2026-09-08T12:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PUBLISHED",
           "file": "drafts/2026-09-07-triathlon-slab-guard-d1-facebook-organic.md",
-          "approved_at": "2026-09-07"
+          "approved_at": "2026-09-07",
+          "published_at": "2026-09-08T12:30:11+03:00",
+          "media_id": "1361507090367793_122104499259462789",
+          "permalink": "https://www.facebook.com/1361507090367793_122104499259462789"
         },
         {
           "platform": "instagram-feed",
