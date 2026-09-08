@@ -393,9 +393,15 @@
           "label": "D1 · תוספת במחיר קפה (פוסט דגל)",
           "slot": "il-eve-b",
           "publish_at": "2026-09-08T20:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PUBLISHED",
           "file": "drafts/2026-09-07-triathlon-slab-guard-d1-instagram-feed.md",
-          "approved_at": "2026-09-07"
+          "approved_at": "2026-09-07",
+          "hosted": [
+            "https://scontent.ftlv5-1.fna.fbcdn.net/v/t39.30808-6/801009146_122104779117462789_3441751349627382301_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=054031&_nc_ohc=hqY98K91JcAQ7kNvwEWdaUk&_nc_oc=Ado5L7Hjsz0Enw7BOOHrYLeSHo_a9jJYIhxN5u7hERhrWc7vbL8Z5ST1O4HNrxK1DPA&_nc_zt=23&_nc_ht=scontent.ftlv5-1.fna&edm=AMAeTUEEAAAA&_nc_gid=Y0Fy7ngCPPTSCfSC_ZLMCw&_nc_tpa=Q5bMBQKT0N8UYN2FJzdQJWgSWVrtez2hLFtbreI9qxjWtZO7iobbRpSetSwUlwmAi65PvzD9c9HBlOY03g&oh=00_AQKCDoX2QlapZBtXDscbEtfc_htaI8ilwT1jLkXuDCnzfQ&oe=6AA614D1"
+          ],
+          "published_at": "2026-09-08T20:30:17+03:00",
+          "media_id": "18125308939759871",
+          "permalink": "https://www.instagram.com/p/DdCOeq7jJN3/"
         },
         {
           "platform": "instagram-story",
