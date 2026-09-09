@@ -1,6 +1,6 @@
 {
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
-  "updated": "2026-09-08",
+  "updated": "2026-09-09",
   "_note_slab_guard_slots": "retired 2026-09-07 - the il-wed/thu/sat-eve deviation folded into the new two-slot grid (us-eve-a 03:30 IDT / il-eve-b 20:30 IDT) in docs/schedule-slots.md.",
   "meta_api": {
     "status": "connected",
@@ -321,9 +321,12 @@
           "label": "סטוריטלינג הגנה על הסלאב",
           "slot": "il-eve-b",
           "publish_at": "2026-09-09T20:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PUBLISHED",
           "file": "drafts/2026-08-04-slab-guard-launch-facebook-organic.md",
-          "copy_refresh": "NOT_NEEDED"
+          "copy_refresh": "NOT_NEEDED",
+          "published_at": "2026-09-09T20:30:08+03:00",
+          "media_id": "1361507090367793_122105658627462789",
+          "permalink": "https://www.facebook.com/1361507090367793_122105658627462789"
         },
         {
           "platform": "facebook-ad",
@@ -419,9 +422,12 @@
           "label": "D2 · שדרוג נצנצים (Glitter Gradient)",
           "slot": "il-eve-b",
           "publish_at": "2026-09-09T20:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PUBLISHED",
           "file": "drafts/2026-09-07-triathlon-slab-guard-d2-facebook-organic.md",
-          "approved_at": "2026-09-07"
+          "approved_at": "2026-09-07",
+          "published_at": "2026-09-09T20:30:14+03:00",
+          "media_id": "1361507090367793_122105658705462789",
+          "permalink": "https://www.facebook.com/1361507090367793_122105658705462789"
         },
         {
           "platform": "instagram-feed",
