@@ -1,6 +1,6 @@
 {
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
-  "updated": "2026-09-09",
+  "updated": "2026-09-10",
   "_note_slab_guard_slots": "retired 2026-09-07 - the il-wed/thu/sat-eve deviation folded into the new two-slot grid (us-eve-a 03:30 IDT / il-eve-b 20:30 IDT) in docs/schedule-slots.md.",
   "meta_api": {
     "status": "connected",
@@ -435,9 +435,15 @@
           "label": "D3 · מלאי מוגבל אמיתי (זווית שנייה)",
           "slot": "il-noon-a",
           "publish_at": "2026-09-10T12:30:00+03:00",
-          "status": "APPROVED",
+          "status": "PUBLISHED",
           "file": "drafts/2026-09-07-triathlon-slab-guard-d3-instagram-feed.md",
-          "approved_at": "2026-09-07"
+          "approved_at": "2026-09-07",
+          "hosted": [
+            "https://scontent.ftlv5-1.fna.fbcdn.net/v/t39.30808-6/803465608_122106279717462789_6116890542762002687_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=054031&_nc_ohc=T_8k0Rc2Y8MQ7kNvwH1TtDr&_nc_oc=Adqcg58K-eLar_JJtJ93SFgsw_QzDgKkpmCoOzYve26pb0TNF5_7N2fOkj0D8siXYmQ&_nc_zt=23&_nc_ht=scontent.ftlv5-1.fna&edm=AMAeTUEEAAAA&_nc_gid=z4y8tND3WT8EGcBp4mXVFQ&_nc_tpa=Q5bMBQLxF45j1gK3u9iZxaM1YQ0dJ1forwzBw06UiBplCCItWYRRZ_PiMV2DRFbS3PV3qNl2EW1F3VuQAQ&oh=00_AQIB61fiVQjxO7Tm1vMCUiooY5pumDB_rA-GmlCq_DIPtg&oe=6AA85774"
+          ],
+          "published_at": "2026-09-10T12:30:16+03:00",
+          "media_id": "18164819326467802",
+          "permalink": "https://www.instagram.com/p/DdGhIgkF7cY/"
         },
         {
           "platform": "instagram-story",
