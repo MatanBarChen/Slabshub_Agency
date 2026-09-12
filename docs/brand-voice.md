@@ -2,6 +2,16 @@
 
 Single reference for copywriter + publisher. Cite it, don't restate it.
 
+## Official accounts (the only ones we link, tag or publish to)
+
+| Channel | Official | Use in copy |
+|---|---|---|
+| Store | https://slabshub.com | product links, always with UTMs |
+| Facebook page | **https://www.facebook.com/pokeslabshub** (page `Pokeslabshub`, id `1361507090367793`) | FB organic posts go here; "follow us" / cross-links point here; publisher's permalinks live under it |
+| Instagram | https://www.instagram.com/pokeslabshub (@pokeslabshub) | feed, stories, reels; "link in bio" |
+
+No other Facebook page or profile is ever used for posts. If a draft, brief or tool output names a different page, stop and flag it.
+
 ## Voice
 
 - Collector talking to collectors: fluent hobby slang (slab, pop count, grail, raw vs graded, GEM MINT), nostalgic but precise.

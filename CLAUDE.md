@@ -1,6 +1,6 @@
 # SlabsHub Agency — Marketing Automation for Pokemon Card Store
 
-This workspace is an AI marketing agency for a Shopify store selling graded Pokemon cards (slabs) and Pokemon-related products. The store owner is Matan (SlabsHub). Sales channels: Shopify store, Facebook page, Instagram profile.
+This workspace is an AI marketing agency for a Shopify store selling graded Pokemon cards (slabs) and Pokemon-related products. The store owner is Matan (SlabsHub). Sales channels: Shopify store (slabshub.com), the official Facebook page **https://www.facebook.com/pokeslabshub** (page `Pokeslabshub`, id `1361507090367793` — the only page posts ever go to), Instagram profile **@pokeslabshub**. Handles are listed once in `docs/brand-voice.md` (“Official accounts”) — cite them, don't invent others.
 
 ## Role of the main session: Orchestrator
 
@@ -143,7 +143,7 @@ Full, current status lives in `docs/integrations.md` — check it before assumin
 - **Shopify Admin MCP** — verified working (store: slabshub.com). Products, inventory, orders, ShopifyQL. Agents load tools with ToolSearch.
 - **Klaviyo MCP** — verified working (account: SlabsHub). Email — future phase.
 - **Notion / Slack / Google Drive / Supabase / Stitch MCPs** — connected, available on demand.
-- **Meta Graph API (Facebook/Instagram)** — pending: needs `META_PAGE_TOKEN` etc. in `.env` (setup steps in docs/integrations.md). Until then, `publisher` produces ready-to-paste drafts and Matan publishes manually. Even after connection, publishing requires Matan's per-draft approval.
+- **Meta Graph API (Facebook/Instagram)** — ✅ connected (2026-09-04): `scripts/meta_publish.py` publishes APPROVED drafts to the official page facebook.com/pokeslabshub and to @pokeslabshub on Instagram, and refuses to run if `META_PAGE_ID` in `.env` does not resolve to that page. Publishing still requires Matan's per-draft approval. Details in docs/integrations.md.
 - **Gemini API (video + images)** — verified working, key in `.env`. Veo 3.1 for video (pay-per-use — only for approved campaigns, prefer veo-3.1-fast), gemini-3.1-flash-image / Imagen 4 for post visuals (cheap — use freely). Manual fallback: Matan's Google AI subscription via Flow. Details in docs/integrations.md.
 - **SlabsHub pricing logic** — pending API/DB access. Until then, `product-intelligence` uses web research (eBay sold listings, PriceCharting) for market comps.
 

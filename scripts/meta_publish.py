@@ -39,6 +39,11 @@ IG_ID = os.getenv("META_IG_USER_ID")
 G = "https://graph.facebook.com/v21.0"
 IL = timezone(timedelta(hours=3))  # IDT; publish_at values in state.json carry their own offset anyway
 
+# The store's official Facebook page (docs/brand-voice.md → "Official accounts"). Posts go here and nowhere else:
+# main() checks that META_PAGE_ID resolves to this page before anything is published.
+OFFICIAL_PAGE_USERNAME = "pokeslabshub"
+OFFICIAL_PAGE_URL = f"https://www.facebook.com/{OFFICIAL_PAGE_USERNAME}"
+
 
 def log(msg):
     line = f"{datetime.now(IL).isoformat(timespec='seconds')} {msg}"
@@ -52,6 +57,31 @@ def page_token():
     r = requests.get(f"{G}/{PAGE_ID}", params={"fields": "access_token", "access_token": TOKEN}, timeout=30)
     r.raise_for_status()
     return r.json()["access_token"]
+
+
+def assert_official_page():
+    """Abort (publishing nothing) unless META_PAGE_ID is the official page facebook.com/pokeslabshub."""
+    r = requests.get(f"{G}/{PAGE_ID}", params={"fields": "name,username,link", "access_token": TOKEN}, timeout=30)
+    r.raise_for_status()
+    info = r.json()
+    username = (info.get("username") or "").lower()
+    link = (info.get("link") or "").lower().rstrip("/")
+    if username != OFFICIAL_PAGE_USERNAME and link != OFFICIAL_PAGE_URL:
+        log(f"ABORT    META_PAGE_ID {PAGE_ID} is page '{info.get('name')}' ({info.get('link') or 'no link'}), "
+            f"not the official page {OFFICIAL_PAGE_URL} — nothing published")
+        sys.exit(2)
+    return info
+
+
+def fb_permalink(tok, pid):
+    """Canonical permalink under the official page URL; falls back to the id-based form if Graph doesn't return one."""
+    try:
+        r = requests.get(f"{G}/{pid}", params={"fields": "permalink_url", "access_token": tok}, timeout=30)
+        if r.ok and r.json().get("permalink_url"):
+            return r.json()["permalink_url"]
+    except Exception:  # noqa
+        pass
+    return f"https://www.facebook.com/{pid}"
 
 
 def read_draft(path):
@@ -133,7 +163,7 @@ def fb_publish(tok, post, caption, link, assets):
         pid = r.json()["id"]
     if link_in_comment:
         requests.post(f"{G}/{pid}/comments", data={"message": link, "access_token": tok}, timeout=60)
-    return pid, f"https://www.facebook.com/{pid}"
+    return pid, fb_permalink(tok, pid)
 
 
 def ig_wait(tok, cid):
@@ -221,6 +251,8 @@ def main():
     a = ap.parse_args()
     if not (TOKEN and PAGE_ID and IG_ID):
         sys.exit("META_* keys missing in .env")
+    page = assert_official_page()
+    print(f"publishing as: {page.get('name')} · {page.get('link') or OFFICIAL_PAGE_URL}")
     state = json.loads(STATE.read_text(encoding="utf-8"))
     now = datetime.now(timezone.utc)
     changed = False

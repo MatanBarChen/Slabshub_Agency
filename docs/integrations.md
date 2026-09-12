@@ -37,7 +37,7 @@ Note: plugin:marketing:klaviyo is redundant — the direct Klaviyo MCP is alread
 |---|---|---|
 | App | `Slabshub_Agency` — app id `1544161646661896` | the token was issued by this app, not by `slabshub.com` (`1385848300175812`); both exist under the business |
 | Business | `SlabsHub.com` — `1384456153755717` | ✓ |
-| Page | `Pokeslabshub` — `1361507090367793` | ✓ created 2026-09-04, business-owned, page token derived and reads fine |
+| Page | `Pokeslabshub` — `1361507090367793` — **official URL https://www.facebook.com/pokeslabshub** (declared official 2026-09-12) | ✓ created 2026-09-04, business-owned, page token derived and reads fine. This is the store's official Facebook account: every FB post goes here and nowhere else. `meta_publish.py` verifies on start that `META_PAGE_ID` resolves to username `pokeslabshub` and aborts otherwise |
 | Instagram | `pokeslabshub` — `17841426420081172` | ✓ professional, linked to the page, 1,572 followers / 71 posts |
 | Scopes | pages_show_list, pages_read_engagement, pages_manage_posts, instagram_basic, instagram_content_publish, read_insights | ✓ all six granted, none declined |
 | Ad account | `1081186441399359` (Slabshub_Agency) | differs from `act_631106849003586` in the old audit — reconcile before the first paid run |
