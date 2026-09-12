@@ -1,6 +1,6 @@
 {
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
-  "updated": "2026-09-10",
+  "updated": "2026-09-12",
   "_note_slab_guard_slots": "retired 2026-09-07 - the il-wed/thu/sat-eve deviation folded into the new two-slot grid (us-eve-a 03:30 IDT / il-eve-b 20:30 IDT) in docs/schedule-slots.md.",
   "meta_api": {
     "status": "connected",
@@ -488,8 +488,9 @@
           "label": "D5 · נדירות אמיתית",
           "slot": "il-eve-b",
           "publish_at": "2026-09-12T20:30:00+03:00",
-          "status": "PENDING_APPROVAL",
-          "file": "drafts/2026-09-07-triathlon-jigglypuff-d5-facebook-organic.md"
+          "status": "APPROVED",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d5-facebook-organic.md",
+          "approved_at": "2026-09-12"
         },
         {
           "platform": "instagram-feed",
