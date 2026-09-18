@@ -461,8 +461,9 @@
           "label": "D4 · מה זה בכלל",
           "slot": "il-noon-a",
           "publish_at": "2026-09-18T12:30:00+03:00",
-          "status": "PENDING_APPROVAL",
-          "file": "drafts/2026-09-07-triathlon-jigglypuff-d4-facebook-organic.md"
+          "status": "APPROVED",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d4-facebook-organic.md",
+          "approved_at": "2026-09-18"
         },
         {
           "platform": "instagram-feed",
@@ -470,8 +471,9 @@
           "label": "D4 · ציון מושלם (פוסט דגל)",
           "slot": "il-eve-b",
           "publish_at": "2026-09-18T20:30:00+03:00",
-          "status": "PENDING_APPROVAL",
-          "file": "drafts/2026-09-07-triathlon-jigglypuff-d4-instagram-feed.md"
+          "status": "APPROVED",
+          "file": "drafts/2026-09-07-triathlon-jigglypuff-d4-instagram-feed.md",
+          "approved_at": "2026-09-18"
         },
         {
           "platform": "instagram-story",
