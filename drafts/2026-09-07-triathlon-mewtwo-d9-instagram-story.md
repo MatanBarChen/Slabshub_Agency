@@ -1,6 +1,6 @@
 # DRAFT — awaiting approval
 - Platform: instagram-story
-- Proposed publish time: יום רביעי, 2026-09-16 · 20:30 IDT — D9 של RAW Mewtwo #183 Japanese 151 (בלוק 3 הימים הרצוף שלו בקמפיין הטריאתלון)
+- Proposed publish time: יום רביעי, 2026-09-23 · 20:30 IDT — D9 של RAW Mewtwo #183 Japanese 151 (בלוק 3 הימים הרצוף שלו בקמפיין הטריאתלון)
 - slot: il-eve-b (רביעי 20:30 IDT) — deviation from standard interleave per Matan's directive 2026-09-07, see docs/schedule-slots.md
 - Status: PENDING_APPROVAL
 

@@ -1,6 +1,6 @@
 # DRAFT — awaiting approval
 - Platform: instagram-feed
-- Proposed publish time: יום ראשון, 2026-09-13 · 12:30 IDT — D6 של PSA 10 Jigglypuff Japanese Old Maid (בלוק 3 הימים הרצוף שלו בקמפיין הטריאתלון)
+- Proposed publish time: יום ראשון, 2026-09-20 · 12:30 IDT — D6 של PSA 10 Jigglypuff Japanese Old Maid (בלוק 3 הימים הרצוף שלו בקמפיין הטריאתלון)
 - slot: il-noon-a (ראשון 12:30 IDT) — deviation from standard interleave per Matan's directive 2026-09-07, see docs/schedule-slots.md
 - Status: PENDING_APPROVAL
 

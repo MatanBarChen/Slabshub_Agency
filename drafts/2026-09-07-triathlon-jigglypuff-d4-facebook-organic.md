@@ -1,6 +1,6 @@
 # DRAFT — awaiting approval
 - Platform: facebook-organic
-- Proposed publish time: יום שישי, 2026-09-11 · 12:30 IDT — D4 של PSA 10 Jigglypuff Japanese Old Maid (בלוק 3 הימים הרצוף שלו בקמפיין הטריאתלון)
+- Proposed publish time: יום שישי, 2026-09-18 · 12:30 IDT — D4 של PSA 10 Jigglypuff Japanese Old Maid (בלוק 3 הימים הרצוף שלו בקמפיין הטריאתלון)
 - slot: il-noon-a (שישי 12:30 IDT) — deviation from standard interleave per Matan's directive 2026-09-07, see docs/schedule-slots.md
 - Status: PENDING_APPROVAL
 

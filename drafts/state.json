@@ -1,6 +1,6 @@
 {
   "_doc": "Single source of truth for campaign/draft state. Publisher updates on every change; build_board.py and status.py render from it. Statuses: PENDING_APPROVAL | APPROVED | QUEUED | PUBLISHED | ON_HOLD | BLOCKED | SKIPPED. publish_at is IDT ISO-8601 or null.",
-  "updated": "2026-09-10",
+  "updated": "2026-09-18",
   "_note_slab_guard_slots": "retired 2026-09-07 - the il-wed/thu/sat-eve deviation folded into the new two-slot grid (us-eve-a 03:30 IDT / il-eve-b 20:30 IDT) in docs/schedule-slots.md.",
   "meta_api": {
     "status": "connected",
@@ -460,7 +460,7 @@
           "product": "PSA 10 Jigglypuff Japanese Old Maid",
           "label": "D4 · מה זה בכלל",
           "slot": "il-noon-a",
-          "publish_at": "2026-09-11T12:30:00+03:00",
+          "publish_at": "2026-09-18T12:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-jigglypuff-d4-facebook-organic.md"
         },
@@ -469,7 +469,7 @@
           "product": "PSA 10 Jigglypuff Japanese Old Maid",
           "label": "D4 · ציון מושלם (פוסט דגל)",
           "slot": "il-eve-b",
-          "publish_at": "2026-09-11T20:30:00+03:00",
+          "publish_at": "2026-09-18T20:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-jigglypuff-d4-instagram-feed.md"
         },
@@ -478,7 +478,7 @@
           "product": "PSA 10 Jigglypuff Japanese Old Maid",
           "label": "D5 · הוכחת שוק",
           "slot": "il-noon-a",
-          "publish_at": "2026-09-12T12:30:00+03:00",
+          "publish_at": "2026-09-19T12:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-jigglypuff-d5-instagram-story.md"
         },
@@ -487,7 +487,7 @@
           "product": "PSA 10 Jigglypuff Japanese Old Maid",
           "label": "D5 · נדירות אמיתית",
           "slot": "il-eve-b",
-          "publish_at": "2026-09-12T20:30:00+03:00",
+          "publish_at": "2026-09-19T20:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-jigglypuff-d5-facebook-organic.md"
         },
@@ -496,7 +496,7 @@
           "product": "PSA 10 Jigglypuff Japanese Old Maid",
           "label": "D6 · גראייל לאספנים (זווית שנייה)",
           "slot": "il-noon-a",
-          "publish_at": "2026-09-13T12:30:00+03:00",
+          "publish_at": "2026-09-20T12:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-jigglypuff-d6-instagram-feed.md"
         },
@@ -505,7 +505,7 @@
           "product": "PSA 10 Jigglypuff Japanese Old Maid",
           "label": "D6 · סגירת מחיר",
           "slot": "il-eve-b",
-          "publish_at": "2026-09-13T20:30:00+03:00",
+          "publish_at": "2026-09-20T20:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-jigglypuff-d6-instagram-story.md"
         },
@@ -514,7 +514,7 @@
           "product": "RAW Mewtwo #183 Japanese 151",
           "label": "D7 · היכרות עם הקלף",
           "slot": "il-noon-a",
-          "publish_at": "2026-09-14T12:30:00+03:00",
+          "publish_at": "2026-09-21T12:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-mewtwo-d7-facebook-organic.md"
         },
@@ -523,7 +523,7 @@
           "product": "RAW Mewtwo #183 Japanese 151",
           "label": "D7 · הפוקימון האייקוני (פוסט דגל)",
           "slot": "il-eve-b",
-          "publish_at": "2026-09-14T20:30:00+03:00",
+          "publish_at": "2026-09-21T20:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-mewtwo-d7-instagram-feed.md"
         },
@@ -532,7 +532,7 @@
           "product": "RAW Mewtwo #183 Japanese 151",
           "label": "D8 · מיקום מול השוק",
           "slot": "il-noon-a",
-          "publish_at": "2026-09-15T12:30:00+03:00",
+          "publish_at": "2026-09-22T12:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-mewtwo-d8-instagram-story.md"
         },
@@ -541,7 +541,7 @@
           "product": "RAW Mewtwo #183 Japanese 151",
           "label": "D8 · פוטנציאל דירוג",
           "slot": "il-eve-b",
-          "publish_at": "2026-09-15T20:30:00+03:00",
+          "publish_at": "2026-09-22T20:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-mewtwo-d8-facebook-organic.md"
         },
@@ -550,7 +550,7 @@
           "product": "RAW Mewtwo #183 Japanese 151",
           "label": "D9 · יחידה אחרונה (זווית שנייה)",
           "slot": "il-noon-a",
-          "publish_at": "2026-09-16T12:30:00+03:00",
+          "publish_at": "2026-09-23T12:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-mewtwo-d9-instagram-feed.md"
         },
@@ -559,7 +559,7 @@
           "product": "RAW Mewtwo #183 Japanese 151",
           "label": "D9 · סגירה במחיר",
           "slot": "il-eve-b",
-          "publish_at": "2026-09-16T20:30:00+03:00",
+          "publish_at": "2026-09-23T20:30:00+03:00",
           "status": "PENDING_APPROVAL",
           "file": "drafts/2026-09-07-triathlon-mewtwo-d9-instagram-story.md"
         }
@@ -571,5 +571,5 @@
   "_currency": "Store repriced to ILS; primary Shopify market is Israel. Decision 2026-09-07 (Matan): all 14 stale drafts are rewritten in Hebrew + ILS to match the primary market. Slab Guard's 3 posts were already Hebrew/ILS and are unaffected.",
   "_asset_note": "Still images carry NO baked-in text - price overlays are applied at posting time, so repricing the copy fixes them for free. Two Veo clips DO burn a USD price into the frame (Mewtwo reel-shot3, Umbreon reel-moonlight) - see asset_check on those posts.",
   "_note_triathlon_slots": "Triathlon (2026-09-07): Matan's directive — one product occupies both daily slots (il-noon-a 12:30 IDT + il-eve-b 20:30 IDT) for 3 consecutive days, Hebrew/Israel-only; the interleave rule is suspended for Hebrew campaigns. New slot il-noon-a added to docs/schedule-slots.md. Order: Slab Guard D1-D3 (8-10.9), Jigglypuff D4-D6 (11-13.9), Mewtwo D7-D9 (14-16.9). All 18 posts PENDING_APPROVAL, verified against briefs (no pop count, no NM claim on Mewtwo, no 'find'/below-market language on Jigglypuff, only Slab Guard 3+ = 15% discount, Mewtwo days-listed = 476 not 540).",
-  "_note_triathlon_approvals": "מתן אישר בצ׳אט 2026-09-07 את 6 הפוסטים של Slab Guard. Jigglypuff ו-Mewtwo מאושרים יום-יום — כל בוקר מתן מאשר את הפוסטים של אותו היום."
+  "_note_triathlon_approvals": "מתן אישר בצ׳אט 2026-09-07 את 6 הפוסטים של Slab Guard. Jigglypuff ו-Mewtwo מאושרים יום-יום — כל בוקר מתן מאשר את הפוסטים של אותו היום. 2026-09-18: 12 הפוסטים של Jigglypuff ו-Mewtwo לא אושרו בזמן — מתן ביקש לתזמן מחדש, הוזזו +7 ימים (Jigglypuff 18-20.9, Mewtwo 21-23.9), אותם ימים בשבוע ואותם סלוטים."
 }
