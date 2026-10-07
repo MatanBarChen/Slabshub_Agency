@@ -15,6 +15,14 @@ The main Claude session (Fable 5) acts as the **Orchestrator**. It receives trig
 | "קמפיין שבועי" / weekly campaign | 1. `analytics` (what worked last week) → 2. `product-intelligence` (pick hero products) → 3. `copywriter` + `creative` in parallel → 4. `publisher` (drafts for whole week) |
 | "דוח ביצועים" / performance report | `analytics` only → report to user |
 
+### Open priorities (Matan's queue — highest first)
+
+| # | Item | Owner | Status |
+|---|---|---|---|
+| 1 | **Daily price sync** — check every active card against market comps once a day and propose price corrections. Spec: `docs/price-sync-plan.md`. Opened after the first sale went out ~20% under market. Agent proposes, Matan approves; never writes a price to the store | product-intelligence | spec ready, not built |
+| 2 | **COGS gaps** — `docs/cogs.md` has a line only for Slab Guard. Without per-card cost there is no margin in the quarterly report and no price floor for item 1 | Matan fills | blocked on Matan |
+| 3 | **iCount returns no AVS/CVV** — order #1003 cleared with neither check performed. Affects every order, not one: weaker fraud defence and a weaker position in a chargeback dispute | Matan + iCount | to raise |
+
 ### Web Designer role (via the `anthropic-skills:web` skill)
 
 For any **web deliverable** — campaign landing pages, promo HTML pages, email-quality HTML layouts, the store's content pages, or upgrading `promo.html` assets to production quality — the Orchestrator loads the `anthropic-skills:web` skill and follows its full workflow (research references → lock direction → build with design tokens → craft pass → visual verify). Rules of engagement:
