@@ -312,6 +312,11 @@ const TOOLS = [
 // deno-lint-ignore no-explicit-any
 type Msg = { role: string; content: any };
 
+// A rejected key is not a transient fault, so it gets its own type: telling a
+// customer "try again in a moment" when the key is revoked sends them in a loop
+// against something only Matan can fix.
+class AuthError extends Error {}
+
 async function callAnthropic(system: string, messages: Msg[]) {
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -322,8 +327,54 @@ async function callAnthropic(system: string, messages: Msg[]) {
     },
     body: JSON.stringify({ model: MODEL, max_tokens: 1200, system, tools: TOOLS, messages }),
   });
-  if (!r.ok) throw new Error("anthropic " + r.status + ": " + (await r.text()).slice(0, 400));
+  if (!r.ok) {
+    const body = (await r.text()).slice(0, 400);
+    if (r.status === 401 || r.status === 403) {
+      authCache = { at: Date.now(), ok: false, detail: "anthropic " + r.status };
+      throw new AuthError("anthropic " + r.status + ": " + body);
+    }
+    throw new Error("anthropic " + r.status + ": " + body);
+  }
   return await r.json();
+}
+
+// The old health check reported `key: Boolean(ANTHROPIC_KEY)` — presence, not
+// validity — so a revoked key read as healthy and the chat sat dead for eleven
+// days with `ok: true`. This asks Anthropic whether the key still works, cached
+// so a monitoring ping costs one token per instance per five minutes.
+let authCache: { at: number; ok: boolean; detail: string } | null = null;
+const AUTH_TTL_MS = 5 * 60_000;
+
+async function authHealthy(force = false): Promise<{ ok: boolean; detail: string }> {
+  if (!ANTHROPIC_KEY) return { ok: false, detail: "ANTHROPIC_API_KEY missing" };
+  if (!force && authCache && Date.now() - authCache.at < AUTH_TTL_MS) {
+    return { ok: authCache.ok, detail: authCache.detail };
+  }
+  try {
+    const r = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-api-key": ANTHROPIC_KEY,
+        "anthropic-version": "2023-06-01",
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        max_tokens: 1,
+        messages: [{ role: "user", content: "." }],
+      }),
+    });
+    // 400 means the key authenticated and the request itself was rejected —
+    // that is still a healthy key, so only 401/403 count as a failure.
+    const ok = r.ok || r.status === 400;
+    const detail = ok ? "ok" : "anthropic " + r.status;
+    authCache = { at: Date.now(), ok, detail };
+    return { ok, detail };
+  } catch (e) {
+    const detail = "unreachable: " + String(e).slice(0, 120);
+    authCache = { at: Date.now(), ok: false, detail };
+    return { ok: false, detail };
+  }
 }
 
 async function dispatch(name: string, input: Record<string, unknown>, conversationId: string) {
@@ -397,20 +448,24 @@ Deno.serve(async (req: Request) => {
 
   if (req.method === "GET") {
     const products = await catalog().catch(() => [] as Product[]);
+    const auth = await authHealthy(url.searchParams.get("fresh") === "1");
+    const ok = auth.ok && products.length > 0;
     return json({
-      ok: true,
+      ok,
       model: MODEL,
       key: Boolean(ANTHROPIC_KEY),
+      auth: auth.detail,
       products: products.length,
       in_stock: products.filter((p) => p.inventory > 0).length,
-    }, 200, origin);
+    }, ok ? 200 : 503, origin);
   }
 
   if (req.method !== "POST") return json({ error: "not found" }, 404, origin);
 
   if (!ANTHROPIC_KEY) {
     return json({
-      reply: "The chat is not configured yet - ANTHROPIC_API_KEY is missing.",
+      reply: "הצ'אט לא זמין כרגע ואנחנו כבר על זה. אפשר לכתוב למתן ישירות " +
+        "דרך עמוד צור קשר ונחזור אליכם.",
       trace: [],
     }, 200, origin);
   }
@@ -481,8 +536,25 @@ Deno.serve(async (req: Request) => {
     return json({ reply: result.reply, conversation_id: conversationId, trace: result.trace }, 200, origin);
   } catch (e) {
     console.error("chat turn failed", e);
+    if (e instanceof AuthError) {
+      // Nobody noticed the last outage because a dead chat left no trace Matan
+      // reads. A handoff row is that trace — and it is the honest thing to tell
+      // the customer, since retrying cannot help them.
+      await supabase.from("handoffs").insert({
+        reason: "chat_down",
+        summary: "הצ'אט נפל בזמן שיחה עם לקוח (" + String(e).slice(0, 120) +
+          "). הלקוח לא קיבל מענה.",
+        contact: null,
+        conversation_id: conversationId,
+      }).then(() => {}, () => {});
+      return json({
+        reply: "הצ'אט לא זמין כרגע ואנחנו כבר על זה. אפשר לכתוב למתן ישירות " +
+          "דרך עמוד צור קשר ונחזור אליכם.",
+        conversation_id: conversationId, trace: [],
+      }, 200, origin);
+    }
     return json({
-      reply: "Something went wrong on our side. Try again in a moment.",
+      reply: "משהו השתבש אצלנו. נסו שוב עוד רגע.",
       conversation_id: conversationId, trace: [],
     }, 200, origin);
   }
