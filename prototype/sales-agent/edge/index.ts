@@ -414,7 +414,7 @@ async function runTurn(system: string, messages: Msg[], conversationId: string) 
     }
     messages.push({ role: "user", content: results });
   }
-  return { reply: "Sorry, I got stuck there. Can you rephrase?", messages, trace };
+  return { reply: "סליחה, נתקעתי כאן. אפשר לנסח את זה אחרת?", messages, trace };
 }
 
 // Trim from the front, but never leave a tool_result as the first message —
@@ -473,7 +473,7 @@ Deno.serve(async (req: Request) => {
   const ipHash = await hashIp(req);
   if (await overRateLimit(ipHash)) {
     return json({
-      reply: "You've sent a lot of messages in a short time. Give it a few minutes and try again.",
+      reply: "שלחת הרבה הודעות בזמן קצר. תן לזה כמה דקות ונסה שוב.",
       trace: [], rate_limited: true,
     }, 429, origin);
   }
@@ -488,7 +488,7 @@ Deno.serve(async (req: Request) => {
   const message = (payload.message ?? "").toString().trim();
   if (!message) return json({ error: "message is required" }, 400, origin);
   if (message.length > MAX_INPUT_CHARS) {
-    return json({ reply: "That message is a bit long for the chat - can you shorten it?", trace: [] }, 200, origin);
+    return json({ reply: "ההודעה קצת ארוכה מדי לצ'אט — אפשר לקצר?", trace: [] }, 200, origin);
   }
 
   // Load or open a conversation. History is read from our side only; whatever
@@ -519,7 +519,7 @@ Deno.serve(async (req: Request) => {
 
   if (turns >= MAX_TURNS_PER_CONVERSATION) {
     return json({
-      reply: "This chat has gone on a while - refresh the page to start a fresh one and I'll pick it back up.",
+      reply: "השיחה כבר ארוכה. רענן את העמוד כדי להתחיל שיחה חדשה ונמשיך מכאן.",
       conversation_id: conversationId, trace: [],
     }, 200, origin);
   }
