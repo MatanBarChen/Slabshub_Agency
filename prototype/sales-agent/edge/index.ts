@@ -318,11 +318,12 @@ type Msg = { role: string; content: any };
 class AuthError extends Error {}
 
 async function callAnthropic(system: string, messages: Msg[]) {
+  if (!ANTHROPIC_KEY) throw new AuthError("ANTHROPIC_API_KEY missing");
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      "x-api-key": ANTHROPIC_KEY!,
+      "x-api-key": ANTHROPIC_KEY,
       "anthropic-version": "2023-06-01",
     },
     body: JSON.stringify({ model: MODEL, max_tokens: 1200, system, tools: TOOLS, messages }),
@@ -375,6 +376,136 @@ async function authHealthy(force = false): Promise<{ ok: boolean; detail: string
     authCache = { at: Date.now(), ok: false, detail };
     return { ok: false, detail };
   }
+}
+
+// ------------------------------------------------- degraded mode (no model)
+
+// When Anthropic will not answer, the chat does not have to be dead. This is a
+// deliberately dumb search assistant: it reads a budget, a grade and any card
+// name out of the message, runs the same catalog search the model would have
+// called, and prints real rows. It invents nothing — every line comes from the
+// products table — and it says plainly that the smart assistant is out, so a
+// customer is never misled about what is answering them.
+//
+// It still feeds the demand loop: searchCatalog logs the miss, and a named card
+// we do not stock is written to the wishlist exactly as the model would have.
+
+// Catalog titles are English, so a Hebrew card name finds nothing without this.
+const HE_NAMES: Array<[RegExp, string]> = [
+  [/פיקאצ['׳]?ו/, "pikachu"],
+  [/צ['׳]ארי?זארד|צ['׳]ריזארד/, "charizard"],
+  [/מיוטו|מיו-?טו/, "mewtwo"],
+  [/\bמיו\b/, "mew"],
+  [/איווי|אייווי/, "eevee"],
+  [/אמבריון|אמברון/, "umbreon"],
+  [/סילביון/, "sylveon"],
+  [/לוגיה/, "lugia"],
+  [/רייקוואזה|רייקוזה/, "rayquaza"],
+  [/גיאראדוס|גיירדוס/, "gyarados"],
+  [/סנורלקס|סניורלקס/, "snorlax"],
+  [/דרגונייט/, "dragonite"],
+  [/בלסטויז/, "blastoise"],
+  [/ונוסאור|ויננוסאור/, "venusaur"],
+  [/גנגר/, "gengar"],
+  [/טיראניטר/, "tyranitar"],
+  [/לוקריו/, "lucario"],
+  [/גרניה/, "greninja"],
+];
+
+// Words that match half the catalog and so only blur the search.
+const STOP = new Set([
+  "psa", "cgc", "bgs", "raw", "the", "and", "for", "you", "have", "any", "all",
+  "ils", "nis", "card", "cards", "slab", "slabs", "pokemon", "pokémon", "shekel",
+  "please", "want", "looking", "need", "some", "something", "with", "under",
+]);
+
+function parseBudget(m: string): { min?: number; max?: number } {
+  const range = /(\d{2,5})\s*(?:-|–|עד|to)\s*(\d{2,5})/.exec(m);
+  if (range) {
+    const a = Number(range[1]), b = Number(range[2]);
+    return { min: Math.min(a, b), max: Math.max(a, b) };
+  }
+  const cap = /(?:עד|מתחת\s*ל?|under|below|max)\s*(\d{2,5})/i.exec(m);
+  if (cap) return { max: Number(cap[1]) };
+  const floor = /(?:מעל|מ-?\s*|above|over|from)\s*(\d{2,5})\s*(?:\+|ומעלה)/i.exec(m);
+  if (floor) return { min: Number(floor[1]) };
+  return {};
+}
+
+function parseGrade(m: string): string | undefined {
+  const g = /\b(PSA|CGC|BGS)\s*(10|[1-9])\b/i.exec(m);
+  if (g) return g[1].toUpperCase() + " " + g[2];
+  if (/\braw\b|גולמי|לא\s*מדורג/i.test(m)) return "RAW";
+  return undefined;
+}
+
+function parseTerms(m: string): string {
+  const out = new Set<string>();
+  for (const [re, en] of HE_NAMES) if (re.test(m)) out.add(en);
+  for (const w of m.match(/[a-zA-Z]{3,}/g) ?? []) {
+    const lw = w.toLowerCase();
+    if (!STOP.has(lw)) out.add(lw);
+  }
+  return [...out].join(" ");
+}
+
+const FALLBACK_HEAD =
+  "העוזר החכם שלנו בתחזוקה קצרה, אז אני עונה כאן בחיפוש ישיר במלאי.";
+const FALLBACK_FOOT =
+  "לכל שאלה אחרת אפשר לכתוב למתן דרך עמוד צור קשר ונחזור אליכם.";
+
+const FALLBACK_ASK = "לא הצלחתי לזהות מה לחפש. אפשר לכתוב שם קלף באנגלית, " +
+  "דירוג (למשל PSA 9) או תקציב (למשל \"עד 300\").";
+
+async function fallbackReply(message: string, conversationId: string): Promise<string> {
+  const budget = parseBudget(message);
+  const grade = parseGrade(message);
+  const query = parseTerms(message);
+
+  // "היי" carries no filter at all. Without this the search matches the whole
+  // catalog and the customer gets five expensive cards they never asked about.
+  if (!query && !grade && budget.min == null && budget.max == null) {
+    return FALLBACK_HEAD + "\n\n" + FALLBACK_ASK + "\n\n" + FALLBACK_FOOT;
+  }
+
+  const res = await searchCatalog({
+    query, grade, min_price: budget.min, max_price: budget.max, limit: 12,
+  }, conversationId) as {
+    products: Array<
+      { title: string; price_ils: number | null; in_stock: number; url: string | null }
+    >;
+  };
+
+  // searchCatalog scores a description hit the same as a title hit, which is
+  // right for the model (it reads the rows and judges) and wrong here (nothing
+  // judges). "charizard base set" matched a Jigglypuff on the word "set". With
+  // no model in the loop, a named card must appear in the title or not at all.
+  const terms = query.split(" ").filter(Boolean);
+  const products = terms.length
+    ? res.products.filter((p) =>
+      terms.some((t) => p.title.toLowerCase().includes(t))
+    ).slice(0, 5)
+    : res.products.slice(0, 5);
+
+  if (!products.length) {
+    if (query) {
+      await recordWishlist({
+        card: query + (grade ? " " + grade : ""),
+        notes: "Logged by the fallback assistant while the model was unavailable.",
+      }, conversationId);
+      return FALLBACK_HEAD + "\n\nלא מצאתי התאמה במלאי כרגע. רשמתי את הבקשה " +
+        "אצל מתן לסבב הרכש הקרוב.\n\n" + FALLBACK_FOOT;
+    }
+    return FALLBACK_HEAD + "\n\nלא מצאתי התאמה לחיפוש הזה במלאי.\n\n" + FALLBACK_ASK +
+      "\n\n" + FALLBACK_FOOT;
+  }
+
+  const lines = products.map((p) => {
+    const row = "• " + p.title + (p.price_ils != null ? " — ₪" + p.price_ils : "");
+    return p.url ? row + "\n  " + p.url : row;
+  });
+  return FALLBACK_HEAD + "\n\nהנה מה שיש לנו במלאי שמתאים:\n" + lines.join("\n") +
+    "\n\n" + FALLBACK_FOOT;
 }
 
 async function dispatch(name: string, input: Record<string, unknown>, conversationId: string) {
@@ -462,13 +593,9 @@ Deno.serve(async (req: Request) => {
 
   if (req.method !== "POST") return json({ error: "not found" }, 404, origin);
 
-  if (!ANTHROPIC_KEY) {
-    return json({
-      reply: "הצ'אט לא זמין כרגע ואנחנו כבר על זה. אפשר לכתוב למתן ישירות " +
-        "דרך עמוד צור קשר ונחזור אליכם.",
-      trace: [],
-    }, 200, origin);
-  }
+  // A missing key is handled the same way a rejected one is — callAnthropic
+  // raises AuthError and the request falls through to the catalog fallback,
+  // so there is one degraded path rather than two.
 
   const ipHash = await hashIp(req);
   if (await overRateLimit(ipHash)) {
@@ -538,19 +665,32 @@ Deno.serve(async (req: Request) => {
     console.error("chat turn failed", e);
     if (e instanceof AuthError) {
       // Nobody noticed the last outage because a dead chat left no trace Matan
-      // reads. A handoff row is that trace — and it is the honest thing to tell
-      // the customer, since retrying cannot help them.
-      await supabase.from("handoffs").insert({
-        reason: "chat_down",
-        summary: "הצ'אט נפל בזמן שיחה עם לקוח (" + String(e).slice(0, 120) +
-          "). הלקוח לא קיבל מענה.",
-        contact: null,
-        conversation_id: conversationId,
-      }).then(() => {}, () => {});
+      // reads. One handoff row per conversation is that trace — on the opening
+      // turn only, so a long conversation does not flood his queue.
+      if (turns === 0) {
+        await supabase.from("handoffs").insert({
+          reason: "chat_down",
+          summary: "המודל לא זמין (" + String(e).slice(0, 120) +
+            "). הצ'אט עונה במצב חיפוש־מלאי מצומצם.",
+          contact: null,
+          conversation_id: conversationId,
+        }).then(() => {}, () => {});
+      }
+      // Degraded, but still selling: real stock, real prices, real links.
+      let reply = "הצ'אט לא זמין כרגע ואנחנו כבר על זה. אפשר לכתוב למתן ישירות " +
+        "דרך עמוד צור קשר ונחזור אליכם.";
+      try {
+        reply = await fallbackReply(message, conversationId);
+      } catch (inner) {
+        console.error("fallback failed", inner);
+      }
+      try {
+        await supabase.from("conversations").update({
+          turns: turns + 1, updated_at: new Date().toISOString(),
+        }).eq("id", conversationId);
+      } catch { /* the reply matters more than the counter */ }
       return json({
-        reply: "הצ'אט לא זמין כרגע ואנחנו כבר על זה. אפשר לכתוב למתן ישירות " +
-          "דרך עמוד צור קשר ונחזור אליכם.",
-        conversation_id: conversationId, trace: [],
+        reply, conversation_id: conversationId, trace: [], degraded: true,
       }, 200, origin);
     }
     return json({
